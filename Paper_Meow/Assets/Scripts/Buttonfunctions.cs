@@ -11,6 +11,7 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject ControlsMenu;
     public GameObject Display;
+    public GameObject PauseMenuButton;
     public void PauseTimer() //Pausamos el timer.
     {
         Time.timeScale = 0;
@@ -22,6 +23,14 @@ public class Buttonfunctions : MonoBehaviour
     public void ResetPunt() //Reseteamos el timer.
     {
        GameManager.instance.ResetPunt(0);
+    }
+    public void PauseMenuButtonON()
+    {
+        PauseMenuButton.SetActive(true);
+    }
+    public void PauseMenuButtonOFF()
+    {
+        PauseMenuButton.SetActive(false);
     }
     public void PauseMenuoON() //Activa el menú de pausa.
     {
