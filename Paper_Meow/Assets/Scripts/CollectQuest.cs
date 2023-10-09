@@ -24,4 +24,10 @@ public class CollectQuest : Quest
         }
 
     }
+
+    public override void Reset()
+    {
+        base.Reset();
+        itemsCollected = 0;
+    }
 }

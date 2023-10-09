@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NPCInteraction : MonoBehaviour
 {
-    public CollectQuest collectQuest; // Asigna la misión de recolectar en el Inspector.
+    public Quest collectQuest; // Asigna la misión de recolectar en el Inspector.
     private bool playerInRange = false; // Variable para rastrear si el jugador está dentro del rango.
     public GameObject PressE;
 
