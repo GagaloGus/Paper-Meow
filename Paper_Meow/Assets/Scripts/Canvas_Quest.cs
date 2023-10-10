@@ -6,7 +6,6 @@ using UnityEngine;
 public class Canvas_Quest : MonoBehaviour
 {
     private TMPro.TMP_Text text;
-    // Start is called before the first frame update
     void Start()
     {
         text = GetComponent<TMPro.TMP_Text>();

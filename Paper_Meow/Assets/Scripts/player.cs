@@ -25,6 +25,7 @@ public class player : MonoBehaviour
 
     void Update()
     {
+       
         //if (Input.GetKeyDown(KeyCode.Z)) 
         //{
         //    QuestManager.instance.AddQuest(collectQuest);

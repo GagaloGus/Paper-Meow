@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttonfunctions : MonoBehaviour
 {
+    public static Buttonfunctions instance;
+    public GameObject MenuCanvas;
     public GameObject PauseMenu;
     public GameObject Shop;
     public AudioClip clip;
@@ -12,6 +14,24 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject ControlsMenu;
     public GameObject Display;
     public GameObject PauseMenuButton;
+    public GameObject Inventory;
+    public GameObject InventoryButton;
+    public GameObject WeaponsButton;
+    public GameObject FruitsButton;
+    public GameObject PotionsButton;
+    public GameObject InventoryTable;
+    public bool Menu = false;
+
+    private void Start()
+    {
+        PauseMenu = MenuCanvas.transform.Find("Pause_Menu").gameObject;
+        SettingsMenu = MenuCanvas.transform.Find("Settings").gameObject;
+        ControlsMenu = MenuCanvas.transform.Find("Display").gameObject;
+        WeaponsButton = Inventory.transform.Find("Inventory_Weapons").gameObject;
+        FruitsButton = MenuCanvas.transform.Find("Inventory_Fruits").gameObject;
+
+
+    }
     public void PauseTimer() //Pausamos el timer.
     {
         Time.timeScale = 0;
@@ -24,54 +44,63 @@ public class Buttonfunctions : MonoBehaviour
     {
        GameManager.instance.ResetPunt(0);
     }
-    public void PauseMenuButtonON()
+    public void PauseMenuButtonToggle()
     {
-        PauseMenuButton.SetActive(true);
+        PauseMenuButton.SetActive(!PauseMenuButton.activeSelf);
     }
-    public void PauseMenuButtonOFF()
+    public void PauseMenuoToggle() //Activa el menú de pausa.
     {
-        PauseMenuButton.SetActive(false);
+        PauseMenu.SetActive(!PauseMenu.activeSelf);
     }
-    public void PauseMenuoON() //Activa el menú de pausa.
+    public void ShopMenuToggle() //Activa el menú de tienda.
     {
-        PauseMenu.SetActive(true);
+        Shop.SetActive(!Shop.activeSelf);
     }
-    public void PauseMenuoOFF() //Desactiva el menú de pausa.
+    public void InventoryButtonToggle()
     {
-        PauseMenu.SetActive(false);
+        InventoryButton.SetActive(!InventoryButton.activeSelf);
     }
-    public void ShopMenuON() //Activa el menú de tienda.
+    public void WeaponsButtonToggle()
     {
-        Shop.SetActive(true);
+        WeaponsButton.SetActive(!WeaponsButton.activeSelf);
     }
-    public void ShopMenuOFF() //Desactiva el menú de tienda.
+    public void FruitsButtonToggle()
     {
-        Shop.SetActive(false);
+        FruitsButton.SetActive(!FruitsButton.activeSelf);
     }
-    public void SettingsMenuON()
+
+    public void PotionsButtonToggle()
     {
-        SettingsMenu.SetActive(true);
+        PotionsButton.SetActive(!PotionsButton.activeSelf);
     }
-    public void SettingsMenuOFF()
+
+    public void InventoryTableToggle()
     {
-        SettingsMenu.SetActive(false);
+        InventoryTable.SetActive(!InventoryTable.activeSelf);
     }
-    public void ControlsMenuON()
+
+    public void InventoryToggle()
     {
-        ControlsMenu.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory.SetActive(!Inventory.activeSelf);
+        }  
     }
-    public void ControlsMenuOFF()
+    public void SettingsMenuToggle()
     {
-        ControlsMenu.SetActive(false);
+        SettingsMenu.SetActive(!SettingsMenu.activeSelf);
     }
-    public void DisplayON()
+
+    public void ControlsMenuToggle()
     {
-        Display.SetActive(true);
+        ControlsMenu.SetActive(!ControlsMenu.activeSelf);
     }
-    public void DisplayOFF()
+
+    public void DisplayToggle()
     {
-        Display.SetActive(false);
+        Display.SetActive(!Display.activeSelf);
     }
+
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
     {
         SceneManager.LoadScene(name);
@@ -91,5 +120,8 @@ public class Buttonfunctions : MonoBehaviour
     {
         AudioManager.instance.PlayBackgroundMusic(clip);
     }
-        
+    private void Update()
+    {
+        InventoryToggle();
+    }
 }
