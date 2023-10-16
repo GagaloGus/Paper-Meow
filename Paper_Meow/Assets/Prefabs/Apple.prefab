@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 35733643917950870}
   - component: {fileID: 7480749917304487783}
   - component: {fileID: 3882699009350920648}
+  - component: {fileID: 183061184466922769}
   - component: {fileID: 1629356142661040948}
   m_Layer: 0
   m_Name: Apple
@@ -106,6 +107,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &183061184466922769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464409601502036070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f008de932c0a87849af771d12c434f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 2
+  type: Fruits
+  description: This is an Apple
+  icon: {fileID: 21300000, guid: b57ae5888c78d3c478b10f577d862184, type: 3}
+  pickedUp: 0
 --- !u!114 &1629356142661040948
 MonoBehaviour:
   m_ObjectHideFlags: 0

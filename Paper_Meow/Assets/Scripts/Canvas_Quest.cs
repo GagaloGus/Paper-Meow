@@ -11,7 +11,7 @@ public class Canvas_Quest : MonoBehaviour
         text = GetComponent<TMPro.TMP_Text>();
     }
 
-    void UpdateCanvasQuest()
+     void UpdateCanvasQuest()
     {
         QuestManager questManager = QuestManager.instance;
         text.text = "";

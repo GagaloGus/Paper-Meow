@@ -81,6 +81,9 @@ PrefabInstance:
       addedObject: {fileID: 8293675176099448183}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 791d6332bca80b041abe01207f812937, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4882260964367209490}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 791d6332bca80b041abe01207f812937, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7488190010008073412}
   m_SourcePrefab: {fileID: 100100000, guid: 791d6332bca80b041abe01207f812937, type: 3}
 --- !u!1 &2245956960892597067 stripped
@@ -100,6 +103,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f580d13aaa623746b68c4b120fdb3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4882260964367209490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245956960892597067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f008de932c0a87849af771d12c434f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 1
+  type: Coins
+  description: This is a MeowCoin
+  icon: {fileID: 21300000, guid: c544f266ededa8e40a35eecdc541ebae, type: 3}
+  pickedUp: 0
 --- !u!136 &7488190010008073412
 CapsuleCollider:
   m_ObjectHideFlags: 0
