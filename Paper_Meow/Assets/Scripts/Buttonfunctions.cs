@@ -20,18 +20,7 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject FruitsButton;
     public GameObject PotionsButton;
     public GameObject InventoryTable;
-    public bool Menu = false;
 
-    private void Start()
-    {
-        PauseMenu = MenuCanvas.transform.Find("Pause_Menu").gameObject;
-        SettingsMenu = MenuCanvas.transform.Find("Settings").gameObject;
-        ControlsMenu = MenuCanvas.transform.Find("Display").gameObject;
-        WeaponsButton = Inventory.transform.Find("Inventory_Weapons").gameObject;
-        FruitsButton = MenuCanvas.transform.Find("Inventory_Fruits").gameObject;
-
-
-    }
     public void PauseTimer() //Pausamos el timer.
     {
         Time.timeScale = 0;
@@ -81,10 +70,7 @@ public class Buttonfunctions : MonoBehaviour
 
     public void InventoryToggle()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Inventory.SetActive(!Inventory.activeSelf);
-        }  
+        Inventory.SetActive(!Inventory.activeSelf); 
     }
     public void SettingsMenuToggle()
     {
@@ -122,6 +108,13 @@ public class Buttonfunctions : MonoBehaviour
     }
     private void Update()
     {
-        InventoryToggle();
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryToggle();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenuoToggle();
+        }
     }
 }

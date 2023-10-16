@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour
     //public TMPro.TMP_Text textspeedpotionsText;
     public TMPro.TMP_Text texhealthpotionsText;
     //public int speedpotions = 0;
-    //public int healthpotions = 0;
+    public int healthpotions = 0;
 
     private void Start()
     {
