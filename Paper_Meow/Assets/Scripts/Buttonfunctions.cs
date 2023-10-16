@@ -106,11 +106,41 @@ public class Buttonfunctions : MonoBehaviour
     {
         AudioManager.instance.PlayBackgroundMusic(clip);
     }
+    public void OnlyWeaponsTable()
+    {
+        WeaponsButton.SetActive(true);
+        InventoryTable.SetActive(false);
+        FruitsButton.SetActive(false);
+        PotionsButton.SetActive(false);
+    }
+    public void OnlyFruitsTable()
+    {
+        FruitsButton.SetActive(true);
+        InventoryTable.SetActive(false);
+        WeaponsButton.SetActive(false);
+        PotionsButton.SetActive(false);
+    }
+    public void OnlyPotionsTable()
+    {
+        PotionsButton.SetActive(true);
+        InventoryTable.SetActive(false);
+        FruitsButton.SetActive(false);
+        WeaponsButton.SetActive(false);
+    }
+    public void OnlyObjectsTable()
+    {
+        InventoryTable.SetActive(true);
+        PotionsButton.SetActive(false);
+        InventoryTable.SetActive(false);
+        FruitsButton.SetActive(false);
+        WeaponsButton.SetActive(false);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryToggle();
+            InventoryTableToggle();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

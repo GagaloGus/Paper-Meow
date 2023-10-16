@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     //public PotionsHText potionsHtext;
     public Shop shop;
-     
+    public TMPro.TMP_Text inventoryDisplay;
+
 
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
+        UpdateInventoryDisplay();
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             player playerObject = GameObject.Find("Kai").GetComponent<player>(); // Buscamos el objeto "Kai" en la escena y obtenemos su componente "Kai"
@@ -51,6 +55,15 @@ public class Inventory : MonoBehaviour
         //        Debug.Log("No tienes pociones de velocidad.");
         //    }
         //}
+    }
+    public void UpdateInventoryDisplay()
+    {
+        string inventoryText = "Inventory:\n";
+        foreach (Potion potion in InventoryObjects)
+        {
+            inventoryText += "- " + potion.name + "\n"; // Ajusta esto según la forma en que quieras mostrar el objeto en el inventario
+        }
+        inventoryDisplay.text = inventoryText + GameManager.instance.healthpotions.ToString(); // Actualiza el texto en el Canvas
     }
 
     public void UseHealthPotion(player player) // Definimos la función "UseHealthPotion" que consume una poción de salud
