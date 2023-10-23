@@ -26,6 +26,7 @@ public class Canvas_Quest : MonoBehaviour
                     text.text += ((CollectQuest)q).itemsCollected + "/" + ((CollectQuest)q).requiredItems;
                     break;
                 case Quest.QuestType.TALK:
+                    text.text = text.text;
                     break;
                 case Quest.QuestType.DEFEAT:
                     break;

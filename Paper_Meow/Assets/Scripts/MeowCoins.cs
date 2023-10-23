@@ -9,7 +9,7 @@ public class MeowCoins : MonoBehaviour
         if (other.GetComponent<player>() != null)
         {
             GameManager.instance.AddPunt(10);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

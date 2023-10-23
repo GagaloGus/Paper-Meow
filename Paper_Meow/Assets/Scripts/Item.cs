@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     public string type;
     public string description;
     public Sprite icon;
+    public int quantity;
 
     [HideInInspector]
     public bool pickedUp;
