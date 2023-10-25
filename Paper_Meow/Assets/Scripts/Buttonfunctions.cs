@@ -20,6 +20,11 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject FruitsButton;
     public GameObject PotionsButton;
     public GameObject InventoryTable;
+    public GameObject dropdownmenu;
+    public GameObject map;
+    public GameObject mision;
+    public GameObject dropdownbutton;
+
 
     public void PauseTimer() //Pausamos el timer.
     {
@@ -85,6 +90,26 @@ public class Buttonfunctions : MonoBehaviour
     public void DisplayToggle()
     {
         Display.SetActive(!Display.activeSelf);
+    }
+
+    public void DropDownMenu()
+    {
+        dropdownmenu.SetActive(!dropdownmenu.activeSelf);
+    }
+
+    public void Map()
+    {
+        map.SetActive(!map.activeSelf);
+    }
+
+    public void Mision()
+    {
+        mision.SetActive(!mision.activeSelf);
+    }
+
+    public void DropDownButton()
+    {
+        dropdownbutton.SetActive(!dropdownbutton.activeSelf);
     }
 
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
