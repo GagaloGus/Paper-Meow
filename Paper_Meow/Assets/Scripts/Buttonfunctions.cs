@@ -21,6 +21,7 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject PotionsButton;
     public GameObject InventoryTable;
     public GameObject dropdownmenu;
+    public GameObject buttonmap;
     public GameObject map;
     public GameObject mision;
     public GameObject dropdownbutton;
@@ -97,6 +98,11 @@ public class Buttonfunctions : MonoBehaviour
         dropdownmenu.SetActive(!dropdownmenu.activeSelf);
     }
 
+    public void ButtonMap()
+    {
+        buttonmap.SetActive(!buttonmap.activeSelf);
+    }
+    
     public void Map()
     {
         map.SetActive(!map.activeSelf);
