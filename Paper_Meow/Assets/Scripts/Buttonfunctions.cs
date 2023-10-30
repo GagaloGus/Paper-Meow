@@ -25,7 +25,7 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject map;
     public GameObject mision;
     public GameObject dropdownbutton;
-
+    public GameObject exitmap;
 
     public void PauseTimer() //Pausamos el timer.
     {
@@ -116,6 +116,11 @@ public class Buttonfunctions : MonoBehaviour
     public void DropDownButton()
     {
         dropdownbutton.SetActive(!dropdownbutton.activeSelf);
+    }
+
+    public void ExitMap()
+    {
+        exitmap.SetActive(!exitmap.activeSelf);
     }
 
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
