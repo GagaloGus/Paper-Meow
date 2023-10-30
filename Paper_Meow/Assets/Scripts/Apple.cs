@@ -25,7 +25,7 @@ public class Apple : MonoBehaviour
                 if (relatedQuest.itemsCollected <= relatedQuest.requiredItems)
                 {
                     relatedQuest.itemsCollected += applesToAdd;
-                    canvas.BroadcastMessage("UpdateCanvasQuest");
+                    canvas.BroadcastMessage("UpdateCanvasQuests");
                     Debug.Log("Manzana recogida");
                 }
             }

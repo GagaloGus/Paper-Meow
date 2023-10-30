@@ -12,7 +12,7 @@ public class QuestManager : MonoBehaviour
     public CollectQuest collectQuest;
     public List<Quest> activeQuests = new List<Quest>();
     public List<Quest> completedQuests = new List<Quest>();
-    void Awake()
+    void Start()
     {
         instance = this; // Asigna la instancia actual del QuestManager a la referencia estática.
         canvas = FindAnyObjectByType<Canvas>().gameObject;
@@ -26,7 +26,7 @@ public class QuestManager : MonoBehaviour
     public void AcceptQuest(Quest quest)
     {
         activeQuests.Add(quest);
-        canvas.BroadcastMessage("UpdateCanvasQuest");
+        canvas.BroadcastMessage("UpdateCanvasQuests");
     }
 
     public void CompleteQuest(Quest quest)
@@ -34,7 +34,7 @@ public class QuestManager : MonoBehaviour
         quest.isCompleted = true;
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
-        canvas.BroadcastMessage("UpdateCanvasQuest");
+        canvas.BroadcastMessage("UpdateCanvasQuests");
 
     }
 
