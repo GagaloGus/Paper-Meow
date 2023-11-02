@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public float time = 0;
     public int healthpotions = 0;
+    public int health;
+    public int maxHealth = 0;
 
     void Awake()
     {
@@ -35,5 +37,15 @@ public class GameManager : MonoBehaviour
     public int GetPunt() //Recibe los puntos.
     {
         return points;
+    }
+
+    public void Heal(int amount)
+    {
+        health += amount;
+    }
+    public void Healing(int healvalue)
+    {
+        Heal(health + healvalue <= 100 ? healvalue : 100 - health);
+
     }
 }

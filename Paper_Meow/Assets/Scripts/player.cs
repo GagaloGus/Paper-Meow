@@ -11,7 +11,6 @@ public class player : MonoBehaviour
     private Rigidbody rb;
     public float jumpforce = 10.0f; // La fuerza del salto, puedes ajustarla en el Inspector
     public bool Grounded = false; // Para controlar si el personaje está en el suelo
-    public int health;  
     public HealthBar healthBar;
 
 
@@ -42,15 +41,7 @@ public class player : MonoBehaviour
         }
 
     }
-    public void Heal(int amount)
-    {
-        health += amount;
-    }
-    public void Healing(int healvalue)
-    {
-        Heal(health + healvalue <= 100 ? healvalue : 100 - health);
-
-    }
+   
 
     //public player()
     //{

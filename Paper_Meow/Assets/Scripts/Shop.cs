@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public static Shop instance; 
-    public Inventory inventory; // Invocamos al Inventario.
+    //public Inventory inventory; // Invocamos al Inventario.
     public TMPro.TMP_Text textcoinsText; // Referencia al objeto Text en el canvas
     //public TMPro.TMP_Text textspeedpotionsText;
     public TMPro.TMP_Text texhealthpotionsText;
@@ -34,7 +34,7 @@ public class Shop : MonoBehaviour
     {
         if (GameManager.instance.points >= 10) // Verifica si hay suficientes monedas para comprar la poción
         {
-            inventory.InventoryObjects.Add(new HealthPotion("HealthPotion", 1, 10)); // Sihay dinero suficiente, se agrega una poción al inventario.
+            //inventory.InventoryObjects.Add(new HealthPotion("HealthPotion", 1, 10)); // Sihay dinero suficiente, se agrega una poción al inventario.
             GameManager.instance.points -= 10; // Resta el valor de la poción de las monedas
             //healthpotions += 1;
             Debug.Log("Poción de curación comprada.");

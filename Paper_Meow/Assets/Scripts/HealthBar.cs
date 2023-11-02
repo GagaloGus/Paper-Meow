@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    public static HealthBar instance;
     public Sprite[] sprites;
-    public int currenthealth;
-    public int totalhealth;
+    //public int currenthealth;
+    //public int totalhealth;
     private Image health;
     private void Start()
     {
@@ -17,9 +18,9 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        float percentagehealth = (float) currenthealth / (float) totalhealth;
+        float percentagehealth = (float) GameManager.instance.health / (float) GameManager.instance.maxHealth;
 
-        health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * currenthealth/100d)];
+        health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * GameManager.instance.health / 100d)];
 
         //GetComponent<RectTransform>().sizeDelta = new Vector2(percentagehealth * 100, 10);
     }
