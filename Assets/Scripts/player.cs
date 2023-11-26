@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     public float jumpforce = 10.0f; // La fuerza del salto, puedes ajustarla en el Inspector
     public bool Grounded = false; // Para controlar si el personaje está en el suelo
     public HealthBar healthBar;
+    public bool InDoor;
 
 
     void Start()
@@ -39,9 +40,7 @@ public class player : MonoBehaviour
             // Aplicar la fuerza de salto
             rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
-
     }
-   
 
     //public player()
     //{
