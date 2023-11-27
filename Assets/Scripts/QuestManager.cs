@@ -12,6 +12,20 @@ public class QuestManager : MonoBehaviour
     public CollectQuest collectQuest;
     public List<Quest> activeQuests = new List<Quest>();
     public List<Quest> completedQuests = new List<Quest>();
+
+    void Awake()
+    {
+        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); //Si hay otro GameManager lo destruye.
+        }
+    }
+
     void Start()
     {
         instance = this; // Asigna la instancia actual del QuestManager a la referencia estática.

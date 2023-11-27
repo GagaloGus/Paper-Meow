@@ -18,9 +18,19 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        float percentagehealth = (float) GameManager.instance.health / (float) GameManager.instance.maxHealth;
+        //me invente esta forma temporalmente pq no entiendo muy bien la tuya
+        float temp = CoolFunctions.MapValues(GameManager.instance.health, 0, GameManager.instance.maxHealth, 0, sprites.Length - 1);
+        int healthPer = (int)Math.Truncate((double)temp);
+        healthPer = Mathf.Abs(healthPer);
 
-        health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * GameManager.instance.health / 100d)];
+        health.sprite = sprites[healthPer];
+
+        if(Input.GetKeyDown(KeyCode.UpArrow)) { GameManager.instance.health += 5; }
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) {  GameManager.instance.health -= 5;}
+
+        //float percentagehealth = (float) GameManager.instance.health / (float) GameManager.instance.maxHealth;
+
+        //health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * GameManager.instance.health / 100d)];
 
         //GetComponent<RectTransform>().sizeDelta = new Vector2(percentagehealth * 100, 10);
     }

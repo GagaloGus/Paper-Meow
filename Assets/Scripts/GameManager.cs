@@ -24,7 +24,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); //Si hay otro GameManager lo destruye.
         }
     }
-    
+
+    private void Update()
+    {
+        health = (int)MathF.Abs(health);
+    }
+
     public void AddPunt(int value) //Agrega la cantidad de puntos designada.
     {
         points += value;

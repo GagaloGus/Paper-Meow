@@ -93,7 +93,7 @@ public class SkoController : MonoBehaviour
             else if(rb.velocity.y < 0f) { m_animator.SetBool("jumpingUp", false); }
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) 
+        if (Input.GetKeyDown(KeyCode.P) && isGrounded) 
         {
             m_animator.SetInteger("attackWeaponID", (int)weaponSelected);
             m_animator.SetTrigger("attack");

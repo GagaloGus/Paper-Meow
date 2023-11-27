@@ -8,41 +8,51 @@ public class NPCInteraction : MonoBehaviour
     public Quest collectQuest; // Asigna la misión de recolectar en el Inspector.
     private bool playerInRange = false; // Variable para rastrear si el jugador está dentro del rango.
     public GameObject PressE;
+    public float playerDistance;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<player>())
-        {
-            PressEON();
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<player>())
-        {
-            PressEOFF();
+    private GameObject player;
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.GetComponent<SkoController>())
+    //    {
+    //        playerInRange = true;
+    //    }
+    //}
+    //public void OnTriggerStay(Collider other)
+    //{
+    //    if (other.GetComponent<SkoController>())
+    //    {
+    //        PressEON();
+    //    }
+    //}
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    if (other.GetComponent<SkoController>())
+    //    {
+    //        PressEOFF();
 
-            playerInRange = false;
+    //        playerInRange = false;
 
-        }
-    }
-    public void PressEON()
+    //    }
+    //}
+    //public void PressEON()
+    //{
+    //    PressE.SetActive(true);
+    //}
+    //public void PressEOFF()
+    //{
+    //    PressE.SetActive(false);
+    //}
+
+    private void Awake()
     {
-        PressE.SetActive(true);
-    }
-    public void PressEOFF()
-    {
-        PressE.SetActive(false);
+        player = FindObjectOfType<SkoController>().gameObject;
     }
     void Update()
     {
+        playerInRange = Vector3.Distance(transform.position, player.transform.position) <= playerDistance;
+        PressE.SetActive(playerInRange);
+
         // Verifica si el jugador está dentro del rango y presiona la tecla "E".
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
@@ -63,5 +73,11 @@ public class NPCInteraction : MonoBehaviour
                 Debug.Log("NPC: ¡Por favor, ayuda a recolectar 3 manzanas!");
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, playerDistance);
     }
 }

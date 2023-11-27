@@ -11,16 +11,16 @@ public struct AnimationPacks
     public Texture2D back;
 }
 
+[RequireComponent(typeof(Animator))]
 public class ChangeTextureAnimEvent : MonoBehaviour
 {
+    public GameObject modelo;
     public AnimationPacks[] texturePacks;
 
     Material frontMat, backMat;
 
     private void Start()
-    {
-        GameObject modelo = transform.Find("modelo").gameObject;
-        
+    {   
         frontMat = modelo.GetComponent<MeshRenderer>().materials[0];
         backMat = modelo.GetComponent<MeshRenderer>().materials[1];
 
