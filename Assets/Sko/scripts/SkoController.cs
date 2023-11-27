@@ -29,6 +29,10 @@ public class SkoController : MonoBehaviour
 
         isFlipped = false;
         isFacingBackwards = false;
+
+        // Ocultar el cursor al iniciar el juego
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -99,6 +103,13 @@ public class SkoController : MonoBehaviour
             m_animator.SetTrigger("attack");
         }
         #endregion
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Mostrar el cursor al presionar el botón Escape
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void X_Flip()
