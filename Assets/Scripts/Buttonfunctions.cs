@@ -128,6 +128,11 @@ public class Buttonfunctions : MonoBehaviour
     {
         missionmenu.SetActive(!missionmenu.activeSelf);
     }
+
+    public void ToggleObject(GameObject obj)
+    {
+        obj.SetActive(!obj.activeSelf);
+    }
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
     {
         SceneManager.LoadScene(name);

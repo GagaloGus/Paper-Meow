@@ -12,13 +12,12 @@ public class Apple : MonoBehaviour
 
     private void Start()
     {
-        QuestManager.instance = FindObjectOfType<QuestManager>();
-        canvas = FindAnyObjectByType<Canvas>().gameObject;
+        canvas = FindObjectOfType<Canvas>().gameObject;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<player>())
+        if (other.GetComponent<SkoController>())
         {
             if (QuestManager.instance != null)
             {
