@@ -10,6 +10,7 @@ public class SkoController : MonoBehaviour
     private Vector3 moveInput, moveDirection;
 
     private Transform groundPoint;
+    [SerializeField] 
     private bool isGrounded, isFlipped, isFacingBackwards, isRunning;
 
     //variables del modelo 3d
@@ -18,6 +19,7 @@ public class SkoController : MonoBehaviour
 
     public enum attackWeaponIDs { garra, cutter}
     public attackWeaponIDs weaponSelected;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,14 +42,13 @@ public class SkoController : MonoBehaviour
         //direccion hacia adelante de la camara
         moveDirection = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
 
-        rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) 
-            + Vector3.up * rb.velocity.y;
+        rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) + Vector3.up * rb.velocity.y;
 
         isGrounded =
            Physics.Raycast(
                groundPoint.position,          // posicion de origen del rayo
                Vector3.down,                  // vector de direccion del rayo
-               0.3f,                          // distancia del rayo
+               0.2f,                          // distancia del rayo
                LayerMask.GetMask("Ground"));  // Mascara del suelo, para que solo detecte el suelo
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
