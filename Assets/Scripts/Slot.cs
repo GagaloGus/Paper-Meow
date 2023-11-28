@@ -19,14 +19,18 @@ public class Slot : MonoBehaviour
     {
         slotIconImage = transform.GetChild(0).GetComponent<Image>(); // Asigno directamente el componente Image.
     }
-
+    public void LateUpdate()
+    {
+        UpdateSlot();
+    }
     public void UpdateSlot()
     {
-        slotIconImage.sprite = icon; // Accedo directamente al componente Image.
 
-        if (slotIconImage == null)
+        if (slotIconImage != null)
         {
-            Debug.LogError("Image component not found in child. Make sure the child has an Image component attached.");
+            slotIconImage.sprite = icon; // Accedo directamente al componente Image.
         }
+        
+
     }
 }

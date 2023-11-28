@@ -11,7 +11,7 @@ public class InventoryV3 : MonoBehaviour
     private GameObject[] slot;
     public GameObject slotHolder;
 
-    void Start()
+    void Awake()
     {
         allSlots = slotHolder.transform.childCount;
 

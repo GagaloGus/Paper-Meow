@@ -40,7 +40,7 @@ public class QuestManager : MonoBehaviour
     public void AcceptQuest(Quest quest)
     {
         activeQuests.Add(quest);
-        canvas.BroadcastMessage("UpdateCanvasQuests");
+        canvas.BroadcastMessage("LateUpdate");
     }
 
     public void CompleteQuest(Quest quest)
@@ -48,7 +48,7 @@ public class QuestManager : MonoBehaviour
         quest.isCompleted = true;
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
-        canvas.BroadcastMessage("UpdateCanvasQuests");
+        canvas.BroadcastMessage("LateUpdate");
 
     }
 

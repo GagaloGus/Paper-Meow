@@ -24,7 +24,7 @@ public class Apple : MonoBehaviour
                 if (relatedQuest.itemsCollected <= relatedQuest.requiredItems)
                 {
                     relatedQuest.itemsCollected += applesToAdd;
-                    canvas.BroadcastMessage("UpdateCanvasQuests");
+                    canvas.BroadcastMessage("LateUpdate");
                     Debug.Log("Manzana recogida");
                 }
             }
@@ -33,42 +33,10 @@ public class Apple : MonoBehaviour
                 Debug.LogWarning("No se encontró una instancia de CollectQuest.");
             }
 
-            // Almacena la referencia al GameObject antes de destruirlo.
-            //var appleObject = gameObject;
-
-            //// Destruye el objeto de manzanas.
-            //Destroy(appleObject);
-
-            // Llama a CheckCompletion para verificar si se completó la misión.
             if (QuestManager.instance != null && QuestManager.instance.collectQuest != null)
             {
                 QuestManager.instance.collectQuest.CheckCompletion();
             }
         }
     }
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.GetComponent<player>())
-    //    {      
-    //        if (QuestManager.instance != null)
-    //        {
-    //            if (relatedQuest.itemsCollected <= relatedQuest.requiredItems)
-    //            {
-    //                relatedQuest.itemsCollected += applesToAdd;
-    //                canvas.BroadcastMessage("UpdateCanvasQuest");
-    //                Debug.Log("Manzana recogida");
-    //            }
-    //        }
-    //                //Destruye el objeto de manzanas.
-    //                Destroy(gameObject);
-
-    //                // Llama a CheckCompletion para verificar si se completó la misión.
-    //                QuestManager.instance.collectQuest.CheckCompletion();
-    //            }
-    //            else
-    //            {
-    //                Debug.LogWarning("No se encontró una instancia de CollectQuest.");
-    //            }
-    //        }
 }

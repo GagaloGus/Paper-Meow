@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Buttonfunctions : MonoBehaviour
 {
@@ -27,7 +28,6 @@ public class Buttonfunctions : MonoBehaviour
     public GameObject dropdownbutton;
     public GameObject exitmap;
     public GameObject missionmenu;
-
     public void PauseTimer() //Pausamos el timer.
     {
         Time.timeScale = 0;
@@ -38,7 +38,7 @@ public class Buttonfunctions : MonoBehaviour
     }
     public void ResetPunt() //Reseteamos el timer.
     {
-       GameManager.instance.ResetPunt(0);
+        GameManager.instance.ResetPunt(0);
     }
     public void PauseMenuButtonToggle()
     {
@@ -77,7 +77,7 @@ public class Buttonfunctions : MonoBehaviour
 
     public void InventoryToggle()
     {
-        Inventory.SetActive(!Inventory.activeSelf); 
+        Inventory.SetActive(!Inventory.activeSelf);
     }
     public void SettingsMenuToggle()
     {
@@ -103,7 +103,7 @@ public class Buttonfunctions : MonoBehaviour
     {
         buttonmap.SetActive(!buttonmap.activeSelf);
     }
-    
+
     public void Map()
     {
         map.SetActive(!map.activeSelf);
@@ -143,7 +143,7 @@ public class Buttonfunctions : MonoBehaviour
     {
         Application.Quit();
     }
-   
+
     public void StopBackgroundMusic()
     {
         AudioManager.instance.StopBackgroundMusic();
@@ -152,6 +152,7 @@ public class Buttonfunctions : MonoBehaviour
     {
         AudioManager.instance.PlayBackgroundMusic(clip);
     }
+
     public void OnlyWeaponsTable()
     {
         WeaponsButton.SetActive(true);
@@ -186,7 +187,6 @@ public class Buttonfunctions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryToggle();
-            InventoryTableToggle();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
