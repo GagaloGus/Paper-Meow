@@ -21,15 +21,19 @@ public class ChangeTextureAnimEvent : MonoBehaviour
 
     private void Start()
     {   
+        for (int i = 0; i < texturePacks.Length; i++)
+        {
+            texturePacks[i].name = $"[{i}] {texturePacks[i].name}";
+        }   
+
         frontMat = modelo.GetComponent<MeshRenderer>().materials[0];
         backMat = modelo.GetComponent<MeshRenderer>().materials[1];
-
     }
 
-    public void ChangeTexture(string textureName)
+    public void ChangeTexture(int textureInt)
     {
         //busca el respectivo pack de texturas segun lo que escribamos en el textureName
-        AnimationPacks textures = Array.Find(texturePacks, x => x.name == textureName);
+        AnimationPacks textures = texturePacks[textureInt];
 
         //cambia el albedo del material de adelante y atras
         frontMat.SetTexture("_MainTex", textures.front);

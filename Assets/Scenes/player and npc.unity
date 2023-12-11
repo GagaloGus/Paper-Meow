@@ -1337,6 +1337,7 @@ MonoBehaviour:
   healthpotions: 0
   health: 100
   maxHealth: 100
+  targetFPS: 60
 --- !u!4 &169984112
 Transform:
   m_ObjectHideFlags: 0
@@ -1693,6 +1694,7 @@ GameObject:
   - component: {fileID: 223785726}
   - component: {fileID: 223785725}
   - component: {fileID: 223785729}
+  - component: {fileID: 223785730}
   m_Layer: 0
   m_Name: beeko
   m_TagString: Untagged
@@ -1723,7 +1725,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223785723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1607b96c20ca11418c6daeb6c520ba5, type: 3}
   m_Name: 
@@ -1772,6 +1774,12 @@ MonoBehaviour:
   - name: idle_02
     front: {fileID: 2800000, guid: c55e2175d4864d84a95d3e166909aeba, type: 3}
     back: {fileID: 2800000, guid: 614b5c78e542da44b9ccea32fb801ac3, type: 3}
+  - name: talk_01
+    front: {fileID: 2800000, guid: e7755fdcfbda11448a3d19b8dd1d23e9, type: 3}
+    back: {fileID: 2800000, guid: c4ee43db4ee57e3449b73ca406e92892, type: 3}
+  - name: talk_02
+    front: {fileID: 2800000, guid: c9f8a408200c679438a3a16825a83002, type: 3}
+    back: {fileID: 2800000, guid: 6c2f180aaa9ec304d8a10b905d83fd5d, type: 3}
 --- !u!95 &223785728
 Animator:
   serializedVersion: 5
@@ -1806,6 +1814,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LookType: 1
+--- !u!114 &223785730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223785723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3894b7f46d6284ba77bfc6693e70aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcData:
+    name: Beeko
+    description: Bee skek
+    id: 0
+    directionFacing: {x: 0, y: 0, z: 0}
+    Behaviour: 0
+    dialogues:
+    - text: ola
+      currentAnimation: 2
+      playerTalksNext: 0
+      playerText: []
+      newQuest: {fileID: 0}
+    - text: tetxo1
+      currentAnimation: 1
+      playerTalksNext: 0
+      playerText: []
+      newQuest: {fileID: 0}
+    - text: texto2
+      currentAnimation: 2
+      playerTalksNext: 0
+      playerText: []
+      newQuest: {fileID: 0}
+    - text: bras
+      currentAnimation: 1
+      playerTalksNext: 0
+      playerText: []
+      newQuest: {fileID: 0}
+  originalBehaviour: 0
+  PressE: {fileID: 1422987278}
+  playerDistance: 1.78
 --- !u!1001 &251789497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2537,7 +2587,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286582283}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1607b96c20ca11418c6daeb6c520ba5, type: 3}
   m_Name: 
@@ -2987,7 +3037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362386072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12719242, y: -1e-45, z: -0, w: 0.9918781}
+  m_LocalRotation: {x: 0.0000000021885211, y: 0.9918781, z: -0.12719242, w: 0.000000017066634}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6286,7 +6336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: 3.5150565e-15, z: -7.1811486e-17, w: 0.98940045}
+  m_LocalRotation: {x: -0.000000004327689, y: 0.98940045, z: -0.14521313, w: -0.000000029486435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6528,8 +6578,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868307723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12215219, y: -0.0000000011954271, z: 1.471258e-10, w: 0.99251145}
-  m_LocalPosition: {x: 70.06, y: 1.480225, z: 29.722584}
+  m_LocalRotation: {x: 0.000000003872726, y: 0.99402237, z: -0.1091774, w: 0.000000035259824}
+  m_LocalPosition: {x: 70.06, y: 1.4660001, z: 37.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7286,8 +7336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.2142249, z: -4.047416}
+  m_BindingMode: 0
+  m_FollowOffset: {x: 0, y: 1.2, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -7297,7 +7347,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 3
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -8877,8 +8927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.2142249, z: -4.047416}
+  m_BindingMode: 0
+  m_FollowOffset: {x: 0, y: 1.2, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -8888,7 +8938,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 3
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -10683,8 +10733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.2142249, z: -4.047416}
+  m_BindingMode: 0
+  m_FollowOffset: {x: 0, y: 1.2, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -10694,7 +10744,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 3
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -11387,7 +11437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625134604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10917737, y: -0.000000004275881, z: 4.6963683e-10, w: 0.9940223}
+  m_LocalRotation: {x: 0.0000000019363628, y: 0.9940223, z: -0.10917739, w: 0.000000017629914}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12087,9 +12137,9 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.36
+    Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 4
+    m_MaxSpeed: 0
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -12129,7 +12179,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_Heading:
-    m_Definition: 3
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -12138,7 +12188,7 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_SplineCurvature: 0.49
   m_Orbits:
   - m_Height: 1.2
@@ -12161,7 +12211,7 @@ Transform:
   m_GameObject: {fileID: 1732636146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.06, y: 1.480225, z: 29.722584}
+  m_LocalPosition: {x: 70.06, y: 1.4660001, z: 37.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15591,6 +15641,10 @@ PrefabInstance:
       propertyPath: modelo
       value: 
       objectReference: {fileID: 1899695467}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[0].name
+      value: idle_01
+      objectReference: {fileID: 0}
     - target: {fileID: 4634161352007327061, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: inventory
       value: 

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int health;
     public int maxHealth = 0;
 
+
+    public int targetFPS = 60;
     void Awake()
     {
        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
@@ -23,11 +25,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); //Si hay otro GameManager lo destruye.
         }
+
+       Application.targetFrameRate = targetFPS;
     }
 
     private void Update()
     {
         health = (int)MathF.Abs(health);
+
+        if (Application.targetFrameRate != targetFPS)
+        { Application.targetFrameRate = targetFPS; }
     }
 
     public void AddPunt(int value) //Agrega la cantidad de puntos designada.

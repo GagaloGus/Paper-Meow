@@ -40,7 +40,7 @@ public class SkoController : MonoBehaviour
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0 ,Input.GetAxis("Vertical"));
 
         //direccion hacia adelante de la camara
-        moveDirection = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
+        moveDirection = CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
         rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) + Vector3.up * rb.velocity.y;
 
