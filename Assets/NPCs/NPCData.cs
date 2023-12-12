@@ -13,7 +13,7 @@ public class Dialogue
     public AnimationTypes currentAnimation;
     public bool playerTalksNext;
     public string[] playerText;
-    public TalkQuest newQuest;
+    public Quest newQuest;
 }
 
 [System.Serializable]

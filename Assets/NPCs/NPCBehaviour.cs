@@ -74,6 +74,11 @@ public class NPCBehaviour : MonoBehaviour
                 nextDialogue = false;
                 Debug.Log(npcData.dialogues[dialogueInt].text);
                 animator.SetInteger("dialogue", (int)npcData.dialogues[dialogueInt].currentAnimation);
+
+                if(npcData.dialogues[dialogueInt].newQuest != null)
+                {
+                    AddQuest(npcData.dialogues[dialogueInt].newQuest);
+                }
             }
         }
         else
@@ -82,6 +87,20 @@ public class NPCBehaviour : MonoBehaviour
             dialogueInt = 0;
             interacting = false;
             animator.SetInteger("dialogue", 0);
+        }
+    }
+
+    void AddQuest(Quest questToAdd)
+    {
+        QuestManager questManager = FindObjectOfType<QuestManager>(); // Encuentra el QuestManager en la escena (ajusta según tu estructura).
+
+        if (questManager != null)
+        {
+            // Verifica si el jugador puede recibir la misión (puedes personalizar esta lógica).
+            if (!questManager.HasQuest(questToAdd) && !questToAdd.isCompleted)
+            {
+                questManager.AcceptQuest(questToAdd); // Asigna la misión al jugador.
+            }
         }
     }
 
