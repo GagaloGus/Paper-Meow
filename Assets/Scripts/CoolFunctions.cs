@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoolFunctions : MonoBehaviour
+public static class CoolFunctions
 {
     public static float MapValues(float value, float leftMin, float leftMax, float rightMin, float rightMax)
     {
@@ -14,4 +14,12 @@ public class CoolFunctions : MonoBehaviour
         value.y = 0;
         return value;
     }
+
+    public static Quaternion RotateTowards(Transform from, Vector3 to, float turnSpeed)
+    {
+        Quaternion _lookRotation = Quaternion.LookRotation((to - from.position).normalized);
+
+        return Quaternion.Slerp(from.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+    }
 }
+

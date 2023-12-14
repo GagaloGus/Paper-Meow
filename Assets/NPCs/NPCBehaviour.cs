@@ -10,12 +10,15 @@ public class NPCBehaviour : MonoBehaviour
     NPCData npcData = new NPCData();
 
     public BehaviourType originalBehaviour;
+    public Vector3 directionFacing;
 
     bool interacting, playerInRange;
     public GameObject PressE;
 
     GameObject player;
     public float playerDistance;
+
+    public bool isFlipped, isFacingBackwards;
 
     Animator animator;
     private void Awake()
@@ -45,6 +48,10 @@ public class NPCBehaviour : MonoBehaviour
             dialogueInt = 0;
             interacting = true;
             nextDialogue = true;
+
+            GameManager.instance.StartInteraction(gameObject);
+
+
         }
 
         if (interacting)
@@ -52,8 +59,22 @@ public class NPCBehaviour : MonoBehaviour
             InteractWithNPC();
         }
 
-        
+        ReCenterToPlayer();
     }
+
+    void ReCenterToPlayer()
+    {
+        Vector3 playerFlatPos = CoolFunctions.FlattenVector3(player.transform.position),
+            npcFlatPos = CoolFunctions.FlattenVector3(gameObject.transform.position);
+
+
+        float xDist = Mathf.Pow(player.transform.position.x - transform.position.x, 2);
+        float zDist = Mathf.Pow(player.transform.position.z - transform.position.z, 2);
+
+        float angleNPCandPlayer = Mathf.Atan(zDist/xDist);
+        Debug.Log(angleNPCandPlayer * 180/Mathf.PI);
+    }
+
 
     int dialogueInt = 0;
     bool nextDialogue;
@@ -87,19 +108,18 @@ public class NPCBehaviour : MonoBehaviour
             dialogueInt = 0;
             interacting = false;
             animator.SetInteger("dialogue", 0);
+            GameManager.instance.EndInteraction(gameObject);
         }
     }
 
     void AddQuest(Quest questToAdd)
     {
-        QuestManager questManager = FindObjectOfType<QuestManager>(); // Encuentra el QuestManager en la escena (ajusta según tu estructura).
-
-        if (questManager != null)
+        if (QuestManager.instance != null)
         {
             // Verifica si el jugador puede recibir la misión (puedes personalizar esta lógica).
-            if (!questManager.HasQuest(questToAdd) && !questToAdd.isCompleted)
+            if (!QuestManager.instance.HasQuest(questToAdd) && !questToAdd.isCompleted)
             {
-                questManager.AcceptQuest(questToAdd); // Asigna la misión al jugador.
+                QuestManager.instance.AcceptQuest(questToAdd); // Asigna la misión al jugador.
             }
         }
     }

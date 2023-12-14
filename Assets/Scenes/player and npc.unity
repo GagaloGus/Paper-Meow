@@ -1692,7 +1692,6 @@ GameObject:
   - component: {fileID: 223785728}
   - component: {fileID: 223785727}
   - component: {fileID: 223785726}
-  - component: {fileID: 223785725}
   - component: {fileID: 223785729}
   - component: {fileID: 223785730}
   m_Layer: 0
@@ -1710,29 +1709,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223785723}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.4703015, z: -0, w: 0.8825058}
-  m_LocalPosition: {x: 96.08, y: -0, z: 42.232586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 71.08366, y: 0, z: 30.953854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3373549057090904196}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -56.108, z: 0}
---- !u!114 &223785725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223785723}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1607b96c20ca11418c6daeb6c520ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectQuest: {fileID: 11400000, guid: 01a625c8692985c41afcb4a7636978d9, type: 2}
-  PressE: {fileID: 1422987278}
-  playerDistance: 1.86
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &223785726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1813,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed3b8fd3c285584d852a11804da0a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookType: 1
+  LookType: 2
 --- !u!114 &223785730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,7 +1814,6 @@ MonoBehaviour:
     name: Beeko
     description: Bee skek
     id: 0
-    directionFacing: {x: 0, y: 0, z: 0}
     Behaviour: 0
     dialogues:
     - text: ola
@@ -1854,8 +1837,11 @@ MonoBehaviour:
       playerText: []
       newQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
   originalBehaviour: 0
+  directionFacing: {x: 0, y: 303.89227, z: 0}
   PressE: {fileID: 1422987278}
   playerDistance: 1.78
+  isFlipped: 0
+  isFacingBackwards: 0
 --- !u!1001 &251789497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6336,7 +6322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: -5.1590066e-16, y: 0.98940045, z: -0.14521316, w: -1.7386997e-15}
+  m_LocalRotation: {x: -0.000000004327689, y: 0.98940045, z: -0.14521313, w: -0.000000029486435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15658,6 +15644,10 @@ PrefabInstance:
       value: -0.135
       objectReference: {fileID: 0}
     - target: {fileID: 6403942227184611853, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403942227184611853, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: moveSpeed
       value: 7
       objectReference: {fileID: 0}
@@ -15700,7 +15690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e991f62ff8acb345ab03c4e5c921921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e991f62ff8acb345ab03c4e5c921921, type: 3}
       propertyPath: m_LocalPosition.y

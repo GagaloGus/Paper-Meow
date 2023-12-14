@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int health;
     public int maxHealth = 0;
 
+    GameObject player;
+
 
     public int targetFPS = 60;
     void Awake()
@@ -26,7 +28,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); //Si hay otro GameManager lo destruye.
         }
 
-       Application.targetFrameRate = targetFPS;
+        Application.targetFrameRate = targetFPS;
+        player = FindObjectOfType<SkoController>().gameObject;
     }
 
     private void Update()
@@ -59,5 +62,28 @@ public class GameManager : MonoBehaviour
     {
         Heal(health + healvalue <= 100 ? healvalue : 100 - health);
 
+    }
+
+    public void StartInteraction(GameObject npc)
+    {
+        var playerCont = player.GetComponent<SkoController>();
+        var npcBeh = npc.GetComponent<NPCBehaviour>();
+
+        playerCont.player_canMove = false;
+
+        /*
+        player.transform.rotation = CoolFunctions.RotateTowards(player.transform, npc.transform.position, 3);
+
+        npc.transform.rotation = CoolFunctions.RotateTowards(npc.transform, player.transform.position, 3);*/
+    }
+
+    public void EndInteraction(GameObject npc)
+    {
+        var playerCont = player.GetComponent<SkoController>();
+        var npcBeh = npc.GetComponent<NPCBehaviour>();
+
+        playerCont.player_canMove = true;
+
+        //npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation,Quaternion.Euler(npcBeh.directionFacing), 3);
     }
 }

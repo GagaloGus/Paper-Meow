@@ -11,7 +11,7 @@ public class SkoController : MonoBehaviour
 
     private Transform groundPoint;
     [SerializeField] 
-    private bool isGrounded, isFlipped, isFacingBackwards, isRunning;
+    private bool isGrounded, isFlipped, isFacingBackwards, isRunning, canMove;
 
     //variables del modelo 3d
     GameObject m_gameobj;
@@ -41,8 +41,7 @@ public class SkoController : MonoBehaviour
 
         //direccion hacia adelante de la camara
         moveDirection = CoolFunctions.FlattenVector3(Camera.main.transform.forward);
-
-        rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) + Vector3.up * rb.velocity.y;
+        
 
         isGrounded =
            Physics.Raycast(
@@ -51,10 +50,6 @@ public class SkoController : MonoBehaviour
                0.2f,                          // distancia del rayo
                LayerMask.GetMask("Ground"));  // Mascara del suelo, para que solo detecte el suelo
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.velocity += new Vector3(0, jumpForce, 0);
-        }
         #endregion
 
         #region Flip
@@ -66,7 +61,7 @@ public class SkoController : MonoBehaviour
         }
 
         //cambia la escala para imitar el "giro" del personaje
-        if (isGrounded)
+        if (isGrounded && canMove)
         {
             if ((!isFlipped && moveInput.x > 0) || (isFlipped && moveInput.x < 0))
             {
@@ -81,25 +76,45 @@ public class SkoController : MonoBehaviour
         }
         #endregion
 
-        #region Animation
-        isRunning = Input.GetKey(KeyCode.LeftShift) && isGrounded && moveInput.magnitude > 0.2f;
-
-        m_animator.SetBool("isRunning", isRunning);
-        m_animator.SetBool("isWalking", moveInput.magnitude != 0);
-
-        m_animator.SetBool("grounded", isGrounded);
-        if(!isGrounded) 
+        if(canMove)
         {
-            if(rb.velocity.y > 0f) { m_animator.SetBool("jumpingUp", true); }
-            else if(rb.velocity.y < 0f) { m_animator.SetBool("jumpingUp", false); }
+            #region Animation
+            isRunning = Input.GetKey(KeyCode.LeftShift) && isGrounded && moveInput.magnitude > 0.2f;
+
+            m_animator.SetBool("isRunning", isRunning);
+            m_animator.SetBool("isWalking", moveInput.magnitude != 0);
+
+            m_animator.SetBool("grounded", isGrounded);
+            if (!isGrounded)
+            {
+                if (rb.velocity.y > 0f) { m_animator.SetBool("jumpingUp", true); }
+                else if (rb.velocity.y < 0f) { m_animator.SetBool("jumpingUp", false); }
+            }
+
+            if (Input.GetKeyDown(KeyCode.P) && isGrounded)
+            {
+                m_animator.SetInteger("attackWeaponID", (int)weaponSelected);
+                m_animator.SetTrigger("attack");
+            }
+            #endregion
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && isGrounded) 
+    }
+
+    private void FixedUpdate()
+    {
+        if (canMove)
         {
-            m_animator.SetInteger("attackWeaponID", (int)weaponSelected);
-            m_animator.SetTrigger("attack");
+            //Moverse
+            rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) + Vector3.up * rb.velocity.y;
+
+            //Saltar
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                rb.velocity += new Vector3(0, jumpForce, 0);
+            }
         }
-        #endregion
+        
     }
 
     void X_Flip()
@@ -120,5 +135,11 @@ public class SkoController : MonoBehaviour
             -1 * m_gameobj.transform.localScale.z);
 
         isFacingBackwards = !isFacingBackwards;
+    }
+
+    public bool player_canMove
+    {
+        get { return canMove; }
+        set { canMove = value; }
     }
 }

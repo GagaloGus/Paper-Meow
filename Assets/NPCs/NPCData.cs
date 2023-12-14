@@ -22,7 +22,6 @@ public class NPCData
     public string name;
     public string description;
     public int id;
-    public Vector3 directionFacing;
     public BehaviourType Behaviour;
 
     public Dialogue[] dialogues;
