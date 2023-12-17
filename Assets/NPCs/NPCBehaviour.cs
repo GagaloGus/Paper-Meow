@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -15,7 +16,7 @@ public class NPCBehaviour : MonoBehaviour
     bool interacting, playerInRange;
     public GameObject PressE;
 
-    GameObject player;
+    GameObject player, model;
     public float playerDistance;
 
     public bool isFlipped, isFacingBackwards;
@@ -25,6 +26,8 @@ public class NPCBehaviour : MonoBehaviour
     {
         player = FindObjectOfType<SkoController>().gameObject;
         animator = GetComponent<Animator>();
+
+        model = GetComponentInChildren<MeshFilter>().gameObject;
     }
 
     // Start is called before the first frame update
@@ -51,7 +54,7 @@ public class NPCBehaviour : MonoBehaviour
 
             GameManager.instance.StartInteraction(gameObject);
 
-
+            ReCenterToPlayer();
         }
 
         if (interacting)
@@ -59,20 +62,22 @@ public class NPCBehaviour : MonoBehaviour
             InteractWithNPC();
         }
 
-        ReCenterToPlayer();
+
+        model.transform.localScale = new Vector3(
+            ( isFlipped ? -1 : 1 ),
+            model.transform.localScale.y,
+            ( isFacingBackwards ? -1 : 1 ));
     }
 
     void ReCenterToPlayer()
     {
-        Vector3 playerFlatPos = CoolFunctions.FlattenVector3(player.transform.position),
-            npcFlatPos = CoolFunctions.FlattenVector3(gameObject.transform.position);
+        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, player.transform.position);
 
+        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, player.transform.position);
 
-        float xDist = Mathf.Pow(player.transform.position.x - transform.position.x, 2);
-        float zDist = Mathf.Pow(player.transform.position.z - transform.position.z, 2);
+        isFlipped = !right;
+        isFacingBackwards = !up;
 
-        float angleNPCandPlayer = Mathf.Atan(zDist/xDist);
-        Debug.Log(angleNPCandPlayer * 180/Mathf.PI);
     }
 
 
@@ -108,6 +113,9 @@ public class NPCBehaviour : MonoBehaviour
             dialogueInt = 0;
             interacting = false;
             animator.SetInteger("dialogue", 0);
+
+            isFacingBackwards = isFlipped = false;
+
             GameManager.instance.EndInteraction(gameObject);
         }
     }
@@ -124,10 +132,21 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, playerDistance);
+    }
+
+    public IEnumerator RotateTowards(Vector3 to, float turnSpeed)
+    {
+        Quaternion _lookRotation = Quaternion.LookRotation((to - transform.position).normalized);
+
+        for (int i = 0; i < 30; i++) 
+        { 
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
