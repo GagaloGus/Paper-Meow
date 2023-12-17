@@ -10,8 +10,8 @@ public class SkoController : MonoBehaviour
     private Vector3 moveInput, moveDirection;
 
     private Transform groundPoint;
-    [SerializeField] 
-    private bool isGrounded, isFlipped, isFacingBackwards, isRunning, canMove;
+    
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, isRunning, canMove;
 
     //variables del modelo 3d
     GameObject m_gameobj;
@@ -54,8 +54,8 @@ public class SkoController : MonoBehaviour
 
         #region Flip
 
-        //orienta al player a la direccion de la camara
-        if(moveInput.magnitude > 0)
+        //orienta al player a la direccion de la camara al moverse
+        if(moveInput.magnitude > 0 && canMove)
         {
             transform.forward = -moveDirection;
         }
@@ -65,32 +65,43 @@ public class SkoController : MonoBehaviour
         {
             if ((!isFlipped && moveInput.x > 0) || (isFlipped && moveInput.x < 0))
             {
-                X_Flip();
+                isFlipped = !isFlipped;
             }
 
             if ((!isFacingBackwards && moveInput.z > 0) || (isFacingBackwards && moveInput.z < 0))
             {
-                Back_Flip();
+                isFacingBackwards = !isFacingBackwards;
             }
-
         }
+
+        //le "da la vuelta" al modelo segun los bools
+        m_gameobj.transform.localScale = new(
+           (isFlipped ? -1 : 1),
+           m_gameobj.transform.localScale.y,
+           (isFacingBackwards ? -1 : 1));
+
         #endregion
 
-        if(canMove)
+        if (canMove)
         {
             #region Animation
+            //corre si estamos pulsando el Shift y nos movemos
             isRunning = Input.GetKey(KeyCode.LeftShift) && isGrounded && moveInput.magnitude > 0.2f;
-
             m_animator.SetBool("isRunning", isRunning);
+
+            //Anda si nos movemos
             m_animator.SetBool("isWalking", moveInput.magnitude != 0);
 
             m_animator.SetBool("grounded", isGrounded);
+
+            //si saltamos cambia a Arriba o Abajo segun nuestra vel en el eje y
             if (!isGrounded)
             {
                 if (rb.velocity.y > 0f) { m_animator.SetBool("jumpingUp", true); }
                 else if (rb.velocity.y < 0f) { m_animator.SetBool("jumpingUp", false); }
             }
 
+            //ataca segun el arma que tengamos
             if (Input.GetKeyDown(KeyCode.P) && isGrounded)
             {
                 m_animator.SetInteger("attackWeaponID", (int)weaponSelected);
@@ -114,29 +125,29 @@ public class SkoController : MonoBehaviour
                 rb.velocity += new Vector3(0, jumpForce, 0);
             }
         }
-        
     }
-
-    void X_Flip()
+    
+    //llamado desde el gamemanager
+    void StartInteraction(GameObject npc)
     {
-        m_gameobj.transform.localScale = new(
-            -1 * m_gameobj.transform.localScale.x,
-            m_gameobj.transform.localScale.y,
-            m_gameobj.transform.localScale.z);
+        canMove = false;
 
-        isFlipped = !isFlipped;
+        //Centra el personaje para que apunte al npc
+        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+
+        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
+
+        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
+
+        isFlipped = !right;
+        isFacingBackwards = !up;
     }
 
-    void Back_Flip()
+    //llamado desde el gamemanager
+    void EndInteraction()
     {
-        m_gameobj.transform.localScale = new(
-            m_gameobj.transform.localScale.x,
-            m_gameobj.transform.localScale.y,
-            -1 * m_gameobj.transform.localScale.z);
-
-        isFacingBackwards = !isFacingBackwards;
+        canMove = true;
     }
-
     public bool player_canMove
     {
         get { return canMove; }

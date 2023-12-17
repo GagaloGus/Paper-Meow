@@ -15,13 +15,6 @@ public static class CoolFunctions
         return value;
     }
 
-    public static Quaternion RotateTowards(Transform from, Vector3 to, float turnSpeed)
-    {
-        Quaternion _lookRotation = Quaternion.LookRotation((to - from.position).normalized);
-
-        return Quaternion.Slerp(from.rotation, _lookRotation, Time.deltaTime * turnSpeed);
-    }
-
     public static bool IsRightOfVector(Vector3 center, Vector3 direction, Vector3 target)
     {
         Vector3 vectorB = center + direction;

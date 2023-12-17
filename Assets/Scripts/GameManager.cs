@@ -66,24 +66,11 @@ public class GameManager : MonoBehaviour
 
     public void StartInteraction(GameObject npc)
     {
-        var playerCont = player.GetComponent<SkoController>();
-        var npcBeh = npc.GetComponent<NPCBehaviour>();
-
-        playerCont.player_canMove = false;
-
-        /*
-        player.transform.rotation = CoolFunctions.RotateTowards(player.transform, npc.transform.position, 3);
-
-        npc.transform.rotation = CoolFunctions.RotateTowards(npc.transform, player.transform.position, 3);*/
+        player.BroadcastMessage("StartInteraction", npc);
     }
 
     public void EndInteraction(GameObject npc)
     {
-        var playerCont = player.GetComponent<SkoController>();
-        var npcBeh = npc.GetComponent<NPCBehaviour>();
-
-        playerCont.player_canMove = true;
-
-        //npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation,Quaternion.Euler(npcBeh.directionFacing), 3);
+        player.BroadcastMessage("EndInteraction");
     }
 }

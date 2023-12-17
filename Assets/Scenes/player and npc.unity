@@ -1694,6 +1694,7 @@ GameObject:
   - component: {fileID: 223785726}
   - component: {fileID: 223785729}
   - component: {fileID: 223785730}
+  - component: {fileID: 223785731}
   m_Layer: 0
   m_Name: beeko
   m_TagString: Untagged
@@ -1837,11 +1838,41 @@ MonoBehaviour:
       playerText: []
       newQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
   originalBehaviour: 0
-  directionFacing: {x: 0, y: 303.89227, z: 0}
-  PressE: {fileID: 1422987278}
-  playerDistance: 1.78
+  changeDialogue: 102
+  model: {fileID: 2709636811016223294}
   isFlipped: 0
   isFacingBackwards: 0
+--- !u!114 &223785731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223785723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b5c445cd9490b40923a94f4df0326a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteractable: 1
+  Distance: 1.94
+  interactKey: 102
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 223785730}
+        m_TargetAssemblyTypeName: NPCBehaviour, Assembly-CSharp
+        m_MethodName: StartInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  KeyToPress: {fileID: 1422987278}
 --- !u!1001 &251789497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2425,7 +2456,7 @@ GameObject:
   - component: {fileID: 285807464}
   - component: {fileID: 285807463}
   m_Layer: 5
-  m_Name: E
+  m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3023,7 +3054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362386072}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000021885211, y: 0.9918781, z: -0.12719242, w: -0.000000017066634}
+  m_LocalRotation: {x: 0.0000000021885211, y: 0.9918781, z: -0.12719242, w: 0.000000017066634}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6322,7 +6353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.7175977e-23, y: 0.9894004, z: -0.14521314, w: 1.1592444e-22}
+  m_LocalRotation: {x: -0.000000004327689, y: 0.98940045, z: -0.14521313, w: -0.000000029486435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9839,7 +9870,7 @@ GameObject:
   - component: {fileID: 1422987281}
   - component: {fileID: 1422987280}
   m_Layer: 5
-  m_Name: Press_E
+  m_Name: Press_Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

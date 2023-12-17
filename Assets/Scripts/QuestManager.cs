@@ -39,8 +39,12 @@ public class QuestManager : MonoBehaviour
 
     public void AcceptQuest(Quest quest)
     {
-        activeQuests.Add(quest);
-        canvas.BroadcastMessage("UpdateCanvasQuests");
+        if(HasQuest(quest) && !quest.isCompleted) 
+        {
+            activeQuests.Add(quest);
+            canvas.BroadcastMessage("UpdateCanvasQuests");
+        }
+        
     }
 
     public void CompleteQuest(Quest quest)
