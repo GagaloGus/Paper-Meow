@@ -9,10 +9,12 @@ public class FPSCounter : MonoBehaviour
     float deltaTime = 0.0f;
     GUIStyle style = new GUIStyle();
     public int targetFPS;
+    public int vsyncValue = 1;
 
     private void Awake()
     {
         Application.targetFrameRate = targetFPS;
+        QualitySettings.vSyncCount = vsyncValue;
     }
     void Update()
     {
@@ -37,5 +39,14 @@ public class FPSCounter : MonoBehaviour
     public void ChangeFPSLimit(int num)
     {
         targetFPS = (num);
+    }
+
+    public void ToggleVSync()
+    {
+        // Alternar entre activado y desactivado
+        vsyncValue = (vsyncValue == 0) ? 1 : 0;
+        QualitySettings.vSyncCount = vsyncValue;
+
+        Debug.Log($"VSync {(vsyncValue == 0 ? "desactivado" : "activado")}");
     }
 }
