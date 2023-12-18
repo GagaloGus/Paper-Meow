@@ -406,6 +406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CajaCasa 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe838bbf29289b0449f60a8c1872d478, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2049,7 +2053,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!23 &220201499
 MeshRenderer:
@@ -4012,7 +4016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362386072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12719242, y: -0.000000019081073, z: 0.0000000024468407, w: 0.9918781}
+  m_LocalRotation: {x: 0.12719242, y: 0.000000019081074, z: -0.000000002446841, w: 0.9918781}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5726,6 +5730,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bf254810e1d1e27418b6ee4ff524ab7e, type: 3}
       propertyPath: m_Name
       value: CajaCasa 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf254810e1d1e27418b6ee4ff524ab7e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8112,7 +8120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -0.000000017024002, z: 0.0000000024985929, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: 0.000000017024002, z: -0.0000000024985929, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8548,7 +8556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868307723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12719244, y: -0.00000003816215, z: 0.000000004893683, w: 0.9918781}
+  m_LocalRotation: {x: 0.12719244, y: 0.00000003816215, z: -0.000000004893683, w: 0.9918781}
   m_LocalPosition: {x: 70.06, y: 1.6090001, z: 29.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9730,6 +9738,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3177be1ccbc4f4c498bc3a808c1b368c, type: 3}
       propertyPath: m_Name
       value: CajaCasa 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3177be1ccbc4f4c498bc3a808c1b368c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11210,6 +11222,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 726c4cd4813074f4f826a43b89365419, type: 3}
       propertyPath: m_Name
       value: CajaCasa 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 726c4cd4813074f4f826a43b89365419, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14013,6 +14029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CajaCasa 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d88bcaf5544cf947afe978600d84842, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14311,7 +14331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625134604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10917739, y: -0.00000001762991, z: 0.0000000019363626, w: 0.9940223}
+  m_LocalRotation: {x: 0.10917739, y: 0.00000001762991, z: -0.0000000019363626, w: 0.9940223}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16779,7 +16799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1807625590
 RectTransform:
   m_ObjectHideFlags: 0
