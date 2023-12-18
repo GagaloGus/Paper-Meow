@@ -1,15 +1,25 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FPSCounter : MonoBehaviour
 {
     float deltaTime = 0.0f;
     GUIStyle style = new GUIStyle();
+    public int targetFPS;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = targetFPS;
+    }
     void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+
+        if (Application.targetFrameRate != targetFPS)
+        { Application.targetFrameRate = targetFPS; }
     }
 
     void OnGUI()
@@ -22,5 +32,10 @@ public class FPSCounter : MonoBehaviour
 
         // Mostrar el texto con el estilo personalizado
         GUI.Label(new Rect(10, 10, 100, 20), text, style);
+    }
+
+    public void ChangeFPSLimit(int num)
+    {
+        targetFPS = (num);
     }
 }

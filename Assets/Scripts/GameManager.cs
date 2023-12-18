@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public int health;
     public int maxHealth = 0;
 
+    GameObject player;
+ 
     void Awake()
     {
-       if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
+        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); //Si hay otro GameManager lo destruye.
         }
+
+
+        player = FindObjectOfType<SkoController>().gameObject;
     }
 
     private void Update()
@@ -37,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResetPunt(int value) //Resetea la cantidad de puntos.
     {
-        points  *= value;
+        points *= value;
     }
     public int GetPunt() //Recibe los puntos.
     {
@@ -52,5 +57,15 @@ public class GameManager : MonoBehaviour
     {
         Heal(health + healvalue <= 100 ? healvalue : 100 - health);
 
+    }
+
+    public void StartInteraction(GameObject npc)
+    {
+        player.BroadcastMessage("StartInteraction", npc);
+    }
+
+    public void EndInteraction(GameObject npc)
+    {
+        player.BroadcastMessage("EndInteraction");
     }
 }
