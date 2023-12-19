@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class InventoryV3 : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     public GameObject inventory;
     private int allSlots;

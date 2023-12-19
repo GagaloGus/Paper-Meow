@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FPSCounter : MonoBehaviour
+public class DisplayController : MonoBehaviour
 {
     float deltaTime = 0.0f;
     GUIStyle style = new GUIStyle();
