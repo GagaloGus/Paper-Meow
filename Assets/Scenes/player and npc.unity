@@ -1692,7 +1692,6 @@ GameObject:
   - component: {fileID: 223785728}
   - component: {fileID: 223785727}
   - component: {fileID: 223785726}
-  - component: {fileID: 223785729}
   - component: {fileID: 223785730}
   - component: {fileID: 223785731}
   m_Layer: 0
@@ -1786,19 +1785,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &223785729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223785723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed3b8fd3c285584d852a11804da0a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LookType: 2
 --- !u!114 &223785730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,26 +1800,31 @@ MonoBehaviour:
   npcData:
     name: Beeko
     description: Bee skek
+    icon: {fileID: 21300000, guid: e8de0052c81fac348bea5130a91ffc56, type: 3}
     id: 0
     Behaviour: 0
     dialogues:
     - text: ola
       currentAnimation: 2
+      npcSpriteFace: {fileID: 0}
       playerTalksNext: 0
       playerText: []
       newQuest: {fileID: 0}
     - text: tetxo1
       currentAnimation: 1
+      npcSpriteFace: {fileID: 0}
       playerTalksNext: 0
       playerText: []
       newQuest: {fileID: 0}
     - text: texto2
       currentAnimation: 2
+      npcSpriteFace: {fileID: 0}
       playerTalksNext: 0
       playerText: []
       newQuest: {fileID: 0}
     - text: bras
       currentAnimation: 1
+      npcSpriteFace: {fileID: 0}
       playerTalksNext: 0
       playerText: []
       newQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
@@ -1856,7 +1847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable: 1
   Distance: 1.94
-  interactKey: 102
+  interactKey: 120
   interactEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1872,7 +1863,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  KeyToPress: {fileID: 1422987278}
+  KeyToPress: {fileID: 0}
 --- !u!1001 &251789497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2588,8 +2579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 286582286}
   - component: {fileID: 286582285}
-  - component: {fileID: 286582284}
-  - component: {fileID: 286582287}
   m_Layer: 0
   m_Name: raton
   m_TagString: Untagged
@@ -2597,21 +2586,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &286582284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286582283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1607b96c20ca11418c6daeb6c520ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
-  PressE: {fileID: 1422987278}
-  playerDistance: 1.54
 --- !u!65 &286582285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2649,19 +2623,6 @@ Transform:
   - {fileID: 2088069194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -56.108, z: 0}
---- !u!114 &286582287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286582283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed3b8fd3c285584d852a11804da0a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LookType: 1
 --- !u!1 &291469523
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,6 +3023,81 @@ Transform:
   - {fileID: 1568399033}
   m_Father: {fileID: 1732636148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &399571404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399571405}
+  - component: {fileID: 399571407}
+  - component: {fileID: 399571406}
+  m_Layer: 5
+  m_Name: NPC icon
+  m_TagString: Npc icon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &399571405
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399571404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005278892}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 338, y: 45}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &399571406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399571404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &399571407
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399571404}
+  m_CullTransparentMesh: 1
 --- !u!1 &410398062
 GameObject:
   m_ObjectHideFlags: 0
@@ -6353,7 +6389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000004327689, y: 0.98940045, z: -0.14521313, w: -0.000000029486435}
+  m_LocalRotation: {x: 1.7175977e-23, y: 0.9894004, z: -0.14521314, w: 1.1592444e-22}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6394,6 +6430,7 @@ RectTransform:
   - {fileID: 1383096066}
   - {fileID: 627135308}
   - {fileID: 93772206}
+  - {fileID: 1108076293}
   m_Father: {fileID: 2005278892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6595,7 +6632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868307723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000003872726, y: 0.99402237, z: -0.1091774, w: 0.000000035259824}
+  m_LocalRotation: {x: -0.000000003872726, y: 0.99402237, z: -0.1091774, w: -0.000000035259824}
   m_LocalPosition: {x: 70.06, y: 1.4660001, z: 37.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7968,15 +8005,15 @@ RectTransform:
   m_GameObject: {fileID: 1108076292}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2125, y: 1, z: 1}
+  m_LocalScale: {x: 0.72342116, y: 3.2205088, z: 2.640817}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 458011661}
-  m_Father: {fileID: 2005278892}
+  m_Father: {fileID: 818354195}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: 172}
+  m_AnchoredPosition: {x: 1137.0476, y: 560.36847}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108076294
@@ -8025,11 +8062,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 276862923}
         m_TargetAssemblyTypeName: Buttonfunctions, Assembly-CSharp
-        m_MethodName: PauseMenuoToggle
-        m_Mode: 1
+        m_MethodName: ToggleObject
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 818354194}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8037,11 +8074,11 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 276862923}
         m_TargetAssemblyTypeName: Buttonfunctions, Assembly-CSharp
-        m_MethodName: PauseMenuButtonToggle
-        m_Mode: 1
+        m_MethodName: ToggleObject
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9871,11 +9908,11 @@ GameObject:
   - component: {fileID: 1422987280}
   m_Layer: 5
   m_Name: Press_Key
-  m_TagString: Untagged
+  m_TagString: PressKeyCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1422987279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11454,7 +11491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625134604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000019363628, y: 0.9940223, z: -0.10917739, w: 0.000000017629914}
+  m_LocalRotation: {x: -0.0000000019363626, y: 0.9940223, z: -0.10917739, w: -0.00000001762991}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15170,12 +15207,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 399571405}
   - {fileID: 1773890935}
   - {fileID: 1320006230}
   - {fileID: 1422987279}
   - {fileID: 2098138975}
   - {fileID: 935446130}
-  - {fileID: 1108076293}
   - {fileID: 818354195}
   - {fileID: 43311513}
   - {fileID: 1871720739}

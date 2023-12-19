@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent (typeof (Interactable))]
 public class NPCBehaviour : MonoBehaviour
@@ -16,6 +17,7 @@ public class NPCBehaviour : MonoBehaviour
     bool interacting;
 
     GameObject player;
+    Image icon;
     public GameObject model;
 
 
@@ -25,7 +27,9 @@ public class NPCBehaviour : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<SkoController>().gameObject;
-        animator = GetComponent<Animator>();;
+        animator = GetComponent<Animator>();
+
+        icon = GameObject.FindGameObjectWithTag("Npc icon").GetComponent<Image>();
     }
 
     // Start is called before the first frame update
@@ -49,7 +53,7 @@ public class NPCBehaviour : MonoBehaviour
         }
 
         //Cambia la escala del modelo segun los bools, da la sensacion de que se de la vuelta
-        model.transform.localScale = new Vector3(
+       model.transform.localScale = new Vector3(
             ( isFlipped ? -1 : 1 ),
             model.transform.localScale.y,
             ( isFacingBackwards ? -1 : 1 ));
@@ -64,6 +68,9 @@ public class NPCBehaviour : MonoBehaviour
         dialogueInt = 0;
         interacting = true;
         nextDialogue = true;
+
+        icon.sprite = npcData.icon;
+
         GameManager.instance.StartInteraction(gameObject);
 
         //apunta el npc para que mire al player
@@ -112,6 +119,7 @@ public class NPCBehaviour : MonoBehaviour
             dialogueInt = 0;
             interacting = false;
             animator.SetInteger("dialogue", 0);
+            icon.sprite = null;
 
             isFacingBackwards = isFlipped = false;
             GetComponent<Interactable>().enabled = true;

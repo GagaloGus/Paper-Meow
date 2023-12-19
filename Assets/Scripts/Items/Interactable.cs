@@ -19,6 +19,9 @@ public class Interactable : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<SkoController>().gameObject;
+
+        KeyToPress = GameObject.FindGameObjectWithTag("PressKeyCanvas");
+
         KeyToPress.GetComponentInChildren<TMP_Text>().text = interactKey.ToString();
     }
 
