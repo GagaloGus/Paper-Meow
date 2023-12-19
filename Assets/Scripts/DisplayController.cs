@@ -9,9 +9,10 @@ public class DisplayController : MonoBehaviour
     float deltaTime = 0.0f;
     GUIStyle style = new GUIStyle();
     public int targetFPS;
-    public int vsyncValue = 1;
+    public int vsyncValue = 0;
     public TMPro.TMP_Dropdown resolutionDropdown;
     public TMPro.TMP_Dropdown fpsLimitDropdown;
+    public Slider brightnessSlider;
 
     private void Awake()
     {
@@ -53,6 +54,9 @@ public class DisplayController : MonoBehaviour
         // Configurar el método que se ejecutará cuando cambie el límite de FPS
         fpsLimitDropdown.onValueChanged.AddListener(ChangeFPSLimit);
 
+        brightnessSlider.value = GetBrightness();
+
+        brightnessSlider.onValueChanged.AddListener(ChangeBrightness);
     }
     void Update()
     {
@@ -107,5 +111,17 @@ public class DisplayController : MonoBehaviour
             Resolution selectedResolution = resolutions[index];
             Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
         }
+    }
+    public void ToggleFulssScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+    float GetBrightness()
+    {
+        return Screen.brightness;
+    }
+    public void ChangeBrightness(float value)
+    {
+        Screen.brightness = value;
     }
 }
