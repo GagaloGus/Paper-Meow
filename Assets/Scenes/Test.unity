@@ -4092,7 +4092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362386072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -0.000000017024002, z: 0.0000000024985929, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: 0.000000017024002, z: -0.0000000024985929, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8263,7 +8263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810341796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521313, y: -0.000000029486431, z: 0.0000000043276884, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: 3.5150565e-15, z: -7.181153e-17, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8288,7 +8288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &818354195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8700,7 +8700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868307723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521316, y: -0.000000017024002, z: 0.0000000024985929, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521316, y: 0.000000017024002, z: -0.0000000024985929, w: 0.98940045}
   m_LocalPosition: {x: 70.06, y: 1.6090001, z: 29.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8720,6 +8720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachine: {fileID: 1732636147}
+  camObj: {fileID: 1732636146}
+  pauseMenu: {fileID: 818354194}
 --- !u!1 &873277084
 GameObject:
   m_ObjectHideFlags: 0
@@ -14956,7 +14958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625134604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10917739, y: -0.00000001762991, z: 0.0000000019363626, w: 0.9940223}
+  m_LocalRotation: {x: 0.10917739, y: 0.00000001762991, z: -0.0000000019363626, w: 0.9940223}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15745,7 +15747,7 @@ GameObject:
   - component: {fileID: 1732636147}
   m_Layer: 0
   m_Name: FreeLook Camera
-  m_TagString: Untagged
+  m_TagString: FreeLook Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
