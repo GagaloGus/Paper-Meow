@@ -155,10 +155,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333025559593040506}
-  - component: {fileID: 6403942227184611853}
   - component: {fileID: 2120665806219072765}
   - component: {fileID: 72071289077555267}
   - component: {fileID: 4634161352007327061}
+  - component: {fileID: 9069423351829115485}
+  - component: {fileID: 6403942227184611853}
   m_Layer: 0
   m_Name: Sko
   m_TagString: Untagged
@@ -183,22 +184,6 @@ Transform:
   - {fileID: 5376614447852608461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6403942227184611853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344253251668500606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64fa2a44be526af4899e3854d5e117ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 7
-  speedMult: 1.52
-  jumpForce: 4
-  weaponSelected: 1
 --- !u!54 &2120665806219072765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -261,6 +246,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
   slotHolder: {fileID: 0}
+--- !u!114 &9069423351829115485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8346bd46584234cae9f0a65bc2e996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  moveSpeed: 1
+  jumpForce: 5
+  runSpeedMult: 5
+  attackPower: 0
+  weaponSelected: 0
+--- !u!114 &6403942227184611853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fa2a44be526af4899e3854d5e117ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isFlipped: 0
+  isFacingBackwards: 0
+  isRunning: 0
+  canMove: 0
 --- !u!1001 &282076783751967463
 PrefabInstance:
   m_ObjectHideFlags: 0

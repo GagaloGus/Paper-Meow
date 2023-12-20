@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SkoStats))]
 public class SkoController : MonoBehaviour
 {
-    public float moveSpeed, speedMult, jumpForce;
-
     private Rigidbody rb;
     private Vector3 moveInput, moveDirection;
 
     private Transform groundPoint;
-    
+
+    SkoStats stats;
+
     [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, isRunning, canMove;
 
     //variables del modelo 3d
     GameObject m_gameobj;
     Animator m_animator;
 
-    public enum attackWeaponIDs { garra, cutter}
-    public attackWeaponIDs weaponSelected;
+    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+       
 
         groundPoint = transform.Find("GroundCheckPoint");
 
@@ -104,7 +105,7 @@ public class SkoController : MonoBehaviour
             //ataca segun el arma que tengamos
             if (Input.GetKeyDown(KeyCode.P) && isGrounded)
             {
-                m_animator.SetInteger("attackWeaponID", (int)weaponSelected);
+                m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
                 m_animator.SetTrigger("attack");
             }
             #endregion
@@ -114,15 +115,19 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        stats = GetComponent<SkoStats>();
+
         if (canMove)
         {
+            Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
+
             //Moverse
-            rb.velocity = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection) * moveSpeed * (isRunning ? speedMult : 1) + Vector3.up * rb.velocity.y;
+            rb.velocity = direction * stats.moveSpeed * (isRunning ? stats.runSpeedMult : 1) + Vector3.up * rb.velocity.y;
 
             //Saltar
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                rb.velocity += new Vector3(0, jumpForce, 0);
+                rb.velocity += new Vector3(0, stats.jumpForce, 0);
             }
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnBola : Skill
 {
+
     public override void Use()
     {
         

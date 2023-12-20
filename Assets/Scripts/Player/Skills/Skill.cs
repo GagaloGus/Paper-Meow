@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Parameters
+public abstract class Skill : ScriptableObject
 {
-    public Skill[] parentSkills;
-}
+    public string skillName;
 
-public abstract class Skill
-{
     public bool isUnlocked;
     public bool canBeUnlocked;
-    public Parameters ParentSkills;
 
+    public Skill[] parentSkills;
+
+    public int skillID;
     
     public abstract void Use();
 
     public bool CheckIfUnlockable()
     {
-        foreach(Skill parent in ParentSkills.parentSkills)
+        foreach(Skill parent in parentSkills)
         {
             if(!parent.isUnlocked)
             {
@@ -27,6 +26,7 @@ public abstract class Skill
         }
 
         return true;
-
     }
+
+    
 }
