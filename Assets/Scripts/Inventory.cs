@@ -7,7 +7,6 @@ public class Inventory : MonoBehaviour
 {
     public GameObject inventory;
     private int allSlots;
-    private int enabledSlots;
     private GameObject[] slot;
     public GameObject slotHolder;
 
@@ -24,6 +23,28 @@ public class Inventory : MonoBehaviour
             if (slot[i].GetComponent<Slot>().item == null )
             {
                 slot[i].GetComponent<Slot>().empty = true;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        // Verifica si el jugador ha hecho clic en un objeto del inventario
+        if (Input.GetMouseButtonDown(0)) // Puedes ajustar el botón del mouse según tu configuración
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Verifica si ha golpeado un objeto del inventario
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Comprueba si el objeto clickeado tiene el componente Slot
+                Slot clickedSlot = hit.collider.GetComponent<Slot>();
+                if (clickedSlot != null)
+                {
+                    // Maneja la lógica de uso del objeto
+                    UseItem(clickedSlot);
+                }
             }
         }
     }
@@ -79,31 +100,27 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    //public void AddItem(GameObject itemObject, int itemID, string itemType, string itemDescription, Sprite itemIcon)
-    //{
-    //    for (int i = 0;i < allSlots;i++)
-    //    {
-    //        if (slot[i].GetComponent<Slot>().empty)
-    //        {
-    //            itemObject.GetComponent<Item>().pickedUp = true;
 
-    //            slot[i].GetComponent<Slot>().item = itemObject;
-    //            slot[i].GetComponent<Slot>().ID = itemID;
-    //            slot[i].GetComponent<Slot>().type = itemType;
-    //            slot[i].GetComponent<Slot>().description = itemDescription;
-    //            slot[i].GetComponent<Slot>().icon = itemIcon;
+    // Método para manejar la lógica de uso del objeto
+    public void UseItem(Slot clickedSlot)
+    {
+        // Verifica si la ranura no está vacía
+        if (!clickedSlot.empty)
+        {
+            // Obtén el objeto del inventario
+            GameObject itemObject = clickedSlot.item;
 
-    //            itemObject.transform.parent = slot[i].transform;
-    //            itemObject.SetActive(false);
 
-    //            slot[i].GetComponent<Slot>().UpdateSlot();
+            // Después de usar el objeto, puedes eliminarlo del inventario
+            RemoveItem(clickedSlot);
+        }
+    }
 
-    //            slot[i].GetComponent<Slot>().empty = false;
-
-    //            return;
-    //        }
-
-    //    }
-
-    //}
+    // Método para eliminar un objeto del inventario
+    void RemoveItem(Slot slot)
+    {
+        slot.empty = true;
+        slot.item = null;
+        // Puedes realizar otras acciones de limpieza aquí si es necesario.
+    }
 }

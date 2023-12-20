@@ -22,6 +22,7 @@ public class Slot : MonoBehaviour
     public void LateUpdate()
     {
         UpdateSlot();
+
     }
     public void UpdateSlot()
     {
