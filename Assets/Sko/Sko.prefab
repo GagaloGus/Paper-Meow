@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6948540996463791424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.345, z: 0}
+  m_LocalPosition: {x: 0, y: -0.135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 8253393267744761186}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.345, z: 0}
+  m_LocalPosition: {x: 0, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca56a080cb977649b4b2866e36b3bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelo: {fileID: 0}
+  modelo: {fileID: 1093049278162964406}
   texturePacks:
   - name: idle_01
     front: {fileID: 2800000, guid: f5cdfdda6aaadc5418668450dec9fd5a, type: 3}
@@ -218,7 +218,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344253251668500606}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f1a139bac534d244bb9b850512f29b7c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -230,8 +230,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0391718, y: 0.93938386, z: 0.13}
-  m_Center: {x: -0.09009522, y: 0.030308008, z: 0}
+  m_Size: {x: 1.0615091, y: 0.8757744, z: 0.13}
+  m_Center: {x: -0.07892656, y: 0.27307832, z: 0}
 --- !u!114 &4634161352007327061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,8 +261,9 @@ MonoBehaviour:
   health: 10
   moveSpeed: 1
   jumpForce: 5
-  runSpeedMult: 5
+  runSpeedMult: 2.05
   attackPower: 0
+  money: 0
   weaponSelected: 0
 --- !u!114 &6403942227184611853
 MonoBehaviour:
@@ -280,7 +281,7 @@ MonoBehaviour:
   isFlipped: 0
   isFacingBackwards: 0
   isRunning: 0
-  canMove: 0
+  canMove: 1
 --- !u!1001 &282076783751967463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,6 +358,11 @@ PrefabInstance:
 --- !u!4 &315421480711542028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 26e5f5a9348f51048bfb97dd825e29a2, type: 3}
+  m_PrefabInstance: {fileID: 282076783751967463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1093049278162964406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 26e5f5a9348f51048bfb97dd825e29a2, type: 3}
   m_PrefabInstance: {fileID: 282076783751967463}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8337654114201888704

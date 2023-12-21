@@ -54,6 +54,10 @@ public class QuestManager : MonoBehaviour
         completedQuests.Add(quest);
         canvas.BroadcastMessage("UpdateCanvasQuests");
 
+        if(quest.unlockNewSkill != null)
+        {
+            SkillManager.instance.GetSkill(quest.unlockNewSkill);
+        }
     }
 
     private void OnDestroy()

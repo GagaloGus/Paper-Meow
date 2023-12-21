@@ -10,19 +10,10 @@ public class SkoStats : MonoBehaviour
     public float attackPower;
 
     string unlockedSkills;
+    public int money;
 
     public enum attackWeaponIDs { garra, cutter }
     public attackWeaponIDs weaponSelected;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //unlockedSkills = SkillManager.instance.get_UnlockIDs;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+    //aca estara todo sobre el guardado y cargado de datos
 }
