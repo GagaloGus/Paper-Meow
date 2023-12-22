@@ -7,20 +7,19 @@ public abstract class Skill : ScriptableObject
     public enum UnlockType { SkillTree, Quest}
 
     public string skillName;
-    public UnlockType unlockType;
-
+    public int skillID;
     public bool isUnlocked;
-
-    [HideInInspector]
-    public bool canBeUnlocked;
-
     public Skill[] parentSkills;
 
-    public int skillID;
+    public UnlockType unlockType;
 
-    [HideInInspector]
+    [Tooltip("Solo util en Skill Tree")]
+    public bool canBeUnlocked;
+    [Tooltip("Solo util en Skill Tree")]
     public int moneyRequired;
 
+    [Tooltip("Solo util en Quest")]
+    public Quest questItem;
 
 
     public abstract void Use();
@@ -45,3 +44,4 @@ public abstract class Skill : ScriptableObject
         isUnlocked = true;
     }
 }
+

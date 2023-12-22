@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SpawnBola))]
+[CustomEditor(typeof(Skill))]
 public class CustomEditorSkill : Editor
 {
-    int width = 150;
-
+    /*
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
         serializedObject.Update();
-        SpawnBola script = (SpawnBola)target;
+        Skill script = (Skill)target;
         EditorGUILayout.BeginHorizontal();
 
         if(script.unlockType == Skill.UnlockType.SkillTree)
         {
-            EditorGUILayout.LabelField("Can Be Unlocked", GUILayout.MaxWidth(width));
-            script.canBeUnlocked = EditorGUILayout.Toggle(script.canBeUnlocked);
+            script.canBeUnlocked = EditorGUILayout.Toggle("Can be unlocked",script.canBeUnlocked);
 
-            //EditorGUILayout.LabelField("Money Required", GUILayout.MaxWidth(width));
-            //script.moneyRequired = EditorGUILayout.IntField(script.moneyRequired);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
 
-            //(GameObject)EditorGUILayout.ObjectField(GameObject, typeof(GameObject), true);
+            script.moneyRequired = EditorGUILayout.IntField("Money Required", script.moneyRequired);
         }
         else if(script.unlockType == Skill.UnlockType.Quest)
         {
-
+            script.questItem = (Quest)EditorGUILayout.ObjectField("Quest",script.questItem, typeof(Quest), true);
         }
 
         EditorGUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(script);
-    }
+    }*/
 }
