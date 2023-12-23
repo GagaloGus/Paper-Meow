@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour
 
         if(quest.unlockNewSkill != null)
         {
-            SkillManager.instance.GetSkill(quest.unlockNewSkill);
+            //SkillManager.instance.GetSkill(quest.unlockNewSkill);
         }
     }
 

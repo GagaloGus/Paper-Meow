@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
 
     public int targetFPS = 60;
+    public int playerStats_refreshRate = 3;
     void Awake()
     {
        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.

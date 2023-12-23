@@ -193,4 +193,9 @@ public class Buttonfunctions : MonoBehaviour
             PauseMenuoToggle();
         }
     }
+
+    public void SelectSkill()
+    {
+
+    }
 }

@@ -6,8 +6,40 @@ using UnityEngine;
 public class DashSkill : Skill
 {
     public float dashDistance;
-    public override void Use()
+    public enum DashDirection { Left, Front, Right, Back }
+    public DashDirection direction;
+
+    Vector3 directionDash;
+    float timer;
+
+    public override void StartSkill(GameObject owner)
     {
-        throw new System.NotImplementedException();
+        base.StartSkill(owner);
+
+        if (direction == DashDirection.Left)
+            directionDash = owner.transform.right * -1;
+
+        else if (direction == DashDirection.Right)
+            directionDash = owner.transform.right;
+
+        else if (direction == DashDirection.Front)
+            directionDash = owner.transform.forward;
+
+        else if (direction == DashDirection.Back)
+            directionDash = owner.transform.forward* -1;
+
+        skillName = $"Dash {direction}";
+
+        timer = 0;
+    }
+    public override void Use(GameObject owner)
+    {
+        owner.transform.position =
+            Vector3.Lerp(
+                owner.transform.position,
+                owner.transform.position + directionDash * dashDistance,
+                timer);
+
+        timer += 0.1f;
     }
 }

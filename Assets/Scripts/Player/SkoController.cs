@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 [RequireComponent(typeof(SkoStats))]
 public class SkoController : MonoBehaviour
@@ -18,13 +20,13 @@ public class SkoController : MonoBehaviour
     GameObject m_gameobj;
     Animator m_animator;
 
-    
+    [Range(0f, 2f)]
+    public float rayDetectFloorDist;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
        
-
         groundPoint = transform.Find("GroundCheckPoint");
 
         m_gameobj = transform.Find("3dmodel").gameObject;
@@ -34,6 +36,11 @@ public class SkoController : MonoBehaviour
         isFacingBackwards = false;
     }
 
+    private void Start()
+    {
+        StartCoroutine(UpdateStats());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -41,22 +48,14 @@ public class SkoController : MonoBehaviour
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0 ,Input.GetAxis("Vertical"));
 
         //direccion hacia adelante de la camara
-        moveDirection = CoolFunctions.FlattenVector3(Camera.main.transform.forward);
-        
-
-        isGrounded =
-           Physics.Raycast(
-               groundPoint.position,          // posicion de origen del rayo
-               Vector3.down,                  // vector de direccion del rayo
-               0.2f,                          // distancia del rayo
-               LayerMask.GetMask("Ground"));  // Mascara del suelo, para que solo detecte el suelo
+        moveDirection = CoolFunctions.FlattenVector3(Camera.main.transform.forward);  
 
         #endregion
 
         #region Flip
 
         //orienta al player a la direccion de la camara al moverse
-        if(moveInput.magnitude > 0 && canMove)
+        if(canMove)
         {
             transform.forward = -moveDirection;
         }
@@ -115,21 +114,25 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        stats = GetComponent<SkoStats>();
 
         if (canMove)
         {
             Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
 
             //Moverse
-            rb.velocity = direction * stats.moveSpeed * (isRunning ? stats.runSpeedMult : 1) + Vector3.up * rb.velocity.y;
+            rb.velocity = direction *
+                stats.moveSpeed *
+                (isRunning ? stats.runSpeedMult : 1)
+                + Vector3.up * rb.velocity.y;
 
             //Saltar
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
                 rb.velocity += new Vector3(0, stats.jumpForce, 0);
-            }
         }
+
+        isGrounded =
+           Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+    
     }
     
     //llamado desde el gamemanager
@@ -157,5 +160,13 @@ public class SkoController : MonoBehaviour
     {
         get { return canMove; }
         set { canMove = value; }
+    }
+
+    IEnumerator UpdateStats()
+    {
+        stats = GetComponent<SkoStats>();
+        yield return new WaitForSeconds(GameManager.instance.playerStats_refreshRate);
+
+        StartCoroutine(UpdateStats());
     }
 }

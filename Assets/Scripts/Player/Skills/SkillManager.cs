@@ -7,23 +7,25 @@ public class SkillManager : MonoBehaviour
     public static SkillManager instance;
 
     public Skill[] allSkills;
+    public Skill selectedSkill;
     string unlockedSkillIDs;
 
-    Dictionary<int, Skill> skillDic = new();
-
     GameObject player;
+    public KeyCode useSkillKey;
+
+    public float skillCooldownTimer;
+    public bool skillUsed;
     void Awake()
     {
-        if (!instance)
+        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //Si hay otro GameManager lo destruye.
         }
-
 
         //le añade los IDs a las skills
         AssignIDsToSkills();
@@ -34,44 +36,82 @@ public class SkillManager : MonoBehaviour
         //checkea si se pueden desbloquear las skills
         foreach (Skill skill in allSkills)
         {
+            /*temporal*/ skill.isUnlocked = false;
             skill.CheckIfUnlockable();
         }
 
+        skillUsed = false;
         player = FindObjectOfType<SkoController>().gameObject;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void AssignIDsToSkills()
-    {
-        //borra el contenido del diccionario por si acaso
-        skillDic.Clear();
-
-        //cambia las ids a su orden en el array y las añade al diccionario
-        for (int i = 0; i < allSkills.Length; i++)
+        if (Input.GetKeyDown(useSkillKey) && !skillUsed)
         {
-            allSkills[i].skillID = i+1;
+            selectedSkill.Use(player);
+            skillCooldownTimer = selectedSkill.cooldown;
+            skillUsed = true;
+        }
 
-            skillDic.Add(allSkills[i].skillID, allSkills[i]);
+        if(skillUsed)
+        {
+            print(Mathf.Round(10 * skillCooldownTimer)/10);
+
+            skillCooldownTimer -= Time.deltaTime;
+            skillUsed = skillCooldownTimer > 0;
+
         }
     }
 
+    //Llamado desde los botones
+    public void SelectSkill(Skill skill)
+    {
+        if(skill.isUnlocked) 
+        { 
+            ChangeSkill(skill); 
+            return; 
+        }
+        else
+        {
+            UnlockSkillInTree(skill);
+            foreach(Skill childSk in skill.childSkills)
+            {
+                childSk.CheckIfUnlockable();
+            }
+            return;
+        }
+    }
+    void AssignIDsToSkills()
+    {
+        //cambia las ids a su orden en el array
+        for (int i = 0; i < allSkills.Length; i++)
+        {
+            allSkills[i].skillID = i;
+        }
+    }
+
+    void ChangeSkill(Skill newSkill)
+    {
+        skillCooldownTimer = newSkill.cooldown;
+        selectedSkill = newSkill;
+        newSkill.StartSkill(player);
+
+        print($"skill seleccionada {newSkill.skillName}");
+    }
+
+    //crea un string con todas las skills desbloqueadas
+    //ej. 1_7_12_18_
     string UnlockedSkills()
     {
         string idString = "";
 
-        //crea un string con todas las skills desbloqueadas
-        //ej. 1_7_12_18_
         for(int i = 0; i < allSkills.Length; i++)
         {
             if (allSkills[i].isUnlocked)
@@ -82,26 +122,6 @@ public class SkillManager : MonoBehaviour
 
         return idString;
     }
-
-    //lo usaremos en el cargado de datos
-    public void SetUnlockedSkills(string idString)
-    {
-        //seprara el string en cada "numero" que tiene
-        string[] spiltIDs = idString.Split('_');
-
-        foreach (string stringID in spiltIDs)
-        {
-            //vuelve cada numero en un int
-            int ID = (int.Parse(stringID));
-
-            //busca la skill en el diccionario segun su ID
-            Skill skill = skillDic[ID];
-
-            //La desbloquea
-            skill.UnlockSkill();
-        }
-    }
-
 
     public void UnlockSkillInTree(Skill skill)
     {
@@ -117,6 +137,7 @@ public class SkillManager : MonoBehaviour
                 playerStats.money -= skill.moneyRequired;
 
                 Debug.Log($"{skill.skillName} desbloqueada");
+                unlockedSkillIDs = UnlockedSkills();
             }
 
             //Si no puede ser desbloqueada
@@ -143,14 +164,33 @@ public class SkillManager : MonoBehaviour
                 Debug.Log("Ni idea de porque pero no puedes desbloquearla");
             }
         }
-        //Si la skill no es de tipo Skilltree
-        else
+        //Si la skill es tipo Quest
+        else if (skill.unlockType == Skill.UnlockType.Quest)
         {
-            Debug.Log("Necesitas algo para desbloquear esta skill");
+            //Tenemos que ver si el player tiene el objeto necesario en el inventario
         }
     }
 
-    //Automaticamente desbloquear una skill, sirve para los quests
+    //para el cargado de datos
+    public void SetUnlockedSkills(string idString)
+    {
+        //seprara el string en cada "numero" que tiene
+        string[] spiltIDs = idString.Split('_');
+
+        foreach (string stringID in spiltIDs)
+        {
+            //vuelve cada numero en un int
+            int ID = (int.Parse(stringID));
+
+            //busca la skill en el diccionario segun su ID
+            Skill skill = allSkills[ID];
+
+            //La desbloquea
+            skill.UnlockSkill();
+        }
+    }
+
+    //Automaticamente desbloquear una skill
     public void GetSkill(Skill skill)
     {
         skill.UnlockSkill();

@@ -7,32 +7,41 @@ public abstract class Skill : ScriptableObject
     public enum UnlockType { SkillTree, Quest}
 
     public string skillName;
+    [TextArea(3,1)] public string skillDescription;
+
     public int skillID;
+    public Sprite skillTreeSprite;
     public bool isUnlocked;
+    public bool canBeUnlocked;
     public Skill[] parentSkills;
+    public Skill[] childSkills;
+    public float cooldown;
 
     public UnlockType unlockType;
 
     [Tooltip("Solo util en Skill Tree")]
-    public bool canBeUnlocked;
-    [Tooltip("Solo util en Skill Tree")]
     public int moneyRequired;
 
     [Tooltip("Solo util en Quest")]
-    public Quest questItem;
+    public Item questItem;
 
 
-    public abstract void Use();
+    public virtual void StartSkill(GameObject owner)
+    {
 
-    //Si las skills padres estan desbloqueadas y es una
-    //skill tipo SkillTree se puede desbloquear esta
+    }
+    
+    public abstract void Use(GameObject owner);
+
+    //Si las skills padres estan desbloqueadas se puede desbloquear esta
     public void CheckIfUnlockable()
     {
         foreach(Skill parent in parentSkills)
         {
-            if(!parent.isUnlocked || unlockType != UnlockType.SkillTree)
+            if(!parent.isUnlocked)
             {
                 canBeUnlocked = false;
+                return;
             }
         }
 
