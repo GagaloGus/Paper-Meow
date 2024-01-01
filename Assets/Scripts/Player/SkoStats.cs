@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkoStats : MonoBehaviour
 {
     public int health;
-    public float moveSpeed, jumpForce;
+    public float moveSpeed, maxSpeed, jumpForce;
     [Range(1, 5)]public float runSpeedMult;
     public float attackPower;
 

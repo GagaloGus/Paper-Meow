@@ -7,13 +7,13 @@ public class SpawnBolaSkill : Skill
 {
     public GameObject objectToSpawn;
 
-    public override void StartSkill(GameObject owner)
+    public override void StartSkill()
     {
-        base.StartSkill(owner);
+        base.StartSkill();
     }
 
-    public override void Use(GameObject owner)
+    public override void Use()
     {
-        Instantiate(objectToSpawn, owner.transform.position + -owner.transform.forward, Quaternion.identity);
+        Instantiate(objectToSpawn, player.transform.position + -player.transform.forward, Quaternion.identity);
     }
 }

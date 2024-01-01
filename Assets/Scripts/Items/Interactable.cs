@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] bool isInteractable;
     [SerializeField] float Distance;
-    [SerializeField] KeyCode interactKey;
+    KeyCode interactKey;
     [SerializeField] UnityEvent interactEvent;
 
     bool playerInRange;
@@ -22,6 +22,7 @@ public class Interactable : MonoBehaviour
 
         KeyToPress = GameObject.FindGameObjectWithTag("PressKeyCanvas");
 
+        interactKey = PlayerKeybinds.interact;
         KeyToPress.GetComponentInChildren<TMP_Text>().text = interactKey.ToString();
     }
 

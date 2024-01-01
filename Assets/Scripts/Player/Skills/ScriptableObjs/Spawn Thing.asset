@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Spawn cubo
   skillDescription: 
-  skillID: 0
+  skillID: 2
   skillTreeSprite: {fileID: 21300000, guid: ef87c3f03ebe66344af273055f7a3ac6, type: 3}
-  isUnlocked: 1
+  isUnlocked: 0
   canBeUnlocked: 1
   parentSkills:
-  - {fileID: 11400000, guid: ccbea0c1b63037e4687f4bfdcd283a08, type: 2}
-  - {fileID: 11400000, guid: bd9b527e70c3f4a49b103b491cd5f768, type: 2}
+  - {fileID: 11400000, guid: 5d7776004318b51499061f8fa5bfd267, type: 2}
+  childSkills:
+  - {fileID: 11400000, guid: 9edb84f234bd1eb4c845c161a055f62c, type: 2}
+  - {fileID: 11400000, guid: a332d4077367ace4b82fa4c605974964, type: 2}
+  usingSkill: 0
   cooldown: 4
   unlockType: 0
+  usablilty: 2
   moneyRequired: 40
   questItem: {fileID: 0}
   objectToSpawn: {fileID: 7873515465017659571, guid: 3f6f5a89a1d18a240b44e25dc9319f5a, type: 3}

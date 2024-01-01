@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 4634161352007327061}
   - component: {fileID: 9069423351829115485}
   - component: {fileID: 6403942227184611853}
-  - component: {fileID: 1754513271115219307}
+  - component: {fileID: 1170115040403223023}
   m_Layer: 0
   m_Name: Sko
   m_TagString: Untagged
@@ -193,7 +193,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344253251668500606}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 25
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -207,7 +207,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -219,7 +219,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344253251668500606}
-  m_Material: {fileID: 13400000, guid: f1a139bac534d244bb9b850512f29b7c, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -261,10 +261,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   moveSpeed: 6
+  maxSpeed: 16.69
   jumpForce: 4
   runSpeedMult: 2.05
   attackPower: 0
-  money: 0
+  money: 500
   weaponSelected: 0
 --- !u!114 &6403942227184611853
 MonoBehaviour:
@@ -283,25 +284,22 @@ MonoBehaviour:
   isFacingBackwards: 0
   isRunning: 0
   canMove: 1
+  isUsingSkill: 0
+  isGliding: 0
   rayDetectFloorDist: 0.28
---- !u!114 &1754513271115219307
-MonoBehaviour:
+  gravity: -250
+--- !u!75 &1170115040403223023
+ConstantForce:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344253251668500606}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966077035805e90459bc955fd330835f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allSkills:
-  - {fileID: 11400000, guid: 6155d03006823084fbe3aabd7f1f8435, type: 2}
-  selectedSkill: {fileID: 0}
-  useSkillKey: 116
-  skillCooldownTimer: 0
-  skillUsed: 0
+  m_Force: {x: 0, y: -250, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1001 &282076783751967463
 PrefabInstance:
   m_ObjectHideFlags: 0

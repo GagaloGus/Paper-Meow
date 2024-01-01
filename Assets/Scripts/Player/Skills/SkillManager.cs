@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -11,21 +12,25 @@ public class SkillManager : MonoBehaviour
     string unlockedSkillIDs;
 
     GameObject player;
-    public KeyCode useSkillKey;
+    KeyCode useSkillKey;
 
     public float skillCooldownTimer;
     public bool skillUsed;
+
+    bool skillUsable;
     void Awake()
     {
-        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
+        #region manager instance
+        if (!instance) 
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); //Si hay otro GameManager lo destruye.
+            Destroy(gameObject); 
         }
+        #endregion
 
         //le añade los IDs a las skills
         AssignIDsToSkills();
@@ -40,8 +45,10 @@ public class SkillManager : MonoBehaviour
             skill.CheckIfUnlockable();
         }
 
-        skillUsed = false;
+        skillUsed = false; 
         player = FindObjectOfType<SkoController>().gameObject;
+
+        useSkillKey = PlayerKeybinds.useSkill;
     }
 
     // Start is called before the first frame update
@@ -53,21 +60,49 @@ public class SkillManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(useSkillKey) && !skillUsed)
+        if(player.GetComponent<SkoController>().player_canMove) 
         {
-            selectedSkill.Use(player);
-            skillCooldownTimer = selectedSkill.cooldown;
-            skillUsed = true;
+            if (Input.GetKeyDown(useSkillKey) && !skillUsed && skillUsable)
+            {
+                if(selectedSkill != null)
+                {
+                    player.GetComponent<SkoController>().StartSkillCooldownCoroutine(selectedSkill.usingSkill);
+                    selectedSkill.Use();
+
+
+                    skillCooldownTimer = selectedSkill.cooldown;
+                    skillUsed = true;
+
+                    print($"{selectedSkill.skillName} usada!");
+
+                    StopCoroutine(nameof(ChangeGizmoCol));
+                    StartCoroutine(ChangeGizmoCol());
+                }
+                else
+                {
+                    print("Selecciona una skill primero");
+                }
+            }
+
+            if(selectedSkill != null)
+            {
+                if(selectedSkill.usablilty == Skill.Usability.Ground && player.GetComponent<SkoController>().player_isGrounded) { skillUsable = true; }
+                else if(selectedSkill.usablilty == Skill.Usability.All) {  skillUsable = true; }
+                else { skillUsable = false; }
+            }
         }
+
 
         if(skillUsed)
         {
-            print(Mathf.Round(10 * skillCooldownTimer)/10);
+            //Contador
+            float time = Mathf.Round(100*skillCooldownTimer)/100;
+            if (time % 0.5 == 0){ print(time); }
 
             skillCooldownTimer -= Time.deltaTime;
             skillUsed = skillCooldownTimer > 0;
-
         }
+
     }
 
     //Llamado desde los botones
@@ -88,39 +123,15 @@ public class SkillManager : MonoBehaviour
             return;
         }
     }
-    void AssignIDsToSkills()
-    {
-        //cambia las ids a su orden en el array
-        for (int i = 0; i < allSkills.Length; i++)
-        {
-            allSkills[i].skillID = i;
-        }
-    }
 
     void ChangeSkill(Skill newSkill)
     {
+        //Empieza el contador de la skill que le hayamos puesto
         skillCooldownTimer = newSkill.cooldown;
         selectedSkill = newSkill;
-        newSkill.StartSkill(player);
 
+        newSkill.StartSkill();
         print($"skill seleccionada {newSkill.skillName}");
-    }
-
-    //crea un string con todas las skills desbloqueadas
-    //ej. 1_7_12_18_
-    string UnlockedSkills()
-    {
-        string idString = "";
-
-        for(int i = 0; i < allSkills.Length; i++)
-        {
-            if (allSkills[i].isUnlocked)
-            {
-                idString += allSkills[i].skillID + "_";
-            }
-        }
-
-        return idString;
     }
 
     public void UnlockSkillInTree(Skill skill)
@@ -171,7 +182,22 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+
+    //Automaticamente desbloquear una skill
+    public void GetSkill(Skill skill)
+    {
+        skill.UnlockSkill();
+    }
+
     //para el cargado de datos
+    void AssignIDsToSkills()
+    {
+        //cambia las ids a su orden en el array
+        for (int i = 0; i < allSkills.Length; i++)
+        {
+            allSkills[i].skillID = i;
+        }
+    }
     public void SetUnlockedSkills(string idString)
     {
         //seprara el string en cada "numero" que tiene
@@ -190,15 +216,49 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    //Automaticamente desbloquear una skill
-    public void GetSkill(Skill skill)
+    //lo usaremos en el guardado de datos
+    //crea un string con todas las skills desbloqueadas
+    //ej. 1_7_12_18_
+    string UnlockedSkills()
     {
-        skill.UnlockSkill();
+        string idString = "";
+
+        for(int i = 0; i < allSkills.Length; i++)
+        {
+            if (allSkills[i].isUnlocked)
+            {
+                idString += allSkills[i].skillID + "_";
+            }
+        }
+
+        return idString;
     }
 
-    //lo usaremos en el guardado de datos
     public string get_UnlockIDs
     {
         get { return unlockedSkillIDs; }
+    }
+
+    Color gizmoCol = Color.green;
+    private void OnDrawGizmos()
+    {
+        if(selectedSkill != null)
+        {
+            Gizmos.color = gizmoCol;
+            selectedSkill.SkillGizmo();
+        }
+    }
+
+    IEnumerator ChangeGizmoCol()
+    {
+        float lapso = 0.2f;
+        float espera = selectedSkill.cooldown/lapso;
+
+        for(float i = 0;i <= 1 ;i+= lapso/espera)
+        {
+            gizmoCol = new Color(1-i, i, 0);
+            yield return new WaitForSeconds(lapso/espera);
+        } 
+
     }
 }

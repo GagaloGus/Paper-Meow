@@ -5,41 +5,49 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dash", menuName = "Player/Skills/Dash")]
 public class DashSkill : Skill
 {
-    public float dashDistance;
     public enum DashDirection { Left, Front, Right, Back }
     public DashDirection direction;
 
-    Vector3 directionDash;
-    float timer;
+    [Tooltip("X es cuanto nos movemos en el eje que queremos, Y es cuanto nos movemos en el eje Y")]
+    public Vector2 distances;
 
-    public override void StartSkill(GameObject owner)
+    public override void StartSkill()
     {
-        base.StartSkill(owner);
+        base.StartSkill();        
+    }
+    public override void Use()
+    {
+        //X es cuanto nos movemos en el eje que queremos
+        //Y es cuanto nos movemos en el eje Y
+        player.GetComponent<Rigidbody>().velocity = 
+            GetDirectionOfDash() * distances.x + Vector3.up * distances.y;
+    }
 
+    public override void SkillGizmo()
+    {
+        base.SkillGizmo();
+
+        Vector3 direction = (GetDirectionOfDash() * distances.x / 10 + Vector3.up * distances.y / 5);
+
+        Gizmos.DrawRay(player.transform.position, direction);
+        Gizmos.DrawWireCube(player.transform.position + direction, Vector3.one/3);
+    }
+
+    Vector3 GetDirectionOfDash()
+    {
+        Vector3 dir = Vector3.one;
         if (direction == DashDirection.Left)
-            directionDash = owner.transform.right * -1;
+            dir = CoolFunctions.FlattenVector3(Camera.main.transform.right) * -1;
 
         else if (direction == DashDirection.Right)
-            directionDash = owner.transform.right;
+            dir = CoolFunctions.FlattenVector3(Camera.main.transform.right);
 
         else if (direction == DashDirection.Front)
-            directionDash = owner.transform.forward;
+            dir = CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
         else if (direction == DashDirection.Back)
-            directionDash = owner.transform.forward* -1;
+            dir = CoolFunctions.FlattenVector3(Camera.main.transform.forward) * -1;
 
-        skillName = $"Dash {direction}";
-
-        timer = 0;
-    }
-    public override void Use(GameObject owner)
-    {
-        owner.transform.position =
-            Vector3.Lerp(
-                owner.transform.position,
-                owner.transform.position + directionDash * dashDistance,
-                timer);
-
-        timer += 0.1f;
+        return dir;
     }
 }

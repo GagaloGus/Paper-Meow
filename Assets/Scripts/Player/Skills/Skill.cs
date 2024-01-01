@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     public enum UnlockType { SkillTree, Quest}
-
+    public enum Usability { Ground, Air, All}
     public string skillName;
     [TextArea(3,1)] public string skillDescription;
 
@@ -13,11 +13,12 @@ public abstract class Skill : ScriptableObject
     public Sprite skillTreeSprite;
     public bool isUnlocked;
     public bool canBeUnlocked;
-    public Skill[] parentSkills;
-    public Skill[] childSkills;
-    public float cooldown;
+    public List<Skill> parentSkills = new();
+    public List<Skill> childSkills = new();
+    public float usingSkill, cooldown;
 
     public UnlockType unlockType;
+    public Usability usablilty;
 
     [Tooltip("Solo util en Skill Tree")]
     public int moneyRequired;
@@ -25,13 +26,21 @@ public abstract class Skill : ScriptableObject
     [Tooltip("Solo util en Quest")]
     public Item questItem;
 
+    protected GameObject player;
 
-    public virtual void StartSkill(GameObject owner)
+    //Solo se ejecuta cuando seleccionamos la skill
+    public virtual void StartSkill()
+    {
+        player = FindObjectOfType<SkoController>().gameObject;
+    }
+    
+    //No es un Update, solo lo ejecuta cuando le damos a la tecla de skill
+    public abstract void Use();
+
+    public virtual void SkillGizmo()
     {
 
     }
-    
-    public abstract void Use(GameObject owner);
 
     //Si las skills padres estan desbloqueadas se puede desbloquear esta
     public void CheckIfUnlockable()
@@ -52,5 +61,7 @@ public abstract class Skill : ScriptableObject
     {
         isUnlocked = true;
     }
+
+    
 }
 

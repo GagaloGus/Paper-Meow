@@ -9,21 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d44fe1b90795f40aa8199a5932b259, type: 3}
-  m_Name: Spawn Thing 1
+  m_Script: {fileID: 11500000, guid: ad96d584c98129a4a9b1dba3bcbb660e, type: 3}
+  m_Name: Hit Sphere
   m_EditorClassIdentifier: 
-  skillName: Spawn thing1
+  skillName: Campo Electrico
   skillDescription: 
   skillID: 1
-  skillTreeSprite: {fileID: 21300000, guid: ef87c3f03ebe66344af273055f7a3ac6, type: 3}
+  skillTreeSprite: {fileID: 21300000, guid: beb43e8b21d642347bc379671683ca02, type: 3}
   isUnlocked: 0
-  canBeUnlocked: 0
+  canBeUnlocked: 1
   parentSkills:
   - {fileID: 11400000, guid: 5d7776004318b51499061f8fa5bfd267, type: 2}
-  childSkills:
-  - {fileID: 11400000, guid: 6155d03006823084fbe3aabd7f1f8435, type: 2}
-  cooldown: 4
+  childSkills: []
+  usingSkill: 0
+  cooldown: 1
   unlockType: 0
-  moneyRequired: 40
+  usablilty: 0
+  moneyRequired: 0
   questItem: {fileID: 0}
-  objectToSpawn: {fileID: 7873515465017659571, guid: 3f6f5a89a1d18a240b44e25dc9319f5a, type: 3}
+  hitRadius: 2.52
+  hitDamage: 2.05
