@@ -17,12 +17,11 @@ MonoBehaviour:
   skillID: 2
   skillTreeSprite: {fileID: 21300000, guid: ef87c3f03ebe66344af273055f7a3ac6, type: 3}
   isUnlocked: 0
-  canBeUnlocked: 1
+  canBeUnlocked: 0
   parentSkills:
   - {fileID: 11400000, guid: 5d7776004318b51499061f8fa5bfd267, type: 2}
   childSkills:
   - {fileID: 11400000, guid: 9edb84f234bd1eb4c845c161a055f62c, type: 2}
-  - {fileID: 11400000, guid: a332d4077367ace4b82fa4c605974964, type: 2}
   usingSkill: 0
   cooldown: 4
   unlockType: 0

@@ -14,8 +14,8 @@ public class SkillManager : MonoBehaviour
     GameObject player;
     KeyCode useSkillKey;
 
-    public float skillCooldownTimer;
-    public bool skillUsed;
+    float skillCooldownTimer;
+    bool skillUsed;
 
     bool skillUsable;
     void Awake()

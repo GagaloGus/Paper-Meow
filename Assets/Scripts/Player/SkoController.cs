@@ -15,7 +15,7 @@ public class SkoController : MonoBehaviour
     SkoStats stats;
 
     [SerializeField] 
-    private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning;
+    private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
 
     //variables del modelo 3d
     GameObject m_gameobj;
@@ -63,9 +63,10 @@ public class SkoController : MonoBehaviour
         isGrounded =
            Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
 
+
         //distintas configuraciones para cuando esta en el suelo y en el aire
-        if(isGrounded) { GroundControl(); }
-        else { AirControl(); }
+            if(isGrounded) { GroundControl(); }
+            else { AirControl(); }
 
         #region Movement
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -85,7 +86,7 @@ public class SkoController : MonoBehaviour
         }
 
         //cambia la escala para imitar el "giro" del personaje
-        if (isGrounded && canMove)
+        if (canMove && !isAttacking)
         {
             if ((!isFlipped && moveInput.x > 0) || (isFlipped && moveInput.x < 0))
             {
@@ -107,6 +108,7 @@ public class SkoController : MonoBehaviour
         #endregion
 
         //cambia el int del animator segun el estado del player
+        if(canMove)
         m_animator.SetInteger("player states", (int)playerState);
     }
 
@@ -126,8 +128,11 @@ public class SkoController : MonoBehaviour
             playerState = PlayerStates.Idle;
         }
 
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack) && !isAttacking)
         {
+            isAttacking = true;
+
+            playerState = PlayerStates.Attack;
             m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
             m_animator.SetTrigger("attack");
         }
@@ -137,9 +142,8 @@ public class SkoController : MonoBehaviour
     {
         //raycast que detecta si hay suelo a tanta distancia de nosotros hacia abajo
         bool nearGround = Physics.Raycast(transform.position, Vector3.down, nearGroundDist, LayerMask.GetMask("Ground"));
-        
-        //si estamos planeando
-        if (isGliding)
+            //si estamos planeando
+        if (isGliding && !isUsingSkill)
         {
             rb.drag = 15;
 
@@ -161,20 +165,22 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove && !isUsingSkill)
+        if (canMove && !isAttacking)
         {
-            Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-            Vector3 vel = direction * stats.moveSpeed * (isRunning ? stats.runSpeedMult : 1);
-            //Moverse
-            rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
-        }
+            if (!isUsingSkill)
+            {
+                Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
+                Vector3 vel = direction * stats.moveSpeed * (isRunning ? stats.runSpeedMult : 1);
+                //Moverse
+                rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
+            }
 
-        //Saltar
-        if (Input.GetKeyDown(jump) && isGrounded)
-        { 
-            rb.velocity += new Vector3(0, stats.jumpForce, 0);
+            //Saltar
+            if (Input.GetKeyDown(jump) && isGrounded)
+            { 
+                rb.velocity += new Vector3(0, stats.jumpForce, 0);
+            }
         }
-
     }
 
     //llamado desde el gamemanager
@@ -206,6 +212,12 @@ public class SkoController : MonoBehaviour
     public bool player_isGrounded
     {
         get { return isGrounded; }
+    }
+
+    public bool player_isAttacking
+    {
+        get { return isAttacking; }
+        set { isAttacking = value; }
     }
 
     IEnumerator UpdateStats()

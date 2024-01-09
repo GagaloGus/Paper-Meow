@@ -41,5 +41,10 @@ public class ChangeTextureAnimEvent : MonoBehaviour
 
     }
 
+    //llamado desde las animaciones de ataque, solo sirve para el player
+    public void NotAttacking()
+    {
+        FindObjectOfType<SkoController>().player_isAttacking = false;
+    }
 
 }
