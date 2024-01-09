@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class DisplayController : MonoBehaviour
 {
     float deltaTime = 0.0f;
+    float accum = 0.0f; // Suma acumulada de los FPS
+    int frames = 0; // Numero de frames en el intervalo
+    float timeleft; // Tiempo restante antes de actualizar el promedio de FPS
     GUIStyle style = new GUIStyle();
     public int targetFPS;
     public int vsyncValue = 0;
@@ -57,25 +60,47 @@ public class DisplayController : MonoBehaviour
         brightnessSlider.value = GetBrightness();
 
         brightnessSlider.onValueChanged.AddListener(ChangeBrightness);
+
+        // Inicializar el tiempo restante para el cálculo del promedio de FPS
+        timeleft = 0.5f;
     }
     void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
 
+        // Calcular el FPS actual y sumarlo a la acumulación
+        float fps = 1.0f / Time.deltaTime;
+        accum += fps;
+        frames++;
+
         if (Application.targetFrameRate != targetFPS)
-        { Application.targetFrameRate = targetFPS; }
+        {
+            Application.targetFrameRate = targetFPS;
+        }
+
+        // Actualizar el tiempo restante
+        timeleft -= Time.deltaTime;
+
+        // Cuando el intervalo de tiempo ha pasado, reiniciar la acumulación y el contador de frames
+        if (timeleft <= 0.0f)
+        {
+            accum = 0.0f;
+            frames = 0;
+            timeleft = 0.5f; // Establecer el intervalo de tiempo para el próximo cálculo del promedio
+        }
     }
 
     void OnGUI()
     {
-        int fps = Mathf.RoundToInt(1.0f / deltaTime);
-        string text = $"FPS: {fps}";
-
         // Configurar el estilo con un color personalizado
         style.normal.textColor = Color.red;
 
+        // Calcular el promedio de FPS
+        float averageFPS = accum / frames;
+        string text = $"FPS: {Mathf.RoundToInt(1.0f / deltaTime)}\nAverage FPS: {Mathf.RoundToInt(averageFPS)}";
+
         // Mostrar el texto con el estilo personalizado
-        GUI.Label(new Rect(10, 10, 100, 20), text, style);
+        GUI.Label(new Rect(10, 10, 200, 40), text, style);
     }
 
     public void ChangeFPSLimit(int index)
