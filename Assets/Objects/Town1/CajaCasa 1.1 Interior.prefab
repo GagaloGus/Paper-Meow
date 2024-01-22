@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 593250582851636090}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 96.6, y: -19.48, z: 59.4}
+  m_LocalPosition: {x: 96.6, y: -15.22, z: 59.4}
   m_LocalScale: {x: 361.2, y: 412.16196, z: 73.353226}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 3097366964784647312}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000024234436, y: -0.7071067, z: -0.7071068, w: -0.00000024234438}
-  m_LocalPosition: {x: 0.00020715383, y: -0.00836, z: 0.00419}
+  m_LocalPosition: {x: 0.00020715383, y: -0.00836, z: 0.00497}
   m_LocalScale: {x: 0.006092461, y: 0.028625004, z: 0.002105424}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,7 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HouseOut: {fileID: 0}
-  HouseIn: {fileID: 593250582851636090}
+  DoorTP: {fileID: 0}
   InRange: 0
-  AlreadyIn: 1

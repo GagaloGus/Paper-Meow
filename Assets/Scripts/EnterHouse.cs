@@ -6,7 +6,7 @@ public class EnterHouse : MonoBehaviour
 {
     public GameObject DoorTP;
     private GameObject Player;
-    public bool InRange = false;
+    private bool InRange = false;
     void Start()
     {
         Player = FindAnyObjectByType<SkoController>().gameObject;

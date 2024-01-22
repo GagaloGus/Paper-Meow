@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4159039901169825720}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4993892, y: -0.5006101, z: -0.5006101, w: 0.49938917}
-  m_LocalPosition: {x: -0.0003, y: -0.0619, z: 0.0105}
+  m_LocalPosition: {x: 0.00054, y: -0.0606, z: 0.00763}
   m_LocalScale: {x: 0.009999998, y: 0.026944999, z: 0.027319996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66,10 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HouseOut: {fileID: 4159039901169825720}
-  HouseIn: {fileID: 0}
+  DoorTP: {fileID: 0}
   InRange: 0
-  AlreadyIn: 0
 --- !u!1 &5382781178483676944
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,14 +95,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382781178483676944}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.27059796, y: 0.65328157, z: 0.6532815, w: 0.27059793}
+  m_LocalRotation: {x: -0.39054662, y: 0.5894687, z: 0.5894687, w: 0.39054662}
   m_LocalPosition: {x: 97.62, y: 0.37, z: 60.61}
   m_LocalScale: {x: 59.9, y: 59.9, z: 59.9}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7643933179074640550}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 112.948}
 --- !u!33 &8527409556334232079
 MeshFilter:
   m_ObjectHideFlags: 0
