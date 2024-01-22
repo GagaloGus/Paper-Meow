@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class EnterHouse : MonoBehaviour
 {
-    public GameObject HouseOut, HouseIn;
-    public bool InRange = false, AlreadyIn;
-
+    public GameObject DoorTP;
+    private GameObject Player;
+    public bool InRange = false;
     void Start()
     {
-        
+        Player = FindAnyObjectByType<SkoController>().gameObject;
     }
 
     void Update()
     {
-        if(InRange && !AlreadyIn)
+        if(InRange && Input.GetKeyDown(KeyCode.E))
         {
-            FindAnyObjectByType<SkoController>().transform.position = HouseIn.transform.position;
-            InRange = false;
-        }
-        else if(InRange && AlreadyIn)
-        {
-            FindAnyObjectByType<SkoController>().transform.position = HouseOut.transform.position + new Vector3(3, 0, 0);
+            Player.transform.position = DoorTP.transform.position;
             InRange = false;
         }
     }
@@ -33,4 +28,12 @@ public class EnterHouse : MonoBehaviour
             InRange = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<SkoController>())
+        {
+            InRange = false;
+        }
+    }
+
 }
