@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyTest : MonoBehaviour
 {
     public float health;
+    SkoStats player;
     Material material;
     // Start is called before the first frame update
     void Start()
     {
         material = GetComponent<MeshRenderer>().material;
+        player = FindObjectOfType<SkoStats>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,15 @@ public class EnemyTest : MonoBehaviour
         {
             material.color = new Color(1, i, i);
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        Weapon weapon = trigger.gameObject.GetComponent<Weapon>();
+        if (weapon)
+        {
+            TakeDamage(player.attackPower * weapon.weaponDamageMult);
         }
     }
 }

@@ -40,11 +40,4 @@ public class ChangeTextureAnimEvent : MonoBehaviour
         backMat.SetTexture("_MainTex", textures.back);
 
     }
-
-    //llamado desde las animaciones de ataque, solo sirve para el player
-    public void NotAttacking()
-    {
-        FindObjectOfType<SkoController>().player_isAttacking = false;
-    }
-
 }

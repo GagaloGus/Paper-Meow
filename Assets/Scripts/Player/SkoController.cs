@@ -1,40 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [RequireComponent(typeof(SkoStats))]
 public class SkoController : MonoBehaviour
 {
     private Rigidbody rb;
-    private ConstantForce force;
     private Vector3 moveInput, moveDirection;
 
     private Transform groundPoint;
 
     SkoStats stats;
 
-    [SerializeField] 
-    private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
-
     //variables del modelo 3d
     GameObject m_gameobj;
     Animator m_animator;
 
-    [Range(0f, 2f)]
-    public float rayDetectFloorDist, nearGroundDist;
-
+    [Header("Debug Variables")]
     public int gravity;
+    [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
+    [SerializeField] int weaponAmount;
 
     public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
     public PlayerStates playerState;
 
-    KeyCode jump, run, attack;
+    KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        force = GetComponent<ConstantForce>();
 
         groundPoint = transform.Find("GroundCheckPoint");
 
@@ -47,14 +44,19 @@ public class SkoController : MonoBehaviour
         isUsingSkill = false;
         canMove = true;
 
+        //Mapeado de teclas
         jump = PlayerKeybinds.jump;
         run = PlayerKeybinds.run;
         attack = PlayerKeybinds.attack;
+        swapPreviousWeapon = PlayerKeybinds.swapPrevousWeapon;
+        swapNextWeapon = PlayerKeybinds.swapNextWeapon;
+
+        weaponAmount = System.Enum.GetValues(typeof(SkoStats.AttackWeaponIDs)).Length;
     }
 
     private void Start()
     {
-        StartCoroutine(UpdateStats());
+        UpdateStats();
     }
 
     // Update is called once per frame
@@ -78,13 +80,6 @@ public class SkoController : MonoBehaviour
         #endregion
 
         #region Flip
-
-        //orienta al player a la direccion de la camara al moverse
-        if (canMove)
-        {
-            transform.forward = -moveDirection;
-        }
-
         //cambia la escala para imitar el "giro" del personaje
         if (canMove && !isAttacking)
         {
@@ -130,12 +125,29 @@ public class SkoController : MonoBehaviour
 
         if (Input.GetKeyDown(attack) && !isAttacking)
         {
-            isAttacking = true;
-
-            playerState = PlayerStates.Attack;
-            m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
-            m_animator.SetTrigger("attack");
+            Attack();
         }
+
+        //Cambia al arma previa o la siguiente, si esta en los extremos salta hacia la primera o ultima
+        if (Input.GetKeyDown(swapPreviousWeapon))
+        {
+            if (stats.weaponSelected == 0) { stats.weaponSelected = (SkoStats.AttackWeaponIDs)weaponAmount - 1; }
+            else { stats.weaponSelected--; }
+        }
+        else if (Input.GetKeyDown(swapNextWeapon))
+        {
+            if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
+            else { stats.weaponSelected++; }
+        }
+    }
+
+    void Attack()
+    {
+        isAttacking = true;
+
+        playerState = PlayerStates.Attack;
+        m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
+        m_animator.SetTrigger("attack");
     }
 
     void AirControl()
@@ -165,6 +177,12 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //orienta al player a la direccion de la camara al moverse
+        if (canMove)
+        {
+            transform.forward = -moveDirection;
+        }
+
         if (canMove && !isAttacking)
         {
             if (!isUsingSkill)
@@ -219,13 +237,10 @@ public class SkoController : MonoBehaviour
         get { return isAttacking; }
         set { isAttacking = value; }
     }
-
-    IEnumerator UpdateStats()
+    public void UpdateStats()
     {
         stats = GetComponent<SkoStats>();
-        yield return new WaitForSeconds(GameManager.instance.playerstatsRefreshRate);
-
-        StartCoroutine(UpdateStats());
+        Invoke(nameof(UpdateStats), GameManager.instance.playerstatsRefreshRate);
     }
 
     public void StartSkillCooldownCoroutine(float skillUseTime)

@@ -12,45 +12,58 @@ public class SkillPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //se guarda el array de todas las skills
         allSkills = SkillManager.instance.allSkills;
-
+        
+        //guarda todos los hijos del skill panel en orden el el array allButtons
         int childs = transform.childCount;
         GameObject[] temp = new GameObject[childs];
         for (int i = 0; i < childs; i++)
         {
             temp[i] = transform.GetChild(i).gameObject;
         }
-
         allButtons = temp;
 
+        //bucle foreach solo por conveniencia, la variable "no" no se usa
         int count = 0;
         foreach(GameObject no in allButtons)
         {
+            //se guarda el boton y la skill que toca
             GameObject button = allButtons[count]; Skill skill = allSkills[count];
 
+            //le añade un onclick al boton
             button.GetComponent<Button>().onClick.
                 AddListener(() => { AddSkillToButton(button, skill); });
 
+            //cambia los datos visuales del boton
             ChangeButtonData(button, skill);
+
+            //cambia el color del boton
             ChangeColorOfButton(button, skill);
 
+            //pone el id de la skill para guiarnos
             TMP_Text id = button.transform.Find("id").gameObject.GetComponent<TMP_Text>();
-            id.text = count.ToString();
+            id.text = skill.skillID.ToString();
 
             count++;
         }
     }
     public void AddSkillToButton(GameObject button, Skill skill)
     {
+        //checkea si se puede desbloquear la skill
         SkillManager.instance.SelectSkill(skill);
+
+        //le cambia el color al boton
         ChangeColorOfButton(button, skill);
     }
 
     void ChangeButtonData(GameObject button, Skill skill)
     {
+        //cambia el nombre que se ve abajo del boton para que sea el mismo que el de la skill
         TMP_Text name = button.transform.Find("name").gameObject.GetComponent<TMP_Text>();
         name.text = skill.skillName;
 
+        //le cambia el sprite
         button.GetComponent<Image>().sprite = skill.skillTreeSprite;
     }
 

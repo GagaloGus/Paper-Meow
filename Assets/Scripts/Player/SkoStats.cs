@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class SkoStats : MonoBehaviour
 {
-    public int health;
-    public float moveSpeed, maxSpeed, jumpForce;
+    [Header("Movement")]
+    public float moveSpeed;
+    public float maxSpeed;
+    public float jumpForce;
     [Range(1, 5)]public float runSpeedMult;
+
+    [Header("Combat")]
+    public int health;
     public float attackPower;
+    public enum AttackWeaponIDs { garra, cutter }
+    public AttackWeaponIDs weaponSelected;
 
-    string unlockedSkills;
+    [Header("Stats")]
     public int money;
+    string unlockedSkills;
 
-    public enum attackWeaponIDs { garra, cutter }
-    public attackWeaponIDs weaponSelected;
     
     //aca estara todo sobre el guardado y cargado de datos
 }
