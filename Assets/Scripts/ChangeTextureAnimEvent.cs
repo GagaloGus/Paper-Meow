@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [System.Serializable]
 public struct AnimationPacks
@@ -21,11 +22,6 @@ public class ChangeTextureAnimEvent : MonoBehaviour
 
     private void Start()
     {   
-        for (int i = 0; i < texturePacks.Length; i++)
-        {
-            texturePacks[i].name = $"[{i}] {texturePacks[i].name}";
-        }   
-
         frontMat = modelo.GetComponent<MeshRenderer>().materials[0];
         backMat = modelo.GetComponent<MeshRenderer>().materials[1];
     }
@@ -38,6 +34,38 @@ public class ChangeTextureAnimEvent : MonoBehaviour
         //cambia el albedo del material de adelante y atras
         frontMat.SetTexture("_MainTex", textures.front);
         backMat.SetTexture("_MainTex", textures.back);
+
+    }
+
+    public void AddNumbersToPacks()
+    {
+        print("Añadiendo...");
+        for (int i = 0; i < texturePacks.Length; i++)
+        {
+            if (!texturePacks[i].name.StartsWith($"[{i}]"))
+            {
+                texturePacks[i].name = $"[{i}]{texturePacks[i].name}";
+            }
+        }
+        print($"Numeros añadidos a {gameObject.name}");
+    }
+}
+
+[CustomEditor(typeof(ChangeTextureAnimEvent))]
+class BotonTrucoParaAñadirOrderANombres : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        ChangeTextureAnimEvent myscript = (ChangeTextureAnimEvent)target;
+        GUILayout.BeginHorizontal();
+        if(GUILayout.Button("Add numbers to texture packs", GUILayout.Height(30)))
+        {
+            myscript.AddNumbersToPacks();
+        }
+
+        GUILayout.EndHorizontal();
 
     }
 }

@@ -23,6 +23,8 @@ public class SkoController : MonoBehaviour
     [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
     [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
     [SerializeField] int weaponAmount;
+    public int currentAttackNumber;
+    public bool canAttackAgain;
 
     public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
     public PlayerStates playerState;
@@ -35,7 +37,7 @@ public class SkoController : MonoBehaviour
 
         groundPoint = transform.Find("GroundCheckPoint");
 
-        m_gameobj = transform.Find("3dmodel").gameObject;
+        m_gameobj = transform.Find("3dmodel Sko").gameObject;
         m_animator = m_gameobj.GetComponent<Animator>();
 
         isFlipped = false;
@@ -57,6 +59,7 @@ public class SkoController : MonoBehaviour
     private void Start()
     {
         UpdateStats();
+        currentAttackNumber = 0;
     }
 
     // Update is called once per frame
@@ -83,15 +86,7 @@ public class SkoController : MonoBehaviour
         //cambia la escala para imitar el "giro" del personaje
         if (canMove && !isAttacking)
         {
-            if ((!isFlipped && moveInput.x > 0) || (isFlipped && moveInput.x < 0))
-            {
-                isFlipped = !isFlipped;
-            }
-
-            if ((!isFacingBackwards && moveInput.z > 0) || (isFacingBackwards && moveInput.z < 0))
-            {
-                isFacingBackwards = !isFacingBackwards;
-            }
+            FlipCharacter();
         }
 
         //le "da la vuelta" al modelo segun los bools
@@ -102,9 +97,24 @@ public class SkoController : MonoBehaviour
 
         #endregion
 
-        //cambia el int del animator segun el estado del player
+        //cambia el int del animator
         if(canMove)
         m_animator.SetInteger("player states", (int)playerState);
+
+        m_animator.SetInteger("currentAttack", currentAttackNumber);
+    }
+
+    void FlipCharacter()
+    {
+        if ((!isFlipped && moveInput.x > 0) || (isFlipped && moveInput.x < 0))
+        {
+            isFlipped = !isFlipped;
+        }
+
+        if ((!isFacingBackwards && moveInput.z > 0) || (isFacingBackwards && moveInput.z < 0))
+        {
+            isFacingBackwards = !isFacingBackwards;
+        }
     }
 
     void GroundControl()
@@ -123,11 +133,6 @@ public class SkoController : MonoBehaviour
             playerState = PlayerStates.Idle;
         }
 
-        if (Input.GetKeyDown(attack) && !isAttacking)
-        {
-            Attack();
-        }
-
         //Cambia al arma previa o la siguiente, si esta en los extremos salta hacia la primera o ultima
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
@@ -139,15 +144,44 @@ public class SkoController : MonoBehaviour
             if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
             else { stats.weaponSelected++; }
         }
+
+        //Todo sobre los ataques
+        if (Input.GetKeyDown(attack) && !isAttacking)
+        {
+            AttackStart();
+            playerState = PlayerStates.Attack;
+            m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
+            m_animator.SetTrigger("attack");
+        }
+
+        if(isAttacking)
+        {
+            WaitForFollowUpAttack();
+        }
     }
 
-    void Attack()
+    void AttackStart()
     {
         isAttacking = true;
+        canAttackAgain = false;
+        FlipCharacter();
+    }
 
-        playerState = PlayerStates.Attack;
-        m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
-        m_animator.SetTrigger("attack");
+    void WaitForFollowUpAttack()
+    {
+        if (Input.GetKeyDown(attack) && canAttackAgain)
+        {
+            AttackStart();
+            currentAttackNumber++;
+            m_animator.SetTrigger("nextAttack");
+        }
+
+        if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
+        {
+            currentAttackNumber = 0;
+            m_animator.Play("run");
+            isAttacking = false; canAttackAgain = true;
+        }
     }
 
     void AirControl()

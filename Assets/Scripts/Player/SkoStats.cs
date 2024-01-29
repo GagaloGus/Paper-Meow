@@ -13,7 +13,7 @@ public class SkoStats : MonoBehaviour
     [Header("Combat")]
     public int health;
     public float attackPower;
-    public enum AttackWeaponIDs { garra, cutter }
+    public enum AttackWeaponIDs { garra, cutter, hammer }
     public AttackWeaponIDs weaponSelected;
 
     [Header("Stats")]

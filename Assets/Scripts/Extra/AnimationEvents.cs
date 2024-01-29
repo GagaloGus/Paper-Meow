@@ -7,6 +7,14 @@ public class AnimationEvents : MonoBehaviour
     //llamado desde las animaciones de ataque, solo sirve para el player
     public void NotAttacking()
     {
-        FindObjectOfType<SkoController>().player_isAttacking = false;
+        SkoController cont = FindObjectOfType<SkoController>();
+        cont.player_isAttacking = false;
+        cont.currentAttackNumber = 0;
+    }
+
+    public void FollowUpAttack()
+    {
+        SkoController cont = FindObjectOfType<SkoController>();
+        cont.canAttackAgain = true;
     }
 }

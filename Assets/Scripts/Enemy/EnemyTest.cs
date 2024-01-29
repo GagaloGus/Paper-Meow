@@ -45,7 +45,7 @@ public class EnemyTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider trigger)
     {
-        Weapon weapon = trigger.gameObject.GetComponent<Weapon>();
+        Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
         if (weapon)
         {
             TakeDamage(player.attackPower * weapon.weaponDamageMult);
