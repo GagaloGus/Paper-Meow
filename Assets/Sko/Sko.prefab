@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4133143501373907912
 Transform:
   m_ObjectHideFlags: 0
@@ -10482,10 +10482,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2657bf9e8acbd3e47b5e5203fa12ace6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamageMult: 0
+  weaponDamageMult: 3
   spawnedArrow: 0
-  smallArrow: {fileID: 0}
-  heavyArrow: {fileID: 0}
+  launchDir: {x: 0, y: 0, z: 0}
+  launchSpeed: 0
+  arrowGravity: 0
+  smallArrow: {fileID: 7653034045139179053, guid: e1aa4487ab28f404fb61809dd044a256, type: 3}
+  heavyArrow: {fileID: 7575531996345940135, guid: b4b7236a82ec5f240aa84e15a36be017, type: 3}
 --- !u!1 &8768885479171417270
 GameObject:
   m_ObjectHideFlags: 0
