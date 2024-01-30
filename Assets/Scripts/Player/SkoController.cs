@@ -18,6 +18,8 @@ public class SkoController : MonoBehaviour
     GameObject m_gameobj;
     Animator m_animator;
 
+    Bow bow;
+
     [Header("Debug Variables")]
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
@@ -39,6 +41,8 @@ public class SkoController : MonoBehaviour
 
         m_gameobj = transform.Find("3dmodel Sko").gameObject;
         m_animator = m_gameobj.GetComponent<Animator>();
+
+        bow = GetComponentInChildren<Bow>();
 
         isFlipped = false;
         isFacingBackwards = false;
@@ -138,14 +142,25 @@ public class SkoController : MonoBehaviour
         {
             if (stats.weaponSelected == 0) { stats.weaponSelected = (SkoStats.AttackWeaponIDs)weaponAmount - 1; }
             else { stats.weaponSelected--; }
+            stats = GetComponent<SkoStats>();
+
         }
         else if (Input.GetKeyDown(swapNextWeapon))
         {
             if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
             else { stats.weaponSelected++; }
+            stats = GetComponent<SkoStats>();
+
         }
 
         //Todo sobre los ataques
+        Attacks();
+    }
+
+    public float timeCheckForChargedAttack;
+
+    void Attacks()
+    {
         if (Input.GetKeyDown(attack) && !isAttacking)
         {
             AttackStart();
@@ -154,35 +169,62 @@ public class SkoController : MonoBehaviour
             m_animator.SetTrigger("attack");
         }
 
-        if(isAttacking)
+        if (isAttacking)
         {
-            WaitForFollowUpAttack();
+            if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
+            {
+                timeCheckForChargedAttack -= Time.deltaTime;
+                if (timeCheckForChargedAttack <= 0)
+                {
+                    bow.ChargedAttack();
+                }
+
+                if (Input.GetKeyUp(attack))
+                {
+                    if(timeCheckForChargedAttack < 0)
+                    {
+                        bow.ShootChargedAttack();
+                    }
+                    else
+                    {
+                        bow.NormalAttack();
+                    }
+
+                    timeCheckForChargedAttack = 0.1f;
+                    isAttacking = false;
+                }
+            }
+            else
+            {
+                WaitForFollowUpAttack();
+            }
+        }
+
+        void AttackStart()
+        {
+            isAttacking = true;
+            canAttackAgain = false;
+            FlipCharacter();
+        }
+
+        void WaitForFollowUpAttack()
+        {
+            if (Input.GetKeyDown(attack) && canAttackAgain)
+            {
+                AttackStart();
+                currentAttackNumber++;
+                m_animator.SetTrigger("nextAttack");
+            }
+
+            if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
+            {
+                currentAttackNumber = 0;
+                m_animator.Play("run");
+                isAttacking = false; canAttackAgain = true;
+            }
         }
     }
 
-    void AttackStart()
-    {
-        isAttacking = true;
-        canAttackAgain = false;
-        FlipCharacter();
-    }
-
-    void WaitForFollowUpAttack()
-    {
-        if (Input.GetKeyDown(attack) && canAttackAgain)
-        {
-            AttackStart();
-            currentAttackNumber++;
-            m_animator.SetTrigger("nextAttack");
-        }
-
-        if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
-        {
-            currentAttackNumber = 0;
-            m_animator.Play("run");
-            isAttacking = false; canAttackAgain = true;
-        }
-    }
 
     void AirControl()
     {

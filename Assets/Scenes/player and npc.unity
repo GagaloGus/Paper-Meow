@@ -16639,6 +16639,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510668503962958778, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: heavyArrow
+      value: 
+      objectReference: {fileID: 7575531996345940135, guid: b4b7236a82ec5f240aa84e15a36be017, type: 3}
+    - target: {fileID: 510668503962958778, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: smallArrow
+      value: 
+      objectReference: {fileID: 7653034045139179053, guid: e1aa4487ab28f404fb61809dd044a256, type: 3}
+    - target: {fileID: 510668503962958778, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: weaponDamageMult
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1333025559593040506, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: m_LocalPosition.x
       value: 70.06
@@ -16679,22 +16691,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
-      propertyPath: texturePacks.Array.data[17].back
-      value: 
-      objectReference: {fileID: 2800000, guid: 50d4383bffb68274aa7581c65bb1031a, type: 3}
-    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
-      propertyPath: texturePacks.Array.data[18].back
-      value: 
-      objectReference: {fileID: 2800000, guid: ec4661b1f8dca314bab5c748303e3e5d, type: 3}
-    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
-      propertyPath: texturePacks.Array.data[19].back
-      value: 
-      objectReference: {fileID: 2800000, guid: dda2d05c297e4914a8919e54f78ecf59, type: 3}
-    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
-      propertyPath: texturePacks.Array.data[20].back
-      value: 
-      objectReference: {fileID: 2800000, guid: e3a5391853abf674da41358ab41bf089, type: 3}
     - target: {fileID: 4634161352007327061, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: inventory
       value: 
