@@ -28,7 +28,7 @@ public class Buttonfunctions : MonoBehaviour
         AudioManager.instance.ClearAudioList();
 
     }
-    public void ExitGame() //Indicamos a la aplicación que se cierre.
+    public void ExitGame() //Indicamos a la aplicaciï¿½n que se cierre.
     {
         Application.Quit();
     }

@@ -25,9 +25,6 @@ public class HealthBar : MonoBehaviour
 
         health.sprite = sprites[healthPer];
 
-        if(Input.GetKeyDown(KeyCode.UpArrow)) { GameManager.instance.health += 5; }
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) {  GameManager.instance.health -= 5;}
-
         //float percentagehealth = (float) GameManager.instance.health / (float) GameManager.instance.maxHealth;
 
         //health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * GameManager.instance.health / 100d)];
