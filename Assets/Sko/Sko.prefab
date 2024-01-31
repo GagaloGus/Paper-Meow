@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4133143501373907912
 Transform:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078261815360313319}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078261815360313319}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ada06715a7be7f54ab03a4158c0038fa, type: 3}
   m_Name: 
@@ -10342,7 +10342,7 @@ MonoBehaviour:
   currentAttackNumber: 0
   canAttackAgain: 0
   playerState: 0
-  timeCheckForChargedAttack: 0.1
+  timeCheckForChargedAttack: 0.2
 --- !u!54 &2120665806219072765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10484,9 +10484,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamageMult: 3
   spawnedArrow: 0
+  arrowSpawned: {fileID: 0}
+  inverseDirection: 0
   launchDir: {x: 0, y: 0, z: 0}
-  launchSpeed: 0
-  arrowGravity: 0
+  launchSpeed: 10
+  arrowGravity: -2
   smallArrow: {fileID: 7653034045139179053, guid: e1aa4487ab28f404fb61809dd044a256, type: 3}
   heavyArrow: {fileID: 7575531996345940135, guid: b4b7236a82ec5f240aa84e15a36be017, type: 3}
 --- !u!1 &8768885479171417270

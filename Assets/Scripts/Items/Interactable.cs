@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
     bool playerInRange;
     GameObject player;
 
-    public GameObject KeyToPress;
+    GameObject KeyToPress;
 
     private void Awake()
     {

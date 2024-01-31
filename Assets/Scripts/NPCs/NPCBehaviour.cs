@@ -12,7 +12,7 @@ public class NPCBehaviour : MonoBehaviour
 
     public BehaviourType originalBehaviour;
     Quaternion directionFacing;
-    public KeyCode changeDialogue;
+    KeyCode changeDialogue;
      
     bool interacting;
 
@@ -42,6 +42,8 @@ public class NPCBehaviour : MonoBehaviour
 
         //Se guarda la rotacion inicial
         directionFacing = transform.rotation;
+
+        changeDialogue = PlayerKeybinds.skipDialogue;
     }
 
     // Update is called once per frame

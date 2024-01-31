@@ -18,7 +18,7 @@ public class SkoController : MonoBehaviour
     GameObject m_gameobj;
     Animator m_animator;
 
-    Bow bow;
+    public GameObject bow;
 
     [Header("Debug Variables")]
     public int gravity;
@@ -42,8 +42,6 @@ public class SkoController : MonoBehaviour
         m_gameobj = transform.Find("3dmodel Sko").gameObject;
         m_animator = m_gameobj.GetComponent<Animator>();
 
-        bow = GetComponentInChildren<Bow>();
-
         isFlipped = false;
         isFacingBackwards = false;
 
@@ -57,6 +55,7 @@ public class SkoController : MonoBehaviour
         swapPreviousWeapon = PlayerKeybinds.swapPrevousWeapon;
         swapNextWeapon = PlayerKeybinds.swapNextWeapon;
 
+        //coje el numero de tipos de armas que tenemos automaticamente (determinado por el enumerado de las stats)
         weaponAmount = System.Enum.GetValues(typeof(SkoStats.AttackWeaponIDs)).Length;
     }
 
@@ -69,8 +68,6 @@ public class SkoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded =
-           Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
 
 
         //distintas configuraciones para cuando esta en el suelo y en el aire
@@ -137,11 +134,19 @@ public class SkoController : MonoBehaviour
             playerState = PlayerStates.Idle;
         }
 
+        //Saltar
+        if (Input.GetKeyDown(jump))
+        { 
+            rb.velocity += new Vector3(0, stats.jumpForce, 0);
+        }
+
         //Cambia al arma previa o la siguiente, si esta en los extremos salta hacia la primera o ultima
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
             if (stats.weaponSelected == 0) { stats.weaponSelected = (SkoStats.AttackWeaponIDs)weaponAmount - 1; }
             else { stats.weaponSelected--; }
+
+            //recarga las stats (por si acaso)
             stats = GetComponent<SkoStats>();
 
         }
@@ -149,6 +154,8 @@ public class SkoController : MonoBehaviour
         {
             if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
             else { stats.weaponSelected++; }
+
+            //recarga las stats (por si acaso)
             stats = GetComponent<SkoStats>();
 
         }
@@ -161,41 +168,57 @@ public class SkoController : MonoBehaviour
 
     void Attacks()
     {
+        //Si pulsamos la tecla de ataque y no estamos atacando aun
         if (Input.GetKeyDown(attack) && !isAttacking)
         {
+            //setup
             AttackStart();
+
+            //cambia el estado
             playerState = PlayerStates.Attack;
+
+            //movidas del animator
             m_animator.SetInteger("attackWeaponID", (int)stats.weaponSelected);
             m_animator.SetTrigger("attack");
         }
 
+        //El ataque
         if (isAttacking)
         {
+            bow.SetActive(true);
+            //configuracion extra solo para el arco
             if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
             {
+
+                //determina si dejamos la tecla pulsada mucho tiempo si es un ataque cargado o uno basico
                 timeCheckForChargedAttack -= Time.deltaTime;
                 if (timeCheckForChargedAttack <= 0)
                 {
-                    bow.ChargedAttack();
+                    m_animator.SetBool("aiming", true);
+                    bow.GetComponent<Bow>().ChargedAttack();
                 }
 
+                //Al levantar la tecla de ataque mira cuanto tiempo hemos mdejada pulsada la tecla y hace un cargado o el basico
                 if (Input.GetKeyUp(attack))
                 {
                     if(timeCheckForChargedAttack < 0)
                     {
-                        bow.ShootChargedAttack();
+                        bow.GetComponent<Bow>().ShootChargedAttack();
                     }
                     else
                     {
-                        bow.NormalAttack();
+                        bow.GetComponent<Bow>().NormalAttack();
                     }
 
+                    m_animator.SetTrigger("attack");
+                    m_animator.SetBool("aiming", false);
                     timeCheckForChargedAttack = 0.1f;
                     isAttacking = false;
                 }
             }
             else
             {
+                //Si no estamos usando arco, podemos encadenar otro ataque
                 WaitForFollowUpAttack();
             }
         }
@@ -211,11 +234,14 @@ public class SkoController : MonoBehaviour
         {
             if (Input.GetKeyDown(attack) && canAttackAgain)
             {
+                //setup
                 AttackStart();
+                //numero de ataques encadenados
                 currentAttackNumber++;
                 m_animator.SetTrigger("nextAttack");
             }
 
+            //cancela todo el ataque si corremos
             if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
             {
                 currentAttackNumber = 0;
@@ -233,6 +259,7 @@ public class SkoController : MonoBehaviour
             //si estamos planeando
         if (isGliding && !isUsingSkill)
         {
+            //fisicas
             rb.drag = 15;
 
             playerState = PlayerStates.Glide;
@@ -241,6 +268,7 @@ public class SkoController : MonoBehaviour
         }
         else
         {
+            //fisicas 2
             rb.drag = 0;
 
             if (rb.velocity.y > 0f) { playerState = PlayerStates.JumpUp; }
@@ -253,29 +281,22 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //orienta al player a la direccion de la camara al moverse
-        if (canMove)
+        //detecta si hay suelo usando un boxcast
+        isGrounded =
+           Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+
+        if (canMove && !isAttacking && !isUsingSkill)
         {
+            Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
+            Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);
+            //Moverse
+            rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
+
+            //orienta al player a la direccion de la camara
             transform.forward = -moveDirection;
         }
-
-        if (canMove && !isAttacking)
-        {
-            if (!isUsingSkill)
-            {
-                Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-                Vector3 vel = direction * stats.moveSpeed * (isRunning ? stats.runSpeedMult : 1);
-                //Moverse
-                rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
-            }
-
-            //Saltar
-            if (Input.GetKeyDown(jump) && isGrounded)
-            { 
-                rb.velocity += new Vector3(0, stats.jumpForce, 0);
-            }
-        }
     }
+
 
     //llamado desde el gamemanager
     void StartInteraction(GameObject npc)
@@ -330,11 +351,5 @@ public class SkoController : MonoBehaviour
         yield return new WaitForSeconds(skillUseTime);
 
         isUsingSkill = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, Vector3.down * nearGroundDist);
     }
 }

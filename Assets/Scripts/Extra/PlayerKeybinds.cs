@@ -10,7 +10,7 @@ public static class PlayerKeybinds
         attack = KeyCode.P,
         useSkill = KeyCode.F,
         interact = KeyCode.E,
-        skipDialogue = KeyCode.R,
+        skipDialogue = KeyCode.E,
         swapPrevousWeapon = KeyCode.UpArrow,
         swapNextWeapon = KeyCode.DownArrow;
 }
