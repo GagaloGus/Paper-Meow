@@ -4,10 +4,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+[System.Serializable]
+public struct MenuKey
+{
+    public GameObject gO;
+    public KeyCode keyCode;
+}
+
 public class Buttonfunctions : MonoBehaviour
 {
     public static Buttonfunctions instance;
 
+    public MenuKey[] menus;
+
+    private void Update()
+    {
+        if (Input.anyKey)
+        {
+            foreach (MenuKey key in menus)
+            {
+                if (Input.GetKeyDown(key.keyCode))
+                {
+                    key.gO.SetActive(!key.gO.activeSelf);
+                }
+            }
+
+        }
+    }
     public void Toggle(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
@@ -31,5 +54,10 @@ public class Buttonfunctions : MonoBehaviour
     public void ExitGame() //Indicamos a la aplicaci�n que se cierre.
     {
         Application.Quit();
+    }
+
+    void KeyCode()
+    {
+
     }
 }

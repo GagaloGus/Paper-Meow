@@ -502,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78923721}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000037252654, y: 0.99215686, z: -0.12499915, w: 0.000000029568582}
+  m_LocalRotation: {x: -3.0183396e-21, y: 0.99215686, z: -0.12499918, w: -2.786442e-17}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2603,6 +2603,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2097adf87b8fa524cb5230eb23853bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menus:
+  - gO: {fileID: 1905371115}
+    keyCode: 27
+  - gO: {fileID: 1874327588}
+    keyCode: 105
 --- !u!4 &276862924
 Transform:
   m_ObjectHideFlags: 0
@@ -8974,6 +8979,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959707204}
   m_CullTransparentMesh: 1
+--- !u!1 &971992976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8344253251668500606, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+  m_PrefabInstance: {fileID: 2815753750313314202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &973731057
 GameObject:
   m_ObjectHideFlags: 0
@@ -9228,7 +9238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984668298}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000037252654, y: 0.99215686, z: -0.12499915, w: 0.000000029568582}
+  m_LocalRotation: {x: -0.0000000037252672, y: 0.99215686, z: -0.12499921, w: -0.000000029568582}
   m_LocalPosition: {x: 70.06, y: 1.9990001, z: 39.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13157,7 +13167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481009697}
   serializedVersion: 2
-  m_LocalRotation: {x: -4.5997675e-10, y: 0.9942664, z: -0.106931664, w: -0.0000000042769317}
+  m_LocalRotation: {x: 4.5997675e-10, y: 0.9942664, z: -0.106931664, w: 0.0000000042769317}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15711,19 +15721,7 @@ MonoBehaviour:
         m_MethodName: Toggle
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 62137729}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 276862923}
-        m_TargetAssemblyTypeName: Buttonfunctions, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1759573096}
+          m_ObjectArgument: {fileID: 1905371115}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -20346,7 +20344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049823922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000015852114, y: 0.99604267, z: -0.08887663, w: 0.000000017765508}
+  m_LocalRotation: {x: 0.0000000015763096, y: 0.99604267, z: -0.08887663, w: 0.000000017665744}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21036,6 +21034,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[21].back
+      value: 
+      objectReference: {fileID: 2800000, guid: e3a5391853abf674da41358ab41bf089, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[21].name
+      value: '[21]webo'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[21].front
+      value: 
+      objectReference: {fileID: 2800000, guid: e3a5391853abf674da41358ab41bf089, type: 3}
+    - target: {fileID: 4634161352007327061, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 971992976}
+    - target: {fileID: 4634161352007327061, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: slotHolder
+      value: 
+      objectReference: {fileID: 959707204}
     - target: {fileID: 6403942227184611853, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: bow
       value: 
