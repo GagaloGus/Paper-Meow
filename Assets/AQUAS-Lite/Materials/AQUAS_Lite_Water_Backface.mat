@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: AQUAS_Lite_Water_Backface
   m_Shader: {fileID: 4800000, guid: d54a881b830cae544a72985daaece999, type: 3}
-  m_Parent: {fileID: 2100000, guid: 4c47117a60bfcd84d88c6c2d0e77f221, type: 2}
+  m_Parent: {fileID: 2100000, guid: f59ea535bb715ca4da8afac832fd36eb, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -28,9 +28,15 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Density: 0.158
-    - _Distortion: 0.686
-    - _NormalStrength: 1
+    - _Density: 0.14
+    - _Distortion: 0
+    - _FoamTiling: 0.56
+    - _LightWrapping: 0.38
+    - _NormalStrength: 0.3
+    - _NormalTiling: 0.43
+    - _ProbeReflectionIntensity: 0.381
+    - _RealtimeReflectionIntensity: 0
+    - _Refraction: 0.146
     m_Colors:
     - _DeepWaterColor: {r: 0.23037556, g: 0.22745098, b: 0.2924528, a: 1}
     - _MainColor: {r: 0.38496304, g: 0, b: 1, a: 1}
