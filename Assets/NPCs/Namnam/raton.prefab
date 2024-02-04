@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8855909684482109846}
   - component: {fileID: 5183461820653918026}
-  - component: {fileID: 4674557758696945615}
-  - component: {fileID: 8982292161465799160}
+  - component: {fileID: 2348362751147592849}
+  - component: {fileID: 87545661935020756}
   m_Layer: 0
   m_Name: raton
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4985221254246398581}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.4703015, z: -0, w: 0.8825058}
+  m_LocalRotation: {x: 0, y: -0.47030345, z: 0, w: 0.88250476}
   m_LocalPosition: {x: 100.86, y: -0, z: 38.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -56,7 +56,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.98699033, y: 0.8243651, z: 0.14}
   m_Center: {x: -0.03150481, y: 0.33280155, z: 0}
---- !u!114 &4674557758696945615
+--- !u!114 &2348362751147592849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,13 +65,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4985221254246398581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1607b96c20ca11418c6daeb6c520ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: d7b5c445cd9490b40923a94f4df0326a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
-  PressE: {fileID: 0}
-  playerDistance: 1.54
---- !u!114 &8982292161465799160
+  isInteractable: 0
+  Distance: 1.43
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 87545661935020756}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &87545661935020756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,10 +94,66 @@ MonoBehaviour:
   m_GameObject: {fileID: 4985221254246398581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed3b8fd3c285584d852a11804da0a01, type: 3}
+  m_Script: {fileID: 11500000, guid: e8e11589ee711b94d85d50b5d1ca9884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookType: 1
+  dialogueStrings:
+  - text: oal
+    isEnd: 0
+    index: 0
+    isQuestion: 0
+    answerOption1: 
+    answerOption2: 
+    option1IndexJump: 0
+    option2IndexJump: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: q tal vai
+    isEnd: 0
+    index: 0
+    isQuestion: 1
+    answerOption1: Si
+    answerOption2: Ta mal :(
+    option1IndexJump: 0
+    option2IndexJump: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: q tal vai
+    isEnd: 0
+    index: 0
+    isQuestion: 1
+    answerOption1: Si
+    answerOption2: Ta mal :(
+    option1IndexJump: 0
+    option2IndexJump: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: q tal vai
+    isEnd: 0
+    index: 0
+    isQuestion: 1
+    answerOption1: Si
+    answerOption2: Ta mal :(
+    option1IndexJump: 0
+    option2IndexJump: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &2258618569320791733
 PrefabInstance:
   m_ObjectHideFlags: 0

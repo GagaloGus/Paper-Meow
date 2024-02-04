@@ -299,10 +299,11 @@ public class SkoController : MonoBehaviour
 
 
     //llamado desde el gamemanager
-    void StartInteraction(GameObject npc)
+    public void StartInteraction(GameObject npc)
     {
+        playerState = PlayerStates.Idle;
+        m_animator.SetInteger("player states", 0);
         canMove = false;
-
         //Centra el personaje para que apunte al npc
         transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
@@ -315,7 +316,7 @@ public class SkoController : MonoBehaviour
     }
 
     //llamado desde el gamemanager
-    void EndInteraction()
+    public void EndInteraction()
     {
         canMove = true;
     }

@@ -29,7 +29,6 @@ public class NPCBehaviour : MonoBehaviour
         player = FindObjectOfType<SkoController>().gameObject;
         animator = GetComponent<Animator>();
 
-        icon = GameObject.FindGameObjectWithTag("Npc icon").GetComponent<Image>();
     }
 
     // Start is called before the first frame update
@@ -76,7 +75,7 @@ public class NPCBehaviour : MonoBehaviour
         GameManager.instance.StartInteraction(gameObject);
 
         //apunta el npc para que mire al player
-        ReCenterToPlayer();
+        StartCoroutine(TurnTowards(transform, player.transform, 0.05f));
     }
 
     void InteractWithNPC()
@@ -130,17 +129,19 @@ public class NPCBehaviour : MonoBehaviour
     }
 
     #endregion
-    void ReCenterToPlayer()
+    IEnumerator TurnTowards(Transform victim, Transform target, float turnSpeed)
     {
-        //el npc apunte hacia donde mira la camara
-        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+        Quaternion startRot = victim.transform.rotation;
+        Quaternion targetRot = Quaternion.LookRotation(CoolFunctions.FlattenVector3(target.transform.position) - CoolFunctions.FlattenVector3(victim.transform.position));
 
-        //checkea si el player esta a la derecha y arriba del npc
-        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, player.transform.position);
+        float elapsedTime = 0;
+        while (elapsedTime < 1)
+        {
+            victim.transform.rotation = Quaternion.Slerp(startRot, targetRot, elapsedTime);
+            elapsedTime += Time.deltaTime * turnSpeed;
+            yield return null;
+        }
 
-        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, player.transform.position);
-
-        isFlipped = !right;
-        isFacingBackwards = !up;
+        victim.transform.rotation = targetRot;
     }
 }
