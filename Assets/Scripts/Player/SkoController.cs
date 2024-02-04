@@ -185,10 +185,10 @@ public class SkoController : MonoBehaviour
         //El ataque
         if (isAttacking)
         {
-            bow.SetActive(true);
             //configuracion extra solo para el arco
             if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
             {
+                bow.SetActive(true);
 
                 //determina si dejamos la tecla pulsada mucho tiempo si es un ataque cargado o uno basico
                 timeCheckForChargedAttack -= Time.deltaTime;
