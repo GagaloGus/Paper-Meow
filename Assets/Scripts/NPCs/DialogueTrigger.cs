@@ -41,6 +41,7 @@ public class DialogueString
     [Header("Question")]
     public bool isQuestion;
 
+    [HideInInspector]
     [Tooltip("No puede haber mas de 4 opciones")] public List<ButtonAnswer> optionButtons;
 
     [Header("Jump Index Option")]
@@ -67,11 +68,10 @@ class AddIndexToDialogues : Editor
 
         DialogueTrigger myscript = (DialogueTrigger)target;
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add index to numbers", GUILayout.Height(30)))
+        if (GUILayout.Button("Add index number to dialogues", GUILayout.Height(30)))
         {
             myscript.AddIndexToDialogues();
         }
-
         GUILayout.EndHorizontal();
     }
 }

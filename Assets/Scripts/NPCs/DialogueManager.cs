@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        //coje todos los hijos del canvas y desactiva el padre
+        // coge todos los hijos del canvas y desactiva el padre
         dialogueParent.SetActive(true);
         FindChilds();
         dialogueParent.SetActive(false);
@@ -37,13 +37,13 @@ public class DialogueManager : MonoBehaviour
 
     void FindChilds()
     {
-        //coje todos los hijos necesarios
+        //coge todos los hijos necesarios
         dialogueText = dialogueParent.transform.Find("dial text").gameObject.GetComponent<TMP_Text>();
         nameText = dialogueParent.transform.Find("name").gameObject.GetComponent<TMP_Text>();
         talkIcon = dialogueParent.transform.Find("icon").gameObject.GetComponent<Image>();
         buttonHolder = dialogueParent.GetComponentInChildren<GridLayoutGroup>().gameObject;
 
-        //Coje los hijos del grid de botones en orden
+        //Coge los hijos del grid de botones en orden
         for (int i = 0; i < buttonHolder.transform.childCount; i++)
         {
             optionButtons.Add(buttonHolder.transform.GetChild(i).gameObject);
@@ -58,11 +58,11 @@ public class DialogueManager : MonoBehaviour
         //manda la señal al script del player
         player.GetComponent<SkoController>().StartInteraction(NPC);
 
-        //coje el npc que esta hablando
+        //coge el npc que esta hablando
         this.NPC = NPC;
         this.npcData = npcData;
 
-        //coje la lista de dialogos del npc
+        //coge la lista de dialogos del npc
         dialogueList = textToPrint;
         currentDialogueIndex = 0;
 
@@ -82,7 +82,7 @@ public class DialogueManager : MonoBehaviour
         //mientras que no se hayan acabdo los dialogos
         while(currentDialogueIndex < dialogueList.Count)
         {
-            //coje la linea en la que estamos
+            //coge la linea en la que estamos
             DialogueString line = dialogueList[currentDialogueIndex];
 
             //Llama el evento de inicio, si tiene
@@ -160,7 +160,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeText(string text)
     {
-        //coje la linea en la que estamos
+        //coge la linea en la que estamos
         DialogueString line = dialogueList[currentDialogueIndex];
         
         //escribe la linea

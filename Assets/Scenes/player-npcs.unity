@@ -502,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78923721}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000003839916, y: 0.99215686, z: -0.12499916, w: 0.000000030478596}
+  m_LocalRotation: {x: 1.0607771e-16, y: 0.99215686, z: -0.12499919, w: 3.092522e-15}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9655,7 +9655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984668298}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000038399155, y: 0.99215686, z: -0.12499916, w: 0.000000030478592}
+  m_LocalRotation: {x: 0.0000000038399177, y: 0.99215686, z: -0.12499922, w: 0.000000030478596}
   m_LocalPosition: {x: 70.06, y: 6.57, z: 39.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13730,7 +13730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481009697}
   serializedVersion: 2
-  m_LocalRotation: {x: 4.5997678e-10, y: 0.9942664, z: -0.10693168, w: 0.0000000042769317}
+  m_LocalRotation: {x: -4.5997678e-10, y: 0.9942664, z: -0.10693168, w: -0.0000000042769317}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21208,7 +21208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049823922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000015292451, y: 0.99604267, z: -0.088876635, w: 0.000000017138289}
+  m_LocalRotation: {x: -0.0000000015292453, y: 0.99604267, z: -0.088876635, w: -0.00000001713829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22043,20 +22043,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: texturePacks.Array.size
-      value: 21
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: texturePacks.Array.data[21].back
       value: 
-      objectReference: {fileID: 2800000, guid: e3a5391853abf674da41358ab41bf089, type: 3}
+      objectReference: {fileID: 2800000, guid: 21cf7234c372b1341a8178dbefaeee63, type: 3}
     - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: texturePacks.Array.data[21].name
-      value: '[21]webo'
+      value: glideStart_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[22].back
+      value: 
+      objectReference: {fileID: 2800000, guid: 3f15f8aa9b058294fa5d4b80041e7778, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[22].name
+      value: glideStart_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[23].back
+      value: 
+      objectReference: {fileID: 2800000, guid: aa1e8d58cb1a7ff4084aeaa58fcb2814, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[23].name
+      value: glideStart_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[24].back
+      value: 
+      objectReference: {fileID: 2800000, guid: 9f58522c82e4ede418575c4548ba1298, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[24].name
+      value: glideIdle_01
       objectReference: {fileID: 0}
     - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: texturePacks.Array.data[21].front
       value: 
-      objectReference: {fileID: 2800000, guid: e3a5391853abf674da41358ab41bf089, type: 3}
+      objectReference: {fileID: 2800000, guid: d644481d978eb5943952d9a1681f3376, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[22].front
+      value: 
+      objectReference: {fileID: 2800000, guid: 89c8ff2d58652574b90387b1cdc77d81, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[23].front
+      value: 
+      objectReference: {fileID: 2800000, guid: d1095d001ba5342419b74c497d26eaa3, type: 3}
+    - target: {fileID: 4609816259506734110, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      propertyPath: texturePacks.Array.data[24].front
+      value: 
+      objectReference: {fileID: 2800000, guid: cd8bbbe185bfb304390d822a1832081d, type: 3}
     - target: {fileID: 4634161352007327061, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
       propertyPath: inventory
       value: 

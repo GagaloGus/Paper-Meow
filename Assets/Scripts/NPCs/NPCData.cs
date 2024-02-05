@@ -15,7 +15,7 @@ public class NPCData
     //descripcion del npc
     public string description;
 
-    [HideInInspector]
+    [HideInInspector] //rotacion original del npc, se auto asigna en el DialogueTrigger
     public Quaternion originalRot;
 
     public BehaviourType Behaviour;
