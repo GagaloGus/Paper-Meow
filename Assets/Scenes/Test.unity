@@ -502,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78923721}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000037252654, y: 0.99215686, z: -0.12499915, w: 0.000000029568582}
+  m_LocalRotation: {x: 3.0183396e-21, y: 0.99215686, z: -0.12499918, w: 2.786442e-17}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9655,7 +9655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984668298}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000037252654, y: 0.99215686, z: -0.12499915, w: 0.000000029568582}
+  m_LocalRotation: {x: 0.0000000037252672, y: 0.99215686, z: -0.12499921, w: 0.000000029568582}
   m_LocalPosition: {x: 70.06, y: 1.9990001, z: 39.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10417,7 +10417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionButtons: []
-  buttonHolder: {fileID: 0}
 --- !u!1 &1094223897
 GameObject:
   m_ObjectHideFlags: 0
@@ -12068,8 +12067,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueParent: {fileID: 1088195522}
   buttonHolder: {fileID: 0}
-  dialogueText: {fileID: 0}
   optionButtons: []
+  dialogueText: {fileID: 0}
+  nameText: {fileID: 0}
+  talkIcon: {fileID: 0}
   typingSpeed: 0.05
   turnSpeed: 2
   currentDialogueIndex: 0
@@ -21207,7 +21208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049823922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000015763096, y: 0.99604267, z: -0.08887663, w: -0.000000017665744}
+  m_LocalRotation: {x: 0.0000000015763096, y: 0.99604267, z: -0.08887663, w: 0.000000017665744}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21760,11 +21761,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: beeko
       objectReference: {fileID: 0}
+    - target: {fileID: 5400812585409138450, guid: 0722da4d6e8f5824082d833cf7b7a01e, type: 3}
+      propertyPath: Distance
+      value: 1.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168560696550482792, guid: 0722da4d6e8f5824082d833cf7b7a01e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8546505759071506485, guid: 0722da4d6e8f5824082d833cf7b7a01e, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6758014291827142004, guid: 0722da4d6e8f5824082d833cf7b7a01e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21778,16 +21788,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: info.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: d580bdf4db3172249a4c60b91063db6c, type: 3}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: info.name
+      value: raton qulero
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: info.originalRot.w
+      value: 0.8825058
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: info.originalRot.y
+      value: -0.4703015
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[1].text
+      value: q tal
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[2].text
-      value: epicardo
+      value: epic
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[3].text
-      value: jajsaj
+      value: xd
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[4].text
@@ -21811,7 +21841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[3].isEnd
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[4].index
@@ -21820,6 +21850,30 @@ PrefabInstance:
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[4].isEnd
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[0].NPCIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: d580bdf4db3172249a4c60b91063db6c, type: 3}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[2].NPCIcon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[4].NPCIcon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[4].newIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a991bea88796cc40a5fd753b852ae0c, type: 3}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[4].newName
+      value: Meowshi
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[4].NPCTalks
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[2].isQuestion
@@ -21831,6 +21885,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[4].isQuestion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[2].jumpToIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[3].jumpToIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[4].jumpToIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
@@ -21863,7 +21929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[4].optionButtons.Array.size
@@ -21871,11 +21937,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.data[0].answer
-      value: si
+      value: yea
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.data[1].answer
-      value: feo
+      value: :(
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.data[2].answer
@@ -21903,6 +21969,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
       propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.data[2].JumpIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 87545661935020756, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}
+      propertyPath: dialogueStrings.Array.data[1].optionButtons.Array.data[2].jumpIndex
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2348362751147592849, guid: c5a81fa9984472d4a9e9bfd3763eec61, type: 3}

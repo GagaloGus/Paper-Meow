@@ -4,26 +4,7 @@ using UnityEngine;
 
 public enum BehaviourType { MoveAround, PatrolPoints, Stop, Interact }
 
-public enum AnimationTypes { Idle, IdleTalk, Talk, Laugh }
-
-[System.Serializable]
-public class Dialogue
-{
-    //Texto del dialogo
-    [TextArea(3, 5)] public string text;
-
-    //animacion del dialogo
-    public AnimationTypes currentAnimation;
-
-    public Sprite npcSpriteFace;
-
-    //si el player habla (aun no implementado)
-    public bool playerTalksNext;
-    public string[] playerText;
-
-    //el quest que PUEDE devolver
-    public Quest newQuest;
-}
+public enum AnimationTypes { Idle, Talk, Talk_idle, Laugh }
 
 [System.Serializable]
 public class NPCData
@@ -34,12 +15,8 @@ public class NPCData
     //descripcion del npc
     public string description;
 
-    public Sprite icon;
+    [HideInInspector]
+    public Quaternion originalRot;
 
-    //id del npc (no se, puede servir)
-    public int id;
     public BehaviourType Behaviour;
-
-    //array con todos los dialogos que tiene
-    public Dialogue[] dialogues;
 }

@@ -4,13 +4,16 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent (typeof(Interactable))]
 public class DialogueTrigger : MonoBehaviour
 {
+    [SerializeField] public NPCData info;
     [SerializeField] List<DialogueString> dialogueStrings = new List<DialogueString>();
 
     public void StartDialogue()
     {
-        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, gameObject);
+        info.originalRot = transform.rotation;
+        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, info,gameObject);
     }
 
     public void AddIndexToDialogues()
@@ -25,13 +28,23 @@ public class DialogueTrigger : MonoBehaviour
 [System.Serializable]
 public class DialogueString
 {
-    public string text;
+    [TextArea(3, 5)] public string text;
     public bool isEnd;
     public int index;
 
-    [Header("Branch")]
+    [Header("Who is talking?")]
+    public bool NPCTalks = true;
+    public Sprite NPCIcon;
+    public string newName;
+    public Sprite newIcon;
+
+    [Header("Question")]
     public bool isQuestion;
-    public List<ButtonAnswer> optionButtons;
+
+    [Tooltip("No puede haber mas de 4 opciones")] public List<ButtonAnswer> optionButtons;
+
+    [Header("Jump Index Option")]
+    [Tooltip("Solo funciona si es distinto de 0")] public uint jumpToIndex;
 
     [Header("Triggered Events")]
     public UnityEvent startDialogueEvent;
