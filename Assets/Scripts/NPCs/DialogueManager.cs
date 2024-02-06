@@ -162,7 +162,10 @@ public class DialogueManager : MonoBehaviour
     {
         //coge la linea en la que estamos
         DialogueString line = dialogueList[currentDialogueIndex];
-        
+
+        //cambia la animacion a hablar si no esta seleccionada una animacion distina en el dialogo
+        NPC.GetComponent<Animator>().SetInteger("dialogue", line.specialNPCAnimation == AnimationTypes.Normal ? 2 : (int)line.specialNPCAnimation + 2);
+
         //escribe la linea
         dialogueText.text = "";
         foreach(char letter in text.ToCharArray())
@@ -170,6 +173,9 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        //cambia la animacion a idle hablar si no esta seleccionada una animacion distina en el dialogo
+        NPC.GetComponent<Animator>().SetInteger("dialogue", line.specialNPCAnimation == AnimationTypes.Normal ? 1 : (int)line.specialNPCAnimation + 2);
 
         //si no es una pregunta espera hasta que pulsemos para escribir el siguiente dialogo
         if (!line.isQuestion)
@@ -208,6 +214,9 @@ public class DialogueManager : MonoBehaviour
         //reactiva el interactuable del NPC y manda una señal al player de que se acabo la interaccion
         NPC.GetComponent<Interactable>().enabled = true;
         player.GetComponent<SkoController>().EndInteraction();
+
+        //cambia la animacion a idle normal
+        NPC.GetComponent<Animator>().SetInteger("dialogue", 0);
     }
 
     //rotar al NPC
@@ -215,7 +224,6 @@ public class DialogueManager : MonoBehaviour
     {
         Quaternion startRot = NPC.transform.rotation;
         Quaternion targetRot = Quaternion.LookRotation(CoolFunctions.FlattenVector3(target) - CoolFunctions.FlattenVector3(NPC.transform.position));
-
 
         float elapsedTime = 0;
         while (elapsedTime < 1)
@@ -231,7 +239,6 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TurnNPCTowardsTargetRot(Quaternion targetRot)
     {
         Quaternion startRot = NPC.transform.rotation;
-
 
         float elapsedTime = 0;
         while (elapsedTime < 1)

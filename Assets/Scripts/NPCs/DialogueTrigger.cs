@@ -25,12 +25,15 @@ public class DialogueTrigger : MonoBehaviour
     }
 }
 
+public enum AnimationTypes { Normal, Laugh }
+
 [System.Serializable]
 public class DialogueString
 {
     [TextArea(3, 5)] public string text;
     public bool isEnd;
     public int index;
+    public AnimationTypes specialNPCAnimation;
 
     [Header("Who is talking?")]
     public bool NPCTalks = true;

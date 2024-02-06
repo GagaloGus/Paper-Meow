@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int health;
     public int maxHealth = 0;
 
+    public bool gamePaused { get; private set; }
+
     GameObject player;
 
 
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
 
         Application.targetFrameRate = targetFPS;
         player = FindObjectOfType<SkoController>().gameObject;
+
+        gamePaused = false;
     }
 
     private void Update()
@@ -39,6 +43,25 @@ public class GameManager : MonoBehaviour
 
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
+
+        if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
+        {
+            gamePaused = !gamePaused ;
+            if(gamePaused)
+                GamePaused();
+            else
+                GameResumed();
+        }
+    }
+
+    void GamePaused()
+    {
+        player.GetComponent<SkoController>().PausedGame(true);
+    }
+
+    void GameResumed()
+    {
+        player.GetComponent<SkoController>().PausedGame(false);
     }
 
     public void AddPunt(int value) //Agrega la cantidad de puntos designada.

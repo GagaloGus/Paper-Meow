@@ -12,5 +12,6 @@ public static class PlayerKeybinds
         interact = KeyCode.E,
         skipDialogue = KeyCode.E,
         swapPrevousWeapon = KeyCode.UpArrow,
-        swapNextWeapon = KeyCode.DownArrow;
+        swapNextWeapon = KeyCode.DownArrow,
+        pauseGame = KeyCode.Escape;
 }

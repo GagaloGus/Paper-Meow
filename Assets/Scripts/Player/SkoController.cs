@@ -99,10 +99,33 @@ public class SkoController : MonoBehaviour
         #endregion
 
         //cambia el int del animator
-        if(canMove)
-        m_animator.SetInteger("player states", (int)playerState);
 
-        m_animator.SetInteger("currentAttack", currentAttackNumber);
+        if (!GameManager.instance.gamePaused && canMove)
+        {
+            m_animator.SetInteger("player states", (int)playerState);
+            m_animator.SetBool("gamePaused", false);
+        }
+    }
+
+    public void PausedGame(bool paused)
+    {
+        if (isGrounded)
+        {
+            if (paused)
+            {
+                canMove = false;
+                m_animator.SetInteger("player states", 0);
+                m_animator.SetBool("gamePaused", true);
+
+                isFlipped = false;
+                isFacingBackwards = false;
+                FlipCharacter();
+            }
+            else
+            {
+                canMove = true;
+            }
+        }
     }
 
     void FlipCharacter()
@@ -185,8 +208,8 @@ public class SkoController : MonoBehaviour
         //El ataque
         if (isAttacking)
         {
-            //configuracion extra solo para el arco
-            if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
+            //configuracion extra solo para el arco (por ahora no)
+            /*if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
             {
                 bow.SetActive(true);
 
@@ -219,8 +242,9 @@ public class SkoController : MonoBehaviour
             else
             {
                 //Si no estamos usando arco, podemos encadenar otro ataque
-                WaitForFollowUpAttack();
-            }
+            }*/
+                
+            WaitForFollowUpAttack();
         }
 
         void AttackStart()
@@ -236,15 +260,12 @@ public class SkoController : MonoBehaviour
             {
                 //setup
                 AttackStart();
-                //numero de ataques encadenados
-                currentAttackNumber++;
                 m_animator.SetTrigger("nextAttack");
             }
 
             //cancela todo el ataque si corremos
             if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
             {
-                currentAttackNumber = 0;
                 m_animator.Play("run");
                 isAttacking = false; canAttackAgain = true;
             }
@@ -254,6 +275,7 @@ public class SkoController : MonoBehaviour
 
     void AirControl()
     {
+        isAttacking = false;
         //raycast que detecta si hay suelo a tanta distancia de nosotros hacia abajo
         bool nearGround = Physics.Raycast(transform.position, Vector3.down, nearGroundDist, LayerMask.GetMask("Ground"));
             //si estamos planeando

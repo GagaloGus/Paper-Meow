@@ -117,11 +117,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b5c445cd9490b40923a94f4df0326a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 0
-  Distance: 0
+  isInteractable: 1
+  Distance: 1.47
   interactEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2076163321166363340}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2076163321166363340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,11 +147,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info:
-    name: 
+    name: Beeko
     description: 
-    icon: {fileID: 0}
-    Behaviour: 0
-  dialogueStrings: []
+    originalRot: {x: 0, y: 0, z: 0, w: 0}
+  dialogueStrings:
+  - text: hola me llamo augusto y soy waaaaaaa wachimoyo aguacate no se cuanto de
+      grande es
+    isEnd: 0
+    index: 0
+    specialNPCAnimation: 0
+    NPCTalks: 1
+    NPCIcon: {fileID: 21300000, guid: e8de0052c81fac348bea5130a91ffc56, type: 3}
+    newName: 
+    newIcon: {fileID: 0}
+    isQuestion: 0
+    optionButtons:
+    - answer: 
+      jumpIndex: 0
+    jumpToIndex: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: wahgggggggggggg
+    isEnd: 0
+    index: 0
+    specialNPCAnimation: 0
+    NPCTalks: 1
+    NPCIcon: {fileID: 0}
+    newName: 
+    newIcon: {fileID: 0}
+    isQuestion: 0
+    optionButtons:
+    - answer: 
+      jumpIndex: 0
+    jumpToIndex: 0
+    startDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    endDialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &7540799693521700479
 PrefabInstance:
   m_ObjectHideFlags: 0
