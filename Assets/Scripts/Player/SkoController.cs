@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -33,6 +34,8 @@ public class SkoController : MonoBehaviour
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
+    public CinemachineFreeLook camara;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -62,14 +65,13 @@ public class SkoController : MonoBehaviour
     private void Start()
     {
         UpdateStats();
+        //GameManager.instance.GetPlayer(gameObject);
         currentAttackNumber = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         //distintas configuraciones para cuando esta en el suelo y en el aire
             if(isGrounded) { GroundControl(); }
             else { AirControl(); }
@@ -103,7 +105,6 @@ public class SkoController : MonoBehaviour
         if (!GameManager.instance.gamePaused && canMove)
         {
             m_animator.SetInteger("player states", (int)playerState);
-            m_animator.SetBool("gamePaused", false);
         }
     }
 
@@ -120,12 +121,23 @@ public class SkoController : MonoBehaviour
                 isFlipped = false;
                 isFacingBackwards = false;
                 FlipCharacter();
+
+                EnablePhysics(false);
             }
             else
             {
+                GetComponent<ConstantForce>().enabled = true;
                 canMove = true;
+                m_animator.SetBool("gamePaused", false);
+                EnablePhysics(true);
             }
         }
+    }
+
+    void EnablePhysics(bool enable)
+    {
+        GetComponent<ConstantForce>().force = enable ? Vector3.up * gravity : Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     void FlipCharacter()
@@ -307,15 +319,21 @@ public class SkoController : MonoBehaviour
         isGrounded =
            Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
 
-        if (canMove && !isAttacking && !isUsingSkill)
+        if (canMove)
         {
-            Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-            Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);
-            //Moverse
-            rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
+            if (!isUsingSkill)
+            {
+                Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
+                Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);
+                //Moverse
+                rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y) * GameManager.instance.gameTime;
+            }
 
-            //orienta al player a la direccion de la camara
-            transform.forward = -moveDirection;
+            if (!isAttacking)
+            {
+                //orienta al player a la direccion de la camara
+                transform.forward = -moveDirection;
+            }
         }
     }
 
@@ -365,6 +383,7 @@ public class SkoController : MonoBehaviour
 
     public void StartSkillCooldownCoroutine(float skillUseTime)
     {
+        isGliding = false;
         StartCoroutine(UsingSkillCooldown(skillUseTime));
     }
 

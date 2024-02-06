@@ -11,7 +11,7 @@ public class SkillManager : MonoBehaviour
     public Skill selectedSkill;
     string unlockedSkillIDs;
 
-    GameObject player;
+    public GameObject player;
     KeyCode useSkillKey;
 
     float skillCooldownTimer;
@@ -46,8 +46,6 @@ public class SkillManager : MonoBehaviour
         }
 
         skillUsed = false; 
-        player = FindObjectOfType<SkoController>().gameObject;
-
         useSkillKey = PlayerKeybinds.useSkill;
     }
 

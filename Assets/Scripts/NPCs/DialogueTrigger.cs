@@ -44,7 +44,6 @@ public class DialogueString
     [Header("Question")]
     public bool isQuestion;
 
-    [HideInInspector]
     [Tooltip("No puede haber mas de 4 opciones")] public List<ButtonAnswer> optionButtons;
 
     [Header("Jump Index Option")]
