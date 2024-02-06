@@ -29,19 +29,19 @@ public abstract class State : ScriptableObject
         foreach (StateParameters par in parameters)
         {
             bool and = true;
-            for(int i = 0; i < par.actionParameters.Length; i++)
+            for (int i = 0; i < par.actionParameters.Length; i++)
             {
                 bool currentAction = par.actionParameters[i].action.Check(owner) == par.actionParameters[i].actionValue;
 
                 and &= currentAction;
-                if(par.or && currentAction) { return par.nextState; }
+                if (par.or && currentAction) { return par.nextState; }
             }
 
-            if(and)
+            if (and)
             {
                 return par.nextState;
             }
-            
+
         }
 
         return null;
@@ -49,20 +49,16 @@ public abstract class State : ScriptableObject
 
     public virtual void StartState(GameObject owner)
     {
-        //navMeshAgent = owner.GetComponent<NavMeshAgent>();
-        //target = GameManager.instance.get_player;
-        //cannon = owner.transform.Find("cannon").gameObject;
-        //audioPlayer = owner.GetComponent<AudioPlayer>();
-        //navOgSpeed = FindObjectOfType<StateMachine>().get_originalSpeed;
-        //animator = owner.GetComponent<Animator>();
+        navMeshAgent = owner.GetComponent<NavMeshAgent>();
+        target = FindObjectOfType<SkoController>().gameObject;
 
         //resetea la velocidad del mavmeshagent a la original
         navMeshAgent.speed = navOgSpeed;
 
         //empieza los starts de sus acciones
-        foreach(StateParameters par in parameters)
+        foreach (StateParameters par in parameters)
         {
-            foreach(ActionParameter act in  par.actionParameters)
+            foreach (ActionParameter act in par.actionParameters)
             {
                 act.action.set_target = target;
                 act.action.StartAction();
@@ -88,11 +84,11 @@ public abstract class State : ScriptableObject
 
     protected void ChangeTextureQuestionPlane(GameObject owner, Texture2D newTexture)
     {
-       GameObject plane = owner.transform.Find("questionIcon").gameObject;
-       
-       //cambia el albedo y el emission
-       plane.GetComponent<Renderer>().material.SetTexture("_MainTex", newTexture);
-       plane.GetComponent<Renderer>().material.SetTexture("_EmissionMap", newTexture);
+        GameObject plane = owner.transform.Find("questionIcon").gameObject;
+
+        //cambia el albedo y el emission
+        plane.GetComponent<Renderer>().material.SetTexture("_MainTex", newTexture);
+        plane.GetComponent<Renderer>().material.SetTexture("_EmissionMap", newTexture);
 
     }
 }

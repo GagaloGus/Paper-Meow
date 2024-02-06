@@ -5,7 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "(A) Watch", menuName = "ScriptableObjects/Actions/Watch (A)")]
+[CreateAssetMenu(menuName = "Actions/Watch")]
 public class WatchAction : Action
 {
     [Tooltip("Distancia de vision")]

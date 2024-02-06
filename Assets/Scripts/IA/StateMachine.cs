@@ -10,7 +10,6 @@ public class StateMachine : MonoBehaviour
     [SerializeField]
     State _currentState;
 
-    //public GameObjPool bulletPool;
 
     private Color GamingGizmoCol;
     private Color MonoGizmoCol;
@@ -32,14 +31,11 @@ public class StateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!GameManager.instance._playerDied)
-        //{
-        //    State nextState = _currentState.Run(gameObject);
-        //    if(nextState != null)
-        //    {
-        //        ChangeState(nextState);
-        //    }
-        //}
+        State nextState = _currentState.Run(gameObject);
+        if (nextState)
+        {
+            ChangeState(nextState);
+        }
     }
 
     void ChangeState(State nextState)
@@ -50,7 +46,7 @@ public class StateMachine : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(_currentState != null)
+        if (_currentState)
         {
             Gizmos.color = GamingGizmoCol;
             _currentState.DrawActionsGizmo(gameObject);
@@ -80,7 +76,7 @@ public class StateMachine : MonoBehaviour
         List<Color> monoColors = new()
             { Color.white, Color.black };
 
-        foreach(Color color in monoColors)
+        foreach (Color color in monoColors)
         {
             MonoGizmoCol = color;
             yield return new WaitForSeconds(1);
@@ -93,7 +89,7 @@ public class StateMachine : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("playerDied");
     }
-        
+
     public State get_currentState { get { return _currentState; } }
 
     public float get_originalSpeed { get { return ogSpeed; } }
