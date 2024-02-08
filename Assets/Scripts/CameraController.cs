@@ -9,9 +9,14 @@ public class CameraController : MonoBehaviour
 
     Vector2 maxSpeed;
     float originalYvalue;
+
+    Animator animator;
     private void Start()
     {
-
+        animator = GetComponent<Animator>();
+        animator.Play("Idle");
+        animator.enabled = false;
+        
         // Encuentra la cámara primero
         cinemachine = GetComponent<CinemachineFreeLook>();
 
@@ -31,7 +36,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Camera object not found with tag 'FreeLook Camera'.");
+            Debug.LogError("Camera object not found 'FreeLook Camera'.");
         }
     }
 
@@ -40,11 +45,9 @@ public class CameraController : MonoBehaviour
     {
         if (cinemachine)
         {
-            originalYvalue = cinemachine.m_YAxis.Value;
-
-            
-            StopAllCoroutines();
-            StartCoroutine(SmoothYAxis(true, speedSmooth));
+            animator.enabled = true;
+            animator.SetBool("Paused", true);
+            originalYvalue = cinemachine.m_YAxis.m_InputAxisValue;
 
             cinemachine.m_XAxis.m_MaxSpeed = 0f;
             cinemachine.m_YAxis.m_MaxSpeed = 0f;
@@ -55,60 +58,10 @@ public class CameraController : MonoBehaviour
     {
         if (cinemachine)
         {
-            StopAllCoroutines();
-            StartCoroutine(SmoothYAxis(false, speedSmooth));
+            animator.SetBool("Paused", false);
             cinemachine.m_XAxis.m_MaxSpeed = maxSpeed.x;
             cinemachine.m_YAxis.m_MaxSpeed = maxSpeed.y;
 
         }
-    }
-
-    IEnumerator SmoothYAxis(bool fadeIn, float speed)
-    {
-        if(fadeIn)
-        {
-            for(float i = originalYvalue; i >= 0; i -= speed)
-            {
-                cinemachine.m_YAxis.Value = i;
-                yield return null;
-            }
-        }
-        else
-        {
-            for (float i = 0; i < originalYvalue; i += speed)
-            {
-                cinemachine.m_YAxis.Value = i;
-                yield return null;
-            }
-        }
-    }
-
-    /*IEnumerator SmoothScreenX(bool fadeIn, float speed)
-    {
-        speed /= 20;
-        if (fadeIn)
-        {    
-            for (float i = 0.5f; i >= 0.3f; i -= speed)
-            {
-                cinemachine.GetRig(0).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-                cinemachine.GetRig(1).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-                cinemachine.GetRig(2).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-
-                yield return null;
-            }
-        }
-        else
-        {
-            for (float i = 0.3f; i < 0.5f; i += speed)
-            {
-                cinemachine.GetRig(0).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-                cinemachine.GetRig(1).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-                cinemachine.GetRig(2).GetCinemachineComponent<CinemachineComposer>().m_ScreenX = i;
-
-                yield return null;
-            }
-        }
-    }*/
-
-    
+    } 
 }

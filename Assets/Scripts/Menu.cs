@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,30 @@ public class Menu : MonoBehaviour
                 menu.menu.SetActive(false);
             }
         }
+    }
+
+    bool open = false;
+    public void HandleMenu()
+    {
+        if(!open)
+        {
+            gameObject.SetActive(true);
+            foreach (BotonMenu menu in botonMenus) 
+            { menu.menu.SetActive(false); }
+
+            GetComponent<Animator>().Play("openMenu");
+            open = true;
+        }
+        else
+        {
+            GetComponent<Animator>().Play("closeMenu");
+            open = false;
+        }
+    }
+
+    public void CloseMenu()
+    {
+        gameObject.SetActive(false);
     }
 }
 

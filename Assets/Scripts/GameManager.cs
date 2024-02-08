@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public int gameTime;
 
-    public bool gamePaused { get; private set; }
+    public bool gamePaused;
 
     public GameObject player;
 
@@ -64,21 +64,25 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
         {
-            gamePaused = !gamePaused ;
-            if(gamePaused)
-                GamePaused();
-            else
-                GameResumed();
+            PauseAndContinueToggle();
+        }
+    }
+
+    public void PauseAndContinueToggle()
+    {
+        gamePaused = !gamePaused;
+        if (gamePaused)
+        {
+            gameTime = 0;
+            FindObjectOfType<CameraController>().LockCamera();
+            player.GetComponent<SkoController>().PausedGame(true);
         }
 
-        if(Input.GetKeyDown(KeyCode.Numlock))
+        else
         {
-            ChangeScene("Test");
-        }
-
-        if(Input.GetKeyDown(KeyCode.Insert))
-        {
-            ChangeScene("player-npcs");
+            gameTime = 1;
+            FindObjectOfType<CameraController>().ResetCamera();
+            player.GetComponent<SkoController>().PausedGame(false);
         }
     }
 
@@ -99,21 +103,6 @@ public class GameManager : MonoBehaviour
         }
 
         GetPlayer();
-
-    }
-
-    void GamePaused()
-    {
-        gameTime = 0;
-        FindObjectOfType<CameraController>().LockCamera();
-        player.GetComponent<SkoController>().PausedGame(true);
-    }
-
-    void GameResumed()
-    {
-        gameTime = 1;
-        FindObjectOfType<CameraController>().ResetCamera();
-        player.GetComponent<SkoController>().PausedGame(false);
     }
 
     public void AddPunt(int value) //Agrega la cantidad de puntos designada.

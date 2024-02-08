@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public struct MenuKey
 {
-    public GameObject gO;
+    public bool activated;
     public KeyCode keyCode;
+    public UnityEvent enableEvent;
+    public UnityEvent disableEvent;
 }
 
 public class Buttonfunctions : MonoBehaviour
@@ -21,11 +25,16 @@ public class Buttonfunctions : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            foreach (MenuKey key in menus)
+            for (int i = 0; i < menus.Length; i++)
             {
-                if (Input.GetKeyDown(key.keyCode))
+                if (Input.GetKeyDown(menus[i].keyCode))
                 {
-                    key.gO.SetActive(!key.gO.activeSelf);
+                    menus[i].activated = !menus[i].activated;
+
+                    if (menus[i].activated)
+                        menus[i].enableEvent?.Invoke();
+                    else
+                        menus[i].disableEvent?.Invoke();
                 }
             }
 
@@ -54,10 +63,11 @@ public class Buttonfunctions : MonoBehaviour
     public void ExitGame() //Indicamos a la aplicaci�n que se cierre.
     {
         Application.Quit();
+
     }
 
-    void KeyCode()
+    public void TogglePauseContinueGame()
     {
-
+        GameManager.instance.PauseAndContinueToggle();
     }
 }
