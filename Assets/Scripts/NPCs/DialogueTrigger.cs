@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using static Unity.VisualScripting.Member;
 
 [RequireComponent (typeof(Interactable))]
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] public NPCData info;
+    public NPCData info;
     [SerializeField] List<DialogueString> dialogueStrings = new List<DialogueString>();
 
     public void StartDialogue()
@@ -25,7 +27,7 @@ public class DialogueTrigger : MonoBehaviour
     }
 }
 
-public enum AnimationTypes { Normal, Laugh }
+public enum AnimationTypes { Normal, Laugh, Angry }
 
 [System.Serializable]
 public class DialogueString
@@ -37,6 +39,7 @@ public class DialogueString
 
     [Header("Who is talking?")]
     public bool NPCTalks = true;
+
     public Sprite NPCIcon;
     public string newName;
     public Sprite newIcon;
@@ -62,13 +65,13 @@ public class ButtonAnswer
 }
 
 [CustomEditor(typeof(DialogueTrigger))]
-class AddIndexToDialogues : Editor
+class DialogueEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-
         DialogueTrigger myscript = (DialogueTrigger)target;
+
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add index number to dialogues", GUILayout.Height(30)))
         {
@@ -77,3 +80,5 @@ class AddIndexToDialogues : Editor
         GUILayout.EndHorizontal();
     }
 }
+
+

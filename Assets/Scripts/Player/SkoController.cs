@@ -34,8 +34,6 @@ public class SkoController : MonoBehaviour
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
-    public CinemachineFreeLook camara;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

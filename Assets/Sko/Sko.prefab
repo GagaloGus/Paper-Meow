@@ -10317,10 +10317,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1333025559593040506}
   - component: {fileID: 6403942227184611853}
+  - component: {fileID: 9069423351829115485}
   - component: {fileID: 2120665806219072765}
   - component: {fileID: 72071289077555267}
-  - component: {fileID: 4634161352007327061}
-  - component: {fileID: 9069423351829115485}
   - component: {fileID: 1170115040403223023}
   m_Layer: 0
   m_Name: Sko
@@ -10376,6 +10375,26 @@ MonoBehaviour:
   playerState: 0
   camara: {fileID: 0}
   timeCheckForChargedAttack: 0.1
+--- !u!114 &9069423351829115485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8346bd46584234cae9f0a65bc2e996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 6
+  maxSpeed: 16.69
+  jumpForce: 4
+  runSpeedMult: 2.05
+  health: 10
+  attackPower: 10
+  weaponSelected: 0
+  money: 500
 --- !u!54 &2120665806219072765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10424,39 +10443,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.95476574, y: 0.8394614, z: 0.13}
   m_Center: {x: -0.10676959, y: 0.27267084, z: 0.000000029007381}
---- !u!114 &4634161352007327061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344253251668500606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a1dab64fa73c54dad74f4a00c8f19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotHolder: {fileID: 0}
---- !u!114 &9069423351829115485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344253251668500606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc8346bd46584234cae9f0a65bc2e996, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 6
-  maxSpeed: 16.69
-  jumpForce: 4
-  runSpeedMult: 2.05
-  health: 10
-  attackPower: 10
-  weaponSelected: 0
-  money: 500
 --- !u!75 &1170115040403223023
 ConstantForce:
   m_ObjectHideFlags: 0

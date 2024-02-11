@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public struct MenuKey
 {
+    public string name;
     public bool activated;
     public KeyCode keyCode;
     public UnityEvent enableEvent;

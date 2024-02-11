@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Skill : ScriptableObject
 {
     public enum UnlockType { SkillTree, Quest}
-    public enum Usability { Ground, Air, All}
+    public enum Usability {Ground, Air, All}
     public string skillName;
     [TextArea(3,1)] public string skillDescription;
 
@@ -60,8 +61,30 @@ public abstract class Skill : ScriptableObject
     public void UnlockSkill()
     {
         isUnlocked = true;
+    }   
+}
+
+[CustomEditor(typeof(Skill))]
+public class SkillEditor : Editor
+{
+    Skill skill;
+
+    private void OnEnable()
+    {
+        skill = (Skill)target;
     }
 
-    
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        if (skill.skillTreeSprite == null)
+            return;
+
+        Texture2D texture = AssetPreview.GetAssetPreview(skill.skillTreeSprite);
+
+        GUILayout.Label("", GUILayout.Height(80), GUILayout.Width(80));
+        GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
+    }
 }
 
