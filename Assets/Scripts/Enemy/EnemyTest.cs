@@ -48,7 +48,7 @@ public class EnemyTest : MonoBehaviour
         Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
         if (weapon)
         {
-            TakeDamage(player.attackPower * weapon.weaponDamageMult);
+            TakeDamage(player.attackPower * weapon.weaponData.damageMultiplier);
         }
     }
 }

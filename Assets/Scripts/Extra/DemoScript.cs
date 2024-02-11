@@ -4,33 +4,15 @@ using UnityEngine;
 
 public class DemoScript : MonoBehaviour
 {
-    public InventoryManager inventoryManager;
-    public Item[] itemsToPickup;
-
-    public bool GiveOrUse;
+    InventoryManager inventoryManager;
 
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
-    public void bibibu(int id)
+    public void bibibu(Item item)
     {
-        if(GiveOrUse)
-        {
-            bool result = inventoryManager.AddItem(itemsToPickup[id], 2);
-            if(result)
-            {
-                print("Item Añadido");
-            }
-            else
-            {
-                Debug.LogAssertion("Item no añadido");
-            }
-        }
-        else
-        {
-            inventoryManager.HasItem(itemsToPickup[id], 1);
-        }
+        inventoryManager.AddItem(item);
     }
 }

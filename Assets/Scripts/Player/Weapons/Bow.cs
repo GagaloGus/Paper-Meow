@@ -23,7 +23,7 @@ public class Bow : Weapon
     public GameObject smallArrow;
     public GameObject heavyArrow;
     // Start is called before the first frame update
-    protected override void Start()
+    /*protected override void Start()
     {
         base.Start();
 
@@ -33,19 +33,9 @@ public class Bow : Weapon
         model = GetComponentInParent<ChangeTextureAnimEvent>().transform;
     }
 
-    private void Update()
-    {
-        //Mira si el personaje esta mirando hacia adelante o atras para darle la vuelta a la flecha, solo sirve la variable para debug, no se usa
-        if (spawnedArrow)
-        {
-            inverseDirection = model.localScale.z < 0;
-        }
-    }
-
 
     public void NormalAttack()
     {
-        print("peqeu");
         animator.SetTrigger("shoot");
         SpawnArrow(smallArrow);
         ShootArrow();
@@ -89,6 +79,6 @@ public class Bow : Weapon
         spawnedArrow = false;
         
         gameObject.SetActive(false);
-    }
+    }*/
 
 }

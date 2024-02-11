@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,9 +14,14 @@ public class InventoryManager : MonoBehaviour
 {
     public int maxStackedItems;
     public InventoryMenu[] itemMenus;
+    public QuickWeaponSlot[] quickSwapWeapons;
 
     public GameObject inventoryItemPrefab;
+    public GameObject quickSwapInventoryItemPrefab;
+    public Item garra;
+    QuickWeaponChange quickSwapWeapon_Obj;
 
+    public int currentWeaponSlot;
 
     private void Start()
     {
@@ -25,12 +31,82 @@ public class InventoryManager : MonoBehaviour
             menu.menuSlots = new InventorySlot[childCount];
             for(int i = 0; i < childCount; i++)
             {
-                menu.menuSlots[i] = menu.Menu.transform.GetChild(i).GetComponent<InventorySlot>();
+                menu.menuSlots[i] = 
+                    menu.Menu.transform.GetChild(i).
+                    GetComponent<InventorySlot>();
             }
         }
+
+        quickSwapWeapon_Obj = FindObjectOfType<QuickWeaponChange>();
+        quickSwapWeapons = quickSwapWeapon_Obj.quickWeaponSlots;
+
+        for(int i = 0;i < quickSwapWeapons.Length; i++)
+        {
+            RemoveItemFromQuickswap(i);
+        }
+
+        quickSwapWeapon_Obj.ReloadSlotSprites();
+
     }
 
-    public bool AddItem(Item item, int amount)
+    public void ReloadSpritesOfQS()
+    {
+        quickSwapWeapon_Obj.ReloadSlotSprites();
+    }
+
+    public void SwapWeapon(bool clockwise)
+    {
+        //Clockwise = previous
+        if (clockwise)
+        {
+            if (currentWeaponSlot == 3) { currentWeaponSlot = 0; }
+            else { currentWeaponSlot++; }
+        }
+        else
+        {
+            if (currentWeaponSlot == 0) { currentWeaponSlot = 3; }
+            else { currentWeaponSlot--; }
+        }
+
+        Item weapon = 
+            quickSwapWeapons[currentWeaponSlot].
+            GetComponentInChildren<InventoryItem>().item;
+
+        FindObjectOfType<SkoController>().ChangeWeapon(weapon);
+        FindObjectOfType<QuickWeaponChange>().StartSpin(clockwise, 2);
+    }
+
+    public bool AddItemToQuickswap(Item weapon, int location)
+    {
+        QuickWeaponSlot currentSlot = quickSwapWeapons[location];
+
+        InventoryItem itemInSlot = currentSlot.GetComponentInChildren<InventoryItem>();
+
+        if(itemInSlot.item.weaponType == WeaponType.Garra)
+        {
+            foreach (Transform child in currentSlot.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            quickSwapWeapon_Obj.ReloadSlotSprites();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void RemoveItemFromQuickswap(int location)
+    {
+        QuickWeaponSlot currentSlot = quickSwapWeapons[location];
+
+        GameObject newSlot = Instantiate(quickSwapInventoryItemPrefab, currentSlot.transform);
+        
+        InventoryItem itemInSlot = currentSlot.GetComponentInChildren<InventoryItem>();
+        
+        itemInSlot.item = garra;
+    }
+
+    public bool AddItem(Item item, int amount = 1)
     {
         InventoryMenu currentMenu = itemMenus[(int)item.itemType];
 
@@ -109,14 +185,46 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    public bool HasItem(Item item, int amount)
+    public InventoryItem CheckIfHasItem(string itemToFind)
+    {
+        foreach (InventoryMenu menu in itemMenus)
+        {
+            foreach (InventorySlot itemslot in menu.menuSlots)
+            {
+                InventoryItem itemInv = itemslot.GetComponentInChildren<InventoryItem>();
+
+                if (itemInv)
+                {
+                    if (itemToFind == itemInv.item.itemName)
+                    {
+                        print($"item {itemToFind} encontrado");
+                        return itemInv;
+                    }
+                }
+            }
+        }
+
+        print($"no se encontro {itemToFind}");
+        return null;
+    }
+
+    public bool HasItem(Item item, int amount = 1)
     {
         InventoryItem chosenItem = CheckIfHasItem(item);
 
         if (chosenItem != null && chosenItem.itemCount >= amount)
         {
-            chosenItem.itemCount-= amount;
-            chosenItem.RefreshItemCount();
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasItem(string itemName, int amount = 1)
+    {
+        InventoryItem chosenItem = CheckIfHasItem(itemName);
+
+        if (chosenItem != null && chosenItem.itemCount >= amount)
+        {
             return true;
         }
         return false;

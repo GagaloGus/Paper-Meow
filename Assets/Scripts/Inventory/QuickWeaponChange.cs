@@ -1,23 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class QuickWeaponChange : MonoBehaviour
 {
-    public float speedSpin;
-    // Update is called once per frame
-    void Update()
+    QuickWeaponSlot[] slots;
+
+    private void Awake()
     {
+        slots = quickWeaponSlots;
+    }
 
-        if (Input.GetKeyDown(PlayerKeybinds.swapPrevousWeapon))
+    public void ReloadSlotSprites()
+    {
+        for (int i = 0;i < slots.Length; i++)
         {
-            StartCoroutine(Spin(false, speedSpin));
-        }
+            Item currentItem = slots[i].GetComponentInChildren<InventoryItem>().item;
 
-        if(Input.GetKeyDown(PlayerKeybinds.swapNextWeapon))
-        {
-            StartCoroutine(Spin(true, speedSpin));
+            Image slotImage = slots[i].gameObject.transform.GetChild(0).GetComponent<Image>();
+            if(currentItem.weaponType != WeaponType.Garra)
+            {
+                slotImage.sprite = null;
+            }
+            else
+            {
+                slotImage.sprite = currentItem.sprite;
+            }
+
         }
+    }
+
+    public void StartSpin(bool clockwise, float speed)
+    {
+        StartCoroutine (Spin(clockwise, speed));
     }
 
     IEnumerator Spin(bool clockwise, float speed)
@@ -27,6 +44,23 @@ public class QuickWeaponChange : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, 0, speed * (clockwise? -1 : 1));
             yield return null;
         }
+    }
+
+    public QuickWeaponSlot[] quickWeaponSlots
+    {
+        get 
+        {
+            int childs = transform.childCount;
+            QuickWeaponSlot[] temp = new QuickWeaponSlot[childs];
+            for (int i = 0; i < childs; i++)
+            {
+                temp[i] = transform.GetChild(i).gameObject.GetComponent<QuickWeaponSlot>();
+                temp[i].IDSlot = i;
+            }
+
+            return temp; 
+        }
+
     }
 }
 

@@ -38,22 +38,49 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
 
-    //No funciona, sirve para arrastrar items
+    bool wasGrabbedFromQuickswap = false;
+    int quickSwapID = 0;
+    //sirve para arrastrar items
     public void OnBeginDrag(PointerEventData eventData)
     {
-        image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+        if(item.weaponType != WeaponType.Garra)
+        {
+            if (GetComponentInParent<QuickWeaponSlot>())
+            {
+                wasGrabbedFromQuickswap = true;
+                quickSwapID = GetComponentInParent<QuickWeaponSlot>().IDSlot;
+                print($"{wasGrabbedFromQuickswap} + {quickSwapID}");
+            }
+
+            image.raycastTarget = false;
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+        }
+
     }
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        if(item.weaponType != WeaponType.Garra)
+            transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        image.raycastTarget = true;
-        transform.SetParent(parentAfterDrag);
+        if(item.weaponType != WeaponType.Garra)
+        {
+            image.raycastTarget = true;
+            transform.SetParent(parentAfterDrag);
+            transform.rotation = parentAfterDrag.rotation;
+
+            if(wasGrabbedFromQuickswap)
+            {
+                InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+                inventoryManager.RemoveItemFromQuickswap(quickSwapID);
+                inventoryManager.ReloadSpritesOfQS();
+            }
+
+            
+        }
     }
 
 

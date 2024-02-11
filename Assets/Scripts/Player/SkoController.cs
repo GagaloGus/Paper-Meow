@@ -1,4 +1,5 @@
 using Cinemachine;
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,12 +26,13 @@ public class SkoController : MonoBehaviour
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
     [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
-    [SerializeField] int weaponAmount;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
     public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
     public PlayerStates playerState;
+
+    public int currentWeaponSlot;
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
@@ -55,9 +57,6 @@ public class SkoController : MonoBehaviour
         attack = PlayerKeybinds.attack;
         swapPreviousWeapon = PlayerKeybinds.swapPrevousWeapon;
         swapNextWeapon = PlayerKeybinds.swapNextWeapon;
-
-        //coje el numero de tipos de armas que tenemos automaticamente (determinado por el enumerado de las stats)
-        weaponAmount = System.Enum.GetValues(typeof(SkoStats.AttackWeaponIDs)).Length;
     }
 
     private void Start()
@@ -70,9 +69,13 @@ public class SkoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //distintas configuraciones para cuando esta en el suelo y en el aire
-            if(isGrounded) { GroundControl(); }
+        if (canMove)
+        {
+            //distintas configuraciones para cuando esta en el suelo y en el aire
+            if (isGrounded) { GroundControl(); }
             else { AirControl(); }
+
+        }
 
         #region Movement
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -113,7 +116,6 @@ public class SkoController : MonoBehaviour
             if (paused)
             {
                 canMove = false;
-                m_animator.SetInteger("player states", 0);
                 m_animator.SetBool("gamePaused", true);
 
                 isFlipped = false;
@@ -173,28 +175,41 @@ public class SkoController : MonoBehaviour
             rb.velocity += new Vector3(0, stats.jumpForce, 0);
         }
 
-        //Cambia al arma previa o la siguiente, si esta en los extremos salta hacia la primera o ultima
+        //el cambio de armas por el quickswap se hace en el Inventory manager
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
-            if (stats.weaponSelected == 0) { stats.weaponSelected = (SkoStats.AttackWeaponIDs)weaponAmount - 1; }
-            else { stats.weaponSelected--; }
-
-            //recarga las stats (por si acaso)
-            stats = GetComponent<SkoStats>();
-
+            FindObjectOfType<InventoryManager>().SwapWeapon(true);
         }
         else if (Input.GetKeyDown(swapNextWeapon))
         {
-            if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
-            else { stats.weaponSelected++; }
-
-            //recarga las stats (por si acaso)
-            stats = GetComponent<SkoStats>();
-
+            FindObjectOfType<InventoryManager>().SwapWeapon(false);
         }
 
         //Todo sobre los ataques
         Attacks();
+    }
+
+    public void ChangeWeapon(Item weapon)
+    {
+        stats.weaponSelected = (SkoStats.AttackWeaponIDs)(int)weapon.weaponType;
+
+        Weapon weaponSelected;
+        if (weapon.weaponType == WeaponType.Sword)
+        {
+            weaponSelected = GetComponentInChildren<Sword>(true);
+        }
+        else if (weapon.weaponType == WeaponType.Hammer)
+        {
+            weaponSelected = GetComponentInChildren<HammerW>(true);
+        }
+        else
+        {
+            weaponSelected = GetComponentInChildren<Garra>(true);
+        }
+
+        
+        weaponSelected.weaponData.itemData = weapon;
+        weaponSelected.UpdateWeapon();
     }
 
     public float timeCheckForChargedAttack;
@@ -319,7 +334,7 @@ public class SkoController : MonoBehaviour
 
         if (canMove)
         {
-            if (!isUsingSkill)
+            if (!isUsingSkill && !isAttacking)
             {
                 Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
                 Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);

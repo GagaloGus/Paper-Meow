@@ -13,13 +13,16 @@ public class SkoStats : MonoBehaviour
     [Header("Combat")]
     public int health;
     public float attackPower;
-    public enum AttackWeaponIDs { garra, cutter, hammer }
+
+    [Header("Weapons")]
     public AttackWeaponIDs weaponSelected;
+    public enum AttackWeaponIDs { garra, cutter, hammer, spear }
+
 
     [Header("Stats")]
     public int money;
     string unlockedSkills;
 
-    
+
     //aca estara todo sobre el guardado y cargado de datos
 }
