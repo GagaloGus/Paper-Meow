@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
         gameTime = 1;
 
+    }
+
+    private void Start()
+    {
         GetPlayer();
     }
 

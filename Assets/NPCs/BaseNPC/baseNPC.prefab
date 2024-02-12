@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.53302383, z: 0, w: 0.8461002}
   m_LocalPosition: {x: 71.08366, y: 0.16, z: 30.953854}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 885581332569069059}
   - {fileID: 23482697700403911}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable: 1
-  Distance: 1.47
+  Distance: 2.4
   interactEvent:
     m_PersistentCalls:
       m_Calls:

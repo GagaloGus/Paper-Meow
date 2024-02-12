@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SwapSkoWeapon(currentWeaponSlot);
-        quickSwapWeapon_Obj.StartSpin(clockwise, 2);
+        quickSwapWeapon_Obj.StartSpin(clockwise, 7);
     }
 
     void SwapSkoWeapon(int location)
@@ -84,8 +84,6 @@ public class InventoryManager : MonoBehaviour
         {
             FindObjectOfType<SkoController>().ChangeWeapon(weapon);
         }
-
-        print($"add {weapon.itemName} at {location}");
 
         if(itemInSlot.item.weaponType == WeaponType.Garra)
         {
@@ -111,8 +109,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         GameObject newSlot = Instantiate(quickSwapInventoryItemPrefab, currentSlot.transform);
-
-        print($"remove at {location}");
 
         newSlot.GetComponent<InventoryItem>().item = garra;
         currentSlot.SetHoldingItem(garra);

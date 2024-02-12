@@ -25,7 +25,6 @@ public class QuickWeaponSlot : MonoBehaviour, IDropHandler
                 inventoryManager.RemoveItemFromQuickswap(IDSlot);
                 itemHolding = GetComponentInChildren<InventoryItem>().item;
 
-                print("cambiao");
                 inventoryManager.AddItemToQuickswap(inventoryItem.item, IDSlot);
             }
         }

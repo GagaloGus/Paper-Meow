@@ -24,7 +24,8 @@ public class SkoController : MonoBehaviour
 
     [Header("Debug Variables")]
     public int gravity;
-    [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
+    [Range(0f, 2f)] public float rayDetectFloorDist;
+    public float nearGroundDist;
     [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
     public int currentAttackNumber;
     public bool canAttackAgain;
@@ -66,6 +67,7 @@ public class SkoController : MonoBehaviour
     private void Start()
     {
         UpdateStats();
+        nearGroundDist = rayDetectFloorDist * stats.jumpForce;
         //GameManager.instance.GetPlayer(gameObject);
         currentAttackNumber = 0;
     }
@@ -333,15 +335,24 @@ public class SkoController : MonoBehaviour
     private void FixedUpdate()
     {
         //detecta si hay suelo usando un boxcast
-        isGrounded =
-           Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+        /*isGrounded =
+           Physics.BoxCast(groundPoint.position, 
+           new Vector3(0.3f, 0.05f, 0.05f), 
+           Vector3.down, 
+           transform.rotation, 
+           rayDetectFloorDist, 
+           LayerMask.GetMask("Ground"));*/
+
+        isGrounded = Physics.Raycast(groundPoint.position, Vector3.down, rayDetectFloorDist, LayerMask.GetMask("Ground"));
 
         if (canMove)
         {
             if (!isUsingSkill && !isAttacking)
             {
                 Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-                Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);
+                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1));
+
+                Vector3 vel = direction * stats.moveSpeed * multiplySpeedFac;
                 //Moverse
                 rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y) * GameManager.instance.gameTime;
             }
@@ -410,5 +421,11 @@ public class SkoController : MonoBehaviour
         yield return new WaitForSeconds(skillUseTime);
 
         isUsingSkill = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        groundPoint = transform.Find("GroundCheckPoint");
+        Gizmos.DrawRay(groundPoint.position, Vector3.down*rayDetectFloorDist);
     }
 }
