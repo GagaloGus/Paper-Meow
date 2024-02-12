@@ -16,14 +16,18 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
-    public void InitializeItem(Item newItem)
+    public void InitializeItem(Item newItem, bool isWeapon)
     {
         image = GetComponent<Image>();
-        countText = GetComponentInChildren<TMP_Text>();
 
         item = newItem;
         image.sprite = newItem.sprite;
-        RefreshItemCount();
+
+        if (!isWeapon)
+        {
+            countText = GetComponentInChildren<TMP_Text>(true);
+            RefreshItemCount();
+        }
     }
 
     public void RefreshItemCount()
@@ -40,17 +44,21 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     bool wasGrabbedFromQuickswap = false;
     int quickSwapID = 0;
+    QuickWeaponSlot previousParentSlot;
     //sirve para arrastrar items
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(item.weaponType != WeaponType.Garra)
         {
-            if (GetComponentInParent<QuickWeaponSlot>())
+            QuickWeaponSlot parentSlot = GetComponentInParent<QuickWeaponSlot>();
+            if (parentSlot)
             {
                 wasGrabbedFromQuickswap = true;
-                quickSwapID = GetComponentInParent<QuickWeaponSlot>().IDSlot;
+                quickSwapID = parentSlot.IDSlot;
                 print($"{wasGrabbedFromQuickswap} + {quickSwapID}");
+                previousParentSlot = parentSlot;
             }
+
 
             image.raycastTarget = false;
             parentAfterDrag = transform.parent;
@@ -76,13 +84,19 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             {
                 InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
                 inventoryManager.RemoveItemFromQuickswap(quickSwapID);
-                inventoryManager.ReloadSpritesOfQS();
+                InitializeItem(item, true);
+                wasGrabbedFromQuickswap = false;
+                previousParentSlot.holdingWeapon = false;
             }
 
-            
+            QuickWeaponSlot parentSlot = GetComponentInParent<QuickWeaponSlot>();
+            if (parentSlot)
+            {
+                parentSlot.holdingWeapon = true;
+                parentSlot.SetHoldingItem(item);
+            }
         }
     }
-
 
     public int itemCount
     {

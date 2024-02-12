@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
             menu.menuSlots = new InventorySlot[childCount];
             for(int i = 0; i < childCount; i++)
             {
-                menu.menuSlots[i] = 
+                menu.menuSlots[i] =
                     menu.Menu.transform.GetChild(i).
                     GetComponent<InventorySlot>();
             }
@@ -45,13 +45,6 @@ public class InventoryManager : MonoBehaviour
             RemoveItemFromQuickswap(i);
         }
 
-        quickSwapWeapon_Obj.ReloadSlotSprites();
-
-    }
-
-    public void ReloadSpritesOfQS()
-    {
-        quickSwapWeapon_Obj.ReloadSlotSprites();
     }
 
     public void SwapWeapon(bool clockwise)
@@ -68,12 +61,17 @@ public class InventoryManager : MonoBehaviour
             else { currentWeaponSlot--; }
         }
 
-        Item weapon = 
-            quickSwapWeapons[currentWeaponSlot].
+        SwapSkoWeapon(currentWeaponSlot);
+        quickSwapWeapon_Obj.StartSpin(clockwise, 2);
+    }
+
+    void SwapSkoWeapon(int location)
+    {
+        Item weapon =
+            quickSwapWeapons[location].
             GetComponentInChildren<InventoryItem>().item;
 
         FindObjectOfType<SkoController>().ChangeWeapon(weapon);
-        FindObjectOfType<QuickWeaponChange>().StartSpin(clockwise, 2);
     }
 
     public bool AddItemToQuickswap(Item weapon, int location)
@@ -82,13 +80,20 @@ public class InventoryManager : MonoBehaviour
 
         InventoryItem itemInSlot = currentSlot.GetComponentInChildren<InventoryItem>();
 
+        if(location == 0) 
+        {
+            FindObjectOfType<SkoController>().ChangeWeapon(weapon);
+        }
+
+        print($"add {weapon.itemName} at {location}");
+
         if(itemInSlot.item.weaponType == WeaponType.Garra)
         {
             foreach (Transform child in currentSlot.transform)
             {
                 Destroy(child.gameObject);
             }
-            quickSwapWeapon_Obj.ReloadSlotSprites();
+            currentSlot.ChangeSpriteOfSlot();
             return true;
         }
 
@@ -99,11 +104,19 @@ public class InventoryManager : MonoBehaviour
     {
         QuickWeaponSlot currentSlot = quickSwapWeapons[location];
 
+        foreach (Transform child in currentSlot.transform)
+        {
+            if(child.GetComponent<InventoryItem>().item.weaponType == WeaponType.Garra)
+                Destroy(child.gameObject);
+        }
+
         GameObject newSlot = Instantiate(quickSwapInventoryItemPrefab, currentSlot.transform);
-        
-        InventoryItem itemInSlot = currentSlot.GetComponentInChildren<InventoryItem>();
-        
-        itemInSlot.item = garra;
+
+        print($"remove at {location}");
+
+        newSlot.GetComponent<InventoryItem>().item = garra;
+        currentSlot.SetHoldingItem(garra);
+        currentSlot.ChangeSpriteOfSlot();
     }
 
     public bool AddItem(Item item, int amount = 1)
@@ -158,7 +171,7 @@ public class InventoryManager : MonoBehaviour
         InventoryItem inventoryItem = newItemGameObj.GetComponent<InventoryItem>();
 
         inventoryItem.itemCount = amount;
-        inventoryItem.InitializeItem(item);
+        inventoryItem.InitializeItem(item, false);
 
     }
 

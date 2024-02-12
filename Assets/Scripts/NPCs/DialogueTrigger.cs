@@ -10,7 +10,7 @@ using static Unity.VisualScripting.Member;
 public class DialogueTrigger : MonoBehaviour
 {
     public NPCData info;
-    [SerializeField] List<DialogueString> dialogueStrings = new List<DialogueString>();
+    [SerializeField] public List<DialogueString> dialogueStrings = new List<DialogueString>();
 
     public void StartDialogue()
     {
@@ -77,7 +77,35 @@ class DialogueEditor : Editor
         {
             myscript.AddIndexToDialogues();
         }
+
         GUILayout.EndHorizontal();
+    }
+}
+
+//no funciona
+[CustomEditor(typeof(DialogueString))]
+class DialogueStringEditor : Editor
+{
+    SerializedProperty isQuestion;
+    SerializedProperty answerOptions;
+
+    private void OnEnable()
+    {
+        isQuestion = serializedObject.FindProperty("isQuestion");
+        answerOptions = serializedObject.FindProperty("optionButtons");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        serializedObject.Update();
+
+        if ((bool)isQuestion.boolValue)
+        {
+            EditorGUILayout.PropertyField(answerOptions);
+        }
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
 

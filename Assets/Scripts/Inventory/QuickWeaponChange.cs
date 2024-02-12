@@ -13,25 +13,6 @@ public class QuickWeaponChange : MonoBehaviour
         slots = quickWeaponSlots;
     }
 
-    public void ReloadSlotSprites()
-    {
-        for (int i = 0;i < slots.Length; i++)
-        {
-            Item currentItem = slots[i].GetComponentInChildren<InventoryItem>().item;
-
-            Image slotImage = slots[i].gameObject.transform.GetChild(0).GetComponent<Image>();
-            if(currentItem.weaponType != WeaponType.Garra)
-            {
-                slotImage.sprite = null;
-            }
-            else
-            {
-                slotImage.sprite = currentItem.sprite;
-            }
-
-        }
-    }
-
     public void StartSpin(bool clockwise, float speed)
     {
         StartCoroutine (Spin(clockwise, speed));

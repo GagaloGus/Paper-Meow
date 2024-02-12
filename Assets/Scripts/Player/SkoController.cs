@@ -36,6 +36,8 @@ public class SkoController : MonoBehaviour
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
+    InventoryManager inventoryManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +52,8 @@ public class SkoController : MonoBehaviour
 
         isUsingSkill = false;
         canMove = true;
+
+        inventoryManager = FindObjectOfType<InventoryManager>();
 
         //Mapeado de teclas
         jump = PlayerKeybinds.jump;
@@ -178,11 +182,11 @@ public class SkoController : MonoBehaviour
         //el cambio de armas por el quickswap se hace en el Inventory manager
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
-            FindObjectOfType<InventoryManager>().SwapWeapon(true);
+            inventoryManager.SwapWeapon(true);
         }
         else if (Input.GetKeyDown(swapNextWeapon))
         {
-            FindObjectOfType<InventoryManager>().SwapWeapon(false);
+            inventoryManager.SwapWeapon(false);
         }
 
         //Todo sobre los ataques
