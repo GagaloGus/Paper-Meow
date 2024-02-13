@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEvents : MonoBehaviour
+public class PlayerEvents
 {
     public event Action<int> onExperienceGained;
     public void ExperienceGained(int experience)

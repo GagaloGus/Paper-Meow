@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
-using static Unity.VisualScripting.Member;
 
 [RequireComponent (typeof(Interactable))]
 public class DialogueTrigger : MonoBehaviour
 {
     public NPCData info;
     [SerializeField] public List<DialogueString> dialogueStrings = new List<DialogueString>();
+
 
     public void StartDialogue()
     {
@@ -24,6 +23,11 @@ public class DialogueTrigger : MonoBehaviour
         {
             dialogueStrings[i].index = i;
         }
+    }
+
+    public void GiveItem(Item item)
+    {
+        InventoryManager.instance.AddItem(item);
     }
 }
 
@@ -64,6 +68,7 @@ public class ButtonAnswer
     public int jumpIndex;
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(DialogueTrigger))]
 class DialogueEditor : Editor
 {
@@ -81,32 +86,5 @@ class DialogueEditor : Editor
         GUILayout.EndHorizontal();
     }
 }
-
-//no funciona
-[CustomEditor(typeof(DialogueString))]
-class DialogueStringEditor : Editor
-{
-    SerializedProperty isQuestion;
-    SerializedProperty answerOptions;
-
-    private void OnEnable()
-    {
-        isQuestion = serializedObject.FindProperty("isQuestion");
-        answerOptions = serializedObject.FindProperty("optionButtons");
-    }
-
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        serializedObject.Update();
-
-        if ((bool)isQuestion.boolValue)
-        {
-            EditorGUILayout.PropertyField(answerOptions);
-        }
-
-        serializedObject.ApplyModifiedProperties();
-    }
-}
-
+#endif
 

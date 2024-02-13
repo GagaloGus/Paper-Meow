@@ -14,6 +14,7 @@ public struct MenuKey
     public KeyCode keyCode;
     public UnityEvent enableEvent;
     public UnityEvent disableEvent;
+
 }
 
 public class Buttonfunctions : MonoBehaviour

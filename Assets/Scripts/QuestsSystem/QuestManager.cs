@@ -2,9 +2,6 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
-[System.Serializable]
-
-
 public class QuestManager : MonoBehaviour
 {
     Dictionary<string, Quest> questMap;
@@ -12,8 +9,6 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         questMap = CreateQuestMap();
-
-        Quest quest = GetQuestById("CollectCoinsQuest");
     }
 
     private void OnEnable()

@@ -52,11 +52,18 @@ public class DialogueManager : MonoBehaviour
 
     public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC)
     {
+        //Evento y ajustes
+        GameEventsManager.instance.npcEvents.Interaction(true, NPC);
+
+        Menu[] menus = FindObjectsOfType<Menu>(true);
+        foreach (Menu menu in menus)
+        {
+            menu.cantOpen = true;
+        }
+
         //activa el cuadro de dialogo
         dialogueParent.SetActive(true);
         
-        //manda la señal al script del player
-        player.GetComponent<SkoController>().StartInteraction(NPC);
 
         //coge el npc que esta hablando
         this.NPC = NPC;
@@ -173,7 +180,14 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in text.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+
+            float waitMultiplier = 1;
+            if(letter == ',')
+            { waitMultiplier = 3.5f; }
+            else if (letter == '.')
+            { waitMultiplier = 5; }
+
+            yield return new WaitForSeconds(typingSpeed * waitMultiplier);
         }
 
         //cambia la animacion a idle hablar si no esta seleccionada una animacion distina en el dialogo
@@ -213,14 +227,22 @@ public class DialogueManager : MonoBehaviour
         //desactiva el cuadro de dialogo
         dialogueParent.SetActive(false);
 
-        //reactiva el interactuable del NPC y manda una señal al player de que se acabo la interaccion
+        //reactiva el interactuable del NPC
         NPC.GetComponent<Interactable>().enabled = true;
-        player.GetComponent<SkoController>().EndInteraction();
 
         //cambia la animacion a idle normal
         NPC.GetComponent<Animator>().SetInteger("dialogue", 0);
 
         FindObjectOfType<CameraController>().ResetCamera();
+
+        //Evento y ajustes
+        GameEventsManager.instance.npcEvents.Interaction(false, null);
+
+        Menu[] menus = FindObjectsOfType<Menu>(true);
+        foreach (Menu menu in menus)
+        {
+            menu.cantOpen = false;
+        }
     }
 
     //rotar al NPC

@@ -1,9 +1,6 @@
 using Cinemachine;
-using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [RequireComponent(typeof(SkoStats))]
@@ -26,18 +23,17 @@ public class SkoController : MonoBehaviour
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist;
     public float nearGroundDist;
-    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking, isInteracting;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
     public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
     public PlayerStates playerState;
 
-    public int currentWeaponSlot;
+    [Header("Has Items")]
+    [SerializeField] bool hasGlider;
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
-
-    InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -54,14 +50,26 @@ public class SkoController : MonoBehaviour
         isUsingSkill = false;
         canMove = true;
 
-        inventoryManager = FindObjectOfType<InventoryManager>();
-
         //Mapeado de teclas
         jump = PlayerKeybinds.jump;
         run = PlayerKeybinds.run;
         attack = PlayerKeybinds.attack;
         swapPreviousWeapon = PlayerKeybinds.swapPrevousWeapon;
         swapNextWeapon = PlayerKeybinds.swapNextWeapon;
+    }
+
+    private void OnEnable()
+    {
+        GameEventsManager.instance.inventoryEvents.onWeaponSwap += ChangeWeapon;
+        GameEventsManager.instance.inventoryEvents.onItemAdded += CheckIfItemAdded;
+        GameEventsManager.instance.npcEvents.onInteraction += Interaction;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inventoryEvents.onWeaponSwap -= ChangeWeapon;
+        GameEventsManager.instance.inventoryEvents.onItemAdded -= CheckIfItemAdded;
+        GameEventsManager.instance.npcEvents.onInteraction -= Interaction;
     }
 
     private void Start()
@@ -115,35 +123,12 @@ public class SkoController : MonoBehaviour
         }
     }
 
-    public void PausedGame(bool paused)
+    void CheckIfItemAdded(Item item)
     {
-        if (isGrounded)
+        if(item.itemName == "Paper Glider")
         {
-            if (paused)
-            {
-                canMove = false;
-                m_animator.SetBool("gamePaused", true);
-
-                isFlipped = false;
-                isFacingBackwards = false;
-                FlipCharacter();
-
-                EnablePhysics(false);
-            }
-            else
-            {
-                GetComponent<ConstantForce>().enabled = true;
-                canMove = true;
-                m_animator.SetBool("gamePaused", false);
-                EnablePhysics(true);
-            }
+            hasGlider = true;
         }
-    }
-
-    void EnablePhysics(bool enable)
-    {
-        GetComponent<ConstantForce>().force = enable ? Vector3.up * gravity : Vector3.zero;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     void FlipCharacter()
@@ -184,19 +169,21 @@ public class SkoController : MonoBehaviour
         //el cambio de armas por el quickswap se hace en el Inventory manager
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
-            inventoryManager.SwapWeapon(true);
+            InventoryManager.instance.SwapWeapon(true);
         }
         else if (Input.GetKeyDown(swapNextWeapon))
         {
-            inventoryManager.SwapWeapon(false);
+            InventoryManager.instance.SwapWeapon(false);
         }
 
         //Todo sobre los ataques
         Attacks();
     }
 
+    #region Attack and weapons
     public void ChangeWeapon(Item weapon)
     {
+        print(weapon.itemName);
         stats.weaponSelected = (SkoStats.AttackWeaponIDs)(int)weapon.weaponType;
 
         Weapon weaponSelected;
@@ -302,7 +289,7 @@ public class SkoController : MonoBehaviour
             }
         }
     }
-
+    #endregion
 
     void AirControl()
     {
@@ -310,7 +297,7 @@ public class SkoController : MonoBehaviour
         //raycast que detecta si hay suelo a tanta distancia de nosotros hacia abajo
         bool nearGround = Physics.Raycast(transform.position, Vector3.down, nearGroundDist, LayerMask.GetMask("Ground"));
             //si estamos planeando
-        if (isGliding && !isUsingSkill)
+        if (isGliding && !isUsingSkill && hasGlider)
         {
             //fisicas
             rb.drag = 15;
@@ -364,30 +351,65 @@ public class SkoController : MonoBehaviour
             }
         }
     }
-
-
-    //llamado desde el gamemanager
-    public void StartInteraction(GameObject npc)
+    public void PausedGame(bool paused)
     {
-        playerState = PlayerStates.Idle;
-        m_animator.SetInteger("player states", 0);
-        canMove = false;
-        //Centra el personaje para que apunte al npc
-        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+        if (isGrounded && !isInteracting)
+        {
+            if (paused)
+            {
+                canMove = false;
+                m_animator.SetBool("gamePaused", true);
 
-        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
+                isFlipped = false;
+                isFacingBackwards = false;
+                FlipCharacter();
 
-        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
-
-        isFlipped = !right;
-        isFacingBackwards = !up;
+                EnablePhysics(false);
+            }
+            else
+            {
+                GetComponent<ConstantForce>().enabled = true;
+                canMove = true;
+                m_animator.SetBool("gamePaused", false);
+                EnablePhysics(true);
+            }
+        }
     }
 
-    //llamado desde el gamemanager
-    public void EndInteraction()
+    void EnablePhysics(bool enable)
     {
-        canMove = true;
+        GetComponent<ConstantForce>().force = enable ? Vector3.up * gravity : Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
+
+
+    //llamado desde el dialogue manager
+    public void Interaction(bool start, GameObject npc)
+    {
+        isInteracting = start;
+
+        if (start)
+        {
+            playerState = PlayerStates.Idle;
+            m_animator.SetInteger("player states", 0);
+            canMove = false;
+            //Centra el personaje para que apunte al npc
+            transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+
+            bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
+
+            bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
+
+            isFlipped = !right;
+            isFacingBackwards = !up;
+        }
+        else
+        {
+            canMove = true;
+        }
+    }
+
+
     public bool player_canMove
     {
         get { return canMove; }

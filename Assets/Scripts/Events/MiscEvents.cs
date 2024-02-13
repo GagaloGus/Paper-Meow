@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiscEvents : MonoBehaviour
+public class MiscEvents
 {
     public event Action onCoinCollected;
     public void CoinCollected()
@@ -22,4 +22,15 @@ public class MiscEvents : MonoBehaviour
             onGemCollected();
         }
     }
+
+    public event Action onPauseMenuOpen;
+    public void PauseMenuOpen()
+    {
+        if (onPauseMenuOpen != null)
+        {
+            onPauseMenuOpen();
+        }
+    }
+
+    
 }

@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(MeshRotator), true, isFallback = true)]
 public class MeshRotatorInspector : Editor
 {
@@ -33,3 +34,4 @@ public class MeshRotatorInspector : Editor
         base.OnInspectorGUI();
     }
 }
+#endif

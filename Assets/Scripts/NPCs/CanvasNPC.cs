@@ -13,9 +13,14 @@ public class CanvasNPC : MonoBehaviour
     Image iconQuest;
     public Sprite cannotStart, canStart, cannotFinish, canFinish;
 
-    private void Start()
+    private void Awake()
     {
         iconQuest = GetComponentInChildren<Image>();
+    }
+
+    private void Start()
+    {
+        iconQuest.color = new Color(1,1,1,0);
     }
 
     private void Update()
@@ -33,6 +38,7 @@ public class CanvasNPC : MonoBehaviour
 
     public void SetState(QuestState newState, bool startPoint, bool finishPoint)
     {
+        iconQuest.color = new Color(1, 1, 1, 1);
         iconQuest.sprite = null;
 
         switch (newState)
@@ -56,6 +62,7 @@ public class CanvasNPC : MonoBehaviour
 
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(CanvasNPC))]
 class CanvasNPCEditor : Editor
 {
@@ -78,3 +85,4 @@ class CanvasNPCEditor : Editor
 
     }
 }
+#endif

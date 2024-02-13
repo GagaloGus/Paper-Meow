@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public BotonMenu[] botonMenus;
-    
+
+    public bool cantOpen = false;
+
     public void ToggleMenu(GameObject Boton)
     {
         foreach (BotonMenu menu in botonMenus)
@@ -26,19 +28,24 @@ public class Menu : MonoBehaviour
     bool open = false;
     public void HandleMenu()
     {
-        if(!open)
+        if(!cantOpen)
         {
-            gameObject.SetActive(true);
-            foreach (BotonMenu menu in botonMenus) 
-            { menu.menu.SetActive(false); }
+            if(!open)
+            {
+                gameObject.SetActive(true);
+                foreach (BotonMenu menu in botonMenus) 
+                { menu.menu.SetActive(false); }
 
-            GetComponent<Animator>().Play("openMenu");
-            open = true;
-        }
-        else
-        {
-            GetComponent<Animator>().Play("closeMenu");
-            open = false;
+                GetComponent<Animator>().Play("openMenu");
+                open = true;
+
+                GameEventsManager.instance.miscEvents.PauseMenuOpen();
+            }
+            else
+            {
+                GetComponent<Animator>().Play("closeMenu");
+                open = false;
+            }
         }
     }
 

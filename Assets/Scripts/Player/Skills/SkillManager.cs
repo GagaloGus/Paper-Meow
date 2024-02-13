@@ -140,10 +140,10 @@ public class SkillManager : MonoBehaviour
         if(skill.unlockType == Skill.UnlockType.SkillTree)
         {
             //Si tienes todos los requisitos
-            if(skill.canBeUnlocked && playerStats.money >= skill.moneyRequired)
+            if(skill.canBeUnlocked && GameManager.instance.money >= skill.moneyRequired)
             {
                 GetSkill(skill);
-                playerStats.money -= skill.moneyRequired;
+                GameManager.instance.money -= skill.moneyRequired;
 
                 Debug.Log($"{skill.skillName} desbloqueada");
                 unlockedSkillIDs = UnlockedSkills();
@@ -156,7 +156,7 @@ public class SkillManager : MonoBehaviour
             }
 
             //Si te falta dinero
-            else if(playerStats.money < skill.moneyRequired)
+            else if(GameManager.instance.money < skill.moneyRequired)
             {
                 Debug.Log("Te falta dinero :(");
             }

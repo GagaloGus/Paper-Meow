@@ -13,6 +13,8 @@ public class InventoryMenu
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager instance;
+
     [Header("Inventario")]
     public int maxStackedItems;
     public InventoryMenu[] itemMenus;
@@ -28,7 +30,20 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Arma elegida")]
     public int currentWeaponSlot;
+    public bool canSwap;
 
+    private void Awake()
+    {
+        if (!instance) //instance  != null  //Detecta que no haya otro manager en la escena.
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); //Si hay otro manager lo destruye.
+        }
+    }
 
 
     private void Start()
@@ -54,27 +69,31 @@ public class InventoryManager : MonoBehaviour
             RemoveItemFromQuickswap(i);
         }
 
+        canSwap = true;
     }
 
     public void SwapWeapon(bool clockwise)
     {
-        //Clockwise = previous
-        if (clockwise)
+        if (canSwap)
         {
-            if (currentWeaponSlot == 3) { currentWeaponSlot = 0; }
-            else { currentWeaponSlot++; }
-        }
-        else
-        {
-            if (currentWeaponSlot == 0) { currentWeaponSlot = 3; }
-            else { currentWeaponSlot--; }
-        }
+            //Clockwise = previous
+            if (clockwise)
+            {
+                if (currentWeaponSlot == 3) { currentWeaponSlot = 0; }
+                else { currentWeaponSlot++; }
+            }
+            else
+            {
+                if (currentWeaponSlot == 0) { currentWeaponSlot = 3; }
+                else { currentWeaponSlot--; }
+            }
 
-        SwapSkoWeapon(currentWeaponSlot);
+            SwapSkoWeapon(currentWeaponSlot);
 
-        quickSwapWeapon_Obj.gameObject.SetActive(true);
-        quickSwapWeapon_Obj.StartFade(true, 0.1f);
-        quickSwapWeapon_Obj.StartSpin(clockwise, 7);
+            quickSwapWeapon_Obj.gameObject.SetActive(true);
+            quickSwapWeapon_Obj.StartFade(true, 0.1f);
+            quickSwapWeapon_Obj.StartSpin(clockwise, 7);
+        }
     }
 
     void SwapSkoWeapon(int location)
@@ -83,7 +102,7 @@ public class InventoryManager : MonoBehaviour
             quickSwapWeapons[location].
             GetComponentInChildren<InventoryItem>().item;
 
-        FindObjectOfType<SkoController>().ChangeWeapon(weapon);
+        GameEventsManager.instance.inventoryEvents.WeaponSwap(weapon);
     }
 
     public bool AddItemToQuickswap(Item weapon, int location)
@@ -94,7 +113,7 @@ public class InventoryManager : MonoBehaviour
 
         if(location == 0) 
         {
-            FindObjectOfType<SkoController>().ChangeWeapon(weapon);
+            GameEventsManager.instance.inventoryEvents.WeaponSwap(weapon);
         }
 
         if(itemInSlot.item.weaponType == WeaponType.Garra)
@@ -185,7 +204,7 @@ public class InventoryManager : MonoBehaviour
 
             textotexto.text = $"Item {item.itemName} añadido";
 
-            print($"Item {item.itemName} añadido");
+            GameEventsManager.instance.inventoryEvents.ItemAdded(item);
         }
 
         return result;

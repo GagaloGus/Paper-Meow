@@ -37,6 +37,7 @@ public enum WeaponType
     Spear
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(Item))]
 class ItemEditor : Editor
 {
@@ -66,3 +67,4 @@ class ItemEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

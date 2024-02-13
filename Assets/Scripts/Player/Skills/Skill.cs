@@ -64,6 +64,7 @@ public abstract class Skill : ScriptableObject
     }   
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(Skill))]
 public class SkillEditor : Editor
 {
@@ -87,4 +88,5 @@ public class SkillEditor : Editor
         GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
     }
 }
+#endif
 

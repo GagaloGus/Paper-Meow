@@ -10,6 +10,8 @@ public class GameEventsManager : MonoBehaviour
     public MiscEvents miscEvents;
     public QuestEvents questEvents;
     public ItemsEvents itemsEvents;
+    public InventoryEvents inventoryEvents;
+    public NPCEvents npcEvents;
 
     private void Awake()
     {
@@ -27,5 +29,7 @@ public class GameEventsManager : MonoBehaviour
         miscEvents = new MiscEvents();
         questEvents = new QuestEvents();
         itemsEvents = new ItemsEvents();
+        inventoryEvents = new InventoryEvents();
+        npcEvents = new NPCEvents();
     }
 }

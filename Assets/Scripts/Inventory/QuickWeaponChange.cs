@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class QuickWeaponChange : MonoBehaviour
     public float dissapearMaxTime;
     [SerializeField] float currentTime;
     [SerializeField] bool notMoving, canRotate = true;
+
 
     private void Update()
     {
@@ -90,19 +92,28 @@ public class QuickWeaponChange : MonoBehaviour
         }
     }
 
-    public void InventoryOpen()
+    bool isOpen = false;
+    public void InventoryOpenClose()
     {
-        gameObject.SetActive (true);
-        StartFade(true, 0.1f);
-        canRotate = false;
-        notMoving = false;
+        if (!isOpen)
+        {
+            gameObject.SetActive (true);
+            StartFade(true, 0.1f);
+            canRotate = false;
+            notMoving = false;
+            InventoryManager.instance.canSwap = false;
+            isOpen = true;
+        }
+        else
+        {
+            canRotate = true;
+            StartFade(false, 0.1f);
+            InventoryManager.instance.canSwap = true;
+
+            isOpen = false;
+        }
     }
 
-    public void InventoryClose()
-    {
-        canRotate = true;
-        StartFade(false, 0.1f);
-    }
 
 }
 

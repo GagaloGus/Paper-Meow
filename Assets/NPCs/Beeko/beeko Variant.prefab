@@ -10,19 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 23482697700403911, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5512157
+      value: 0.6110715
       objectReference: {fileID: 0}
     - target: {fileID: 23482697700403911, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06944619
+      value: 0.049999546
       objectReference: {fileID: 0}
     - target: {fileID: 23482697700403911, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.82494634
+      value: -0.78736347
       objectReference: {fileID: 0}
     - target: {fileID: 23482697700403911, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.10393279
+      value: 0.06442424
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75,11 +75,11 @@ PrefabInstance:
     - target: {fileID: 2017924185818459500, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 14fd5024965d63745947d021679576b2, type: 2}
     - target: {fileID: 2017924185818459500, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 67c97f5769756804f9fb9fe0fabf7071, type: 2}
     - target: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Name
       value: beeko Variant
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 3423460990574255077, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_text
       value: Beeko
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824559166409198797, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: info.name

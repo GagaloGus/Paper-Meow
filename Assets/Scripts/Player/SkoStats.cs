@@ -23,9 +23,6 @@ public class SkoStats : MonoBehaviour
     public AttackWeaponIDs weaponSelected;
     public enum AttackWeaponIDs { garra, cutter, hammer, spear }
 
-
-    [Header("Stats")]
-    public int money;
     string unlockedSkills;
 
     private void OnEnable()
