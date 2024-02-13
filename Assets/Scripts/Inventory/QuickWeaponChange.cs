@@ -6,26 +6,25 @@ using UnityEngine.UI;
 
 public class QuickWeaponChange : MonoBehaviour
 {
-    QuickWeaponSlot[] slots;
 
-    private void Awake()
-    {
-        slots = quickWeaponSlots;
-    }
+    public float dissapearMaxTime;
+    [SerializeField] float currentTime;
+    [SerializeField] bool notMoving, canRotate = true;
 
-    public void StartSpin(bool clockwise, float speed)
+    private void Update()
     {
-        StartCoroutine (Spin(clockwise, speed));
-    }
-
-    IEnumerator Spin(bool clockwise, float speed)
-    {
-        for(float i = 0; i < 90; i+= speed)
+        if (notMoving)
         {
-            transform.rotation *= Quaternion.Euler(0, 0, speed * (clockwise? -1 : 1));
-            yield return null;
+            currentTime += Time.deltaTime;
+            if (currentTime > dissapearMaxTime)
+            {
+                StartFade(false, 0.1f);
+                currentTime = 0;
+                notMoving = false;
+            }
         }
     }
+
 
     public QuickWeaponSlot[] quickWeaponSlots
     {
@@ -43,5 +42,67 @@ public class QuickWeaponChange : MonoBehaviour
         }
 
     }
+    public void StartSpin(bool clockwise, float speed)
+    {
+        if(canRotate)
+        StartCoroutine (Spin(clockwise, speed));
+    }
+
+    IEnumerator Spin(bool clockwise, float speed)
+    {
+        float newSpeed = (int)Mathf.Floor(90 / (speed * 2));
+
+        notMoving = true;
+        currentTime = 0;
+        for(float i = 0; i < 90; i+= newSpeed)
+        {
+            transform.rotation *= Quaternion.Euler(0, 0, newSpeed * (clockwise? -1 : 1));
+            yield return null;
+        }
+
+    }
+
+    public void StartFade(bool fadeIn, float speed)
+    {
+        StartCoroutine(Fade(fadeIn, speed));
+    }
+
+    IEnumerator Fade(bool fadeIn, float speed)
+    {
+        Image image = GetComponent<Image>();
+        if (fadeIn)
+        {
+            for (float i = 0; i <= 1; i += speed)
+            {
+                image.color = new Color(1, 1, 1, i + image.color.a);
+                yield return null;
+            }
+        }
+        else
+        {
+            for (float i = 1; i >= 0; i -= speed)
+            {
+                image.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void InventoryOpen()
+    {
+        gameObject.SetActive (true);
+        StartFade(true, 0.1f);
+        canRotate = false;
+        notMoving = false;
+    }
+
+    public void InventoryClose()
+    {
+        canRotate = true;
+        StartFade(false, 0.1f);
+    }
+
 }
 

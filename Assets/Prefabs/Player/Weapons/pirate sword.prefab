@@ -4897,6 +4897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8956440064870202406}
   - component: {fileID: 6500854244878876577}
+  - component: {fileID: 9177576994395095452}
   m_Layer: 0
   m_Name: pirate sword
   m_TagString: Untagged
@@ -4942,6 +4943,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.39, y: 1.6174761, z: 0.44688222}
   m_Center: {x: 0, y: 0.95588523, z: -0.007487282}
+--- !u!114 &9177576994395095452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682497523318970812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27da7bce578e055478b881c031203b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData:
+    name: 
+    damageMultiplier: 3.2
+    itemData: {fileID: 0}
 --- !u!1001 &4015975243439794549
 PrefabInstance:
   m_ObjectHideFlags: 0

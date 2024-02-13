@@ -54,6 +54,14 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void CHangeSpeedOfCamera(float speed)
+    {
+        if (cinemachine)
+        {
+            cinemachine.m_XAxis.m_MaxSpeed = speed;
+        }
+    }
+
     public void ResetCamera()
     {
         if (cinemachine)

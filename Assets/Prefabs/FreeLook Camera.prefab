@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.88, z: -16.91}
+  m_FollowOffset: {x: 0, y: 1.17, z: -4.72}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.88, z: -16.91}
+  m_FollowOffset: {x: 0, y: 1.17, z: -4.72}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -279,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4763086691363114390}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.044003207, y: 0.5296509, z: -0.027528489, w: 0.8466262}
+  m_LocalRotation: {x: 0.055203803, y: 0.4120364, z: -0.02501896, w: 0.9091494}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.88, z: -16.91}
+  m_FollowOffset: {x: 0, y: 1.17, z: -4.72}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -538,9 +538,9 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 1
+    Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 15
+    m_MaxSpeed: 0
     m_AccelTime: 0.02
     m_DecelTime: 0.1
     m_InputAxisName: Mouse ScrollWheel
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 450
+    m_MaxSpeed: 0
     m_AccelTime: 0.5
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8355815960669358494}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08006455, y: 0.5279953, z: -0.05008852, w: 0.8439797}
+  m_LocalRotation: {x: 0.09392102, y: 0.4105948, z: -0.042566035, w: 0.9059685}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -754,7 +754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8450989581038047979}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09540286, y: 0.52699685, z: -0.059684213, w: 0.8423838}
+  m_LocalRotation: {x: 0.11038458, y: 0.4097526, z: -0.050027497, w: 0.90411025}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

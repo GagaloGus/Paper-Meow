@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25320acfd3e5645babc04d486c1911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStackedItems: 5
+  maxStackedItems: 30
   itemMenus:
   - Menu: {fileID: 0}
     menuSlots: []
@@ -57,5 +57,6 @@ MonoBehaviour:
   quickSwapWeapons: []
   inventoryItemPrefab: {fileID: 631850876000506939, guid: 9ead4d0c70a7a224daeaa2b047839e1c, type: 3}
   quickSwapInventoryItemPrefab: {fileID: 4914860866035002505, guid: e99c3122b5d93c74bb2cb1bedb9441a7, type: 3}
+  textoObtenido: {fileID: 8224336618691530588, guid: 6fe24d4d411f2f643966f5c1767abc39, type: 3}
   garra: {fileID: 11400000, guid: 9c13a64a940df074fbb0126f6879422c, type: 2}
   currentWeaponSlot: 0

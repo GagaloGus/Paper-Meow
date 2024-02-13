@@ -72,6 +72,8 @@ public class DialogueManager : MonoBehaviour
 
         //desactiva los botones de opciones
         buttonHolder.SetActive(false);
+
+        FindObjectOfType<CameraController>().CHangeSpeedOfCamera(100);
     }
 
 
@@ -217,6 +219,8 @@ public class DialogueManager : MonoBehaviour
 
         //cambia la animacion a idle normal
         NPC.GetComponent<Animator>().SetInteger("dialogue", 0);
+
+        FindObjectOfType<CameraController>().ResetCamera();
     }
 
     //rotar al NPC

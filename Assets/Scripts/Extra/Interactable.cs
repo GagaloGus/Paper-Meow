@@ -8,6 +8,9 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] bool isInteractable;
     [SerializeField] float Distance;
+    [SerializeField] Vector3 modifyCentre;
+
+    Vector3 newCentre;
     KeyCode interactKey;
     [SerializeField] UnityEvent interactEvent;
 
@@ -29,8 +32,9 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        newCentre = transform.position + CoolFunctions.VectorMoveAlongTransformAxis(modifyCentre, transform);
         //si esta dentro del rango devuelve true
-        playerInRange = Vector3.Distance(transform.position, player.transform.position) <= Distance;
+        playerInRange = Vector3.Distance(newCentre, player.transform.position) <= Distance;
 
         //Si estamos dentro del rango y el objeto es interactuable
         if(playerInRange && isInteractable) 
@@ -56,7 +60,11 @@ public class Interactable : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        //newCentre = transform.position + CoolFunctions.MultipyVectorValues(modifyCentre, transform.forward);
+
+        newCentre = transform.position + CoolFunctions.VectorMoveAlongTransformAxis(modifyCentre, transform);
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, Distance);
+        Gizmos.DrawWireSphere(newCentre, Distance);
     }
 }

@@ -33,4 +33,9 @@ public class AnimationEvents : MonoBehaviour
     }
 
     #endregion
+
+    public void DestroyGameObj()
+    {
+        Destroy(gameObject);
+    }
 }

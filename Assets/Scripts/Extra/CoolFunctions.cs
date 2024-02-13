@@ -35,5 +35,23 @@ public static class CoolFunctions
         yield return new WaitForSeconds(delay);
         f();
     }
+
+    public static Vector3 MultipyVectorValues(Vector3 v1, Vector3 v2)
+    {
+        Vector3 newVector = new Vector3(
+            v1.x * v2.x,
+            v1.y * v2.y,
+            v1.z * v2.z
+            );
+        
+        return newVector;
+    }
+
+    public static Vector3 VectorMoveAlongTransformAxis(Vector3 v1, Transform axis)
+    {
+        Vector3 newVector = v1.x * axis.right + v1.y * axis.up + v1.z * axis.forward;
+
+        return newVector;
+    }
 }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -12,16 +13,23 @@ public class InventoryMenu
 
 public class InventoryManager : MonoBehaviour
 {
+    [Header("Inventario")]
     public int maxStackedItems;
     public InventoryMenu[] itemMenus;
     public QuickWeaponSlot[] quickSwapWeapons;
 
+    [Header("Prefabs")]
     public GameObject inventoryItemPrefab;
     public GameObject quickSwapInventoryItemPrefab;
+    public GameObject textoObtenido;
     public Item garra;
+
     QuickWeaponChange quickSwapWeapon_Obj;
 
+    [Header("Arma elegida")]
     public int currentWeaponSlot;
+
+
 
     private void Start()
     {
@@ -38,6 +46,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         quickSwapWeapon_Obj = FindObjectOfType<QuickWeaponChange>();
+        quickSwapWeapon_Obj.gameObject.SetActive(false);
         quickSwapWeapons = quickSwapWeapon_Obj.quickWeaponSlots;
 
         for(int i = 0;i < quickSwapWeapons.Length; i++)
@@ -62,6 +71,9 @@ public class InventoryManager : MonoBehaviour
         }
 
         SwapSkoWeapon(currentWeaponSlot);
+
+        quickSwapWeapon_Obj.gameObject.SetActive(true);
+        quickSwapWeapon_Obj.StartFade(true, 0.1f);
         quickSwapWeapon_Obj.StartSpin(clockwise, 7);
     }
 
@@ -117,6 +129,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(Item item, int amount = 1)
     {
+        bool result = false;
         InventoryMenu currentMenu = itemMenus[(int)item.itemType];
 
         //Encuentra algun hueco del mismo tipo
@@ -132,33 +145,50 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.itemCount+= amount;
                 itemInSlot.RefreshItemCount();
-                return true;
+                result = true;
+                break;
             }
         }
 
         //Encuentra un hueco libre
-        for (int i = 0; i < currentMenu.menuSlots.Length; i++)
+        if(!result)
         {
-            InventorySlot slot = currentMenu.menuSlots[i];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-
-            if(itemInSlot == null)
+            for (int i = 0; i < currentMenu.menuSlots.Length; i++)
             {
-                if(item.stackable)
-                    SpawnNewItem(item, slot, amount);
-                else
-                {
-                    for (int j = 0; j < amount; j++)
-                    {
-                        SpawnNewItem(item, currentMenu.menuSlots[i+j], 1);
-                    }
-                }
+                InventorySlot slot = currentMenu.menuSlots[i];
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
-                return true;
+                if(itemInSlot == null)
+                {
+                    if(item.stackable)
+                        SpawnNewItem(item, slot, amount);
+                    else
+                    {
+                        for (int j = 0; j < amount; j++)
+                        {
+                            SpawnNewItem(item, currentMenu.menuSlots[i+j], 1);
+                        }
+                    }
+
+                    result = true;
+                    break;
+                }
             }
         }
 
-        return false;
+        if (result)
+        {
+            GameObject texto = Instantiate(textoObtenido);
+            texto.transform.SetParent(GameObject.FindGameObjectWithTag("ObtainedTextPlaceholder").transform);
+            texto.transform.localScale = Vector3.one;
+            TMP_Text textotexto = texto.GetComponent<TMP_Text>();
+
+            textotexto.text = $"Item {item.itemName} añadido";
+
+            print($"Item {item.itemName} añadido");
+        }
+
+        return result;
     }
 
     public void SpawnNewItem(Item item, InventorySlot slot, int amount) 
