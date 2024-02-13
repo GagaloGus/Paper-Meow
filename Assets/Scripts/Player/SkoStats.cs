@@ -28,6 +28,15 @@ public class SkoStats : MonoBehaviour
     public int money;
     string unlockedSkills;
 
+    private void OnEnable()
+    {
+        GameEventsManager.instance.playerEvents.onExperienceGained += GetEXP;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onExperienceGained -= GetEXP;
+    }
 
     private void Start()
     {
@@ -43,10 +52,15 @@ public class SkoStats : MonoBehaviour
         print($"{xpIncrease} experiencia obtenida");
         currentStats.EXP += xpIncrease;
 
-        if(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
+        
+
+        while(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
         {
             LevelUp();
         }
+
+        GameEventsManager.instance.playerEvents.PlayerExperienceChange(currentStats.EXP);
+
     }
 
     public void LevelUp()
@@ -58,6 +72,8 @@ public class SkoStats : MonoBehaviour
 
         int remaining_EXP = currentStats.EXP - currentStats.EXP_RequiredNextLvl;
         currentStats.EXP = remaining_EXP;
+
+        GameEventsManager.instance.playerEvents.PlayerLevelChange(currentStats.currentLevel);
 
         ReCalculateEXP_Required();
     }

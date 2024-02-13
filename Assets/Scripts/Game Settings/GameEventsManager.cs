@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameEventsManager : MonoBehaviour
+{
+    public static GameEventsManager instance;
+
+    public PlayerEvents playerEvents;
+    public MiscEvents miscEvents;
+    public QuestEvents questEvents;
+    public ItemsEvents itemsEvents;
+
+    private void Awake()
+    {
+        if (!instance) //instance  != null  //Detecta que no haya otro manager en la escena.
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); //Si hay otro manager lo destruye.
+        }
+
+        playerEvents = new PlayerEvents();
+        miscEvents = new MiscEvents();
+        questEvents = new QuestEvents();
+        itemsEvents = new ItemsEvents();
+    }
+}
