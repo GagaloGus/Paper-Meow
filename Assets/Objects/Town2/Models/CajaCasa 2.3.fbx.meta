@@ -3,7 +3,17 @@ guid: 269e307a092a92a49931b1be9fdbc184
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: "Cart\xF3n"
+    second: {fileID: 2800000, guid: 1d374c549f98a084c951c252f43ec824, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TEJAS
+    second: {fileID: 2800000, guid: 4462f8a3c890b2e4e851a5792400df1b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
