@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     GameObject player;
 
-
     public int targetFPS = 60;
     public int playerstatsRefreshRate = 3;
     void Awake()
