@@ -330,7 +330,17 @@ public class SkoController : MonoBehaviour
            rayDetectFloorDist, 
            LayerMask.GetMask("Ground"));*/
 
-        isGrounded = Physics.Raycast(groundPoint.position, Vector3.down, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+        Ray detectGround = new Ray(groundPoint.position, Vector3.down);
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(detectGround, out hit ,rayDetectFloorDist, LayerMask.GetMask("Ground")))
+        {
+            isGrounded = true;
+            GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
+        }
+        else { isGrounded = false; }
+
 
         if (canMove)
         {

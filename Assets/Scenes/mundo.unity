@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 29832552}
   m_Layer: 3
   m_Name: Parcela 21
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 53291381}
   m_Layer: 3
   m_Name: Parcela 30
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 271447706}
   m_Layer: 3
   m_Name: Parcela 20
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 340098101}
   m_Layer: 3
   m_Name: Parcela 26
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1312,7 +1312,7 @@ GameObject:
   - component: {fileID: 358572173}
   m_Layer: 3
   m_Name: Parcela 6
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 359572368}
   m_Layer: 3
   m_Name: Parcela 14
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1540,7 +1540,7 @@ GameObject:
   - component: {fileID: 372027112}
   m_Layer: 3
   m_Name: Parcela 37
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2397,7 +2397,7 @@ GameObject:
   - component: {fileID: 618001198}
   m_Layer: 3
   m_Name: Parcela 11
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2546,7 +2546,7 @@ GameObject:
   - component: {fileID: 665823584}
   m_Layer: 3
   m_Name: Parcela 25
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2749,7 +2749,7 @@ GameObject:
   - component: {fileID: 701942655}
   m_Layer: 3
   m_Name: Parcela 9
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3165,7 +3165,7 @@ GameObject:
   - component: {fileID: 839108063}
   m_Layer: 3
   m_Name: Parcela 16
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3510,7 +3510,7 @@ GameObject:
   - component: {fileID: 903695257}
   m_Layer: 3
   m_Name: Parcela 1
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3659,7 +3659,7 @@ GameObject:
   - component: {fileID: 907817358}
   m_Layer: 3
   m_Name: Parcela 34
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3972,8 +3972,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8344253251668500606, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 919867898}
   m_SourcePrefab: {fileID: 100100000, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+--- !u!1 &919867897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8344253251668500606, guid: bb380e66b047f654fa6c476f5df20327, type: 3}
+  m_PrefabInstance: {fileID: 919867896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &919867898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919867897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d3eed705e19b2429e1925cef4c72a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
 --- !u!1 &1003640377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3987,7 +4009,7 @@ GameObject:
   - component: {fileID: 1003640379}
   m_Layer: 3
   m_Name: Parcela 36
-  m_TagString: Untagged
+  m_TagString: Pueblo3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4213,7 +4235,7 @@ GameObject:
   - component: {fileID: 1059202994}
   m_Layer: 3
   m_Name: Parcela 3
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4582,6 +4604,77 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3479393833700521263, guid: 6fe24d4d411f2f643966f5c1767abc39, type: 3}
   m_PrefabInstance: {fileID: 693121584}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1152688195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152688197}
+  - component: {fileID: 1152688196}
+  - component: {fileID: 1152688198}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1152688196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152688195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c375788e95452824793bcfed31ccd5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeAudioSources: []
+  musicSource: {fileID: 0}
+--- !u!4 &1152688197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152688195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1928.7285, y: 50.09276, z: 1234.1603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1382176526}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1152688198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152688195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c362fff4d95639c478ed6560487ecd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentZoneTag: 
+  previousZoneTag: 
+  ambientSongs:
+  - tag: Pueblo1
+    song: {fileID: 0}
+  - tag: Pueblo2
+    song: {fileID: 0}
+  - tag: Pueblo3
+    song: {fileID: 0}
+  - tag: World
+    song: {fileID: 0}
 --- !u!1 &1153910507
 GameObject:
   m_ObjectHideFlags: 0
@@ -4595,7 +4688,7 @@ GameObject:
   - component: {fileID: 1153910509}
   m_Layer: 3
   m_Name: Parcela 10
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4687,7 +4780,7 @@ GameObject:
   - component: {fileID: 1161093689}
   m_Layer: 3
   m_Name: Parcela 33
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4861,7 +4954,7 @@ GameObject:
   - component: {fileID: 1306883025}
   m_Layer: 3
   m_Name: Parcela 17
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4953,7 +5046,7 @@ GameObject:
   - component: {fileID: 1360483305}
   m_Layer: 3
   m_Name: Parcela 2
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5032,6 +5125,134 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!1 &1382176525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382176526}
+  - component: {fileID: 1382176527}
+  m_Layer: 0
+  m_Name: AmbientMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1382176526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382176525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1152688197}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1382176527
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382176525}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1424683571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,7 +5266,7 @@ GameObject:
   - component: {fileID: 1424683573}
   m_Layer: 3
   m_Name: Parcela 31
-  m_TagString: Untagged
+  m_TagString: Pueblo2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5142,7 +5363,7 @@ GameObject:
   - component: {fileID: 1471731824}
   m_Layer: 3
   m_Name: Parcela 24
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5368,7 +5589,7 @@ GameObject:
   - component: {fileID: 1485588120}
   m_Layer: 3
   m_Name: Parcela 4
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5700,7 +5921,7 @@ GameObject:
   - component: {fileID: 1534628368}
   m_Layer: 3
   m_Name: Parcela 22
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5792,7 +6013,7 @@ GameObject:
   - component: {fileID: 1558065589}
   m_Layer: 3
   m_Name: Parcela 40
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6205,7 +6426,7 @@ GameObject:
   - component: {fileID: 1601359723}
   m_Layer: 3
   m_Name: Parcela 12
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6297,7 +6518,7 @@ GameObject:
   - component: {fileID: 1612075179}
   m_Layer: 3
   m_Name: Parcela 8
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6462,7 +6683,7 @@ GameObject:
   - component: {fileID: 1634354813}
   m_Layer: 3
   m_Name: Parcela 29
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6720,7 +6941,7 @@ GameObject:
   - component: {fileID: 1684266583}
   m_Layer: 3
   m_Name: Parcela 23
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6812,7 +7033,7 @@ GameObject:
   - component: {fileID: 1744989122}
   m_Layer: 3
   m_Name: Parcela 15
-  m_TagString: Untagged
+  m_TagString: Pueblo1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6977,7 +7198,7 @@ GameObject:
   - component: {fileID: 1762276560}
   m_Layer: 3
   m_Name: Parcela 35
-  m_TagString: Untagged
+  m_TagString: Pueblo3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7126,7 +7347,7 @@ GameObject:
   - component: {fileID: 1791366080}
   m_Layer: 3
   m_Name: Parcela 19
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7223,7 +7444,7 @@ GameObject:
   - component: {fileID: 1800504086}
   m_Layer: 3
   m_Name: Parcela 7
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7315,7 +7536,7 @@ GameObject:
   - component: {fileID: 1820198712}
   m_Layer: 3
   m_Name: Parcela 32
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7407,7 +7628,7 @@ GameObject:
   - component: {fileID: 1833762037}
   m_Layer: 3
   m_Name: Parcela 5
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7785,7 +8006,7 @@ GameObject:
   - component: {fileID: 1945358825}
   m_Layer: 3
   m_Name: Parcela 13
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7948,7 +8169,7 @@ GameObject:
   - component: {fileID: 1966150668}
   m_Layer: 3
   m_Name: Parcela 18
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8045,7 +8266,7 @@ GameObject:
   - component: {fileID: 2034553252}
   m_Layer: 3
   m_Name: Parcela 38
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8268,7 +8489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3727590011890803287, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.034653436
+      value: 0.03465343
       objectReference: {fileID: 0}
     - target: {fileID: 3727590011890803287, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -8276,7 +8497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3727590011890803287, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.017841859
+      value: 0.017841855
       objectReference: {fileID: 0}
     - target: {fileID: 4241850540163366934, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_FollowOffset.y
@@ -8304,7 +8525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547484301267636700, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.088610694
+      value: 0.08861068
       objectReference: {fileID: 0}
     - target: {fileID: 4547484301267636700, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -8391,7 +8612,7 @@ GameObject:
   - component: {fileID: 2100407001}
   m_Layer: 3
   m_Name: Parcela 28
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8483,7 +8704,7 @@ GameObject:
   - component: {fileID: 2104881140}
   m_Layer: 3
   m_Name: Parcela 39
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8575,7 +8796,7 @@ GameObject:
   - component: {fileID: 2127143978}
   m_Layer: 3
   m_Name: Parcela 27
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -15532,3 +15753,4 @@ SceneRoots:
   - {fileID: 1784457266}
   - {fileID: 617428739}
   - {fileID: 622548155}
+  - {fileID: 1152688197}

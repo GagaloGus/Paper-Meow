@@ -31,4 +31,13 @@ public class PlayerEvents
             onPlayerExperienceChange(experience);
         }
     }
+
+    public event Action<string> onPlayerTouchGround;
+    public void PlayerSendGroundTag(string tag)
+    {
+        if(onPlayerTouchGround != null)
+        {
+            onPlayerTouchGround(tag);
+        }
+    }
 }

@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
             activeAudioSources = new List<AudioSource>();
             DontDestroyOnLoad(gameObject);
         }
+
+        musicSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     public void SetMasterVolume(float volume)
@@ -29,7 +31,7 @@ public class AudioManager : MonoBehaviour
     }
 
     //Volume: [0, 1]
-    public AudioSource PlayAudio(AudioClip clip, float volume = 1)
+    public AudioSource PlaySFX(AudioClip clip, float volume = 1)
     {
         GameObject sourceObj = new GameObject(clip.name);
         activeAudioSources.Add(sourceObj.AddComponent<AudioSource>());
@@ -41,7 +43,7 @@ public class AudioManager : MonoBehaviour
         return source;
     }
 
-    public AudioSource PlayAudioOnLoop(AudioClip clip, float volume = 1)
+    public AudioSource PlayMusic(AudioClip clip, float volume = 1)
     {
         GameObject sourceObj = new GameObject(clip.name);
         activeAudioSources.Add(sourceObj.AddComponent<AudioSource>());
@@ -74,29 +76,39 @@ public class AudioManager : MonoBehaviour
             Destroy(source.gameObject);
         }
     }
+
     // Método para reproducir la música ambiente
-    public void PlayBackgroundMusic(AudioClip clip, float volume = 1)
+    public void ChangeBackgroundMusic(AudioClip clip)
     {
-        if (musicSource != null)
+        StartCoroutine(FadeOutVolume(0.01f, clip));
+    }
+
+    IEnumerator FadeOutVolume(float ratio, AudioClip clip)
+    {
+        for (float i = 1; i <= 0; i -= ratio)
         {
-            musicSource.Stop();
-            Destroy(musicSource.gameObject);
+            musicSource.volume = i;
+            yield return null;
         }
 
-        GameObject sourceObj = new GameObject(clip.name);
-        musicSource = sourceObj.AddComponent<AudioSource>();
+        musicSource.Stop();
         musicSource.clip = clip;
-        musicSource.volume = volume * AudioListener.volume;
-        musicSource.loop = true;
-        musicSource.Play();
-        activeAudioSources.Add(musicSource);
+        ResumeBackgroundMusic();
     }
-    public void StopBackgroundMusic()
+
+    public void ResumeBackgroundMusic()
     {
-        if (musicSource != null)
+        musicSource.Play();
+        StartCoroutine(FadeInVolume(0.01f));
+    }
+
+
+    IEnumerator FadeInVolume(float ratio)
+    {
+        for (float i = 0; i >= 1; i += ratio)
         {
-            musicSource.Stop();
-            activeAudioSources.Remove(musicSource);
+            musicSource.volume = i;
+            yield return null;
         }
     }
 }
