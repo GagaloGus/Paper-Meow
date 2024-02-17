@@ -23,7 +23,6 @@ public class InventoryManager : MonoBehaviour
     [Header("Prefabs")]
     public GameObject inventoryItemPrefab;
     public GameObject quickSwapInventoryItemPrefab;
-    public GameObject textoObtenido;
     public Item garra;
 
     QuickWeaponChange quickSwapWeapon_Obj;
@@ -60,7 +59,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        quickSwapWeapon_Obj = FindObjectOfType<QuickWeaponChange>();
+        quickSwapWeapon_Obj = FindObjectOfType<QuickWeaponChange>(true);
         quickSwapWeapon_Obj.gameObject.SetActive(false);
         quickSwapWeapons = quickSwapWeapon_Obj.quickWeaponSlots;
 
@@ -197,14 +196,8 @@ public class InventoryManager : MonoBehaviour
 
         if (result)
         {
-            GameObject texto = Instantiate(textoObtenido);
-            texto.transform.SetParent(GameObject.FindGameObjectWithTag("ObtainedTextPlaceholder").transform);
-            texto.transform.localScale = Vector3.one;
-            TMP_Text textotexto = texto.GetComponent<TMP_Text>();
-
-            textotexto.text = $"Item {item.itemName} añadido";
-
             GameEventsManager.instance.inventoryEvents.ItemAdded(item);
+            GameEventsManager.instance.miscEvents.ThingObtained(item.itemName);
         }
 
         return result;

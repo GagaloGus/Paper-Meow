@@ -15,9 +15,14 @@ public class AmbientMusicPlayer : MonoBehaviour
         GameEventsManager.instance.playerEvents.onPlayerTouchGround += ChangeTagSound;
     }
 
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onPlayerTouchGround -= ChangeTagSound;
+    }
+
     private void Start()
     {
-        previousZoneTag = "Pueblo1";
+        previousZoneTag = "asfdfs";
     }
 
     void ChangeTagSound(string tag)
@@ -28,7 +33,9 @@ public class AmbientMusicPlayer : MonoBehaviour
             AmbientSongs ambient = Array.Find(ambientSongs, x => x.tag == tag);
             if(ambient != null)
             {
-                AudioManager.instance.ChangeBackgroundMusic(ambient.song);
+                Debug.Log($"Cancion encontrada: {tag}");
+                //Funciona
+                //AudioManager.instance.ChangeBackgroundMusic(ambient.song);
             }
             else
             {
@@ -45,6 +52,7 @@ public class AmbientMusicPlayer : MonoBehaviour
 public class AmbientSongs
 {
     public string tag;
+    public int maxVolume;
     public AudioClip song;
 }
 

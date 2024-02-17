@@ -10,7 +10,9 @@ public class Coin : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<SkoController>())
         {
-            GameEventsManager.instance.itemsEvents.MoneyChange(coinAmount);
+            GameManager.instance.MoneyUpdate(coinAmount);
+            GameEventsManager.instance.miscEvents.CoinCollected();
+            GameEventsManager.instance.miscEvents.ThingObtained($"{coinAmount} MeowCoins");
             Destroy(gameObject);
         }
     }

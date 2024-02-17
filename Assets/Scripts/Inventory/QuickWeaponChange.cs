@@ -72,9 +72,10 @@ public class QuickWeaponChange : MonoBehaviour
     IEnumerator Fade(bool fadeIn, float speed)
     {
         Image image = GetComponent<Image>();
+        float alpha = image.color.a;
         if (fadeIn)
         {
-            for (float i = 0; i <= 1; i += speed)
+            for (float i = alpha; i <= 1; i += speed)
             {
                 image.color = new Color(1, 1, 1, i + image.color.a);
                 yield return null;
@@ -82,7 +83,7 @@ public class QuickWeaponChange : MonoBehaviour
         }
         else
         {
-            for (float i = 1; i >= 0; i -= speed)
+            for (float i = 1; i >= alpha; i -= speed)
             {
                 image.color = new Color(1, 1, 1, i);
                 yield return null;
@@ -92,26 +93,21 @@ public class QuickWeaponChange : MonoBehaviour
         }
     }
 
-    bool isOpen = false;
-    public void InventoryOpenClose()
+    public void TurnON()
     {
-        if (!isOpen)
-        {
-            gameObject.SetActive (true);
-            StartFade(true, 0.1f);
-            canRotate = false;
-            notMoving = false;
-            InventoryManager.instance.canSwap = false;
-            isOpen = true;
-        }
-        else
-        {
-            canRotate = true;
-            StartFade(false, 0.1f);
-            InventoryManager.instance.canSwap = true;
+        gameObject.SetActive(true);
+        StartFade(true, 0.1f);
+        canRotate = false;
+        notMoving = false;
+        InventoryManager.instance.canSwap = false;
+    }
 
-            isOpen = false;
-        }
+    public void TurnOFF()
+    {
+        canRotate = true;
+        if (gameObject.activeSelf) { StartFade(false, 0.1f); }
+        
+        InventoryManager.instance.canSwap = true;
     }
 
 

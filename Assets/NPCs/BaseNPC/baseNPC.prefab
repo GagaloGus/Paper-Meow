@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6522816087489026372}
   - component: {fileID: 6496545504966461949}
   - component: {fileID: 1414390501945126090}
+  - component: {fileID: -8432388510074900281}
   m_Layer: 0
   m_Name: baseNPC
   m_TagString: Untagged
@@ -158,6 +159,18 @@ MonoBehaviour:
   canStart: {fileID: 21300000, guid: 7b03335db0728144d957d27d22f05c5c, type: 3}
   cannotFinish: {fileID: 21300000, guid: 5a7cd20adbd6fd04eb9baee7f0441efb, type: 3}
   canFinish: {fileID: 21300000, guid: de95d2a432cf12344a65aa6bd0d94a0a, type: 3}
+--- !u!114 &-8432388510074900281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250404264903412635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2026fd40bc8ddb94391a2af1b1401683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4288362622479397029
 GameObject:
   m_ObjectHideFlags: 0

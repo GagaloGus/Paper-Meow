@@ -10,9 +10,4 @@ public class SkoSounds : MonoBehaviour
     [Header("SFX Pegar")]
     public AudioClip sonido2;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

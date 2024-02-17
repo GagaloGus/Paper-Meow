@@ -11,7 +11,6 @@ public class GameEventsManager : MonoBehaviour
     public QuestEvents questEvents;
     public ItemsEvents itemsEvents;
     public InventoryEvents inventoryEvents;
-    public NPCEvents npcEvents;
 
     private void Awake()
     {
@@ -30,6 +29,5 @@ public class GameEventsManager : MonoBehaviour
         questEvents = new QuestEvents();
         itemsEvents = new ItemsEvents();
         inventoryEvents = new InventoryEvents();
-        npcEvents = new NPCEvents();
     }
 }

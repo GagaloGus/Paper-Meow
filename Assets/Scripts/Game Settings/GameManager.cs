@@ -8,14 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int money = 0;
-    public float time = 0;
-    public int healthpotions = 0;
     public int health;
     public int maxHealth = 0;
 
     public int gameTime;
 
-    public bool gamePaused;
+    public bool gamePaused, isInteracting;
 
     public GameObject player;
 
@@ -39,21 +37,26 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
         gameTime = 1;
         money = 0;
+        isInteracting = false;
     }
 
     private void OnEnable()
     {
-        GameEventsManager.instance.itemsEvents.onMoneyChange += MoneyUpdate;
+        GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
     }
     
     private void OnDisable()
     {
-        GameEventsManager.instance.itemsEvents.onMoneyChange -= MoneyUpdate;
+        GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
     }
 
     private void Start()
     {
         GetPlayer();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        FindObjectOfType<CameraController>().ResetCamera();
     }
 
 
@@ -76,10 +79,56 @@ public class GameManager : MonoBehaviour
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
+
         if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
         {
             PauseAndContinueToggle();
         }
+
+        if (!gamePaused && !isInteracting)
+        {
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                LockCursorAndCamera();
+            }
+
+
+            if(Input.GetKeyUp(KeyCode.LeftAlt))
+            {
+                UnlockCursorAndCamera();
+            }
+        }
+
+
+    }
+
+    void LockCursorAndCamera()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        FindObjectOfType<CameraController>().LockCamera();
+    }
+
+    void UnlockCursorAndCamera()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        FindObjectOfType<CameraController>().ResetCamera();
+    }
+
+    public void PauseGame()
+    {
+        gameTime = 0;
+        FindObjectOfType<CameraController>().PausedLockCamera();
+        player.GetComponent<SkoController>().PausedGame(true);
+    }
+
+    public void ContinueGame()
+    {
+        gameTime = 1;
+        player.GetComponent<SkoController>().PausedGame(false);
+
+        UnlockCursorAndCamera ();
     }
 
     public void PauseAndContinueToggle()
@@ -87,16 +136,12 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            gameTime = 0;
-            FindObjectOfType<CameraController>().LockCamera();
-            player.GetComponent<SkoController>().PausedGame(true);
+            PauseGame();
         }
 
         else
         {
-            gameTime = 1;
-            FindObjectOfType<CameraController>().ResetCamera();
-            player.GetComponent<SkoController>().PausedGame(false);
+            ContinueGame();
         }
     }
 
@@ -130,23 +175,17 @@ public class GameManager : MonoBehaviour
         set { money = value; }
     }
 
-    public void Heal(int amount)
-    {
-        health += amount;
-    }
-    public void Healing(int healvalue)
-    {
-        Heal(health + healvalue <= 100 ? healvalue : 100 - health);
-
-    }
-
     public void StartInteraction(GameObject npc)
     {
+        isInteracting = true;
+        LockCursorAndCamera();
         player.BroadcastMessage("StartInteraction", npc);
     }
 
-    public void EndInteraction(GameObject npc)
+    public void EndInteraction()
     {
+        isInteracting = false;
+        UnlockCursorAndCamera();
         player.BroadcastMessage("EndInteraction");
     }
 }

@@ -8,8 +8,6 @@ public class Menu : MonoBehaviour
 {
     public BotonMenu[] botonMenus;
 
-    public bool cantOpen = false;
-
     public void ToggleMenu(GameObject Boton)
     {
         foreach (BotonMenu menu in botonMenus)
@@ -28,7 +26,7 @@ public class Menu : MonoBehaviour
     bool open = false;
     public void HandleMenu()
     {
-        if(!cantOpen)
+        if(!GameManager.instance.isInteracting)
         {
             if(!open)
             {

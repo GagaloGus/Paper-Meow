@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7918239520822913663}
   - component: {fileID: 5561248942759010009}
-  - component: {fileID: 2907880277989688018}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,30 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ad0c0b1b68bf74aad84cad2d31708e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 100
-  time: 0
-  healthpotions: 0
+  money: 0
   health: 100
   maxHealth: 100
   gameTime: 0
   gamePaused: 0
+  isInteracting: 0
   player: {fileID: 0}
   targetFPS: 60
   playerstatsRefreshRate: 3
---- !u!114 &2907880277989688018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443824588609294153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5814320c9998b5b4a89a22c74afca2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetFPS: 0
-  vsyncValue: 0
-  resolutionDropdown: {fileID: 0}
-  fpsLimitDropdown: {fileID: 0}
-  brightnessSlider: {fileID: 0}

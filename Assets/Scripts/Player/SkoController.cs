@@ -23,7 +23,7 @@ public class SkoController : MonoBehaviour
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist;
     public float nearGroundDist;
-    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking, isInteracting;
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
@@ -62,14 +62,12 @@ public class SkoController : MonoBehaviour
     {
         GameEventsManager.instance.inventoryEvents.onWeaponSwap += ChangeWeapon;
         GameEventsManager.instance.inventoryEvents.onItemAdded += CheckIfItemAdded;
-        GameEventsManager.instance.npcEvents.onInteraction += Interaction;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.inventoryEvents.onWeaponSwap -= ChangeWeapon;
         GameEventsManager.instance.inventoryEvents.onItemAdded -= CheckIfItemAdded;
-        GameEventsManager.instance.npcEvents.onInteraction -= Interaction;
     }
 
     private void Start()
@@ -183,7 +181,6 @@ public class SkoController : MonoBehaviour
     #region Attack and weapons
     public void ChangeWeapon(Item weapon)
     {
-        print(weapon.itemName);
         stats.weaponSelected = (SkoStats.AttackWeaponIDs)(int)weapon.weaponType;
 
         Weapon weaponSelected;
@@ -334,7 +331,7 @@ public class SkoController : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Raycast(detectGround, out hit ,rayDetectFloorDist, LayerMask.GetMask("Ground")))
+        if(Physics.Raycast(detectGround, out hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
             GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
@@ -363,7 +360,7 @@ public class SkoController : MonoBehaviour
     }
     public void PausedGame(bool paused)
     {
-        if (isGrounded && !isInteracting)
+        if (isGrounded && !GameManager.instance.isInteracting)
         {
             if (paused)
             {
@@ -394,29 +391,26 @@ public class SkoController : MonoBehaviour
 
 
     //llamado desde el dialogue manager
-    public void Interaction(bool start, GameObject npc)
+
+    public void StartInteraction(GameObject npc)
     {
-        isInteracting = start;
+        playerState = PlayerStates.Idle;
+        m_animator.SetInteger("player states", 0);
+        canMove = false;
+        //Centra el personaje para que apunte al npc
+        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
-        if (start)
-        {
-            playerState = PlayerStates.Idle;
-            m_animator.SetInteger("player states", 0);
-            canMove = false;
-            //Centra el personaje para que apunte al npc
-            transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
 
-            bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
+        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
 
-            bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
+        isFlipped = !right;
+        isFacingBackwards = !up;
+    }
 
-            isFlipped = !right;
-            isFacingBackwards = !up;
-        }
-        else
-        {
-            canMove = true;
-        }
+    public void EndInteraction()
+    {
+        canMove = true;
     }
 
 

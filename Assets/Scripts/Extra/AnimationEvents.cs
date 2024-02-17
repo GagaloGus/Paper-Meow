@@ -38,4 +38,9 @@ public class AnimationEvents : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX(clip, transform.position);
+    }
 }

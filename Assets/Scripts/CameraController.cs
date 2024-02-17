@@ -9,19 +9,8 @@ public class CameraController : MonoBehaviour
 
     Vector2 maxSpeed;
     float originalYvalue;
-    bool cantMove = false;
 
     Animator animator;
-
-    private void OnEnable()
-    {
-        GameEventsManager.instance.npcEvents.onInteraction += Interaction;
-    }
-
-    private void OnDisable()
-    {
-        GameEventsManager.instance.npcEvents.onInteraction -= Interaction;
-    }
 
     private void Start()
     {
@@ -52,10 +41,19 @@ public class CameraController : MonoBehaviour
         }
     }
 
-
     public void LockCamera()
     {
-        if (cinemachine && !cantMove)
+        if(cinemachine)
+        {
+            cinemachine.m_XAxis.m_MaxSpeed = 0f;
+            cinemachine.m_YAxis.m_MaxSpeed = 0f;
+        }
+    }
+
+
+    public void PausedLockCamera()
+    {
+        if (cinemachine && !GameManager.instance.isInteracting)
         {
             animator.enabled = true;
             animator.SetBool("Paused", true);
@@ -84,9 +82,4 @@ public class CameraController : MonoBehaviour
 
         }
     } 
-
-    void Interaction(bool start, GameObject npc) 
-    {
-        cantMove = start;
-    }
 }

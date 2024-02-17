@@ -11,27 +11,35 @@ public class TextController : MonoBehaviour
     void Start()
     {
         questDisplayText.gameObject.SetActive(false);
+        coinText.text = GameManager.instance.money.ToString();
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += UpdateQuestText;
+        GameEventsManager.instance.miscEvents.onCoinCollected += MoneyUpdate;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= UpdateQuestText;
+        GameEventsManager.instance.miscEvents.onCoinCollected -= MoneyUpdate;
     }
 
     // Update is called once per frame
     void Update()
     {
-        coinText.text = GameManager.instance.coinCount.ToString();
     }
 
     void UpdateQuestText(Quest quest)
     {
         questDisplayText.gameObject.SetActive(true);
         questDisplayText.text = $"Quest: {quest.info.displayName}";
+    }
+
+    void MoneyUpdate()
+    {
+        coinText.text = GameManager.instance.coinCount.ToString();
+        coinText.gameObject.GetComponentInParent<Animator>().SetTrigger("moneyUpdate");
     }
 }

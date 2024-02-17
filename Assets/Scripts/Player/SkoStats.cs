@@ -46,10 +46,8 @@ public class SkoStats : MonoBehaviour
     }
     public void GetEXP(int xpIncrease)
     {
-        print($"{xpIncrease} experiencia obtenida");
         currentStats.EXP += xpIncrease;
-
-        
+        GameEventsManager.instance.miscEvents.ThingObtained($"{xpIncrease} experiencia");
 
         while(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
         {

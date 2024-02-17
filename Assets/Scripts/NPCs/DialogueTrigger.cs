@@ -7,14 +7,19 @@ using UnityEngine.Events;
 [RequireComponent (typeof(Interactable))]
 public class DialogueTrigger : MonoBehaviour
 {
+    [Header("Sound Effects")]
+    public AudioClip[] typingSfxs;
+
+    [Header("Dialogues")]
     public NPCData info;
     [SerializeField] public List<DialogueString> dialogueStrings = new List<DialogueString>();
+
 
 
     public void StartDialogue()
     {
         info.originalRot = transform.rotation;
-        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, info,gameObject);
+        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, info,gameObject, typingSfxs);
     }
 
     public void AddIndexToDialogues()

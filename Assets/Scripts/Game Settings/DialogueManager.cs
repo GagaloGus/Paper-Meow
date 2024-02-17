@@ -17,13 +17,18 @@ public class DialogueManager : MonoBehaviour
 
     List<DialogueString> dialogueList; //lista con los dialogos
 
+    [Header("Speed")]
     [SerializeField] float typingSpeed = 0.05f; //velocidad de escritura
     [SerializeField] float turnSpeed = 2; //velocidad de girarse
 
+    [Header("Dialogue")]
     [SerializeField] int currentDialogueIndex = 0; //dialogo en el que esta ahora mismo
-    GameObject player;
+
+    SkoController player;
     GameObject NPC;
     NPCData npcData;
+    
+   [SerializeField] AudioClip[] currentTypingSFXs;
 
     private void Start()
     {
@@ -32,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         FindChilds();
         dialogueParent.SetActive(false);
 
-        player = FindObjectOfType<SkoController>().gameObject;
+        player = FindObjectOfType<SkoController>();
     }
 
     void FindChilds()
@@ -50,24 +55,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC)
+    public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC, AudioClip[] typingSFXs)
     {
-        //Evento y ajustes
-        GameEventsManager.instance.npcEvents.Interaction(true, NPC);
-
-        Menu[] menus = FindObjectsOfType<Menu>(true);
-        foreach (Menu menu in menus)
-        {
-            menu.cantOpen = true;
-        }
+        GameManager.instance.StartInteraction(NPC);
+        //player.StartInteraction(NPC);
 
         //activa el cuadro de dialogo
         dialogueParent.SetActive(true);
         
 
-        //coge el npc que esta hablando
+        //coge los datos del npc que esta hablando
         this.NPC = NPC;
         this.npcData = npcData;
+
+        currentTypingSFXs = typingSFXs;
 
         //coge la lista de dialogos del npc
         dialogueList = textToPrint;
@@ -172,8 +173,11 @@ public class DialogueManager : MonoBehaviour
         //coge la linea en la que estamos
         DialogueString line = dialogueList[currentDialogueIndex];
 
-        //cambia la animacion a hablar si no esta seleccionada una animacion distina en el dialogo
-        NPC.GetComponent<Animator>().SetInteger("dialogue", line.specialNPCAnimation == AnimationTypes.Normal ? 2 : (int)line.specialNPCAnimation + 2);
+        if (line.NPCTalks)
+        {
+            //cambia la animacion a hablar si no esta seleccionada una animacion distina en el dialogo
+            NPC.GetComponent<Animator>().SetInteger("dialogue", line.specialNPCAnimation == AnimationTypes.Normal ? 2 : (int)line.specialNPCAnimation + 2);
+        }
 
         //escribe la linea
         dialogueText.text = "";
@@ -183,9 +187,12 @@ public class DialogueManager : MonoBehaviour
 
             float waitMultiplier = 1;
             if(letter == ',')
-            { waitMultiplier = 3.5f; }
+            { waitMultiplier = 5f; }
             else if (letter == '.')
-            { waitMultiplier = 5; }
+            { waitMultiplier = 8; }
+
+            int rnd = UnityEngine.Random.Range(0,currentTypingSFXs.Length);
+            AudioManager.instance.PlaySFX(currentTypingSFXs[rnd], NPC.transform.position);
 
             yield return new WaitForSeconds(typingSpeed * waitMultiplier);
         }
@@ -235,14 +242,8 @@ public class DialogueManager : MonoBehaviour
 
         FindObjectOfType<CameraController>().ResetCamera();
 
-        //Evento y ajustes
-        GameEventsManager.instance.npcEvents.Interaction(false, null);
-
-        Menu[] menus = FindObjectsOfType<Menu>(true);
-        foreach (Menu menu in menus)
-        {
-            menu.cantOpen = false;
-        }
+        GameManager.instance.EndInteraction();
+        //player.EndInteraction();
     }
 
     //rotar al NPC

@@ -10256,6 +10256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333025559593040506}
+  - component: {fileID: 8067252687365598853}
   - component: {fileID: 6403942227184611853}
   - component: {fileID: 9069423351829115485}
   - component: {fileID: 2120665806219072765}
@@ -10285,6 +10286,20 @@ Transform:
   - {fileID: 5376614447852608461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8067252687365598853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d3eed705e19b2429e1925cef4c72a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
 --- !u!114 &6403942227184611853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10312,7 +10327,7 @@ MonoBehaviour:
   currentAttackNumber: 0
   canAttackAgain: 0
   playerState: 0
-  currentWeaponSlot: 0
+  hasGlider: 0
   timeCheckForChargedAttack: 0.1
 --- !u!114 &9069423351829115485
 MonoBehaviour:
@@ -10329,11 +10344,21 @@ MonoBehaviour:
   moveSpeed: 12
   maxSpeed: 16.69
   jumpForce: 9
-  runSpeedMult: 3
+  runSpeedMult: 2.03
   health: 10
-  attackPower: 10
+  BaseATK: 20
+  BaseSPD: 5
+  BaseExpReq: 30
+  EXP_incMult: 120
+  currentStats:
+    EXP: 0
+    EXP_RequiredNextLvl: 0
+    currentLevel: 0
+    ATK: 0
+    ATK_increaseRange: {x: 5, y: 20}
+    SPD: 0
+    SPD_increaseRange: {x: 1, y: 3}
   weaponSelected: 0
-  money: 500
 --- !u!54 &2120665806219072765
 Rigidbody:
   m_ObjectHideFlags: 0

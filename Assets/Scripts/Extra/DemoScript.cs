@@ -21,4 +21,9 @@ public class DemoScript : MonoBehaviour
     {
         playerStats.GetEXP(exp);
     }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX(clip, transform.position);
+    }
 }
