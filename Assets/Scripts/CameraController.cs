@@ -6,11 +6,20 @@ public class CameraController : MonoBehaviour
 {
     public CinemachineFreeLook cinemachine;
     public float speedSmooth;
-
+    private float[] CameraOriginalValues;
     Vector2 maxSpeed;
-    float originalYvalue;
 
     Animator animator;
+
+    private void OnEnable()
+    {
+        GameEventsManager.instance.playerEvents.onHouseEnterChange += HouseCamera;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onHouseEnterChange -= HouseCamera;
+    }
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,9 +28,15 @@ public class CameraController : MonoBehaviour
         
         // Encuentra la cámara primero
         cinemachine = GetComponent<CinemachineFreeLook>();
+        CameraOriginalValues = new float[3];
+        for (int i = 0; i < 3; i++)
+        {
+             CameraOriginalValues[i] = cinemachine.m_Orbits[i].m_Height;
+        }
 
         if (cinemachine)
         {
+            //cinemachine.m_Orbits[0].m_Height;
             // Obtiene el componente CinemachineComposer
             CinemachineComposer comp = cinemachine.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
 
@@ -47,7 +62,6 @@ public class CameraController : MonoBehaviour
         {
             animator.enabled = true;
             animator.SetBool("Paused", true);
-            originalYvalue = cinemachine.m_YAxis.m_InputAxisValue;
 
             cinemachine.m_XAxis.m_MaxSpeed = 0f;
             cinemachine.m_YAxis.m_MaxSpeed = 0f;
@@ -56,12 +70,33 @@ public class CameraController : MonoBehaviour
 
     public void ResetCamera()
     {
+        GetComponent<CinemachineCollider>().enabled = true;
+
         if (cinemachine)
         {
             animator.SetBool("Paused", false);
             cinemachine.m_XAxis.m_MaxSpeed = maxSpeed.x;
             cinemachine.m_YAxis.m_MaxSpeed = maxSpeed.y;
-
+            for (int i = 0; i < 3; i++)
+            {
+                cinemachine.m_Orbits[i].m_Height = CameraOriginalValues[i];
+            }
         }
     } 
+
+    public void HouseCamera(bool Inside)
+    {
+        if (Inside)
+        {
+            GetComponent<CinemachineCollider>().enabled = false;
+            cinemachine.m_Orbits[0].m_Height = 20;
+            cinemachine.m_Orbits[1].m_Height = 20;
+            cinemachine.m_Orbits[2].m_Height = 20;
+        }
+        else 
+        {
+            ResetCamera();
+        }
+        print(Inside);
+    }
 }

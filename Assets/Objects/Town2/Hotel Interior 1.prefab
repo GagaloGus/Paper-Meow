@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6386132311598955466
+--- !u!1 &3551695534070931342
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,142 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1214574514363686804}
-  - component: {fileID: 2979047802276461434}
-  - component: {fileID: 1135893631634501678}
-  m_Layer: 3
-  m_Name: Hotel Out 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1214574514363686804
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6386132311598955466}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000119209275, y: -0, z: -1, w: 0.000000119209275}
-  m_LocalPosition: {x: 0.0016998239, y: -0.033598635, z: 0.0050000013}
-  m_LocalScale: {x: 0.03438966, y: 0.008356698, z: 0.046626125}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4537501893629103746}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!65 &2979047802276461434
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6386132311598955466}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1135893631634501678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6386132311598955466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DoorTP: {fileID: 0}
---- !u!1 &6657523468489171980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3705595438113133496}
-  - component: {fileID: 297814257287817009}
-  - component: {fileID: 7083156389630424471}
-  m_Layer: 3
-  m_Name: Hotel Out 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3705595438113133496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657523468489171980}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0017, y: -0.1071, z: 0.005}
-  m_LocalScale: {x: 0.03438966, y: 0.008356698, z: 0.046626125}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4537501893629103746}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &297814257287817009
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657523468489171980}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7083156389630424471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657523468489171980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DoorTP: {fileID: 0}
---- !u!1 &8381539916044042430
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7334583924624229167}
-  - component: {fileID: 7429107893287917545}
+  - component: {fileID: 3513664962816030537}
+  - component: {fileID: 39022768767570800}
   m_Layer: 3
   m_Name: 'Hotel Spot Light 1 '
   m_TagString: Untagged
@@ -151,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7334583924624229167
+--- !u!4 &3513664962816030537
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381539916044042430}
+  m_GameObject: {fileID: 3551695534070931342}
   serializedVersion: 2
   m_LocalRotation: {x: -0.60803044, y: 0.7923954, z: -0.029876221, w: -0.038935114}
   m_LocalPosition: {x: -0.0062, y: 0.0268, z: 0.0943}
   m_LocalScale: {x: 2.342191, y: 2.3421907, z: 2.3421912}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4537501893629103746}
+  m_Father: {fileID: 8194128195716223946}
   m_LocalEulerAnglesHint: {x: 0, y: -174.374, z: 0}
---- !u!108 &7429107893287917545
+--- !u!108 &39022768767570800
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381539916044042430}
+  m_GameObject: {fileID: 3551695534070931342}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
@@ -228,7 +94,143 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1001 &4139591541323835753
+--- !u!1 &4860548245244689884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528865870900652234}
+  - component: {fileID: 3080796400691213145}
+  - component: {fileID: 6477723270881233712}
+  m_Layer: 3
+  m_Name: Hotel Enter 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1528865870900652234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860548245244689884}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000119209275, y: -0, z: -1, w: 0.000000119209275}
+  m_LocalPosition: {x: 0.0016998239, y: -0.033598635, z: 0.0050000013}
+  m_LocalScale: {x: 0.03438966, y: 0.008356698, z: 0.046626125}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8194128195716223946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!65 &3080796400691213145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860548245244689884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6477723270881233712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860548245244689884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorTP: {fileID: 0}
+  isInside: 0
+--- !u!1 &7592829272158223791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7526461290942309433}
+  - component: {fileID: 6789344496640493172}
+  - component: {fileID: 6261719073874282331}
+  m_Layer: 3
+  m_Name: Hotel Out 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7526461290942309433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592829272158223791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0017, y: -0.1071, z: 0.005}
+  m_LocalScale: {x: 0.03438966, y: 0.008356698, z: 0.046626125}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8194128195716223946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6789344496640493172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592829272158223791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6261719073874282331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592829272158223791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dd9c9fb6c48d8419bdf660662a75c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorTP: {fileID: 0}
+  isInside: 0
+--- !u!1001 &8520209407920895009
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -284,38 +286,47 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3705595438113133496}
+      addedObject: {fileID: 7526461290942309433}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1214574514363686804}
+      addedObject: {fileID: 1528865870900652234}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7334583924624229167}
+      addedObject: {fileID: 3513664962816030537}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3820382970450155859}
+      addedObject: {fileID: 3725971323130941939}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5892301832652370430}
+      addedObject: {fileID: 9020782838018654453}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
---- !u!1 &3869613813504185400 stripped
+--- !u!4 &8194128195716223946 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
+  m_PrefabInstance: {fileID: 8520209407920895009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8862156634632079728 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
-  m_PrefabInstance: {fileID: 4139591541323835753}
+  m_PrefabInstance: {fileID: 8520209407920895009}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &3820382970450155859
+--- !u!64 &3725971323130941939
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3869613813504185400}
+  m_GameObject: {fileID: 8862156634632079728}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -331,13 +342,13 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8004670747528549753, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
---- !u!65 &5892301832652370430
+--- !u!65 &9020782838018654453
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3869613813504185400}
+  m_GameObject: {fileID: 8862156634632079728}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -352,8 +363,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03604549, y: 0.10283198, z: 0.06654439}
   m_Center: {x: 0.0035838366, y: 0.022248082, z: 0.013410904}
---- !u!4 &4537501893629103746 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f6496ca7b819344d85e2655e366e8f8, type: 3}
-  m_PrefabInstance: {fileID: 4139591541323835753}
-  m_PrefabAsset: {fileID: 0}

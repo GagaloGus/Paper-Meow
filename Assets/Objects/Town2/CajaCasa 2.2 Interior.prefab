@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
+  isInside: 0
 --- !u!1 &6898520818721553046
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
+  isInside: 0
 --- !u!1001 &7007039693464374445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -388,11 +390,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a2507d4ee14088248be3925476ff4c28, type: 3}
       propertyPath: m_Name
-      value: CajaCasa 2.2 Interior 1
+      value: CajaCasa 2.2 Interior
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a2507d4ee14088248be3925476ff4c28, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a2507d4ee14088248be3925476ff4c28, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

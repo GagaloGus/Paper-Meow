@@ -26,7 +26,7 @@ public class SkoController : MonoBehaviour
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist;
     public float nearGroundDist;
-    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking, isInside;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
@@ -343,7 +343,16 @@ public class SkoController : MonoBehaviour
            rayDetectFloorDist, 
            LayerMask.GetMask("Ground"));*/
 
-        isGrounded = Physics.Raycast(groundPoint.position, Vector3.down, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+        Ray detectGround = new Ray(groundPoint.position, Vector3.down);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(detectGround, out hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
+        {
+            isGrounded = true;
+            GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
+        }
+        else { isGrounded = false; }
 
         if (canMove)
         {

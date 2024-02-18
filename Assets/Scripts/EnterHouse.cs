@@ -8,14 +8,16 @@ public class EnterHouse : MonoBehaviour
 {
     public GameObject DoorTP;
     private GameObject Player, Camera;
-    private CinemachineFreeLook CFK;
+    private CameraController CC;
     private bool InRange = false;
-    public bool IsInside;
+    public bool isInside;
     void Start()
     {
         Player = FindAnyObjectByType<SkoController>().gameObject;
-        Camera = FindAnyObjectByType<CinemachineFreeLook>().gameObject;
-        CFK = Camera.GetComponent<CinemachineFreeLook>();
+        Camera = FindAnyObjectByType<CameraController>().gameObject;
+        CC = Camera.GetComponent<CameraController>();
+
+        isInside = gameObject.name.Contains("Enter");
     }
 
     void Update()
@@ -24,10 +26,7 @@ public class EnterHouse : MonoBehaviour
         {
             Player.transform.position = DoorTP.transform.position;
             InRange = false;
-            if (IsInside)
-            {
-                CFK.m_YAxis.m_SpeedMode = 0;
-            }
+            GameEventsManager.instance.playerEvents.HouseEnterChange(isInside);
         }
     }
 
@@ -45,5 +44,4 @@ public class EnterHouse : MonoBehaviour
             InRange = false;
         }
     }
-
 }

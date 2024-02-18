@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
+  IsInside: 0
 --- !u!1001 &3529369418842816830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,6 +233,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0c71206021e226d4b93c458ce8384c2f, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c71206021e226d4b93c458ce8384c2f, type: 3}
+      propertyPath: m_TagString
+      value: House
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
