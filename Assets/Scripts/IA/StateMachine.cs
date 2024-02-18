@@ -9,7 +9,7 @@ public class StateMachine : MonoBehaviour
     public State initialState;
     [SerializeField]
     State _currentState;
-
+    private ParticleSystem part;
 
     private Color GamingGizmoCol;
     private Color MonoGizmoCol;
@@ -23,7 +23,7 @@ public class StateMachine : MonoBehaviour
 
         StartCoroutine(RainbowCol());
         StartCoroutine(MonoCol());
-
+        part = FindAnyObjectByType<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -88,9 +88,28 @@ public class StateMachine : MonoBehaviour
         GetComponent<Animator>().SetTrigger("playerDied");
     }
 
-    public void Damage(int damage)
+    //public void Damage(int damage)
+    //{
+    //     Collider collision = GetComponent<Collider>();
+    //    // Verificar si la colisión es con el jugador
+    //    if (collision.gameObject.GetComponent<SkoController>())
+    //    {
+    //        // Llamar al método Damage del GameManager solo si la colisión es con el jugador
+    //        GameManager.instance.Damage(damage);
+
+    //    }
+    //}
+
+    public void PartStart()
     {
-        GameManager.instance.Damage(damage);
+        part.Play();
+    }
+
+    public void PartStop()
+    {
+        part.Stop();
+        part.Clear();
+
     }
 
     public State get_currentState { get { return _currentState; } }
