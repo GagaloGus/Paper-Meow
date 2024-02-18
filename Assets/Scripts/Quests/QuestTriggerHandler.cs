@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestTriggerHandler : MonoBehaviour
 {
-    public int questID;
+    public Quest quest;
     public int itemAmount;
 
     public float radiusActivation;
@@ -19,7 +19,7 @@ public class QuestTriggerHandler : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.transform.position) < radiusActivation && !inside)
         {
-            QuestManager.instance.AddQuestItem(questID, itemAmount);
+            QuestManager.instance.AddQuestItem(quest, itemAmount);
 
             QuestObject[] currentQuestNPCs = FindObjectsByType<QuestObject>(FindObjectsSortMode.None);
 

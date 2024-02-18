@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Quest
+[CreateAssetMenu(fileName = "Quest")]
+public class Quest : ScriptableObject
 {
     public enum QuestProgress { 
         NOT_AVALIABLE,
@@ -16,7 +16,7 @@ public class Quest
     [Header("Data")]
     public string title;
     public int ID;
-    public QuestProgress progress;
+    public QuestProgress progress = QuestProgress.AVALIABLE;
 
     [Header("Texto")]
     [TextArea(3,5)] public string description;

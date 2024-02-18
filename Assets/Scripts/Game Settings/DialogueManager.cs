@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        dialogueParent = FindObjectOfType<Canvas>().transform.Find("Dialogue panel").gameObject;
+        dialogueParent = FindObjectOfType<TextController>().transform.Find("Dialogue panel").gameObject;
     }
 
     private void Start()

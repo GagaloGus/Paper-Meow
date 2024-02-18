@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class QLogButonScript : MonoBehaviour
 {
-    public int questID;
+    public Quest quest;
     public TMP_Text questTitle;
     
     public void ShowAllInfos()
     {
-        QuestManager.instance.ShowQuestLog(questID);
+        QuestManager.instance.ShowQuestLog(quest);
     }
 
     public void ClosePanel()

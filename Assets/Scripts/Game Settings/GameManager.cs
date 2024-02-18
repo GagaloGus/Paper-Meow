@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen += InventoryOpen;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen += SoftPauseGame;
     }
     
     private void OnDisable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= InventoryOpen;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= SoftPauseGame;
     }
 
     private void Start()
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pausa
-    public void InventoryOpen()
+    public void SoftPauseGame()
     {
         gameTime = 0;
         gamePaused = true;
