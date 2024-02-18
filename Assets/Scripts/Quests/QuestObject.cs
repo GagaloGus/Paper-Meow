@@ -38,9 +38,11 @@ public class QuestObject : MonoBehaviour
 
     public void GiveQuest()
     {
-        //QuestManager.instance.QuestRequest(this);
-
-        FindObjectOfType<QuestsUIManager>().CheckQuests(this);
+        QuestsUIManager questsUIManager = FindObjectOfType<QuestsUIManager>();
+        if (!questsUIManager.questPanelActive)
+        {
+            FindObjectOfType<QuestsUIManager>().CheckQuests(this);
+        }
     }
 
 }

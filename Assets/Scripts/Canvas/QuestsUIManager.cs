@@ -13,7 +13,7 @@ public class QuestsUIManager : MonoBehaviour
     public bool questAvaliable = false;
     public bool questRunning = false;
 
-    bool questPanelActive = false;
+    public bool questPanelActive = false;
     bool questLogPanelActive = false;
 
     [Header("Paneles")]
@@ -34,6 +34,8 @@ public class QuestsUIManager : MonoBehaviour
 
     public GameObject acceptButton;
     public GameObject completeButton;
+    [HideInInspector] public QButtonScript acceptButtonScript;
+    [HideInInspector] public QButtonScript completeButtonScript;
 
     [Header("Spacer")]
     public Transform qButtonSpacer1;
@@ -54,8 +56,19 @@ public class QuestsUIManager : MonoBehaviour
         FindChilds();
     }
 
+
     private void Start()
     {
+        questTitle = GetComponentInChildren<TMP_Text>();
+
+        acceptButtonScript = acceptButton.GetComponent<QButtonScript>();
+
+        completeButtonScript = completeButton.GetComponent<QButtonScript>();
+
+        acceptButton.SetActive(false);
+        completeButton.SetActive(false);
+
+
         HideQuestPanel();
     }
 
@@ -71,12 +84,11 @@ public class QuestsUIManager : MonoBehaviour
 
     void FindChilds()
     {
+        //Quest panel
         questPanel = parentQuestPanel.Find("QuestsPanel").gameObject;
-        questLogPanel = parentQuestPanel.transform.Find("QuestsLogPanel").gameObject;
 
         qButtonSpacer1 = questPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
         qButtonSpacer2 = questPanel.transform.Find("RecievableQ").Find("QButtonSpace");
-        qLogButtonSpacer = questLogPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
 
         Transform questDescParent = questPanel.transform.Find("QuestDescription");
         questTitle = questDescParent.Find("QuestName").GetComponent<TMP_Text>();
@@ -85,6 +97,17 @@ public class QuestsUIManager : MonoBehaviour
 
         acceptButton = questDescParent.Find("ButtonHolder").Find("AcceptButton").gameObject;
         completeButton = questDescParent.Find("ButtonHolder").Find("CompleteButton").gameObject;
+
+        //Quest Log Panel
+        questLogPanel = parentQuestPanel.transform.Find("QuestsLogPanel").gameObject;
+
+        qLogButtonSpacer = questLogPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
+
+        Transform questLogDescParent = questLogPanel.transform.Find("QuestDescription");
+        questLogTitle = questLogDescParent.Find("QuestName").GetComponent< TMP_Text>();
+        questLogDescription = questLogDescParent.Find("QuestDescription").GetComponent< TMP_Text>();
+        questLogSummary = questLogDescParent.Find("QuestSummary").GetComponent< TMP_Text>();
+
     }
 
     //Llamadas desde Quest Object
@@ -121,7 +144,18 @@ public class QuestsUIManager : MonoBehaviour
             foreach(Quest curQuest in QuestManager.instance.currentQuestList)
             {
                 GameObject questButton = Instantiate(qLogButton);
+                QLogButonScript qBLScript = questButton.GetComponent<QLogButonScript>();
+
+                qBLScript.questID = curQuest.ID;
+                qBLScript.questTitle.text = curQuest.title;
+
+                questButton.transform.SetParent(qLogButtonSpacer, false);
+                qButtons.Add(questButton);
             }
+        }
+        else if(!questLogPanelActive && !questPanelActive)
+        {
+            HideQuestLogPanel();
         }
 
         //Relleno
@@ -171,6 +205,24 @@ public class QuestsUIManager : MonoBehaviour
         //Ocultar panel
         questPanel.SetActive(questPanelActive);
     }
+
+    //Ocultar quest log panel
+    public void HideQuestLogPanel()
+    {
+        questLogPanelActive = false;
+        questLogTitle.text = "";
+        questLogDescription.text = "";
+        questLogSummary.text = "";
+
+        //borrar lista de botones
+        for (int i = 0;i < qButtons.Count; i++)
+        {
+            Destroy(qButtons[i]);
+        }
+        qButtons.Clear();
+        questLogPanel.SetActive(questLogPanelActive);
+    }
+
 
     //Rellenar botones para el quest panel
     void FillQuestButtons()

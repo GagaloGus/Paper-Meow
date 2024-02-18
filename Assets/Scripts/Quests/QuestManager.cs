@@ -242,4 +242,17 @@ public class QuestManager : MonoBehaviour
         }
         return false;
     }
+
+    //Mostrar el quest log
+    public void ShowQuestLog(int questID)
+    {
+        for(int i = 0; i< currentQuestList.Count; i++)
+        {
+            Quest quest = currentQuestList[i];
+            if(quest.ID == questID)
+            {
+                FindObjectOfType<QuestsUIManager>().ShowQuestLog(quest);
+            }
+        }
+    }
 }
