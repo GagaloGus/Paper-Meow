@@ -11,6 +11,8 @@ public class NPCData
     //descripcion del npc
     public string description;
 
+    public float typingSpeedMult = 1;
+
     [HideInInspector] //rotacion original del npc, se auto asigna en el DialogueTrigger
     public Quaternion originalRot;
 }

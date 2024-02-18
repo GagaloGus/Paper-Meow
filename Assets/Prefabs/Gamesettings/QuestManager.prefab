@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3974286381345575789}
-  - component: {fileID: 5405966576548477637}
+  - component: {fileID: 3055039204710927668}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5496518683577928828}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 81.66231, y: 3.024, z: 33.917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5405966576548477637
+--- !u!114 &3055039204710927668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5496518683577928828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc0fe0196a18b141aad0dc1ccad8a9b, type: 3}
+  m_Script: {fileID: 11500000, guid: f8701671d09ba3f45a6ea9dcef3da02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectQuest: {fileID: 11400000, guid: 06a20966a762fb94484180c25f5368c4, type: 2}
-  activeQuests: []
-  completedQuests: []
+  questsUIManager: {fileID: 0}
+  questList:
+  - title: Quest 1
+    ID: 1
+    progress: 1
+    description: Ve a la base de la colina y coje el martillo goma
+    hint: Solo ve a la colina y coje el martillo
+    congratulation: Yuppi esto fufa
+    summary: xiao zhang hao
+    nextQuestID: 0
+    questObjective: Coje el martillo
+    questObjectiveCount: 0
+    questObjectiveRequirement: 1
+    expReward: 0
+    goldReward: 0
+    itemReward: {fileID: 0}
+  currentQuestList: []

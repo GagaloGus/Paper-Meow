@@ -9,11 +9,12 @@ public class DialogueManager : MonoBehaviour
 {
     [Header("Canvas objects")]
     [SerializeField] GameObject dialogueParent; //el parent de todo
-    [SerializeField] GameObject buttonHolder; //el grid que tiene de hijos a los botones de opciones
+    GameObject buttonHolder; //el grid que tiene de hijos a los botones de opciones
     [SerializeField] List<GameObject> optionButtons; // los botones de opciones
     [SerializeField] TMP_Text dialogueText; // texto de dialogo
     [SerializeField] TMP_Text nameText; //nombre del que esta hablando
     [SerializeField] Image talkIcon; //icono del que esta hablando
+    [SerializeField] TMP_Text continueText; //texto de "click para continuar"
 
     List<DialogueString> dialogueList; //lista con los dialogos
 
@@ -30,6 +31,11 @@ public class DialogueManager : MonoBehaviour
     
    [SerializeField] AudioClip[] currentTypingSFXs;
 
+    private void Awake()
+    {
+        dialogueParent = FindObjectOfType<Canvas>().transform.Find("Dialogue panel").gameObject;
+    }
+
     private void Start()
     {
         // coge todos los hijos del canvas y desactiva el padre
@@ -45,6 +51,7 @@ public class DialogueManager : MonoBehaviour
         //coge todos los hijos necesarios
         dialogueText = dialogueParent.transform.Find("dial text").gameObject.GetComponent<TMP_Text>();
         nameText = dialogueParent.transform.Find("name").gameObject.GetComponent<TMP_Text>();
+        continueText = dialogueParent.transform.Find("continuar text").gameObject.GetComponent<TMP_Text>();
         talkIcon = dialogueParent.transform.Find("icon").gameObject.GetComponent<Image>();
         buttonHolder = dialogueParent.GetComponentInChildren<GridLayoutGroup>().gameObject;
 
@@ -62,7 +69,7 @@ public class DialogueManager : MonoBehaviour
 
         //activa el cuadro de dialogo
         dialogueParent.SetActive(true);
-        
+        continueText.gameObject.SetActive(false);
 
         //coge los datos del npc que esta hablando
         this.NPC = NPC;
@@ -170,8 +177,12 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeText(string text)
     {
+        continueText.gameObject.SetActive(false);
+
         //coge la linea en la que estamos
         DialogueString line = dialogueList[currentDialogueIndex];
+
+        float newTypingSpeed = typingSpeed / npcData.typingSpeedMult;
 
         if (line.NPCTalks)
         {
@@ -194,7 +205,7 @@ public class DialogueManager : MonoBehaviour
             int rnd = UnityEngine.Random.Range(0,currentTypingSFXs.Length);
             AudioManager.instance.PlaySFX(currentTypingSFXs[rnd], NPC.transform.position);
 
-            yield return new WaitForSeconds(typingSpeed * waitMultiplier);
+            yield return new WaitForSeconds(newTypingSpeed * waitMultiplier);
         }
 
         //cambia la animacion a idle hablar si no esta seleccionada una animacion distina en el dialogo
@@ -203,12 +214,18 @@ public class DialogueManager : MonoBehaviour
         //si no es una pregunta espera hasta que pulsemos para escribir el siguiente dialogo
         if (!line.isQuestion)
         {
+            continueText.gameObject.SetActive(true);
             yield return new WaitUntil(() => Input.GetMouseButton(0));
         }
 
         //Si la opcion de final de dialogo esta activada, se termina el dialogo
         if (line.isEnd)
         {
+            yield return new WaitUntil(() => Input.GetMouseButton(0));
+
+            //Llama al evento del final, si tiene
+            dialogueList[currentDialogueIndex].endDialogueEvent?.Invoke();
+
             DialogueStop();
         }
 
@@ -228,6 +245,7 @@ public class DialogueManager : MonoBehaviour
         //detiene las corrutinas
         StopAllCoroutines();
         dialogueText.text = "";
+
 
         StartCoroutine(TurnNPCTowardsTargetRot(npcData.originalRot));
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AmbientMusicPlayer : MonoBehaviour
 {
+    public bool musicActive;
     public string currentZoneTag, previousZoneTag;
 
     public AmbientSongs[] ambientSongs;
@@ -28,14 +29,14 @@ public class AmbientMusicPlayer : MonoBehaviour
     void ChangeTagSound(string tag)
     {
         currentZoneTag = tag;
-        if(previousZoneTag != currentZoneTag)
+        if(previousZoneTag != currentZoneTag && musicActive)
         {
             AmbientSongs ambient = Array.Find(ambientSongs, x => x.tag == tag);
             if(ambient != null)
             {
                 Debug.Log($"Cancion encontrada: {tag}");
                 //Funciona
-                //AudioManager.instance.ChangeBackgroundMusic(ambient.song);
+                AudioManager.instance.ChangeBackgroundMusic(ambient.song);
             }
             else
             {

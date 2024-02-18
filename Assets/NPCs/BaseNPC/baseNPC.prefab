@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6496545504966461949}
   - component: {fileID: 1414390501945126090}
   - component: {fileID: -8432388510074900281}
+  - component: {fileID: -8568074270130115085}
   m_Layer: 0
   m_Name: baseNPC
   m_TagString: Untagged
@@ -138,9 +139,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e11589ee711b94d85d50b5d1ca9884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typingSfxs:
+  - {fileID: 8300000, guid: c6d9b5a2eb73a37419ee72311fd1e3ed, type: 3}
+  - {fileID: 8300000, guid: b864768463ad69f4290a4abf4ddf855f, type: 3}
+  - {fileID: 8300000, guid: c6cc92d337acfdd4896c939d88afa569, type: 3}
+  - {fileID: 8300000, guid: 2f0cfda9fc850c74b8a84d5661c9cd3b, type: 3}
   info:
     name: BaseNPC
     description: 
+    typingSpeedMult: 1
     originalRot: {x: 0, y: 0, z: 0, w: 0}
   dialogueStrings: []
 --- !u!114 &1414390501945126090
@@ -155,10 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758f23bea830a7f4486a68df3a9face6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannotStart: {fileID: 21300000, guid: 82669e7ed18a5c2458815d0a2bc73211, type: 3}
-  canStart: {fileID: 21300000, guid: 7b03335db0728144d957d27d22f05c5c, type: 3}
-  cannotFinish: {fileID: 21300000, guid: 5a7cd20adbd6fd04eb9baee7f0441efb, type: 3}
-  canFinish: {fileID: 21300000, guid: de95d2a432cf12344a65aa6bd0d94a0a, type: 3}
 --- !u!114 &-8432388510074900281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +174,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2026fd40bc8ddb94391a2af1b1401683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8568074270130115085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250404264903412635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d15d0c566b2c3841b1424a9781ee3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avaliableQuestIDs: 
+  recievableQuestIDs: 
+  questAvaliableSprite: {fileID: 21300000, guid: 0ec35ac0ba1ba68439d2c9570e57ba5c, type: 3}
+  questRecievableSprite: {fileID: 21300000, guid: fa68212565bda2c4f82102f21d12e0cc, type: 3}
 --- !u!1 &4288362622479397029
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +216,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288362622479397029}
-  m_LocalRotation: {x: 0.04999955, y: -0.78736347, z: 0.06442425, w: 0.6110715}
+  m_LocalRotation: {x: 0.041448366, y: -0.8583384, z: 0.07023178, w: 0.5065617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.093934, y: 0.093934, z: 0.093934}
   m_ConstrainProportionsScale: 1
@@ -300,7 +319,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630017152262038379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.13}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -0.82}
+  m_AnchoredPosition: {x: -0, y: 0}
   m_SizeDelta: {x: 13.273, y: 2.4066}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8353354292505181781
@@ -466,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.56078434}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

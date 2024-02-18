@@ -6,12 +6,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteAlways]
 public class CanvasNPC : MonoBehaviour
-{ 
+{
+    GameObject Canvas;
     TMP_Text nameText;
     Image iconQuest;
-    public Sprite cannotStart, canStart, cannotFinish, canFinish;
+
+    
 
     private void Awake()
     {
@@ -20,12 +21,15 @@ public class CanvasNPC : MonoBehaviour
 
     private void Start()
     {
-        iconQuest.color = new Color(1,1,1,0);
+        iconQuest.color = new Color(1,1,1,1);
+
+        Canvas = GetComponentInChildren<Canvas>().gameObject;
+        UpdateOwnName();
     }
 
     private void Update()
     {
-        GetComponentInChildren<Canvas>().transform.forward = Camera.main.transform.forward;
+        Canvas.transform.forward = Camera.main.transform.forward;
     }
 
     public void UpdateOwnName()
@@ -36,28 +40,16 @@ public class CanvasNPC : MonoBehaviour
         nameText.text = name;
     }
 
-    public void SetState(QuestState newState, bool startPoint, bool finishPoint)
+    public void SetQuestIcon(Sprite sprite, Color color)
     {
-        iconQuest.color = new Color(1, 1, 1, 1);
-        iconQuest.sprite = null;
+        iconQuest.gameObject.SetActive(true);
+        iconQuest.sprite = sprite;
+        iconQuest.color = color;
+    }
 
-        switch (newState)
-        {
-            case QuestState.REQUIREMENTS_NOT_MET:
-                if (startPoint) { iconQuest.sprite = cannotStart; }
-                break;
-            case QuestState.CAN_START: 
-                if (startPoint) { iconQuest.sprite = canStart; }
-                break;
-            case QuestState.IN_PROGRESS:
-                if (finishPoint) {  iconQuest.sprite = cannotFinish; }
-                break;
-            case QuestState.CAN_FINISH:
-                if (finishPoint) {  iconQuest.sprite = canFinish; }
-                break;
-            case QuestState.FINISHED: 
-                break;
-        }
+    public void DisableQuestIcon()
+    {
+        iconQuest.gameObject.SetActive(false);
     }
 
 }

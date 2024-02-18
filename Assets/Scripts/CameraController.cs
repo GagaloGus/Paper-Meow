@@ -5,10 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public CinemachineFreeLook cinemachine;
-    public float speedSmooth;
 
     Vector2 maxSpeed;
-    float originalYvalue;
 
     Animator animator;
 
@@ -57,7 +55,6 @@ public class CameraController : MonoBehaviour
         {
             animator.enabled = true;
             animator.SetBool("Paused", true);
-            originalYvalue = cinemachine.m_YAxis.m_InputAxisValue;
 
             cinemachine.m_XAxis.m_MaxSpeed = 0f;
             cinemachine.m_YAxis.m_MaxSpeed = 0f;

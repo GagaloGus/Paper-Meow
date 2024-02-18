@@ -48,7 +48,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //sirve para arrastrar items
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(item.weaponType != WeaponType.Garra)
+        if(item.weaponType != WeaponType.Garra || item.itemType != Type.Weapon)
         {
             QuickWeaponSlot parentSlot = GetComponentInParent<QuickWeaponSlot>();
             if (parentSlot)
@@ -68,13 +68,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        if(item.weaponType != WeaponType.Garra)
+        if(item.weaponType != WeaponType.Garra || item.itemType != Type.Weapon)
             transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(item.weaponType != WeaponType.Garra)
+        if(item.weaponType != WeaponType.Garra || item.itemType != Type.Weapon)
         {
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);

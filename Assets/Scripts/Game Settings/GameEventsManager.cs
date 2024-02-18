@@ -8,7 +8,6 @@ public class GameEventsManager : MonoBehaviour
 
     public PlayerEvents playerEvents;
     public MiscEvents miscEvents;
-    public QuestEvents questEvents;
     public ItemsEvents itemsEvents;
     public InventoryEvents inventoryEvents;
 
@@ -26,7 +25,6 @@ public class GameEventsManager : MonoBehaviour
 
         playerEvents = new PlayerEvents();
         miscEvents = new MiscEvents();
-        questEvents = new QuestEvents();
         itemsEvents = new ItemsEvents();
         inventoryEvents = new InventoryEvents();
     }

@@ -40,4 +40,13 @@ public class PlayerEvents
             onPlayerTouchGround(tag);
         }
     }
+
+    public event Action<bool> onHouseEnterChange;
+    public void HouseEnterChange(bool isInside)
+    {
+        if(onHouseEnterChange != null)
+        {
+            onHouseEnterChange(isInside);
+        }
+    }
 }

@@ -375,7 +375,6 @@ public class SkoController : MonoBehaviour
             }
             else
             {
-                GetComponent<ConstantForce>().enabled = true;
                 canMove = true;
                 m_animator.SetBool("gamePaused", false);
                 EnablePhysics(true);
@@ -385,7 +384,7 @@ public class SkoController : MonoBehaviour
 
     void EnablePhysics(bool enable)
     {
-        GetComponent<ConstantForce>().force = enable ? Vector3.up * gravity : Vector3.zero;
+        GetComponent<ConstantForce>().enabled = enable;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 

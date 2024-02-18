@@ -460,28 +460,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 8169519969393974431}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
---- !u!1 &7455968460435552139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
-  m_PrefabInstance: {fileID: 8666017561698204688}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8169519969393974431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7455968460435552139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8157fe4af8d334b816c2ef003e59f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: e4157765e02121746ae0341339679daa, type: 2}
-  startPoint: 0
-  finishPoint: 1

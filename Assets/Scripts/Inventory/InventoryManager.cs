@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Inventario")]
     public int maxStackedItems;
-    public InventoryMenu[] itemMenus;
+    [SerializeField] List<InventoryMenu> itemMenus = new(4);
     public QuickWeaponSlot[] quickSwapWeapons;
 
     [Header("Prefabs")]
@@ -44,10 +44,18 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public Transform inventoryParent, meu1;
 
     private void Start()
     {
-        foreach(InventoryMenu menu in itemMenus)
+        inventoryParent = FindObjectOfType<Canvas>(true).transform.Find("InventoryCanvas").transform.Find("Inventory");
+
+        itemMenus[0].Menu = inventoryParent.Find("ObjectMenu").gameObject;
+        itemMenus[1].Menu = inventoryParent.Find("QuestMenu").gameObject;
+        itemMenus[2].Menu = inventoryParent.Find("EatMenu").gameObject;
+        itemMenus[3].Menu = inventoryParent.Find("WeaponMenu").gameObject;
+
+        foreach (InventoryMenu menu in itemMenus)
         {
             int childCount = menu.Menu.transform.childCount;
             menu.menuSlots = new InventorySlot[childCount];

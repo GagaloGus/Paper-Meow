@@ -43,11 +43,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen += InventoryOpen;
     }
     
     private void OnDisable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= InventoryOpen;
     }
 
     private void Start()
@@ -57,13 +59,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         FindObjectOfType<CameraController>().ResetCamera();
-    }
-
-
-    public void GetPlayer(GameObject player)
-    {
-        this.player = player;
-        SkillManager.instance.player = player;
     }
 
     public void GetPlayer()
@@ -89,36 +84,50 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftAlt))
             {
-                LockCursorAndCamera();
+                LockCursor();
+                FindObjectOfType<CameraController>().LockCamera();
             }
 
 
             if(Input.GetKeyUp(KeyCode.LeftAlt))
             {
-                UnlockCursorAndCamera();
+                UnlockCursor();
+                FindObjectOfType<CameraController>().ResetCamera();
             }
         }
-
-
     }
 
-    void LockCursorAndCamera()
+    #region Cursor y camara
+    void LockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         FindObjectOfType<CameraController>().LockCamera();
     }
 
-    void UnlockCursorAndCamera()
+    void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         FindObjectOfType<CameraController>().ResetCamera();
     }
+    #endregion
+
+    #region Pausa
+    public void InventoryOpen()
+    {
+        gameTime = 0;
+        gamePaused = true;
+        LockCursor();
+        FindObjectOfType<CameraController>().LockCamera();
+        player.GetComponent<SkoController>().PausedGame(true);
+    }
 
     public void PauseGame()
     {
         gameTime = 0;
+        gamePaused = true;
+        LockCursor();
         FindObjectOfType<CameraController>().PausedLockCamera();
         player.GetComponent<SkoController>().PausedGame(true);
     }
@@ -126,9 +135,10 @@ public class GameManager : MonoBehaviour
     public void ContinueGame()
     {
         gameTime = 1;
+        gamePaused = false;
         player.GetComponent<SkoController>().PausedGame(false);
 
-        UnlockCursorAndCamera ();
+        UnlockCursor();
     }
 
     public void PauseAndContinueToggle()
@@ -144,7 +154,7 @@ public class GameManager : MonoBehaviour
             ContinueGame();
         }
     }
-
+    #endregion
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(ChangeSceneCorroutine(sceneName));
@@ -175,17 +185,19 @@ public class GameManager : MonoBehaviour
         set { money = value; }
     }
 
+    #region Interaction
     public void StartInteraction(GameObject npc)
     {
         isInteracting = true;
-        LockCursorAndCamera();
+        LockCursor();
         player.BroadcastMessage("StartInteraction", npc);
     }
 
     public void EndInteraction()
     {
         isInteracting = false;
-        UnlockCursorAndCamera();
+        UnlockCursor();
         player.BroadcastMessage("EndInteraction");
     }
+    #endregion
 }

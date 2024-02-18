@@ -24,6 +24,6 @@ public class DemoScript : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        AudioManager.instance.PlaySFX(clip, transform.position);
+        AudioManager.instance.PlaySFX(clip, FindObjectOfType<SkoController>().gameObject.transform.position);
     }
 }

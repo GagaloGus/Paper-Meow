@@ -22,4 +22,13 @@ public class InventoryEvents
             onWeaponSwap(item);
         }
     }
+
+    public event Action onInventoryOpen;
+    public void InventoryOpen() 
+    {
+        if(onInventoryOpen != null)
+        {
+            onInventoryOpen();
+        }
+    }
 }

@@ -23,8 +23,8 @@ public class Item : ScriptableObject
 }
 public enum Type { 
     Object,
-    Fruit,
     QuestItem, 
+    Fruit,
     Weapon, 
     Money
 }
