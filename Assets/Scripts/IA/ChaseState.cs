@@ -10,8 +10,6 @@ public class ChaseState : State
     {
         base.StartState(owner);
 
-        animator.SetBool("isWalking", true);
-        animator.SetBool("goingBackwards", false);
     }
 
     public override State Run(GameObject owner)

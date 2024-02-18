@@ -51,6 +51,7 @@ public abstract class State : ScriptableObject
     {
         navMeshAgent = owner.GetComponent<NavMeshAgent>();
         target = FindObjectOfType<SkoController>().gameObject;
+        animator = owner.GetComponent<Animator>();
 
         //resetea la velocidad del mavmeshagent a la original
         navMeshAgent.speed = navOgSpeed;

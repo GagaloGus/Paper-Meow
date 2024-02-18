@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848d7dfb18734084f81cbe16f5afc27c, type: 3}
   m_Name: Chase
   m_EditorClassIdentifier: 
-  parameters: []
+  parameters:
+  - actionParameters:
+    - action: {fileID: 11400000, guid: d8be2100749f7a94e80c798b00c4980e, type: 2}
+      actionValue: 0
+    - action: {fileID: 11400000, guid: b2839feca592f3a4aa804d616448d203, type: 2}
+      actionValue: 1
+    nextState: {fileID: 11400000, guid: 66a2cf94149fe2a409962a152e2a5977, type: 2}
+    or: 0
+  - actionParameters:
+    - action: {fileID: 11400000, guid: ce1428dee11d74b408813903a25dea61, type: 2}
+      actionValue: 1
+    nextState: {fileID: 11400000, guid: 0dd6219de3b24184aa09a3981399e6b7, type: 2}
+    or: 0

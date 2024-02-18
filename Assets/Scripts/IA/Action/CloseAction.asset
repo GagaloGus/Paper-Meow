@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73866f106264ec4b86e12b9dba221b4, type: 3}
-  m_Name: Watch
+  m_Script: {fileID: 11500000, guid: 1589d9925a78e8a45a0e5e7ee863a20e, type: 3}
+  m_Name: CloseAction
   m_EditorClassIdentifier: 
-  distance: 5
-  angle: 30
-  height: 1
+  objectiveDistance: 1

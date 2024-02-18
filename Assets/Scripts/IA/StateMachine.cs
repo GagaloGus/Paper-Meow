@@ -14,11 +14,9 @@ public class StateMachine : MonoBehaviour
     private Color GamingGizmoCol;
     private Color MonoGizmoCol;
 
-    float ogSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        ogSpeed = GetComponent<NavMeshAgent>().speed;
 
         _currentState = initialState;
         _currentState.StartState(gameObject);
@@ -90,7 +88,10 @@ public class StateMachine : MonoBehaviour
         GetComponent<Animator>().SetTrigger("playerDied");
     }
 
-    public State get_currentState { get { return _currentState; } }
+    public void Damage(int damage)
+    {
+        GameManager.instance.Damage(damage);
+    }
 
-    public float get_originalSpeed { get { return ogSpeed; } }
+    public State get_currentState { get { return _currentState; } }
 }

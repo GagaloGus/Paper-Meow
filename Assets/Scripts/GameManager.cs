@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public float time = 0;
     public int healthpotions = 0;
     public int health;
-    public int maxHealth = 0;
-
+    public int maxHealth = 100;
+    public int MinHealth = 0;
     GameObject player;
 
     public int targetFPS = 60;
@@ -62,6 +62,19 @@ public class GameManager : MonoBehaviour
     {
         Heal(health + healvalue <= 100 ? healvalue : 100 - health);
 
+    }
+    public void Damage(int damagevalue)
+    {
+        TakeDamage(health - damagevalue >= MinHealth ? damagevalue : health + MinHealth);
+    }
+    public void TakeDamage(int damage) //El jugador toma el da�o que inflingen sus enemigos y resta su vida.
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            //Death(); // Si la salud del personaje llega a 0 se invoca el m�todo Death().
+        }
     }
 
     public void StartInteraction(GameObject npc)
