@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/CVDFilter/Editor/CVDFilterEditor.uss?fileID=7433441132597879392&amp;guid=63511d8dc375c0f4fa08d8f7522ce6cb&amp;type=3#CVDFilterEditor" />
+    <ui:VisualElement class="container">
+        <ui:VisualElement name="Spacer" tabindex="0" class="spacer" />
+        <uie:EnumField label="Vision Type:" name="VisionTypeEnum" class="enumField" />
+        <ui:VisualElement name="Spacer" tabindex="0" class="spacer" />
+        <ui:VisualElement name="PreviewImage" tabindex="2" class="image" style="background-image: url(&apos;project://database/Assets/CVDFilter/PreviewImages/0_RGB_Colorcube_Normal.png?fileID=2800000&amp;guid=886695989578f0d4daa95215ba2b2a39&amp;type=3#0_RGB_Colorcube_Normal&apos;);" />
+        <ui:VisualElement name="Spacer" class="spacer" />
+        <ui:Label text="No Color modification applied" display-tooltip-when-elided="true" tabindex="3" name="DescriptionLabel" class="descriptionText" />
+    </ui:VisualElement>
+</ui:UXML>

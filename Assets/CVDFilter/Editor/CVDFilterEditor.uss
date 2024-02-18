@@ -1,0 +1,36 @@
+.container {
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.spacer {
+    height: 10px;
+}
+
+.enumField {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.label {
+    align-items: center;
+    flex-wrap: wrap;
+    -unity-text-align: upper-right;
+    width: 30%;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+}
+
+.descriptionText {
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    -unity-text-align: upper-center;
+    white-space: normal;
+}

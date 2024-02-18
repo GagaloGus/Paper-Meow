@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +18,9 @@ public class DisplayController : MonoBehaviour
     public TMPro.TMP_Dropdown resolutionDropdown;
     public TMPro.TMP_Dropdown fpsLimitDropdown;
     public Slider brightnessSlider;
-
+    public TMPro.TMP_Dropdown qualityDropdown;
+    public TMPro.TMP_Dropdown filtersDropdown;
+    public SOG.CVDFilter.CVDFilter cvdFilter;
     private void Awake()
     {
         Application.targetFrameRate = targetFPS;
@@ -37,7 +41,7 @@ public class DisplayController : MonoBehaviour
         // Agregar las resoluciones al dropdown
         foreach (Resolution res in resolutions)
         {
-            string optionText = $"{res.width} x {res.height} {res.refreshRateRatio}Hz";
+            string optionText = $"{res.width} x {res.height}";
             options.Add(optionText);
         }
 
@@ -63,6 +67,23 @@ public class DisplayController : MonoBehaviour
 
         // Inicializar el tiempo restante para el cálculo del promedio de FPS
         timeleft = 0.5f;
+
+        // Asegúrate de que el Dropdown tenga opciones configuradas en el Editor de Unity
+        qualityDropdown.ClearOptions();
+        qualityDropdown.AddOptions(QualitySettings.names.ToList());
+
+        // Asigna el evento de cambio del Dropdown a la función SetQuality
+        qualityDropdown.onValueChanged.AddListener(SetQuality);
+
+        // Asigna la función de cambio al evento onValueChanged del Dropdown
+        filtersDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+        // Configura las opciones del Dropdown
+        filtersDropdown.ClearOptions();
+        filtersDropdown.AddOptions(System.Enum.GetNames(typeof(SOG.CVDFilter.VisionTypeNames)).ToList());
+
+        // Llama a la función para inicializar el filtro con la opción actual del Dropdown
+        OnDropdownValueChanged(filtersDropdown.value);
+
     }
     void Update()
     {
@@ -148,5 +169,18 @@ public class DisplayController : MonoBehaviour
     public void ChangeBrightness(float value)
     {
         Screen.brightness = value;
+    }
+    // Función llamada cuando cambia la selección del Dropdown
+    void SetQuality(int qualityIndex)
+    {
+        // Establece la calidad de gráficos según el índice seleccionado en el Dropdown
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    void OnDropdownValueChanged(int index)
+    {
+        // Cambia el tipo de visión en el CVDFilter según la opción seleccionada en el Dropdown
+        cvdFilter.currentType = (SOG.CVDFilter.VisionTypeNames)index;
+        // Llama a la función para cambiar el perfil del filtro
+        cvdFilter.ChangeProfile();
     }
 }
