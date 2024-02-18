@@ -15,19 +15,4 @@ public class Damage : MonoBehaviour
             GameManager.instance.Damage(damage);
         }
     }
-    //public void PartStart()
-    //{
-    //    ParticleSystem part = gameObject.GetComponent<ParticleSystem>();
-
-    //    part.Play();
-
-    //}
-
-    //public void PartStop()
-    //{
-    //    ParticleSystem part = gameObject.GetComponent<ParticleSystem>();
-
-    //    part.Stop();
-
-    //}
 }

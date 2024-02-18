@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public int maxHealth = 100;
     public int MinHealth = 0;
     GameObject player;
-
+    bool playerDied;
+    public bool isPaused;
     public int targetFPS = 60;
     public int playerstatsRefreshRate = 3;
     void Awake()
@@ -76,6 +77,19 @@ public class GameManager : MonoBehaviour
         {
             //Death(); // Si la salud del personaje llega a 0 se invoca el m�todo Death().
         }
+    }
+    void Death()
+    {
+        playerDied = true;
+        FindObjectOfType<StateMachine>().PlayerDied();
+    }
+    public bool _playerDied
+    {
+        get { return playerDied; }
+    }
+    public bool _isPaused
+    {
+        get { return isPaused; }
     }
 
     public void StartInteraction(GameObject npc)
