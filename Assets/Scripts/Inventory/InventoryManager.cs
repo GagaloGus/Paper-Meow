@@ -44,11 +44,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    Transform inventoryParent;
+    public Transform inventoryParent, meu1;
 
     private void Start()
     {
-        inventoryParent = FindObjectOfType<TextController>(true).transform.Find("InventoryCanvas").transform.Find("Inventory");
+        inventoryParent = FindObjectOfType<Canvas>(true).transform.Find("InventoryCanvas").transform.Find("Inventory");
 
         itemMenus[0].Menu = inventoryParent.Find("ObjectMenu").gameObject;
         itemMenus[1].Menu = inventoryParent.Find("QuestMenu").gameObject;

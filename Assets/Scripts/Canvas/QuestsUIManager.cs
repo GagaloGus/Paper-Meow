@@ -14,7 +14,7 @@ public class QuestsUIManager : MonoBehaviour
     public bool questRunning = false;
 
     public bool questPanelActive = false;
-    public bool questLogPanelActive = false;
+    bool questLogPanelActive = false;
 
     [Header("Paneles")]
     public GameObject questPanel;
@@ -59,6 +59,8 @@ public class QuestsUIManager : MonoBehaviour
 
     private void Start()
     {
+        questTitle = GetComponentInChildren<TMP_Text>();
+
         acceptButtonScript = acceptButton.GetComponent<QButtonScript>();
 
         completeButtonScript = completeButton.GetComponent<QButtonScript>();
@@ -127,12 +129,8 @@ public class QuestsUIManager : MonoBehaviour
     //Show Panel
     public void ShowQuestPanel()
     {
-        GameManager.instance.SoftPauseGame();
-
-
         questPanelActive = true;
         questPanel.SetActive(questPanelActive);
-
 
         //Relleno
         FillQuestButtons();
@@ -148,7 +146,7 @@ public class QuestsUIManager : MonoBehaviour
                 GameObject questButton = Instantiate(qLogButton);
                 QLogButonScript qBLScript = questButton.GetComponent<QLogButonScript>();
 
-                qBLScript.quest = curQuest;
+                qBLScript.questID = curQuest.ID;
                 qBLScript.questTitle.text = curQuest.title;
 
                 questButton.transform.SetParent(qLogButtonSpacer, false);
@@ -234,7 +232,7 @@ public class QuestsUIManager : MonoBehaviour
             GameObject questButton = Instantiate(qButton);
             QButtonScript qBScript = questButton.GetComponent<QButtonScript>();
 
-            qBScript.quest = avaliableQuest;
+            qBScript.questID = avaliableQuest.ID;
             qBScript.questTitle.text = avaliableQuest.title;
 
             questButton.transform.SetParent(qButtonSpacer1, false);
@@ -246,7 +244,7 @@ public class QuestsUIManager : MonoBehaviour
             GameObject questButton = Instantiate(qButton);
             QButtonScript qBScript = questButton.GetComponent<QButtonScript>();
 
-            qBScript.quest = activeQuest;
+            qBScript.questID = activeQuest.ID;
             qBScript.questTitle.text = activeQuest.title;
 
             questButton.transform.SetParent(qButtonSpacer2, false);
@@ -256,12 +254,12 @@ public class QuestsUIManager : MonoBehaviour
     }
 
     //Mostrar datos del quest al pulsar los botones
-    public void ShowSelectedQuest(Quest selectedQuest)
+    public void ShowSelectedQuest(int questID)
     {
         for(int i = 0; i < avaliableQuests.Count; i++)
         {
             Quest quest = avaliableQuests[i];
-            if(quest == selectedQuest)
+            if(quest.ID == questID)
             {
                 questTitle.text = quest.title;
                 if(quest.progress == Quest.QuestProgress.AVALIABLE)
@@ -275,7 +273,7 @@ public class QuestsUIManager : MonoBehaviour
         for(int i = 0; i < activeQuests.Count; i++)
         {
             Quest quest = activeQuests[i];
-            if(quest == selectedQuest)
+            if(quest.ID == questID)
             {
                 questTitle.text = quest.title;
                 if(quest.progress == Quest.QuestProgress.ACCEPTED)

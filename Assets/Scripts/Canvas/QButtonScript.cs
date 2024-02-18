@@ -5,20 +5,39 @@ using UnityEngine;
 
 public class QButtonScript : MonoBehaviour
 {
-    public Quest quest;
+    public int questID;
     public TMP_Text questTitle;
+
+
+
+    //QButtonScript acceptButtonScript;
+    //QButtonScript completeButtonScript;
+
+    //private void Start()
+    //{
+    //    questTitle = GetComponentInChildren<TMP_Text>();
+
+    //    acceptButton = FindObjectOfType<QuestsUIManager>().acceptButton;
+    //    acceptButtonScript = acceptButton.GetComponent<QButtonScript>();
+
+    //    completeButton = FindObjectOfType<QuestsUIManager>().completeButton;
+    //    completeButtonScript = completeButton.GetComponent<QButtonScript>();
+
+    //    acceptButton.SetActive(false);
+    //    completeButton.SetActive(false);
+    //}
 
     //onclick
     public void ShowSelectedInfo()
     {
         QuestsUIManager questsUIManager = FindObjectOfType<QuestsUIManager>();
-        questsUIManager.ShowSelectedQuest(quest);
+        questsUIManager.ShowSelectedQuest(questID);
 
         //Accept
-        if (QuestManager.instance.RequestAvaliableQuest(quest))
+        if (QuestManager.instance.RequestAvaliableQuest(questID))
         {
             questsUIManager.acceptButton.SetActive(true);
-            questsUIManager.acceptButtonScript.quest = quest;
+            questsUIManager.acceptButtonScript.questID = questID;
         }
         else
         {
@@ -26,10 +45,10 @@ public class QButtonScript : MonoBehaviour
         }
 
         //Complete
-        if (QuestManager.instance.RequestCompleteQuest(quest))
+        if (QuestManager.instance.RequestCompleteQuest(questID))
         {
             questsUIManager.completeButton.SetActive(true);
-            questsUIManager.completeButtonScript.quest = quest;
+            questsUIManager.completeButtonScript.questID = questID;
         }
         else
         {
@@ -39,7 +58,7 @@ public class QButtonScript : MonoBehaviour
 
     public void AcceptQuest()
     {
-        QuestManager.instance.AcceptQuest(quest);
+        QuestManager.instance.AcceptQuest(questID);
         FindObjectOfType<QuestsUIManager>().HideQuestPanel();
 
         //Update NPC icons
@@ -54,7 +73,7 @@ public class QButtonScript : MonoBehaviour
 
     public void CompleteQuest()
     {
-        QuestManager.instance.CompleteQuest(quest);
+        QuestManager.instance.CompleteQuest(questID);
         FindObjectOfType<QuestsUIManager>().HideQuestPanel();
 
         //Update NPC icons
