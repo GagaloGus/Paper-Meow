@@ -93,7 +93,7 @@ public class CameraController : MonoBehaviour
             cinemachine.m_Orbits[1].m_Height = 20;
             cinemachine.m_Orbits[2].m_Height = 20;
         }
-        else 
+        else
         {
             ResetCamera();
         }
