@@ -20,9 +20,6 @@ public class Quest : ScriptableObject
 
     [Header("Texto")]
     [TextArea(3,5)] public string description;
-    public string hint;
-    public string congratulation;
-    public string summary;
 
     [Header("Objectives")]
     public Quest nextQuest;

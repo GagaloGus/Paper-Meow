@@ -57,11 +57,11 @@ public class QuestManager : MonoBehaviour
                 if(currentQuest == recievableQuest && currentQuest.progress == Quest.QuestProgress.ACCEPTED 
                     || currentQuest.progress == Quest.QuestProgress.COMPLETE)
                 {
-                    print($"Quest ID: {recievableQuest} is {currentQuest.progress}");
-
                     //quest UI
                     questsUIManager.questRunning = true;
                     questsUIManager.activeQuests.Add(currentQuest);
+
+                    print($"Quest ID: {recievableQuest} is {currentQuest.progress}");
 
                     if(currentQuest.progress == Quest.QuestProgress.COMPLETE)
                     {
@@ -108,6 +108,7 @@ public class QuestManager : MonoBehaviour
         if(completedQuest.nextQuest != null)
         {
             CheckChainQuest(completedQuest);
+            print($"Next quest:{completedQuest.title}");
         }
     }
 

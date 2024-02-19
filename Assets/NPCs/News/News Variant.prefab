@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.793446
+      value: 49.24
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[1].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[1].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -154,11 +154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[1].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Add_EXP
+      value: GiveQuest
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[1].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DemoScript, Assembly-CSharp
+      value: QuestObject, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[1].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -292,7 +292,8 @@ PrefabInstance:
       propertyPath: texturePacks.Array.data[9].front
       value: 
       objectReference: {fileID: 2800000, guid: f3fc4a508619afa4287bbd2d3f333fa8, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8568074270130115085, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

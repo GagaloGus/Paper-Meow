@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a9250056efaa14ba2fa587345c3d23, type: 3}
-  m_Name: PlotQuest_1-2
+  m_Name: PlotQuest_0-1
   m_EditorClassIdentifier: 
-  title: 1-2
-  ID: 1
-  progress: 0
-  description: "segunda parte\t"
-  hint: no se hint
-  congratulation: nose congrats
-  summary: no se sumary
-  nextQuest: {fileID: 0}
-  questObjective: coje chapa
+  title: Un nuevo mundo
+  ID: 0
+  progress: 1
+  description: Ve hasta el pueblo 1 con KittyBot
+  nextQuest: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
+  questObjective: Camino
   questObjectiveCount: 0
-  questObjectiveRequirement: 3
+  questObjectiveRequirement: 1
   expReward: 0
   goldReward: 0
   itemReward: {fileID: 0}

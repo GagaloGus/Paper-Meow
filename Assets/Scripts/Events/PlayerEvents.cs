@@ -49,4 +49,13 @@ public class PlayerEvents
             onHouseEnterChange(isInside);
         }
     }
+
+    public event Action onPlayerTouchTutTrigger;
+    public void PlayerTouchedWaitTrigger()
+    {
+        if(onPlayerTouchTutTrigger != null) 
+        {
+            onPlayerTouchTutTrigger();
+        }
+    }
 }

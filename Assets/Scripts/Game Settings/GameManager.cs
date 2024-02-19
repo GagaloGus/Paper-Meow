@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
 
     public int gameTime;
 
-    public bool gamePaused, isInteracting;
+    public bool gamePaused, isInteracting, isTutorial;
 
     public GameObject player;
+
+
+    [TextArea(3,5)]public List< string> tutorials;
 
 
     public int targetFPS = 60;
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
+        isTutorial = true;
     }
 
     private void OnEnable()
@@ -74,25 +78,27 @@ public class GameManager : MonoBehaviour
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
-
-        if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
+        if(!isTutorial)
         {
-            PauseAndContinueToggle();
-        }
-
-        if (!gamePaused && !isInteracting)
-        {
-            if (Input.GetKey(KeyCode.LeftAlt))
+            if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
             {
-                LockCursor();
-                FindObjectOfType<CameraController>().LockCamera();
+                PauseAndContinueToggle();
             }
 
-
-            if(Input.GetKeyUp(KeyCode.LeftAlt))
+            if (!gamePaused && !isInteracting)
             {
-                UnlockCursor();
-                FindObjectOfType<CameraController>().ResetCamera();
+                if (Input.GetKey(KeyCode.LeftAlt))
+                {
+                    LockCursor();
+                    FindObjectOfType<CameraController>().LockCamera();
+                }
+
+
+                if(Input.GetKeyUp(KeyCode.LeftAlt))
+                {
+                    UnlockCursor();
+                    FindObjectOfType<CameraController>().ResetCamera();
+                }
             }
         }
     }

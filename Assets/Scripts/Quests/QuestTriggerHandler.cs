@@ -7,17 +7,10 @@ public class QuestTriggerHandler : MonoBehaviour
     public Quest quest;
     public int itemAmount;
 
-    public float radiusActivation;
-    bool inside = false;
-    GameObject player;
-    private void Start()
-    {
-        player = FindObjectOfType<SkoController>().gameObject;
-    }
 
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if(Vector3.Distance(transform.position, player.transform.position) < radiusActivation && !inside)
+        if (collision.gameObject.GetComponent<SkoController>())
         {
             QuestManager.instance.AddQuestItem(quest, itemAmount);
 
@@ -30,18 +23,7 @@ public class QuestTriggerHandler : MonoBehaviour
 
             }
 
-            inside = true;
+            Destroy(gameObject);
         }
-
-        if (Vector3.Distance(transform.position, player.transform.position) > radiusActivation && inside)
-        {
-            inside = false;
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, radiusActivation);
     }
 }

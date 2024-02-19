@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class QuestsUIManager : MonoBehaviour
 {
-    public Transform parentQuestPanel;
+    Transform parentQuestPanel;
 
     [Header("Bools")]
     public bool questAvaliable = false;
@@ -43,24 +43,22 @@ public class QuestsUIManager : MonoBehaviour
         FindChilds();
     }
 
-    private void Update()
+    public void ShowQuestCanvas()
     {
-        if(Input.GetKeyUp(KeyCode.Q))
-        {
-            questLogPanelActive = !questLogPanelActive;
-            ShowQuestLogPanel();
-
-        }
+        questLogPanelActive = true;
+        ShowQuestLogPanel();
     }
 
     void FindChilds()
     {
+        parentQuestPanel = transform.Find("Menu_Pause").Find("Quests");
+
         //Quest Log Panel
         questLogPanel = parentQuestPanel.transform.Find("QuestsLogPanel").gameObject;
-
         qLogButtonSpacer = questLogPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
 
-        Transform questLogDescParent = questLogPanel.transform.Find("QuestDescription");
+
+        Transform questLogDescParent = parentQuestPanel.transform.Find("QuestDescription");
         questLogTitle = questLogDescParent.Find("QuestName").GetComponent< TMP_Text>();
         questLogDescription = questLogDescParent.Find("QuestDescription").GetComponent< TMP_Text>();
         questLogSummary = questLogDescParent.Find("QuestSummary").GetComponent< TMP_Text>();
@@ -111,16 +109,17 @@ public class QuestsUIManager : MonoBehaviour
     public void ShowQuestLog(Quest activeQuest)
     {
         questLogTitle.text = activeQuest.title;
-        if(activeQuest.progress == Quest.QuestProgress.ACCEPTED)
+        questLogDescription.text = activeQuest.description;
+        questLogSummary.text = $"{activeQuest.questObjective}: {activeQuest.questObjectiveCount}/{activeQuest.questObjectiveRequirement}";
+        
+        /*if(activeQuest.progress == Quest.QuestProgress.ACCEPTED)
         {
-            questLogDescription.text = activeQuest.hint;
-            questLogSummary.text = $"{activeQuest.questObjective}: {activeQuest.questObjectiveCount}/{activeQuest.questObjectiveRequirement}";
         }
         else if(activeQuest.progress == Quest.QuestProgress.COMPLETE)
         {
             questLogDescription.text = activeQuest.congratulation;
             questLogSummary.text = $"{activeQuest.questObjective}: {activeQuest.questObjectiveCount}/{activeQuest.questObjectiveRequirement}";
-        }
+        }*/
 
     }
 
@@ -128,9 +127,6 @@ public class QuestsUIManager : MonoBehaviour
     public void HideQuestLogPanel()
     {
         questLogPanelActive = false;
-        questLogTitle.text = "";
-        questLogDescription.text = "";
-        questLogSummary.text = "";
 
         //borrar lista de botones
         for (int i = 0;i < qButtons.Count; i++)
