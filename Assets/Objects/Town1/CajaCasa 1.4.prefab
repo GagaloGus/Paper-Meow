@@ -67,7 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
-  IsInside: 0
+  LastDoorTP: {fileID: 0}
+  isInside: 1
 --- !u!1 &2251292084922592752
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
-  IsInside: 0
+  LastDoorTP: {fileID: 0}
+  isInside: 1
 --- !u!1 &4429883507200630102
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnterHouse : MonoBehaviour
 {
-    public GameObject DoorTP, LastDoorTP, LDTPparent;
+    public GameObject DoorTP, LastDoorTP;
     private GameObject Player;
     private bool InRange = false;
     public bool isInside;
@@ -21,7 +21,6 @@ public class EnterHouse : MonoBehaviour
         if(InRange && Input.GetKeyDown(KeyCode.E) && isInside)
         {
             LastDoorTP = gameObject;
-            LDTPparent = LastDoorTP.transform.parent.gameObject;
             DoorTP.gameObject.GetComponent<EnterHouse>().DoorTP = LastDoorTP;
             Player.transform.position = DoorTP.transform.position;
             InRange = false;
