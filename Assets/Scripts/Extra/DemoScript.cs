@@ -26,4 +26,14 @@ public class DemoScript : MonoBehaviour
     {
         AudioManager.instance.PlaySFX(clip, FindObjectOfType<SkoController>().gameObject.transform.position);
     }
+
+    public void FinishTutorial()
+    {
+        GameManager.instance.isTutorial = false;
+    }
+
+    public void TeleportToLocation(GameObject location)
+    {
+        transform.position = location.transform.position;
+    }
 }

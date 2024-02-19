@@ -30,7 +30,6 @@ public class DialogueManager : MonoBehaviour
     NPCData npcData;
     
    [SerializeField] AudioClip[] currentTypingSFXs;
-
     private void Awake()
     {
         dialogueParent = FindObjectOfType<TextController>().transform.Find("Dialogue panel").gameObject;
@@ -62,7 +61,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC, AudioClip[] typingSFXs)
+    public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC, AudioClip[] typingSFXs, bool rotateTowardsPlayer)
     {
         GameManager.instance.StartInteraction(NPC);
         //player.StartInteraction(NPC);
@@ -82,7 +81,11 @@ public class DialogueManager : MonoBehaviour
         currentDialogueIndex = 0;
 
         //empieza las corrutinas de girar y de escribir el texto
-        StartCoroutine(TurnNPCTowardsTargetPos(player.transform.position));
+        if (rotateTowardsPlayer) 
+        {
+            StartCoroutine(TurnNPCTowardsTargetPos(player.transform.position));
+        }
+
         StartCoroutine(PrintDialogue());
 
         //desactiva los botones de opciones

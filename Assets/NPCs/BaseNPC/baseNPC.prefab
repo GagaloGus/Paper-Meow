@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e11589ee711b94d85d50b5d1ca9884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateTowards: 1
   typingSfxs:
   - {fileID: 8300000, guid: c6d9b5a2eb73a37419ee72311fd1e3ed, type: 3}
   - {fileID: 8300000, guid: b864768463ad69f4290a4abf4ddf855f, type: 3}
@@ -186,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d15d0c566b2c3841b1424a9781ee3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avaliableQuestIDs: 
-  recievableQuestIDs: 
+  avaliableQuests: []
+  recievableQuests: []
   questAvaliableSprite: {fileID: 21300000, guid: 0ec35ac0ba1ba68439d2c9570e57ba5c, type: 3}
   questRecievableSprite: {fileID: 21300000, guid: fa68212565bda2c4f82102f21d12e0cc, type: 3}
 --- !u!1 &4288362622479397029
