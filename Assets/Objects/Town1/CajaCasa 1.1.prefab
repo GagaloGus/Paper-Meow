@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorTP: {fileID: 0}
+  isInside: 0
 --- !u!1 &6814734947552294628
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,14 +95,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6814734947552294628}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.43045908, y: 0.56098586, z: 0.5609858, w: 0.43045896}
-  m_LocalPosition: {x: 97.34464, y: 0.26999998, z: 58.75738}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalRotation: {x: -0.65328234, y: -0.27059597, z: -0.2705961, w: 0.65328234}
+  m_LocalPosition: {x: -22.52, y: -72.94, z: 87.13}
+  m_LocalScale: {x: 130, y: 130, z: 130}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8430741728950273415}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 105}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -45}
 --- !u!33 &7095076438582502395
 MeshFilter:
   m_ObjectHideFlags: 0

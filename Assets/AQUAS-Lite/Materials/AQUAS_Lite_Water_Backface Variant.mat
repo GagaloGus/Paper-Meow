@@ -28,11 +28,13 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Density: 0.267
+    - _Density: 0.232
     - _Distortion: 0.686
-    - _FoamTiling: 0.88
-    - _NormalStrength: 1.47
-    - _NormalTiling: 0.99
+    - _FoamContrast: 0.274
+    - _FoamTiling: 0.89
+    - _NormalStrength: 2
+    - _NormalTiling: 0.36
+    - _Refraction: 0.579
     m_Colors:
     - _DeepWaterColor: {r: 0, g: 0.5996132, b: 1, a: 1}
     - _MainColor: {r: 0.33784264, g: 0.9811321, b: 0.7238163, a: 1}

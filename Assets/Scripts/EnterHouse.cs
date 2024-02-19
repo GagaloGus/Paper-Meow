@@ -1,23 +1,36 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EnterHouse : MonoBehaviour
 {
-    public GameObject DoorTP;
+    public GameObject DoorTP, LastDoorTP, LDTPparent;
     private GameObject Player;
     private bool InRange = false;
+    public bool isInside;
     void Start()
     {
         Player = FindAnyObjectByType<SkoController>().gameObject;
+        isInside = gameObject.name.Contains("Enter");
     }
 
     void Update()
     {
-        if(InRange && Input.GetKeyDown(KeyCode.E))
+        if(InRange && Input.GetKeyDown(KeyCode.E) && isInside)
         {
+            LastDoorTP = gameObject;
+            LDTPparent = LastDoorTP.transform.parent.gameObject;
+            DoorTP.gameObject.GetComponent<EnterHouse>().DoorTP = LastDoorTP;
             Player.transform.position = DoorTP.transform.position;
             InRange = false;
+            GameEventsManager.instance.playerEvents.HouseEnterChange(isInside);
+        }
+        else if(InRange && Input.GetKeyDown(KeyCode.E) && !isInside)
+        {
+            Player.transform.position = DoorTP.transform.position;
+            GameEventsManager.instance.playerEvents.HouseEnterChange(isInside);
         }
     }
 
@@ -35,5 +48,4 @@ public class EnterHouse : MonoBehaviour
             InRange = false;
         }
     }
-
 }

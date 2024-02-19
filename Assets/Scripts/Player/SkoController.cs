@@ -23,7 +23,7 @@ public class SkoController : MonoBehaviour
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist;
     public float nearGroundDist;
-    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
+    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking, isInside;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
