@@ -63,6 +63,9 @@ public class SkillPanel : MonoBehaviour
         TMP_Text name = button.transform.Find("name").gameObject.GetComponent<TMP_Text>();
         name.text = skill.skillName;
 
+        TMP_Text money = button.transform.Find("money").GetComponent<TMP_Text>();
+        money.text = $"Cost: {skill.moneyRequired}";
+
         //le cambia el sprite
         button.GetComponent<Image>().sprite = skill.skillTreeSprite;
     }

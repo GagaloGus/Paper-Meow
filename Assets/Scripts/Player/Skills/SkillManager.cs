@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class SkillManager : MonoBehaviour
     public GameObject player;
     KeyCode useSkillKey;
 
-    float skillCooldownTimer;
+    public float skillCooldownTimer;
     bool skillUsed;
 
     bool skillUsable;
@@ -73,6 +74,8 @@ public class SkillManager : MonoBehaviour
 
                     print($"{selectedSkill.skillName} usada!");
 
+                    GameEventsManager.instance.playerEvents.SkillUsed(selectedSkill);
+
                     StopCoroutine(nameof(ChangeGizmoCol));
                     StartCoroutine(ChangeGizmoCol());
                 }
@@ -127,8 +130,9 @@ public class SkillManager : MonoBehaviour
         //Empieza el contador de la skill que le hayamos puesto
         skillCooldownTimer = newSkill.cooldown;
         selectedSkill = newSkill;
-
         newSkill.StartSkill();
+
+        GameEventsManager.instance.playerEvents.SkillSwapped(newSkill);
         print($"skill seleccionada {newSkill.skillName}");
     }
 

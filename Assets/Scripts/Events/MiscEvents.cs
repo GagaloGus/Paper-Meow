@@ -35,9 +35,9 @@ public class MiscEvents
     public event Action<string> onThingObtained;
     public void ThingObtained(string thingName)
     {
-        if(onThingObtained != null)
+        if (onThingObtained != null)
         {
             onThingObtained(thingName);
         }
-    }
+    }    
 }

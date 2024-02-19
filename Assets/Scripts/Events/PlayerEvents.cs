@@ -58,4 +58,22 @@ public class PlayerEvents
             onPlayerTouchTutTrigger();
         }
     }
+
+    public event Action<Skill> onSkillSwapped;
+    public void SkillSwapped(Skill skill)
+    {
+        if (onSkillSwapped != null)
+        {
+            onSkillSwapped(skill);
+        }
+    }
+
+    public event Action<Skill> onSkillUsed;
+    public void SkillUsed(Skill skill)
+    {
+        if (onSkillUsed != null)
+        {
+            onSkillUsed(skill);
+        }
+    }
 }
