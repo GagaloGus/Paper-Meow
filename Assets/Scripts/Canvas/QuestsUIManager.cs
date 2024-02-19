@@ -13,11 +13,9 @@ public class QuestsUIManager : MonoBehaviour
     public bool questAvaliable = false;
     public bool questRunning = false;
 
-    public bool questPanelActive = false;
     bool questLogPanelActive = false;
 
     [Header("Paneles")]
-    public GameObject questPanel;
     public GameObject questLogPanel;
 
     [Header("Quest Objects")]
@@ -32,21 +30,10 @@ public class QuestsUIManager : MonoBehaviour
     public GameObject qLogButton;
     List<GameObject> qButtons = new List<GameObject>();
 
-    public GameObject acceptButton;
-    public GameObject completeButton;
-    [HideInInspector] public QButtonScript acceptButtonScript;
-    [HideInInspector] public QButtonScript completeButtonScript;
-
     [Header("Spacer")]
-    public Transform qButtonSpacer1;
-    public Transform qButtonSpacer2;
     public Transform qLogButtonSpacer;
 
     [Header("Info")]
-    public TMP_Text questTitle;
-    public TMP_Text questDescription;
-    public TMP_Text questSummary;
-    
     public TMP_Text questLogTitle;
     public TMP_Text questLogDescription;
     public TMP_Text questLogSummary;
@@ -54,22 +41,6 @@ public class QuestsUIManager : MonoBehaviour
     private void Awake()
     {
         FindChilds();
-    }
-
-
-    private void Start()
-    {
-        questTitle = GetComponentInChildren<TMP_Text>();
-
-        acceptButtonScript = acceptButton.GetComponent<QButtonScript>();
-
-        completeButtonScript = completeButton.GetComponent<QButtonScript>();
-
-        acceptButton.SetActive(false);
-        completeButton.SetActive(false);
-
-
-        HideQuestPanel();
     }
 
     private void Update()
@@ -84,20 +55,6 @@ public class QuestsUIManager : MonoBehaviour
 
     void FindChilds()
     {
-        //Quest panel
-        questPanel = parentQuestPanel.Find("QuestsPanel").gameObject;
-
-        qButtonSpacer1 = questPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
-        qButtonSpacer2 = questPanel.transform.Find("RecievableQ").Find("QButtonSpace");
-
-        Transform questDescParent = questPanel.transform.Find("QuestDescription");
-        questTitle = questDescParent.Find("QuestName").GetComponent<TMP_Text>();
-        questDescription = questDescParent.Find("QuestDescription").GetComponent<TMP_Text>();
-        questSummary = questDescParent.Find("QuestSummary").GetComponent<TMP_Text>();
-
-        acceptButton = questDescParent.Find("ButtonHolder").Find("AcceptButton").gameObject;
-        completeButton = questDescParent.Find("ButtonHolder").Find("CompleteButton").gameObject;
-
         //Quest Log Panel
         questLogPanel = parentQuestPanel.transform.Find("QuestsLogPanel").gameObject;
 
@@ -111,14 +68,15 @@ public class QuestsUIManager : MonoBehaviour
     }
 
     //Llamadas desde Quest Object
-    public void CheckQuests(QuestObject questObject)
+    public void CheckQuests(QuestObject questObject, Quest questToAdd)
     {
         currentQuestObject = questObject;
         QuestManager.instance.QuestRequest(questObject);
 
-        if((questRunning || questAvaliable) && !questPanelActive)
+        if((questRunning || questAvaliable))
         {
-            ShowQuestPanel();
+            //Mostrar por la interfaz
+            QuestManager.instance.AcceptQuest(questToAdd);
         }
         else
         {
@@ -126,40 +84,28 @@ public class QuestsUIManager : MonoBehaviour
         }
     }
     
-    //Show Panel
-    public void ShowQuestPanel()
-    {
-        questPanelActive = true;
-        questPanel.SetActive(questPanelActive);
-
-        //Relleno
-        FillQuestButtons();
-    }
 
     public void ShowQuestLogPanel()
     {
         questLogPanel.SetActive(questLogPanelActive);
-        if(questLogPanelActive && !questPanelActive )
+        if(questLogPanelActive )
         {
             foreach(Quest curQuest in QuestManager.instance.currentQuestList)
             {
                 GameObject questButton = Instantiate(qLogButton);
                 QLogButonScript qBLScript = questButton.GetComponent<QLogButonScript>();
 
-                qBLScript.questID = curQuest.ID;
+                qBLScript.quest = curQuest;
                 qBLScript.questTitle.text = curQuest.title;
 
                 questButton.transform.SetParent(qLogButtonSpacer, false);
                 qButtons.Add(questButton);
             }
         }
-        else if(!questLogPanelActive && !questPanelActive)
+        else
         {
             HideQuestLogPanel();
         }
-
-        //Relleno
-        FillQuestButtons();
     }
 
     public void ShowQuestLog(Quest activeQuest)
@@ -178,34 +124,6 @@ public class QuestsUIManager : MonoBehaviour
 
     }
 
-    //Ocultar Panel
-    public void HideQuestPanel()
-    {
-        questPanelActive = false;
-        questAvaliable = false;
-        questRunning = false;
-
-        //Borrar texto
-        questTitle.text = "";
-        questDescription.text = "";
-        questSummary.text = "";
-
-        //Borrar listas
-        avaliableQuests.Clear();
-        activeQuests.Clear();
-
-        //Borrar lista de botones
-        for (int i = 0; i < qButtons.Count; i++)
-        {
-            Destroy(qButtons[i]);
-        }
-
-        qButtons.Clear();
-
-        //Ocultar panel
-        questPanel.SetActive(questPanelActive);
-    }
-
     //Ocultar quest log panel
     public void HideQuestLogPanel()
     {
@@ -221,72 +139,5 @@ public class QuestsUIManager : MonoBehaviour
         }
         qButtons.Clear();
         questLogPanel.SetActive(questLogPanelActive);
-    }
-
-
-    //Rellenar botones para el quest panel
-    void FillQuestButtons()
-    {
-        foreach(Quest avaliableQuest in avaliableQuests)
-        {
-            GameObject questButton = Instantiate(qButton);
-            QButtonScript qBScript = questButton.GetComponent<QButtonScript>();
-
-            qBScript.questID = avaliableQuest.ID;
-            qBScript.questTitle.text = avaliableQuest.title;
-
-            questButton.transform.SetParent(qButtonSpacer1, false);
-            qButtons.Add(questButton);
-        }
-
-        foreach(Quest activeQuest in activeQuests)
-        {
-            GameObject questButton = Instantiate(qButton);
-            QButtonScript qBScript = questButton.GetComponent<QButtonScript>();
-
-            qBScript.questID = activeQuest.ID;
-            qBScript.questTitle.text = activeQuest.title;
-
-            questButton.transform.SetParent(qButtonSpacer2, false);
-            qButtons.Add(questButton);
-
-        }
-    }
-
-    //Mostrar datos del quest al pulsar los botones
-    public void ShowSelectedQuest(int questID)
-    {
-        for(int i = 0; i < avaliableQuests.Count; i++)
-        {
-            Quest quest = avaliableQuests[i];
-            if(quest.ID == questID)
-            {
-                questTitle.text = quest.title;
-                if(quest.progress == Quest.QuestProgress.AVALIABLE)
-                {
-                    questDescription.text = quest.description;
-                    questSummary.text = $"{quest.questObjective}: {quest.questObjectiveCount}/{quest.questObjectiveRequirement}" ;
-                }
-            }
-        }
-
-        for(int i = 0; i < activeQuests.Count; i++)
-        {
-            Quest quest = activeQuests[i];
-            if(quest.ID == questID)
-            {
-                questTitle.text = quest.title;
-                if(quest.progress == Quest.QuestProgress.ACCEPTED)
-                {
-                    questDescription.text = quest.hint;
-                    questSummary.text = $"{quest.questObjective}: {quest.questObjectiveCount}/{quest.questObjectiveRequirement}" ;
-                }
-                else if(quest.progress == Quest.QuestProgress.COMPLETE)
-                {
-                    questDescription.text = quest.congratulation;
-                    questSummary.text = $"{quest.questObjective}: {quest.questObjectiveCount}/{quest.questObjectiveRequirement}" ;
-                }
-            }
-        }
     }
 }

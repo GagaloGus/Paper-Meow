@@ -27,17 +27,17 @@ public class QuestManager : MonoBehaviour
 
     public void QuestRequest(QuestObject questObj)
     {
-        if(questObj.avaliableQuestIDs.Count > 0)
+        if(questObj.avaliableQuests.Count > 0)
         {
             for(int i = 0; questList.Count > i; i++)
             {
                 Quest quest = questList[i];
-                for(int j = 0; j < questObj.avaliableQuestIDs.Count; j++)
+                for(int j = 0; j < questObj.avaliableQuests.Count; j++)
                 {
-                    int avaliableQuestID = questObj.avaliableQuestIDs[j];
-                    if(quest.ID == avaliableQuestID && quest.progress == Quest.QuestProgress.AVALIABLE)
+                    Quest avaliableQuest = questObj.avaliableQuests[j];
+                    if(quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
                     {
-                        print($"Quest ID: {avaliableQuestID} + {quest.progress}");
+                        print($"Quest ID: {avaliableQuest.ID} + {quest.progress}");
 
                         //quest UI
                         questsUIManager.questAvaliable = true;
@@ -51,17 +51,22 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; currentQuestList.Count > i; i++)
         {
             Quest currentQuest = currentQuestList[i];
-            for (int j = 0; j < questObj.recievableQuestIDs.Count; j++)
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
             {
-                int recievableQuestID = questObj.recievableQuestIDs[j];
-                if(currentQuest.ID == recievableQuestID && currentQuest.progress == Quest.QuestProgress.ACCEPTED 
+                Quest recievableQuest = questObj.recievableQuests[j];
+                if(currentQuest == recievableQuest && currentQuest.progress == Quest.QuestProgress.ACCEPTED 
                     || currentQuest.progress == Quest.QuestProgress.COMPLETE)
                 {
-                    print($"Quest ID: {recievableQuestID} is {currentQuest.progress}");
+                    print($"Quest ID: {recievableQuest} is {currentQuest.progress}");
 
                     //quest UI
                     questsUIManager.questRunning = true;
                     questsUIManager.activeQuests.Add(currentQuest);
+
+                    if(currentQuest.progress == Quest.QuestProgress.COMPLETE)
+                    {
+                        CompleteQuest(currentQuest);
+                    }
                 }
                 
             }
@@ -70,12 +75,12 @@ public class QuestManager : MonoBehaviour
     }
 
     //Aceptar quest
-    public void AcceptQuest(int questID)
+    public void AcceptQuest(Quest questToAccept)
     {
         for (int i = 0; i < questList.Count; i++)
         {
             Quest quest = questList[i];
-            if(quest.ID == questID & quest.progress == Quest.QuestProgress.AVALIABLE)
+            if(quest == questToAccept & quest.progress == Quest.QuestProgress.AVALIABLE)
             {
                 currentQuestList.Add(quest);
                 quest.progress = Quest.QuestProgress.ACCEPTED;
@@ -84,12 +89,12 @@ public class QuestManager : MonoBehaviour
     }
 
     //Completar Quest
-    public void CompleteQuest(int questID)
+    public void CompleteQuest(Quest completedQuest)
     {
         for(int i = 0; i< currentQuestList.Count; i++)
         {
             Quest quest = currentQuestList[i];
-            if(quest.ID == questID && quest.progress == Quest.QuestProgress.COMPLETE)
+            if(quest == completedQuest && quest.progress == Quest.QuestProgress.COMPLETE)
             {
                 quest.progress = Quest.QuestProgress.FINISHED;
                 currentQuestList.Remove(quest);
@@ -100,19 +105,22 @@ public class QuestManager : MonoBehaviour
         }
 
         //Si hay algun quest encadenado a este
-        CheckChainQuest(questID);
+        if(completedQuest.nextQuest != null)
+        {
+            CheckChainQuest(completedQuest);
+        }
     }
 
     //Quest encadenado
-    void CheckChainQuest(int questID)
+    void CheckChainQuest(Quest chainedQuest)
     {
         int tempID = -1;
         for(int i = 0;i < questList.Count; i++)
         {
             Quest quest = questList[i];
-            if(quest.ID == questID && quest.nextQuestID > 0)
+            if(quest == chainedQuest && quest.nextQuest.ID > 0)
             {
-                tempID = quest.nextQuestID;
+                tempID = quest.nextQuest.ID;
             }
         }
 
@@ -124,6 +132,8 @@ public class QuestManager : MonoBehaviour
                 if(quest.ID == tempID && quest.progress == Quest.QuestProgress.NOT_AVALIABLE)
                 {
                     quest.progress = Quest.QuestProgress.AVALIABLE;
+                    AcceptQuest(quest);
+
                 }
             }
         }
@@ -131,7 +141,7 @@ public class QuestManager : MonoBehaviour
 
 
     //Añadir items
-    public void AddQuestItem(int questID, int itemAmount)
+    public void AddQuestItem(Quest quest, int itemAmount)
     {
         for (int i = 0; i < currentQuestList.Count; i++)
         {
@@ -139,7 +149,7 @@ public class QuestManager : MonoBehaviour
 
             if (currentQuest.progress == Quest.QuestProgress.ACCEPTED)
             {
-                if (currentQuest.ID == questID)
+                if (currentQuest == quest)
                 {
                     currentQuestList[i].questObjectiveCount += itemAmount;
                 }
@@ -157,11 +167,11 @@ public class QuestManager : MonoBehaviour
 
 
     //Booleanos
-    public bool RequestAvaliableQuest(int questID)
+    public bool RequestAvaliableQuest(Quest quest)
     {
         for(int i = 0; i < questList.Count; i++)
         {
-            if (questList[i].ID == questID && 
+            if (questList[i] == quest && 
                 questList[i].progress == Quest.QuestProgress.AVALIABLE) 
             { return true; }
 
@@ -197,10 +207,10 @@ public class QuestManager : MonoBehaviour
         for(int i=0; i<questList.Count; i++)
         {
             Quest quest = questList[i];
-            for(int j = 0;j < questObj.avaliableQuestIDs.Count; j++) 
+            for(int j = 0;j < questObj.avaliableQuests.Count; j++) 
             {
-                int avaliableQuestID = questObj.avaliableQuestIDs[j];
-                if (quest.ID == avaliableQuestID && quest.progress == Quest.QuestProgress.AVALIABLE)
+                Quest avaliableQuest = questObj.avaliableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
                 {
                     return true;
                 }   
@@ -214,10 +224,10 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             Quest quest = questList[i];
-            for (int j = 0; j < questObj.recievableQuestIDs.Count; j++)
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
             {
-                int avaliableQuestID = questObj.recievableQuestIDs[j];
-                if (quest.ID == avaliableQuestID && quest.progress == Quest.QuestProgress.ACCEPTED)
+                Quest avaliableQuest = questObj.avaliableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.ACCEPTED)
                 {
                     return true;
                 }
@@ -231,10 +241,10 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             Quest quest = questList[i];
-            for (int j = 0; j < questObj.recievableQuestIDs.Count; j++)
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
             {
-                int avaliableQuestID = questObj.recievableQuestIDs[j];
-                if (quest.ID == avaliableQuestID && quest.progress == Quest.QuestProgress.FINISHED)
+                Quest avaliableQuest = questObj.recievableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.FINISHED)
                 {
                     return true;
                 }
@@ -244,12 +254,12 @@ public class QuestManager : MonoBehaviour
     }
 
     //Mostrar el quest log
-    public void ShowQuestLog(int questID)
+    public void ShowQuestLog(Quest questToShow)
     {
         for(int i = 0; i< currentQuestList.Count; i++)
         {
             Quest quest = currentQuestList[i];
-            if(quest.ID == questID)
+            if(quest == questToShow)
             {
                 FindObjectOfType<QuestsUIManager>().ShowQuestLog(quest);
             }

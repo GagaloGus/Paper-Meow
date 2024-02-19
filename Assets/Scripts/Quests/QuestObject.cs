@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class QuestObject : MonoBehaviour
 {
-    public List<int> avaliableQuestIDs = new List<int>();
-    public List<int> recievableQuestIDs = new List<int>();
+    public List<Quest> avaliableQuests = new List<Quest>();
+    public List<Quest> recievableQuests = new List<Quest>();
 
     public Sprite questAvaliableSprite;
     public Sprite questRecievableSprite;
@@ -39,10 +39,8 @@ public class QuestObject : MonoBehaviour
     public void GiveQuest()
     {
         QuestsUIManager questsUIManager = FindObjectOfType<QuestsUIManager>();
-        if (!questsUIManager.questPanelActive)
-        {
-            FindObjectOfType<QuestsUIManager>().CheckQuests(this);
-        }
+        FindObjectOfType<QuestsUIManager>().CheckQuests(this, avaliableQuests[0]);
+
     }
 
 }

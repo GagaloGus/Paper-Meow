@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestTriggerArea
       objectReference: {fileID: 0}
+    - target: {fileID: 5235507605745047279, guid: 02188ec4b52730941b1a82ea31c89edf, type: 3}
+      propertyPath: quest
+      value: 
+      objectReference: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
     - target: {fileID: 5786724495860215695, guid: 02188ec4b52730941b1a82ea31c89edf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1876.97
@@ -1535,7 +1539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390ac1b9574d69c459d3a6320aeeae22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 0}
 --- !u!4 &453070570
 Transform:
   m_ObjectHideFlags: 0
@@ -5679,6 +5682,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3055039204710927668, guid: e608b98e69da7e94ea431c5773e715ce, type: 3}
+      propertyPath: questList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055039204710927668, guid: e608b98e69da7e94ea431c5773e715ce, type: 3}
+      propertyPath: questList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+    - target: {fileID: 3055039204710927668, guid: e608b98e69da7e94ea431c5773e715ce, type: 3}
+      propertyPath: questList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
     - target: {fileID: 3974286381345575789, guid: e608b98e69da7e94ea431c5773e715ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.66231
@@ -6492,10 +6507,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1022448917}
     m_Modifications:
-    - target: {fileID: -4753156628736653764, guid: 10d48a540d5e9944fa425bef265daea4, type: 3}
-      propertyPath: coinAmount
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 635569263535410485, guid: 10d48a540d5e9944fa425bef265daea4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3924.4612
@@ -6855,15 +6866,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3727590011890803287, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.034653436
+      value: 0.03465343
       objectReference: {fileID: 0}
     - target: {fileID: 3727590011890803287, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.017841859
+      value: 0.017841855
       objectReference: {fileID: 0}
     - target: {fileID: 4547484301267636700, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.088610694
+      value: 0.08861068
       objectReference: {fileID: 0}
     - target: {fileID: 4547484301267636700, guid: 7a2d4678f1b64d9468933cbb2c8fc31c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17735,13 +17746,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: avaliableQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: recievableQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
       propertyPath: avaliableQuestIDs.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: avaliableQuests.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: avaliableQuests.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
       propertyPath: recievableQuestIDs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: recievableQuests.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+    - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
+      propertyPath: recievableQuests.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
     - target: {fileID: 3427998159013713195, guid: 6dddf3fa84f025f4e8f6324dd3b65af1, type: 3}
       propertyPath: avaliableQuestIDs.Array.data[0]
       value: 1
@@ -19835,8 +19870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0bdd00a67659247aab0ec044719d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questID: 0
-  questTitle: {fileID: 9096733491806823099}
 --- !u!1 &7552276776223405156
 GameObject:
   m_ObjectHideFlags: 0
@@ -19870,8 +19903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0bdd00a67659247aab0ec044719d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questID: 0
-  questTitle: {fileID: 0}
 --- !u!114 &7557407063976242060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21013,23 +21044,12 @@ MonoBehaviour:
   parentQuestPanel: {fileID: 4688674485362708344}
   questAvaliable: 0
   questRunning: 0
-  questPanelActive: 0
-  questPanel: {fileID: 0}
   questLogPanel: {fileID: 0}
   avaliableQuests: []
   activeQuests: []
   qButton: {fileID: 5683171662536622087, guid: 2f8c9d71ba3b74d48b085b56cc797440, type: 3}
   qLogButton: {fileID: 5683171662536622087, guid: 291d88365e7ee69418727601b7696154, type: 3}
-  acceptButton: {fileID: 0}
-  completeButton: {fileID: 0}
-  acceptButtonScript: {fileID: 0}
-  completeButtonScript: {fileID: 0}
-  qButtonSpacer1: {fileID: 0}
-  qButtonSpacer2: {fileID: 0}
   qLogButtonSpacer: {fileID: 0}
-  questTitle: {fileID: 0}
-  questDescription: {fileID: 0}
-  questSummary: {fileID: 0}
   questLogTitle: {fileID: 0}
   questLogDescription: {fileID: 0}
   questLogSummary: {fileID: 0}
