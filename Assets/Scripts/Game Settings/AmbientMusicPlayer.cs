@@ -29,7 +29,7 @@ public class AmbientMusicPlayer : MonoBehaviour
     void ChangeTagSound(string tag)
     {
         currentZoneTag = tag;
-        if(previousZoneTag != currentZoneTag && musicActive)
+        if(previousZoneTag != currentZoneTag && musicActive && !GameManager.instance.isTutorial)
         {
             AmbientSongs ambient = Array.Find(ambientSongs, x => x.tag == tag);
             if(ambient != null)

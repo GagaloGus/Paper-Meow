@@ -344,7 +344,7 @@ public class SkoController : MonoBehaviour
             if (!isUsingSkill && !isAttacking)
             {
                 Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1));
+                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1) * stats.currentStats.SPD/10);
 
                 Vector3 vel = direction * stats.moveSpeed * multiplySpeedFac;
                 //Moverse

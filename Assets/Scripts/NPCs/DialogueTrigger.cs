@@ -7,6 +7,8 @@ using UnityEngine.Events;
 [RequireComponent (typeof(Interactable))]
 public class DialogueTrigger : MonoBehaviour
 {
+    [SerializeField] bool rotateTowards = true;
+
     [Header("Sound Effects")]
     public AudioClip[] typingSfxs;
 
@@ -19,7 +21,7 @@ public class DialogueTrigger : MonoBehaviour
     public void StartDialogue()
     {
         info.originalRot = transform.rotation;
-        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, info,gameObject, typingSfxs);
+        FindObjectOfType<DialogueManager>().DialogueStart(dialogueStrings, info,gameObject, typingSfxs, rotateTowards);
     }
 
     public void AddIndexToDialogues()

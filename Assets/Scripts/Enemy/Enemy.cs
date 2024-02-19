@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+<<<<<<<< HEAD:Assets/Scripts/Enemy/Enemy.cs
 public class Enemy : MonoBehaviour
+========
+public class EnemyTesting : MonoBehaviour
+>>>>>>>> d33cfd722825fc1327e6852d3c22dd999d44e5e0:Assets/Scripts/Enemy/EnemyTesting.cs
 {
-    public float health;
     [SerializeField] bool died = false;
     SkoStats player;
+<<<<<<<< HEAD:Assets/Scripts/Enemy/Enemy.cs
     public int exp;
     public int coinAmount;
+========
+    Material material;
+>>>>>>>> d33cfd722825fc1327e6852d3c22dd999d44e5e0:Assets/Scripts/Enemy/EnemyTesting.cs
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +26,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<<< HEAD:Assets/Scripts/Enemy/Enemy.cs
         if(health <= 0 && !died)
         {
             died = true;
@@ -29,11 +37,13 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
         }
+========
+
+>>>>>>>> d33cfd722825fc1327e6852d3c22dd999d44e5e0:Assets/Scripts/Enemy/EnemyTesting.cs
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
         print($"au {damage}");
     }
 
