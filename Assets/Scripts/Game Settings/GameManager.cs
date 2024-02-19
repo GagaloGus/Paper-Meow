@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pausa
-    public void InventoryOpen()
+    public void InventoryOpen(bool temp)
     {
         gameTime = 0;
         gamePaused = true;
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<SkoController>().PausedGame(true);
     }
 
-    public void PauseGame()
+    public void PauseGame(bool temp)
     {
         gameTime = 0;
         gamePaused = true;
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            PauseGame();
+            PauseGame(true);
         }
 
         else
@@ -205,5 +205,19 @@ public class GameManager : MonoBehaviour
         UnlockCursor();
         player.BroadcastMessage("EndInteraction");
     }
+
     #endregion
+    public void Damage(int damagevalue)
+    {
+        TakeDamage(damagevalue);
+    }
+    public void TakeDamage(int damage) //El jugador toma el daño que inflingen sus enemigos y resta su vida.
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            //Death(); // Si la salud del personaje llega a 0 se invoca el metodo Death().
+        }
+    }
 }

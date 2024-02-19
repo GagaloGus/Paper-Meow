@@ -45,7 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxStackedItems: 30
-  itemMenus: []
+  itemMenus:
+  - Menu: {fileID: 0}
+    menuSlots: []
+  - Menu: {fileID: 0}
+    menuSlots: []
+  - Menu: {fileID: 0}
+    menuSlots: []
+  - Menu: {fileID: 0}
+    menuSlots: []
   quickSwapWeapons: []
   inventoryItemPrefab: {fileID: 631850876000506939, guid: 9ead4d0c70a7a224daeaa2b047839e1c, type: 3}
   quickSwapInventoryItemPrefab: {fileID: 4914860866035002505, guid: e99c3122b5d93c74bb2cb1bedb9441a7, type: 3}

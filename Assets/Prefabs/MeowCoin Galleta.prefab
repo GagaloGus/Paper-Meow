@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3704495741132850550}
   - component: {fileID: 1410658316182390577}
   - component: {fileID: 4650841299510326935}
+  - component: {fileID: 6688785136313035063}
   m_Layer: 0
   m_Name: MeowCoin Galleta
   m_TagString: Untagged
@@ -111,6 +112,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &6688785136313035063
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555907676854485043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3aa72d90dc9a53546bab4353629caa32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2149214312914857901
 PrefabInstance:
   m_ObjectHideFlags: 0

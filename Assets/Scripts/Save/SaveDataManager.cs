@@ -25,7 +25,7 @@ public class SaveDataManager : MonoBehaviour
             // Se asignan los valores cargados a diferentes componentes del juego, como la posición del jugador y la puntuación obtenida.
             player.transform.position = gamedata.position;
             player.transform.rotation = gamedata.rotation;
-            GameManager.instance.points = gamedata.coins;
+            GameManager.instance.money = gamedata.coins;
 
             Debug.Log("Archivo Cargado"); // Se muestra en la consola el mensaje "Archivo Cargado" indicando que hemos cargado los datos correctamente.
         }
@@ -41,7 +41,7 @@ public class SaveDataManager : MonoBehaviour
         {
             position = player.transform.position,
             rotation = player.transform.rotation,
-            coins = GameManager.instance.points,
+            coins = GameManager.instance.money,
         };
 
         string jsonstring = JsonUtility.ToJson(newdata); //Transforma el objeto de tipo GameData en formato JSON utilizando la clase JsonUtility de Unity.

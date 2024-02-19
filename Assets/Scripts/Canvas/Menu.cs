@@ -27,7 +27,7 @@ public class Menu : MonoBehaviour
         }
     }
 
-    bool open = false;
+    public bool open = false;
     public void HandleMenu()
     {
         if(!GameManager.instance.isInteracting)

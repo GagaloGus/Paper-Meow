@@ -50,12 +50,12 @@ public class PlayerEvents
         }
     }
 
-    public event Action onPlayerTouchTutTrigger;
+    public event Action<bool> onPlayerTouchTutTrigger;
     public void PlayerTouchedWaitTrigger()
     {
         if(onPlayerTouchTutTrigger != null) 
         {
-            onPlayerTouchTutTrigger();
+            onPlayerTouchTutTrigger(true);
         }
     }
 

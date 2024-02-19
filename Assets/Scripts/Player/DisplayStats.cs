@@ -35,10 +35,10 @@ public class DisplayStats : MonoBehaviour
         weapon_display = statsMenu.Find("Weapon").gameObject.GetComponent<Image>();
         expSlider = statsMenu.gameObject.GetComponentInChildren<Slider>();
 
-        UpdateCanvasStats();
+        UpdateCanvasStats(true);
     }
 
-    public void UpdateCanvasStats()
+    public void UpdateCanvasStats(bool temp)
     {
         playerStats = FindObjectOfType<SkoStats>();
 

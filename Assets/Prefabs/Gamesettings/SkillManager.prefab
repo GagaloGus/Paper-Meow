@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9edb84f234bd1eb4c845c161a055f62c, type: 2}
   selectedSkill: {fileID: 0}
   player: {fileID: 0}
+  skillCooldownTimer: 0
 --- !u!114 &4624713391165833723
 MonoBehaviour:
   m_ObjectHideFlags: 0

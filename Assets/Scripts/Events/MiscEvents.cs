@@ -5,30 +5,21 @@ using UnityEngine;
 
 public class MiscEvents
 {
-    public event Action onCoinCollected;
+    public event Action<int> onCoinCollected;
     public void CoinCollected()
     {
         if (onCoinCollected != null)
         {
-            onCoinCollected();
+            onCoinCollected(2);
         }
     }
 
-    public event Action onGemCollected;
-    public void GemCollected()
-    {
-        if (onGemCollected != null)
-        {
-            onGemCollected();
-        }
-    }
-
-    public event Action onPauseMenuOpen;
+    public event Action<bool> onPauseMenuOpen;
     public void PauseMenuOpen()
     {
         if (onPauseMenuOpen != null)
         {
-            onPauseMenuOpen();
+            onPauseMenuOpen(true);
         }
     }
 

@@ -191,7 +191,6 @@ public class SkillManager : MonoBehaviour
         skill.UnlockSkill();
     }
 
-    //para el cargado de datos
     void AssignIDsToSkills()
     {
         //cambia las ids a su orden en el array
@@ -200,8 +199,12 @@ public class SkillManager : MonoBehaviour
             allSkills[i].skillID = i;
         }
     }
+
+    //para el cargado de datos
     public void SetUnlockedSkills(string idString)
     {
+        AssignIDsToSkills();
+        
         //seprara el string en cada "numero" que tiene
         string[] spiltIDs = idString.Split('_');
 
@@ -221,7 +224,7 @@ public class SkillManager : MonoBehaviour
     //lo usaremos en el guardado de datos
     //crea un string con todas las skills desbloqueadas
     //ej. 1_7_12_18_
-    string UnlockedSkills()
+    public string UnlockedSkills()
     {
         string idString = "";
 
@@ -234,11 +237,6 @@ public class SkillManager : MonoBehaviour
         }
 
         return idString;
-    }
-
-    public string get_UnlockIDs
-    {
-        get { return unlockedSkillIDs; }
     }
 
     Color gizmoCol = Color.green;

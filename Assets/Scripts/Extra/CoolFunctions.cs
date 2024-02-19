@@ -25,17 +25,6 @@ public static class CoolFunctions
         return result >= 0;
     }
 
-    public static void Invoke(this MonoBehaviour mb, Action f, float delay)
-    {
-        mb.StartCoroutine(InvokeRoutine(f, delay));
-    }
-
-    private static IEnumerator InvokeRoutine(Action f, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        f();
-    }
-
     public static Vector3 MultipyVectorValues(Vector3 v1, Vector3 v2)
     {
         Vector3 newVector = new Vector3(

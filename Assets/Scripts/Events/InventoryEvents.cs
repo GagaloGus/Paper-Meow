@@ -23,12 +23,12 @@ public class InventoryEvents
         }
     }
 
-    public event Action onInventoryOpen;
+    public event Action<bool> onInventoryOpen;
     public void InventoryOpen() 
     {
         if(onInventoryOpen != null)
         {
-            onInventoryOpen();
+            onInventoryOpen(true);
         }
     }
 }

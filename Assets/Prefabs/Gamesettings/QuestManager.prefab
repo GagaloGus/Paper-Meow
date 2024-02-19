@@ -46,18 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questsUIManager: {fileID: 0}
   questList:
-  - title: Quest 1
-    ID: 1
-    progress: 1
-    description: Ve a la base de la colina y coje el martillo goma
-    hint: Solo ve a la colina y coje el martillo
-    congratulation: Yuppi esto fufa
-    summary: xiao zhang hao
-    nextQuestID: 0
-    questObjective: Coje el martillo
-    questObjectiveCount: 0
-    questObjectiveRequirement: 1
-    expReward: 0
-    goldReward: 0
-    itemReward: {fileID: 0}
+  - {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+  - {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
   currentQuestList: []
