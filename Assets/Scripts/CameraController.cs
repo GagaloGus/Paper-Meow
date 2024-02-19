@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public CinemachineFreeLook cinemachine;
     public float speedSmooth;
 
+    float[] CameraOriginalValues;
     Vector2 maxSpeed;
 
     Animator animator;

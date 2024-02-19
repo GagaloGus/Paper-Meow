@@ -34,9 +34,13 @@ public class Buttonfunctions : MonoBehaviour
                     menus[i].activated = !menus[i].activated;
 
                     if (menus[i].activated)
+                    {
                         menus[i].enableEvent?.Invoke();
+                    }
                     else
+                    {
                         menus[i].disableEvent?.Invoke();
+                    }
                 }
             }
 

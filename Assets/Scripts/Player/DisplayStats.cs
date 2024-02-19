@@ -26,7 +26,7 @@ public class DisplayStats : MonoBehaviour
         GameEventsManager.instance.miscEvents.onPauseMenuOpen -= UpdateCanvasStats;
     }
 
-    void Start()
+    void FindChilds()
     {
         statsMenu = transform.Find("Player Info");
         level_display = statsMenu.Find("Level").gameObject.GetComponent<TMP_Text>();
@@ -34,12 +34,12 @@ public class DisplayStats : MonoBehaviour
         exp_display = statsMenu.Find("Exp").gameObject.GetComponent<TMP_Text>();
         weapon_display = statsMenu.Find("Weapon").gameObject.GetComponent<Image>();
         expSlider = statsMenu.gameObject.GetComponentInChildren<Slider>();
-
-        UpdateCanvasStats(true);
     }
 
     public void UpdateCanvasStats(bool temp)
     {
+
+        FindChilds();
         playerStats = FindObjectOfType<SkoStats>();
 
         level_display.text = $"Lvl {playerStats.currentStats.currentLevel}";
