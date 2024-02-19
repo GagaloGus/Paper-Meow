@@ -18,13 +18,14 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<SkoStats>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-        if(health <= 0 && !died)
+    public void TakeDamage(float damage)
+    {
+        print($"au {damage}");
+        health -= damage;
+
+        if (health <= 0)
         {
-            died = true;
             GameManager.instance.MoneyUpdate(coinAmount);
             GameEventsManager.instance.miscEvents.CoinCollected();
             GameEventsManager.instance.miscEvents.ThingObtained($"{coinAmount} MeowCoins");
@@ -32,12 +33,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
         }
-
-    }
-
-    public void TakeDamage(float damage)
-    {
-        print($"au {damage}");
     }
 
 

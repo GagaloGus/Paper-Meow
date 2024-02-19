@@ -4960,6 +4960,7 @@ GameObject:
   - component: {fileID: 5580848413366705861}
   - component: {fileID: 7375477052782744111}
   - component: {fileID: 2327946569492727208}
+  - component: {fileID: 8608569526185329138}
   m_Layer: 0
   m_Name: Esdra
   m_TagString: Untagged
@@ -5040,6 +5041,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8608569526185329138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943386002310844308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29292c430f5863c4e9327dab9db520a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  died: 0
+  health: 100
+  exp: 100
+  coinAmount: 150
 --- !u!1 &4617627552850563604
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,8 +55,12 @@ public class Buttonfunctions : MonoBehaviour
 
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
     {
-        SceneManager.LoadScene(name);
+        GameManager.instance.ChangeScene(name, false);
         AudioManager.instance.ClearAudioList();
+    }
+
+    public void ChangeSceneLoad(string name)
+    {
 
     }
     public void ExitGame() //Indicamos a la aplicaci�n que se cierre.

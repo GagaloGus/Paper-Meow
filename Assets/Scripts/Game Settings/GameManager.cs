@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
-        isTutorial = true;
+        //isTutorial = true;
     }
 
     private void OnEnable()
@@ -58,11 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GetPlayer();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        FindObjectOfType<CameraController>().ResetCamera();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void GetPlayer()
@@ -161,12 +158,12 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName, bool loadScene)
     {
-        StartCoroutine(ChangeSceneCorroutine(sceneName));
+        StartCoroutine(ChangeSceneCorroutine(sceneName, loadScene));
     }
 
-    IEnumerator ChangeSceneCorroutine(string sceneName)
+    IEnumerator ChangeSceneCorroutine(string sceneName, bool loadScene)
     {
         //carga la escena en otro proceso aparte al del juego, al terminar carga la escena de golpe
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
@@ -177,7 +174,20 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        GetPlayer();
+        if (sceneName != "Main_Menu")
+        {
+            GetPlayer(); 
+            FindObjectOfType<CameraController>().ResetCamera();
+        }
+
+        if (loadScene)
+        {
+            SaveDataManager.instance.LoadData(player);
+        }
+
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void MoneyUpdate(int amount)

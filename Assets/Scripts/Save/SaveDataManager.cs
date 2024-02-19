@@ -2,24 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SaveDataManager : MonoBehaviour
+public class SaveDataManager
 {
-    private GameObject player;
-    public string savefile;
-    public GameData gamedata = new();
-
-    private void Awake()
-    {
-        savefile = Application.persistentDataPath + "\\" + "Gamedata.json"; //Asigna la ruta del archivo de guardado en formato JSON en la carpeta del proyecto en AppData.
-        player = GameObject.FindGameObjectWithTag("Player"); //Busca el objeto del jugador en la escena y lo asigna a la variable "player".
-        LoadData(); //Llama a la función "LoadData" para cargar los datos guardados previamente, si existen.
-    }
-    public void LoadData()
+    public static SaveDataManager instance = new SaveDataManager();
+    string savefile = Application.persistentDataPath + "\\" + "Gamedata.json";
+    
+    public void LoadData(GameObject player)
     {
         if (File.Exists(savefile)) //Verifica si el archivo de guardado existe en la ruta especificada.
         {
             string content = File.ReadAllText(savefile); //Lee el contenido del archivo de guardado.
+            GameData gamedata = new GameData(); 
+
             gamedata = JsonUtility.FromJson<GameData>(content); //Transforma el contenido del archivo en un objeto de tipo "GameData" utilizando la clase JsonUtility de Unity.
 
             // Se asignan los valores cargados a diferentes componentes del juego, como la posición del jugador y la puntuación obtenida.
@@ -37,7 +33,7 @@ public class SaveDataManager : MonoBehaviour
         }
 
     }
-    public void SaveData()
+    public void SaveData(GameObject player)
     {
         GameData newdata = new GameData() //Creamos un nuevo objeto del tipo GameData con los datos actuales del juego "Posición del jugador y la puntuación".
         {
