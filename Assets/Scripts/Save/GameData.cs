@@ -9,4 +9,6 @@ public class GameData //Creación de una nueva clase con nombre GameData.
     public Vector3 position; //Toma las coordenadas de la posición del player.
     public Quaternion rotation;
     public int coins; //Toma los datos de la puntuación.
+    public bool isTutorial;
+    public string skills;
 }

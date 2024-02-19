@@ -18,9 +18,9 @@ public class HitSphereSkill : Skill
 
         foreach (RaycastHit obj in spherecast) 
         {
-            if(obj.collider.GetComponent<EnemyTest>())
+            if(obj.collider.GetComponent<Enemy>())
             {
-                obj.collider.GetComponent<EnemyTest>().TakeDamage(hitDamage);
+                obj.collider.GetComponent<Enemy>().TakeDamage(hitDamage);
             }
         }
     }

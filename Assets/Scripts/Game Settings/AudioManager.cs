@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioSource> activeAudioSources;
     public AudioSource musicSource; // AudioSource específico para la música ambiente
     public GameObjPool audioPool;
+    private bool isMuted = false;
 
     void Awake()
     {
@@ -127,6 +128,31 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.volume = i;
             yield return new WaitForSeconds(0.005f);
+        }
+    }
+    public void ToggleMute()
+    {
+        isMuted = !isMuted;
+
+        if (isMuted)
+        {
+            SetMasterVolume(0);
+        }
+        else
+        {
+            SetMasterVolume(1);
+        }
+    }
+
+    public void ToggleMusicMute()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Pause();
+        }
+        else
+        {
+            musicSource.UnPause();
         }
     }
 }

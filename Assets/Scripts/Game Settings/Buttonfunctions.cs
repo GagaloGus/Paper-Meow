@@ -23,6 +23,8 @@ public class Buttonfunctions : MonoBehaviour
 
     public MenuKey[] menus;
 
+
+
     private void Update()
     {
         if (Input.anyKey && !GameManager.instance.isTutorial)

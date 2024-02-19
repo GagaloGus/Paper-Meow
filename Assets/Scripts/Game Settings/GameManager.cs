@@ -220,4 +220,5 @@ public class GameManager : MonoBehaviour
             //Death(); // Si la salud del personaje llega a 0 se invoca el metodo Death().
         }
     }
+
 }
