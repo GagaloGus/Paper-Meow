@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 7381715376875683934}
   - component: {fileID: 5342639622570224072}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: CajaCasa 1.1 Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,9 +679,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8396226, g: 0.7635792, b: 0.4237718, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1688,7 +1688,7 @@ Transform:
   m_GameObject: {fileID: 4656548806876637970}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4304593, y: -0.5609856, z: -0.5609856, w: -0.43045926}
-  m_LocalPosition: {x: -22.8, y: -128.1, z: 87.4}
+  m_LocalPosition: {x: -22.86, y: -128.1, z: 87.42}
   m_LocalScale: {x: 641.5544, y: 732.0719, z: 130.2882}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3275,8 +3275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9201430975222591638}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.52855366, y: -0.54047656, z: 0.46401224, w: -0.46174538}
-  m_LocalPosition: {x: -0.009009845, y: -0.005506836, z: 0.016808907}
+  m_LocalRotation: {x: -0.49578857, y: -0.507838, z: 0.4988687, w: -0.49741763}
+  m_LocalPosition: {x: -0.009012317, y: -0.005514805, z: 0.016804164}
   m_LocalScale: {x: 0.0048409826, y: 0.001076742, z: 0.00095961883}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3295,7 +3295,7 @@ Transform:
   - {fileID: 4650101335132631369}
   - {fileID: 3407484268880926710}
   m_Father: {fileID: 5464188903514108328}
-  m_LocalEulerAnglesHint: {x: -188.22, y: -74.50101, z: 89.221}
+  m_LocalEulerAnglesHint: {x: -270.739, y: -234.907, z: 34.319}
 --- !u!65 &7769954968914772240
 BoxCollider:
   m_ObjectHideFlags: 0

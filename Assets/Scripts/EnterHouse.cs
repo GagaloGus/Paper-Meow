@@ -6,27 +6,29 @@ using UnityEngine;
 
 public class EnterHouse : MonoBehaviour
 {
-    public GameObject DoorTP;
-    private GameObject Player, Camera;
-    private CameraController CC;
+    public GameObject DoorTP, LastDoorTP;
+    private GameObject Player;
     private bool InRange = false;
     public bool isInside;
     void Start()
     {
         Player = FindAnyObjectByType<SkoController>().gameObject;
-        Camera = FindAnyObjectByType<CameraController>().gameObject;
-        CC = Camera.GetComponent<CameraController>();
-
         isInside = gameObject.name.Contains("Enter");
     }
 
     void Update()
     {
-        if(InRange && Input.GetKeyDown(KeyCode.E))
+        if(InRange && Input.GetKeyDown(KeyCode.E) && isInside)
         {
+            LastDoorTP = gameObject;
+            DoorTP.gameObject.GetComponent<EnterHouse>().DoorTP = LastDoorTP;
             Player.transform.position = DoorTP.transform.position;
             InRange = false;
             GameEventsManager.instance.playerEvents.HouseEnterChange(isInside);
+        }
+        else if(InRange && Input.GetKeyDown(KeyCode.E) && !isInside)
+        {
+            Player.transform.position = DoorTP.transform.position;
         }
     }
 
