@@ -1,92 +1,82 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     public CinemachineFreeLook cinemachine;
-    public GameObject pauseMenu;
+
+    Vector2 maxSpeed;
+
+    Animator animator;
 
     private void Start()
     {
-
+        animator = GetComponent<Animator>();
+        animator.Play("Idle");
+        animator.enabled = false;
+        
         // Encuentra la cámara primero
-        GameObject camObj = GameObject.FindWithTag("FreeLook Camera");
+        cinemachine = GetComponent<CinemachineFreeLook>();
 
-        if (camObj != null)
+        if (cinemachine)
         {
-            // Obtiene el componente CinemachineFreeLook
-            cinemachine = camObj.GetComponent<CinemachineFreeLook>();
+            // Obtiene el componente CinemachineComposer
+            CinemachineComposer comp = cinemachine.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
 
-            if (cinemachine != null)
+            if (!comp)
             {
-                // Obtiene el componente CinemachineComposer
-                CinemachineComposer comp = cinemachine.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
+                Debug.LogError("CinemachineComposer component not found on the rig.");
+            }
 
-                if (comp == null)
-                {
-                    Debug.LogError("CinemachineComposer component not found on the rig.");
-                }
-            }
-            else
-            {
-                Debug.LogError("CinemachineFreeLook component not found on the camera object.");
-            }
+            maxSpeed.x = cinemachine.m_XAxis.m_MaxSpeed;
+            maxSpeed.y = cinemachine.m_YAxis.m_MaxSpeed;
+            
         }
         else
         {
-            Debug.LogError("Camera object not found with tag 'FreeLook Camera'.");
+            Debug.LogError("Camera object not found 'FreeLook Camera'.");
         }
     }
 
-    private void Update()
+    public void LockCamera()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if(cinemachine)
         {
-            if (pauseMenu != null)
-            {
-                LockCamera();
-            }
-            else
-            {
-                ResetCamera();
-            }
+            cinemachine.m_XAxis.m_MaxSpeed = 0f;
+            cinemachine.m_YAxis.m_MaxSpeed = 0f;
         }
     }
 
-    private void LockCamera()
-    {
-        if (cinemachine != null)
-        {
-            cinemachine.m_Lens.FieldOfView = 17;
 
-            // Asegúrate de que el componente CinemachineComposer exista antes de acceder a sus propiedades
-            CinemachineComposer comp = cinemachine.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
-            if (comp != null)
-            {
-                comp.m_TrackedObjectOffset.x = -0.5f;
-            }
+    public void PausedLockCamera()
+    {
+        if (cinemachine && !GameManager.instance.isInteracting)
+        {
+            animator.enabled = true;
+            animator.SetBool("Paused", true);
 
             cinemachine.m_XAxis.m_MaxSpeed = 0f;
             cinemachine.m_YAxis.m_MaxSpeed = 0f;
         }
     }
 
-    private void ResetCamera()
+    public void CHangeSpeedOfCamera(float speed)
     {
-        if (cinemachine != null)
+        if (cinemachine)
         {
-            cinemachine.m_Lens.FieldOfView = 40;
-
-            // Asegúrate de que el componente CinemachineComposer exista antes de acceder a sus propiedades
-            CinemachineComposer comp = cinemachine.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
-            if (comp != null)
-            {
-                comp.m_TrackedObjectOffset.x = 0;
-            }
-
-            // Ajusta estos valores según lo necesario para restablecer la cámara
-            cinemachine.m_XAxis.m_MaxSpeed = 300f;
-            cinemachine.m_YAxis.m_MaxSpeed = 2f;
+            cinemachine.m_XAxis.m_MaxSpeed = speed;
         }
     }
+
+    public void ResetCamera()
+    {
+        if (cinemachine)
+        {
+            animator.SetBool("Paused", false);
+            cinemachine.m_XAxis.m_MaxSpeed = maxSpeed.x;
+            cinemachine.m_YAxis.m_MaxSpeed = maxSpeed.y;
+
+        }
+    } 
 }

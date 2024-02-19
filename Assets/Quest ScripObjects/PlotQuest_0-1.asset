@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a9250056efaa14ba2fa587345c3d23, type: 3}
+  m_Name: PlotQuest_0-1
+  m_EditorClassIdentifier: 
+  title: Un nuevo mundo
+  ID: 0
+  progress: 1
+  description: Ve hasta el pueblo 1 con KittyBot
+  nextQuest: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
+  questObjective: Camino
+  questObjectiveCount: 0
+  questObjectiveRequirement: 1
+  expReward: 0
+  goldReward: 0
+  itemReward: {fileID: 0}

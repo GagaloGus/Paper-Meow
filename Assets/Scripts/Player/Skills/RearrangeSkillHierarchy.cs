@@ -70,6 +70,7 @@ public class RearrangeSkillHierarchy : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(RearrangeSkillHierarchy))]
 class BotonTrucoParaOrdenarSkills : Editor
 {
@@ -97,3 +98,4 @@ class BotonTrucoParaOrdenarSkills : Editor
 
     }
 }
+#endif

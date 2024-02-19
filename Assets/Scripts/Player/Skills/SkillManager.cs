@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -11,10 +12,10 @@ public class SkillManager : MonoBehaviour
     public Skill selectedSkill;
     string unlockedSkillIDs;
 
-    GameObject player;
+    public GameObject player;
     KeyCode useSkillKey;
 
-    float skillCooldownTimer;
+    public float skillCooldownTimer;
     bool skillUsed;
 
     bool skillUsable;
@@ -46,8 +47,6 @@ public class SkillManager : MonoBehaviour
         }
 
         skillUsed = false; 
-        player = FindObjectOfType<SkoController>().gameObject;
-
         useSkillKey = PlayerKeybinds.useSkill;
     }
 
@@ -74,6 +73,8 @@ public class SkillManager : MonoBehaviour
                     skillUsed = true;
 
                     print($"{selectedSkill.skillName} usada!");
+
+                    GameEventsManager.instance.playerEvents.SkillUsed(selectedSkill);
 
                     StopCoroutine(nameof(ChangeGizmoCol));
                     StartCoroutine(ChangeGizmoCol());
@@ -129,8 +130,9 @@ public class SkillManager : MonoBehaviour
         //Empieza el contador de la skill que le hayamos puesto
         skillCooldownTimer = newSkill.cooldown;
         selectedSkill = newSkill;
-
         newSkill.StartSkill();
+
+        GameEventsManager.instance.playerEvents.SkillSwapped(newSkill);
         print($"skill seleccionada {newSkill.skillName}");
     }
 
@@ -142,10 +144,10 @@ public class SkillManager : MonoBehaviour
         if(skill.unlockType == Skill.UnlockType.SkillTree)
         {
             //Si tienes todos los requisitos
-            if(skill.canBeUnlocked && playerStats.money >= skill.moneyRequired)
+            if(skill.canBeUnlocked && GameManager.instance.money >= skill.moneyRequired)
             {
                 GetSkill(skill);
-                playerStats.money -= skill.moneyRequired;
+                GameManager.instance.money -= skill.moneyRequired;
 
                 Debug.Log($"{skill.skillName} desbloqueada");
                 unlockedSkillIDs = UnlockedSkills();
@@ -158,7 +160,7 @@ public class SkillManager : MonoBehaviour
             }
 
             //Si te falta dinero
-            else if(playerStats.money < skill.moneyRequired)
+            else if(GameManager.instance.money < skill.moneyRequired)
             {
                 Debug.Log("Te falta dinero :(");
             }

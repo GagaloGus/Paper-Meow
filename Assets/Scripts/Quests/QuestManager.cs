@@ -1,75 +1,269 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
-
-[System.Serializable]
-
+using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private GameObject canvas;
     public static QuestManager instance;
-    public CollectQuest collectQuest;
-    public List<Quest> activeQuests = new List<Quest>();
-    public List<Quest> completedQuests = new List<Quest>();
+    [SerializeField] QuestsUIManager questsUIManager;
 
-    void Awake()
+    public List<Quest> questList = new(); //Todos los quests
+    public List<Quest> currentQuestList = new(); //Quests activos
+
+    private void Awake()
     {
-        if (!instance) //instance  != null  //Detecta que no haya otro GameManager en la escena.
+        if (!instance) //instance  != null  //Detecta que no haya otro manager en la escena.
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); //Si hay otro GameManager lo destruye.
+            Destroy(gameObject); //Si hay otro manager lo destruye.
+        }
+
+        questsUIManager = FindObjectOfType<QuestsUIManager>();
+    }
+
+    public void QuestRequest(QuestObject questObj)
+    {
+        if(questObj.avaliableQuests.Count > 0)
+        {
+            for(int i = 0; questList.Count > i; i++)
+            {
+                Quest quest = questList[i];
+                for(int j = 0; j < questObj.avaliableQuests.Count; j++)
+                {
+                    Quest avaliableQuest = questObj.avaliableQuests[j];
+                    if(quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
+                    {
+                        print($"Quest ID: {avaliableQuest.ID} + {quest.progress}");
+
+                        //quest UI
+                        questsUIManager.questAvaliable = true;
+                        questsUIManager.avaliableQuests.Add(quest);
+                    }
+                }
+            }
+        }
+
+        //Active quests
+        for (int i = 0; currentQuestList.Count > i; i++)
+        {
+            Quest currentQuest = currentQuestList[i];
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
+            {
+                Quest recievableQuest = questObj.recievableQuests[j];
+                if(currentQuest == recievableQuest && currentQuest.progress == Quest.QuestProgress.ACCEPTED 
+                    || currentQuest.progress == Quest.QuestProgress.COMPLETE)
+                {
+                    //quest UI
+                    questsUIManager.questRunning = true;
+                    questsUIManager.activeQuests.Add(currentQuest);
+
+                    print($"Quest ID: {recievableQuest} is {currentQuest.progress}");
+
+                    if(currentQuest.progress == Quest.QuestProgress.COMPLETE)
+                    {
+                        CompleteQuest(currentQuest);
+                    }
+                }
+                
+            }
+        }
+        questObj.SetQuestIcon();
+    }
+
+    //Aceptar quest
+    public void AcceptQuest(Quest questToAccept)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            Quest quest = questList[i];
+            if(quest == questToAccept & quest.progress == Quest.QuestProgress.AVALIABLE)
+            {
+                currentQuestList.Add(quest);
+                quest.progress = Quest.QuestProgress.ACCEPTED;
+            }
         }
     }
 
-    void Start()
+    //Completar Quest
+    public void CompleteQuest(Quest completedQuest)
     {
-        instance = this; // Asigna la instancia actual del QuestManager a la referencia estï¿½tica.
-        canvas = FindAnyObjectByType<Canvas>().gameObject;
-    }
-
-    public bool HasQuest(Quest quest)
-    {
-        return activeQuests.Contains(quest);
-    }
-
-    public void AcceptQuest(Quest quest)
-    {
-        if(HasQuest(quest) && !quest.isCompleted) 
+        for(int i = 0; i< currentQuestList.Count; i++)
         {
-            activeQuests.Add(quest);
-            canvas.BroadcastMessage("UpdateCanvasQuests");
+            Quest quest = currentQuestList[i];
+            if(quest == completedQuest && quest.progress == Quest.QuestProgress.COMPLETE)
+            {
+                quest.progress = Quest.QuestProgress.FINISHED;
+                currentQuestList.Remove(quest);
+
+                //Recompensa
+
+            }
         }
-        
-    }
 
-    public void CompleteQuest(Quest quest)
-    {
-        quest.isCompleted = true;
-        activeQuests.Remove(quest);
-        completedQuests.Add(quest);
-        canvas.BroadcastMessage("LateUpdate");
-
-        if(quest.unlockNewSkill != null)
+        //Si hay algun quest encadenado a este
+        if(completedQuest.nextQuest != null)
         {
-            //SkillManager.instance.GetSkill(quest.unlockNewSkill);
+            CheckChainQuest(completedQuest);
+            print($"Next quest:{completedQuest.title}");
         }
     }
 
-    private void OnDestroy()
+    //Quest encadenado
+    void CheckChainQuest(Quest chainedQuest)
     {
-        foreach (Quest q in activeQuests)
+        int tempID = -1;
+        for(int i = 0;i < questList.Count; i++)
         {
-            q.Reset();
+            Quest quest = questList[i];
+            if(quest == chainedQuest && quest.nextQuest.ID > 0)
+            {
+                tempID = quest.nextQuest.ID;
+            }
         }
-        foreach (Quest q in completedQuests)
+
+        if(tempID >= 0)
         {
-            q.Reset();
+            for(int i = 0;i<questList.Count;i++)
+            {
+                Quest quest = questList[i];
+                if(quest.ID == tempID && quest.progress == Quest.QuestProgress.NOT_AVALIABLE)
+                {
+                    quest.progress = Quest.QuestProgress.AVALIABLE;
+                    AcceptQuest(quest);
+
+                }
+            }
+        }
+    }
+
+
+    //Añadir items
+    public void AddQuestItem(Quest quest, int itemAmount)
+    {
+        for (int i = 0; i < currentQuestList.Count; i++)
+        {
+            Quest currentQuest = currentQuestList[i];
+
+            if (currentQuest.progress == Quest.QuestProgress.ACCEPTED)
+            {
+                if (currentQuest == quest)
+                {
+                    currentQuestList[i].questObjectiveCount += itemAmount;
+                }
+
+                if (currentQuest.questObjectiveCount >= currentQuest.questObjectiveRequirement)
+                {
+                    currentQuestList[i].progress = Quest.QuestProgress.COMPLETE;
+                }
+            }
+        }
+    }
+
+
+    //Quitar items
+
+
+    //Booleanos
+    public bool RequestAvaliableQuest(Quest quest)
+    {
+        for(int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i] == quest && 
+                questList[i].progress == Quest.QuestProgress.AVALIABLE) 
+            { return true; }
+
+        }
+        return false;
+    }
+
+    public bool RequestAcceptedQuest(int questID)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i].ID == questID && questList[i].progress == Quest.QuestProgress.ACCEPTED)
+            { return true; }
+
+        }
+        return false;
+    }
+
+    public bool RequestCompleteQuest(int questID)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i].ID == questID && questList[i].progress == Quest.QuestProgress.COMPLETE)
+            { return true; }
+
+        }
+        return false;
+    }
+
+    //Booleanos 2
+    public bool CheckAvaliableQuests(QuestObject questObj)
+    {
+        for(int i=0; i<questList.Count; i++)
+        {
+            Quest quest = questList[i];
+            for(int j = 0;j < questObj.avaliableQuests.Count; j++) 
+            {
+                Quest avaliableQuest = questObj.avaliableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
+                {
+                    return true;
+                }   
+            }
+        }
+        return false;
+    }
+
+    public bool CheckAcceptedQuests(QuestObject questObj)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            Quest quest = questList[i];
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
+            {
+                Quest avaliableQuest = questObj.avaliableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.ACCEPTED)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool CheckFinishedQuests(QuestObject questObj)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            Quest quest = questList[i];
+            for (int j = 0; j < questObj.recievableQuests.Count; j++)
+            {
+                Quest avaliableQuest = questObj.recievableQuests[j];
+                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.FINISHED)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //Mostrar el quest log
+    public void ShowQuestLog(Quest questToShow)
+    {
+        for(int i = 0; i< currentQuestList.Count; i++)
+        {
+            Quest quest = currentQuestList[i];
+            if(quest == questToShow)
+            {
+                FindObjectOfType<QuestsUIManager>().ShowQuestLog(quest);
+            }
         }
     }
 }
-

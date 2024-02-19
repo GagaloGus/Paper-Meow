@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f008de932c0a87849af771d12c434f3f, type: 3}
+  m_Name: Chupachus pro
+  m_EditorClassIdentifier: 
+  itemName: Reforzed lolipop
+  description: A lolipop with spikes
+  itemType: 3
+  weaponType: 2
+  itemPrefab: {fileID: 1913368273394346299, guid: 5a5e4dd907f53fc46b1f0ddd9070a3f3, type: 3}
+  sprite: {fileID: 21300000, guid: 31d1896e840bac047819ea8dfe3fd6f4, type: 3}
+  stackable: 0

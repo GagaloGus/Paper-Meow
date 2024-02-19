@@ -10,16 +10,85 @@ public class SkoStats : MonoBehaviour
     public float jumpForce;
     [Range(1, 5)]public float runSpeedMult;
 
-    [Header("Combat")]
-    public int health;
-    public float attackPower;
-    public enum AttackWeaponIDs { garra, cutter, hammer, bow }
-    public AttackWeaponIDs weaponSelected;
-
     [Header("Stats")]
-    public int money;
+    public int health;
+    public float BaseATK;
+    public float BaseSPD;
+    public int BaseExpReq;
+    public int EXP_incMult;
+    public Stats currentStats;
+
+
+    [Header("Weapons")]
+    public AttackWeaponIDs weaponSelected;
+    public enum AttackWeaponIDs { garra, cutter, hammer, spear }
+
     string unlockedSkills;
 
-    
+    private void OnEnable()
+    {
+        GameEventsManager.instance.playerEvents.onExperienceGained += GetEXP;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onExperienceGained -= GetEXP;
+    }
+
+    private void Start()
+    {
+        currentStats.EXP = 0;
+        currentStats.currentLevel = 0;
+        currentStats.ATK = BaseATK;
+        currentStats.SPD = BaseSPD;
+
+        ReCalculateEXP_Required();
+    }
+    public void GetEXP(int xpIncrease)
+    {
+        currentStats.EXP += xpIncrease;
+        GameEventsManager.instance.miscEvents.ThingObtained($"{xpIncrease} experiencia");
+
+        while(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
+        {
+            LevelUp();
+        }
+
+        GameEventsManager.instance.playerEvents.PlayerExperienceChange(currentStats.EXP);
+
+    }
+
+    public void LevelUp()
+    {
+        currentStats.currentLevel++;
+
+        currentStats.ATK += Random.Range(currentStats.ATK_increaseRange.x, currentStats.ATK_increaseRange.y);
+        currentStats.SPD += Random.Range(currentStats.SPD_increaseRange.x, currentStats.SPD_increaseRange.y);
+
+        int remaining_EXP = currentStats.EXP - currentStats.EXP_RequiredNextLvl;
+        currentStats.EXP = remaining_EXP;
+
+        GameEventsManager.instance.playerEvents.PlayerLevelChange(currentStats.currentLevel);
+
+        ReCalculateEXP_Required();
+    }
+
+    void ReCalculateEXP_Required()
+    {
+        currentStats.EXP_RequiredNextLvl = BaseExpReq + currentStats.currentLevel * EXP_incMult;
+    }
+
     //aca estara todo sobre el guardado y cargado de datos
+}
+
+[System.Serializable]
+public class Stats
+{
+    public int EXP;
+    public int EXP_RequiredNextLvl;
+    public int currentLevel;
+    public float ATK;
+    public Vector2Int ATK_increaseRange;
+    public float SPD;
+    public Vector2Int SPD_increaseRange;
 }

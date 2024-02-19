@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Quest", menuName = "Quest/Base Quest")]
-public abstract class Quest : ScriptableObject
+[CreateAssetMenu(fileName = "Quest")]
+public class Quest : ScriptableObject
 {
-    public enum QuestType {COLLECT, TALK, DEFEAT};
-    public QuestType type;
-
-    public enum QuestImportance {MainQuest, SideQuest }
-    public QuestImportance importance;
-
-    public string questName;
-    [TextArea(3, 5)]
-    public string questDescription;
-    public bool isCompleted;
-
-    public Skill unlockNewSkill;
-
-    public virtual void Reset()
-    {
-        isCompleted = false;
+    public enum QuestProgress { 
+        NOT_AVALIABLE,
+        AVALIABLE,
+        ACCEPTED,
+        COMPLETE,
+        FINISHED
     }
+
+    [Header("Data")]
+    public string title;
+    public int ID;
+    public QuestProgress progress;
+
+    [Header("Texto")]
+    [TextArea(3,5)] public string description;
+
+    [Header("Objectives")]
+    public Quest nextQuest;
+    public string questObjective;
+    public int questObjectiveCount;
+    public int questObjectiveRequirement;
+
+    [Header("Rewards")]
+    public int expReward;
+    public int goldReward;
+    public Item itemReward;
 }

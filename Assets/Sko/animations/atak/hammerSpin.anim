@@ -20,17 +20,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: {x: -90, y: 0, z: 270}
-        inSlope: {x: 0, y: 0, z: -14.409268}
-        outSlope: {x: 0, y: 0, z: -14.409268}
+        inSlope: {x: 0, y: 0, z: -1080}
+        outSlope: {x: 0, y: 0, z: -1080}
         tangentMode: 0
         weightedMode: 3
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.10216545}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 1.5833334
-        value: {x: -90, y: 0, z: -1170}
-        inSlope: {x: 0, y: 0, z: -909.47363}
-        outSlope: {x: 0, y: 0, z: -909.47363}
+        time: 0.33333334
+        value: {x: -90, y: 0, z: -90}
+        inSlope: {x: 0, y: 0, z: -1080}
+        outSlope: {x: 0, y: 0, z: -1080}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
@@ -120,7 +120,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.6333333
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -206,17 +206,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 270
-        inSlope: -14.409268
-        outSlope: -14.409268
-        tangentMode: 0
+        inSlope: -1080
+        outSlope: -1080
+        tangentMode: 34
         weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.10216545
+        outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.5833334
-        value: -1170
-        inSlope: -909.47363
-        outSlope: -909.47363
+        time: 0.33333334
+        value: -90
+        inSlope: -1080
+        outSlope: -1080
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -339,6 +339,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 17
     messageOptions: 0
+  - time: 0.033333335
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 4a699d0d370ec4a48870e332ea4e446e, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.083333336
     functionName: ChangeTexture
     data: 
@@ -353,6 +360,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 19
     messageOptions: 0
+  - time: 0.23333333
+    functionName: FollowUpAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.25
     functionName: ChangeTexture
     data: 
@@ -360,129 +374,10 @@ AnimationClip:
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 0.3
-    functionName: FollowUpAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 17
-    messageOptions: 0
-  - time: 0.4166667
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 18
-    messageOptions: 0
-  - time: 0.5
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 19
-    messageOptions: 0
-  - time: 0.5833334
+  - time: 0.3333333
     functionName: ChangeTexture
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
-    messageOptions: 0
-  - time: 0.6666667
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 17
-    messageOptions: 0
-  - time: 0.75
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 18
-    messageOptions: 0
-  - time: 0.8333334
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 19
-    messageOptions: 0
-  - time: 0.9166667
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 20
-    messageOptions: 0
-  - time: 1
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 17
-    messageOptions: 0
-  - time: 1.0833334
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 18
-    messageOptions: 0
-  - time: 1.1666666
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 19
-    messageOptions: 0
-  - time: 1.25
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 20
-    messageOptions: 0
-  - time: 1.3333334
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 17
-    messageOptions: 0
-  - time: 1.4166667
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 18
-    messageOptions: 0
-  - time: 1.5
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 19
-    messageOptions: 0
-  - time: 1.5833334
-    functionName: ChangeTexture
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 20
-    messageOptions: 0
-  - time: 1.6333333
-    functionName: NotAttacking
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
     messageOptions: 0

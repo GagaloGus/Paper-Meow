@@ -11,7 +11,7 @@ public class AnimationEvents : MonoBehaviour
         player = FindObjectOfType<SkoController>().gameObject;
     }
 
-    //llamado desde las animaciones de ataque, solo sirve para el player
+    #region Player
     public void NotAttacking()
     {
         SkoController cont = player.GetComponent<SkoController>();
@@ -23,5 +23,24 @@ public class AnimationEvents : MonoBehaviour
     {
         SkoController cont = player.GetComponent<SkoController>();
         cont.canAttackAgain = true;
+    }
+    #endregion
+
+    #region Camera
+    public void DisableAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
+
+    #endregion
+
+    public void DestroyGameObj()
+    {
+        Destroy(gameObject);
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX(clip, transform.position);
     }
 }

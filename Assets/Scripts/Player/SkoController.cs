@@ -1,7 +1,6 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [RequireComponent(typeof(SkoStats))]
@@ -22,14 +21,17 @@ public class SkoController : MonoBehaviour
 
     [Header("Debug Variables")]
     public int gravity;
-    [Range(0f, 2f)] public float rayDetectFloorDist, nearGroundDist;
+    [Range(0f, 2f)] public float rayDetectFloorDist;
+    public float nearGroundDist;
     [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking;
-    [SerializeField] int weaponAmount;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
     public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
     public PlayerStates playerState;
+
+    [Header("Has Items")]
+    [SerializeField] bool hasGlider;
 
     KeyCode jump, run, attack, swapPreviousWeapon, swapNextWeapon;
 
@@ -54,25 +56,38 @@ public class SkoController : MonoBehaviour
         attack = PlayerKeybinds.attack;
         swapPreviousWeapon = PlayerKeybinds.swapPrevousWeapon;
         swapNextWeapon = PlayerKeybinds.swapNextWeapon;
+    }
 
-        //coje el numero de tipos de armas que tenemos automaticamente (determinado por el enumerado de las stats)
-        weaponAmount = System.Enum.GetValues(typeof(SkoStats.AttackWeaponIDs)).Length;
+    private void OnEnable()
+    {
+        GameEventsManager.instance.inventoryEvents.onWeaponSwap += ChangeWeapon;
+        GameEventsManager.instance.inventoryEvents.onItemAdded += CheckIfItemAdded;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inventoryEvents.onWeaponSwap -= ChangeWeapon;
+        GameEventsManager.instance.inventoryEvents.onItemAdded -= CheckIfItemAdded;
     }
 
     private void Start()
     {
         UpdateStats();
+        nearGroundDist = rayDetectFloorDist * stats.jumpForce;
+        //GameManager.instance.GetPlayer(gameObject);
         currentAttackNumber = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        //distintas configuraciones para cuando esta en el suelo y en el aire
-            if(isGrounded) { GroundControl(); }
+        if (canMove)
+        {
+            //distintas configuraciones para cuando esta en el suelo y en el aire
+            if (isGrounded) { GroundControl(); }
             else { AirControl(); }
+
+        }
 
         #region Movement
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -99,10 +114,19 @@ public class SkoController : MonoBehaviour
         #endregion
 
         //cambia el int del animator
-        if(canMove)
-        m_animator.SetInteger("player states", (int)playerState);
 
-        m_animator.SetInteger("currentAttack", currentAttackNumber);
+        if (!GameManager.instance.gamePaused && canMove)
+        {
+            m_animator.SetInteger("player states", (int)playerState);
+        }
+    }
+
+    void CheckIfItemAdded(Item item)
+    {
+        if(item.itemName == "Paper Glider")
+        {
+            hasGlider = true;
+        }
     }
 
     void FlipCharacter()
@@ -140,28 +164,42 @@ public class SkoController : MonoBehaviour
             rb.velocity += new Vector3(0, stats.jumpForce, 0);
         }
 
-        //Cambia al arma previa o la siguiente, si esta en los extremos salta hacia la primera o ultima
+        //el cambio de armas por el quickswap se hace en el Inventory manager
         if (Input.GetKeyDown(swapPreviousWeapon))
         {
-            if (stats.weaponSelected == 0) { stats.weaponSelected = (SkoStats.AttackWeaponIDs)weaponAmount - 1; }
-            else { stats.weaponSelected--; }
-
-            //recarga las stats (por si acaso)
-            stats = GetComponent<SkoStats>();
-
+            InventoryManager.instance.SwapWeapon(true);
         }
         else if (Input.GetKeyDown(swapNextWeapon))
         {
-            if ((int)stats.weaponSelected == weaponAmount - 1) { stats.weaponSelected = 0; }
-            else { stats.weaponSelected++; }
-
-            //recarga las stats (por si acaso)
-            stats = GetComponent<SkoStats>();
-
+            InventoryManager.instance.SwapWeapon(false);
         }
 
         //Todo sobre los ataques
         Attacks();
+    }
+
+    #region Attack and weapons
+    public void ChangeWeapon(Item weapon)
+    {
+        stats.weaponSelected = (SkoStats.AttackWeaponIDs)(int)weapon.weaponType;
+
+        Weapon weaponSelected;
+        if (weapon.weaponType == WeaponType.Sword)
+        {
+            weaponSelected = GetComponentInChildren<Sword>(true);
+        }
+        else if (weapon.weaponType == WeaponType.Hammer)
+        {
+            weaponSelected = GetComponentInChildren<HammerW>(true);
+        }
+        else
+        {
+            weaponSelected = GetComponentInChildren<Garra>(true);
+        }
+
+        
+        weaponSelected.weaponData.itemData = weapon;
+        weaponSelected.UpdateWeapon();
     }
 
     public float timeCheckForChargedAttack;
@@ -185,10 +223,10 @@ public class SkoController : MonoBehaviour
         //El ataque
         if (isAttacking)
         {
-            bow.SetActive(true);
-            //configuracion extra solo para el arco
-            if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
+            //configuracion extra solo para el arco (por ahora no)
+            /*if(stats.weaponSelected == SkoStats.AttackWeaponIDs.bow)
             {
+                bow.SetActive(true);
 
                 //determina si dejamos la tecla pulsada mucho tiempo si es un ataque cargado o uno basico
                 timeCheckForChargedAttack -= Time.deltaTime;
@@ -219,8 +257,9 @@ public class SkoController : MonoBehaviour
             else
             {
                 //Si no estamos usando arco, podemos encadenar otro ataque
-                WaitForFollowUpAttack();
-            }
+            }*/
+                
+            WaitForFollowUpAttack();
         }
 
         void AttackStart()
@@ -236,28 +275,26 @@ public class SkoController : MonoBehaviour
             {
                 //setup
                 AttackStart();
-                //numero de ataques encadenados
-                currentAttackNumber++;
                 m_animator.SetTrigger("nextAttack");
             }
 
             //cancela todo el ataque si corremos
             if (Input.GetKeyDown(run) && moveInput.magnitude > 0)
             {
-                currentAttackNumber = 0;
                 m_animator.Play("run");
                 isAttacking = false; canAttackAgain = true;
             }
         }
     }
-
+    #endregion
 
     void AirControl()
     {
+        isAttacking = false;
         //raycast que detecta si hay suelo a tanta distancia de nosotros hacia abajo
         bool nearGround = Physics.Raycast(transform.position, Vector3.down, nearGroundDist, LayerMask.GetMask("Ground"));
             //si estamos planeando
-        if (isGliding && !isUsingSkill)
+        if (isGliding && !isUsingSkill && hasGlider)
         {
             //fisicas
             rb.drag = 15;
@@ -282,27 +319,83 @@ public class SkoController : MonoBehaviour
     private void FixedUpdate()
     {
         //detecta si hay suelo usando un boxcast
-        isGrounded =
-           Physics.BoxCast(groundPoint.position, new Vector3(0.3f, 0.05f, 0.05f), Vector3.down, transform.rotation, rayDetectFloorDist, LayerMask.GetMask("Ground"));
+        /*isGrounded =
+           Physics.BoxCast(groundPoint.position, 
+           new Vector3(0.3f, 0.05f, 0.05f), 
+           Vector3.down, 
+           transform.rotation, 
+           rayDetectFloorDist, 
+           LayerMask.GetMask("Ground"));*/
 
-        if (canMove && !isAttacking && !isUsingSkill)
+        Ray detectGround = new Ray(groundPoint.position, Vector3.down);
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(detectGround, out hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
         {
-            Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-            Vector3 vel = direction * stats.moveSpeed * (isRunning && isGrounded ? stats.runSpeedMult : 1);
-            //Moverse
-            rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y);
+            isGrounded = true;
+            GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
+        }
+        else { isGrounded = false; }
 
-            //orienta al player a la direccion de la camara
-            transform.forward = -moveDirection;
+
+        if (canMove)
+        {
+            if (!isUsingSkill && !isAttacking)
+            {
+                Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
+                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1));
+
+                Vector3 vel = direction * stats.moveSpeed * multiplySpeedFac;
+                //Moverse
+                rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y) * GameManager.instance.gameTime;
+            }
+
+            if (!isAttacking)
+            {
+                //orienta al player a la direccion de la camara
+                transform.forward = -moveDirection;
+            }
+        }
+    }
+    public void PausedGame(bool paused)
+    {
+        if (isGrounded && !GameManager.instance.isInteracting)
+        {
+            if (paused)
+            {
+                canMove = false;
+                m_animator.SetBool("gamePaused", true);
+
+                isFlipped = false;
+                isFacingBackwards = false;
+                FlipCharacter();
+
+                EnablePhysics(false);
+            }
+            else
+            {
+                canMove = true;
+                m_animator.SetBool("gamePaused", false);
+                EnablePhysics(true);
+            }
         }
     }
 
-
-    //llamado desde el gamemanager
-    void StartInteraction(GameObject npc)
+    void EnablePhysics(bool enable)
     {
-        canMove = false;
+        GetComponent<ConstantForce>().enabled = enable;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
 
+
+    //llamado desde el dialogue manager
+
+    public void StartInteraction(GameObject npc)
+    {
+        playerState = PlayerStates.Idle;
+        m_animator.SetInteger("player states", 0);
+        canMove = false;
         //Centra el personaje para que apunte al npc
         transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
@@ -314,11 +407,12 @@ public class SkoController : MonoBehaviour
         isFacingBackwards = !up;
     }
 
-    //llamado desde el gamemanager
-    void EndInteraction()
+    public void EndInteraction()
     {
         canMove = true;
     }
+
+
     public bool player_canMove
     {
         get { return canMove; }
@@ -342,6 +436,7 @@ public class SkoController : MonoBehaviour
 
     public void StartSkillCooldownCoroutine(float skillUseTime)
     {
+        isGliding = false;
         StartCoroutine(UsingSkillCooldown(skillUseTime));
     }
 
@@ -351,5 +446,11 @@ public class SkoController : MonoBehaviour
         yield return new WaitForSeconds(skillUseTime);
 
         isUsingSkill = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        groundPoint = transform.Find("GroundCheckPoint");
+        Gizmos.DrawRay(groundPoint.position, Vector3.down*rayDetectFloorDist);
     }
 }

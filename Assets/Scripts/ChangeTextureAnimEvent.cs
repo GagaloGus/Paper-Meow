@@ -51,6 +51,7 @@ public class ChangeTextureAnimEvent : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR_WIN
 [CustomEditor(typeof(ChangeTextureAnimEvent))]
 class BotonTrucoParaAñadirOrderANombres : Editor
 {
@@ -69,3 +70,4 @@ class BotonTrucoParaAñadirOrderANombres : Editor
 
     }
 }
+#endif
