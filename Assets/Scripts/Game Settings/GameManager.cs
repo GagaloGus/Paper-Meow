@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
-        //isTutorial = true;
+        isTutorial = true;
     }
 
     private void OnEnable()

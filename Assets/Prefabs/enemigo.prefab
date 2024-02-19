@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4613462169065696009}
   - component: {fileID: 969092543916789721}
   - component: {fileID: 587642348883046976}
-  - component: {fileID: 5434755966017064980}
+  - component: {fileID: 3849771076448677138}
   m_Layer: 0
   m_Name: enemigo
   m_TagString: Untagged
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5434755966017064980
+--- !u!114 &3849771076448677138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8527190472852342149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2168377f84b173041a0b6e70e82710da, type: 3}
+  m_Script: {fileID: 11500000, guid: e471ede2c40459a42882c274c9f1bac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   died: 0
+  damageClip: {fileID: 8300000, guid: 17625b0e3285df347917f940e0b4196d, type: 3}

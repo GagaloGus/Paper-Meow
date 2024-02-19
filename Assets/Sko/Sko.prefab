@@ -5206,7 +5206,7 @@ MonoBehaviour:
   weaponData:
     name: 
     damageMultiplier: 1
-    itemData: {fileID: 0}
+    itemData: {fileID: 11400000, guid: 9c13a64a940df074fbb0126f6879422c, type: 2}
 --- !u!1 &6948540996463791424
 GameObject:
   m_ObjectHideFlags: 0
@@ -10309,6 +10309,7 @@ MonoBehaviour:
   isGliding: 0
   isRunning: 0
   isAttacking: 0
+  isInside: 0
   currentAttackNumber: 0
   canAttackAgain: 0
   playerState: 0
@@ -10354,7 +10355,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -10390,7 +10391,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.95476574, y: 0.82098734, z: 0.13}
+  m_Size: {x: 0.95476574, y: 0.82098734, z: 0.49}
   m_Center: {x: -0.10676959, y: 0.28190786, z: 0.000000029802322}
 --- !u!75 &1170115040403223023
 ConstantForce:
