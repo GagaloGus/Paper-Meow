@@ -24,6 +24,7 @@ public class SaveDataManager : MonoBehaviour
 
             // Se asignan los valores cargados a diferentes componentes del juego, como la posición del jugador y la puntuación obtenida.
             player.transform.position = gamedata.position;
+            player.transform.rotation = gamedata.rotation;
             GameManager.instance.points = gamedata.coins;
 
             Debug.Log("Archivo Cargado"); // Se muestra en la consola el mensaje "Archivo Cargado" indicando que hemos cargado los datos correctamente.
@@ -39,6 +40,7 @@ public class SaveDataManager : MonoBehaviour
         GameData newdata = new GameData() //Creamos un nuevo objeto del tipo GameData con los datos actuales del juego "Posición del jugador y la puntuación".
         {
             position = player.transform.position,
+            rotation = player.transform.rotation,
             coins = GameManager.instance.points,
         };
 

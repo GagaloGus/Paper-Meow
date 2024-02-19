@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &63088068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3196,12 +3196,12 @@ GameObject:
   - component: {fileID: 329133879}
   - component: {fileID: 329133878}
   m_Layer: 5
-  m_Name: Map
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &329133877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3753,7 +3753,7 @@ MonoBehaviour:
   savefile: 
   gamedata:
     position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
     coins: 0
 --- !u!4 &366430873
 Transform:
@@ -17086,7 +17086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &735219569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29533,7 +29533,7 @@ Canvas:
   m_GameObject: {fileID: 2005278888}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 984668301}
   m_PlaneDistance: 1
   m_PixelPerfect: 1
@@ -29966,7 +29966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049823922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000015763096, y: 0.99604267, z: -0.08887663, w: 0.000000017665744}
+  m_LocalRotation: {x: -0.0000000015763096, y: 0.99604267, z: -0.08887663, w: -0.000000017665744}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30326,7 +30326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2105268929
 RectTransform:
   m_ObjectHideFlags: 0
