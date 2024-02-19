@@ -16735,10 +16735,6 @@ PrefabInstance:
       propertyPath: DoorTP
       value: 
       objectReference: {fileID: 1352627229}
-    - target: {fileID: 5757980779605785997, guid: e9e4b545417ed3f4f85a384b6e4322a6, type: 3}
-      propertyPath: m_Name
-      value: CajaCasa 3.5 Enter 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6381570457375078949, guid: e9e4b545417ed3f4f85a384b6e4322a6, type: 3}
       propertyPath: DoorTP
       value: 
@@ -17647,10 +17643,6 @@ PrefabInstance:
       propertyPath: DoorTP
       value: 
       objectReference: {fileID: 1382188565}
-    - target: {fileID: 8439436650495517459, guid: e2b933f7a08350f45886402d02b60335, type: 3}
-      propertyPath: m_Name
-      value: CajaCasa 3.5 Enter 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25993,6 +25985,18 @@ PrefabInstance:
       propertyPath: DoorTP
       value: 
       objectReference: {fileID: 2105804370}
+    - target: {fileID: 4424463887595734450, guid: 4fe3b6ffdc2b992479ea191f0880ebb7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00637
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424463887595734450, guid: 4fe3b6ffdc2b992479ea191f0880ebb7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01317
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424463887595734450, guid: 4fe3b6ffdc2b992479ea191f0880ebb7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00726
+      objectReference: {fileID: 0}
     - target: {fileID: 5147015330368493196, guid: 4fe3b6ffdc2b992479ea191f0880ebb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -119.6
@@ -28559,10 +28563,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2005635146}
     m_Modifications:
-    - target: {fileID: 4237205953041319342, guid: 2f820fe89b5565a4ebf366b8561e91c4, type: 3}
-      propertyPath: m_Name
-      value: CajaCasa 2.4 Enter 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6984115230448253108, guid: 2f820fe89b5565a4ebf366b8561e91c4, type: 3}
       propertyPath: m_Name
       value: CajaCasa 2.4 Interior 2
@@ -30733,10 +30733,6 @@ PrefabInstance:
     - target: {fileID: 6377540799916716356, guid: 73ed39b36fcefd8499ba22ddb003e4b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -210
-      objectReference: {fileID: 0}
-    - target: {fileID: 8405691056663575150, guid: 73ed39b36fcefd8499ba22ddb003e4b8, type: 3}
-      propertyPath: m_Name
-      value: CajaCasa 2.4 Enter 1
       objectReference: {fileID: 0}
     - target: {fileID: 9180423070218452308, guid: 73ed39b36fcefd8499ba22ddb003e4b8, type: 3}
       propertyPath: DoorTP
