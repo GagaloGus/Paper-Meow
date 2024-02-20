@@ -108,7 +108,7 @@ public class AudioManager : MonoBehaviour
         ResumeBackgroundMusic();
     }
 
-    public void ResumeBackgroundMusic(float MaxVolume = 1)
+    public void ResumeBackgroundMusic(float MaxVolume = 0.18f)
     {
         print($"Musica reproducida a {musicSource.clip.name}");
         StartCoroutine(FadeInVolume(0.005f, MaxVolume));

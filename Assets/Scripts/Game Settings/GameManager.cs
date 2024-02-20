@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public int gameTime;
 
-    public bool gamePaused, isInteracting, isTutorial;
+    public bool gamePaused, gameStarted, isInteracting, isTutorial;
 
     public GameObject player;
 
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
+        gameStarted = false;
         //isTutorial = true;
     }
 
@@ -62,20 +63,14 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void GetPlayer()
-    {
-        player = FindObjectOfType<SkoController>().gameObject;
-        SkillManager.instance.player = player;
-    }
 
     private void Update()
     {
-        health = (int)MathF.Abs(health);
 
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
-        if(!isTutorial)
+        if(!isTutorial && gameStarted)
         {
             if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
             {
@@ -105,14 +100,12 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        FindObjectOfType<CameraController>().LockCamera();
     }
 
     void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        FindObjectOfType<CameraController>().ResetCamera();
     }
     #endregion
 
@@ -141,7 +134,9 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
         player.GetComponent<SkoController>().PausedGame(false);
 
+        FindObjectOfType<CameraController>().ResetCamera();
         UnlockCursor();
+
     }
 
     public void PauseAndContinueToggle()
@@ -158,6 +153,12 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    public void GetPlayer()
+    {
+        player = FindObjectOfType<SkoController>().gameObject;
+        health = (int)MathF.Abs(health);
+        SkillManager.instance.player = player;
+    }
     public void ChangeScene(string sceneName, bool loadScene)
     {
         StartCoroutine(ChangeSceneCorroutine(sceneName, loadScene));
@@ -174,9 +175,15 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (sceneName != "Main_Menu")
+        if(sceneName == "Main_Menu")
         {
+            gameStarted = false;
+        }
+        else
+        {
+            gameStarted = true;
             GetPlayer(); 
+            LockCursor();
             FindObjectOfType<CameraController>().ResetCamera();
         }
 
