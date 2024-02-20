@@ -24,13 +24,13 @@ public class TextController : MonoBehaviour
         GameEventsManager.instance.inventoryEvents.onInventoryOpen -= UpdateInventoryMoney;
     }
 
-    void MoneyUpdate(int temp)
+    void MoneyUpdate()
     {
         coinText.text = GameManager.instance.coinCount.ToString();
         coinText.gameObject.GetComponentInParent<Animator>().SetTrigger("moneyUpdate");
     }
 
-    void UpdateInventoryMoney(bool temp)
+    void UpdateInventoryMoney()
     {
 
         coinTextInventory.text = GameManager.instance.coinCount.ToString();

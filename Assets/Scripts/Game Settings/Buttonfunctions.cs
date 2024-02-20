@@ -27,7 +27,7 @@ public class Buttonfunctions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKey && !GameManager.instance.isTutorial)
+        if (Input.anyKey && !GameManager.instance.isInteracting)
         {
             for (int i = 0; i < menus.Length; i++)
             {

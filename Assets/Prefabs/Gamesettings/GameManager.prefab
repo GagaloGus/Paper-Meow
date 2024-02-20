@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7918239520822913663}
   - component: {fileID: 5561248942759010009}
-  - component: {fileID: 4198355121169406273}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -64,16 +63,3 @@ MonoBehaviour:
   - Presiona F para usar una Skill
   targetFPS: 60
   playerstatsRefreshRate: 3
---- !u!114 &4198355121169406273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443824588609294153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644b82609172063428d71ed84dce6b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textoObtenido: {fileID: 8224336618691530588, guid: 6fe24d4d411f2f643966f5c1767abc39, type: 3}

@@ -43,4 +43,9 @@ public class AnimationEvents : MonoBehaviour
     {
         AudioManager.instance.PlaySFX(clip, transform.position);
     }
+
+    public void PlaySFXATCamera(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFXAtCamera(clip);
+    }
 }

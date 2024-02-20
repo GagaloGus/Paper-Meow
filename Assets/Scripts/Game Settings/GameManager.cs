@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public int gameTime;
 
-    public bool gamePaused, gameStarted, isInteracting, isTutorial;
+    public bool gamePaused, isInteracting, isTutorial;
 
     public GameObject player;
 
@@ -41,26 +41,32 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
-        gameStarted = false;
         //isTutorial = true;
+
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen += InventoryOpen;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen += SoftPauseGame;
     }
     
     private void OnDisable()
     {
         GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= InventoryOpen;
+        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= SoftPauseGame;
+
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if (SceneManager.GetActiveScene().name != "Main_menu")
+        {
+            GetPlayer();
+        }
     }
 
 
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
-        if(!isTutorial && gameStarted)
+        if(!isTutorial)
         {
             if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
             {
@@ -110,7 +116,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pausa
-    public void InventoryOpen(bool temp)
+    public void SoftPauseGame()
     {
         gameTime = 0;
         gamePaused = true;
@@ -119,7 +125,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<SkoController>().PausedGame(true);
     }
 
-    public void PauseGame(bool temp)
+    public void PauseGame()
     {
         gameTime = 0;
         gamePaused = true;
@@ -144,9 +150,8 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            PauseGame(true);
+            PauseGame();
         }
-
         else
         {
             ContinueGame();
@@ -159,6 +164,7 @@ public class GameManager : MonoBehaviour
         health = (int)MathF.Abs(health);
         SkillManager.instance.player = player;
     }
+
     public void ChangeScene(string sceneName, bool loadScene)
     {
         StartCoroutine(ChangeSceneCorroutine(sceneName, loadScene));
@@ -175,13 +181,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if(sceneName == "Main_Menu")
+        if(sceneName != "Main_Menu")
         {
-            gameStarted = false;
-        }
-        else
-        {
-            gameStarted = true;
             GetPlayer(); 
             LockCursor();
             FindObjectOfType<CameraController>().ResetCamera();

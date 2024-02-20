@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3785722873362177304}
   - component: {fileID: 2621182085654375728}
   - component: {fileID: 5566297114193835736}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tutorial sign
-  m_TagString: Untagged
+  m_TagString: IgnoreTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,9 +198,29 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
       propertyPath: m_Name
       value: sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: b3fe1f7adccba7042a659c1ceac3bbf7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

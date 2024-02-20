@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class MiscEvents
 {
-    public event Action<int> onCoinCollected;
+    public event System.Action onCoinCollected;
     public void CoinCollected()
     {
         if (onCoinCollected != null)
         {
-            onCoinCollected(2);
+            onCoinCollected();
         }
     }
 
-    public event Action<bool> onPauseMenuOpen;
+    public event System.Action onPauseMenuOpen;
     public void PauseMenuOpen()
     {
         if (onPauseMenuOpen != null)
         {
-            onPauseMenuOpen(true);
+            onPauseMenuOpen();
         }
     }
 
-    public event Action<string> onThingObtained;
+    public event System.Action<string> onThingObtained;
     public void ThingObtained(string thingName)
     {
         if (onThingObtained != null)

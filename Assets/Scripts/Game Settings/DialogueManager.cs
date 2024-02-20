@@ -206,7 +206,7 @@ public class DialogueManager : MonoBehaviour
             { waitMultiplier = 8; }
 
             int rnd = UnityEngine.Random.Range(0,currentTypingSFXs.Length);
-            AudioManager.instance.PlaySFX(currentTypingSFXs[rnd], NPC.transform.position);
+            AudioManager.instance.PlaySFXAtCamera(currentTypingSFXs[rnd]);
 
             yield return new WaitForSeconds(newTypingSpeed * waitMultiplier);
         }

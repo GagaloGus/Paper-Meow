@@ -50,6 +50,11 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(PlayAudio(source));
     }
 
+    public void PlaySFXAtCamera(AudioClip clip, float volume = 1)
+    {
+        PlaySFX(clip, Camera.main.transform.position, volume);    
+    }
+
     public void PlayMusic(AudioClip clip, Vector3 position , float volume = 1)
     {
         GameObject sourceObj = audioPool.GetFirstInactiveGameObject();
@@ -108,7 +113,7 @@ public class AudioManager : MonoBehaviour
         ResumeBackgroundMusic();
     }
 
-    public void ResumeBackgroundMusic(float MaxVolume = 0.18f)
+    public void ResumeBackgroundMusic(float MaxVolume = 1f)
     {
         print($"Musica reproducida a {musicSource.clip.name}");
         StartCoroutine(FadeInVolume(0.005f, MaxVolume));

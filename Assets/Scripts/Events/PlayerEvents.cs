@@ -50,15 +50,6 @@ public class PlayerEvents
         }
     }
 
-    public event Action<bool> onPlayerTouchTutTrigger;
-    public void PlayerTouchedWaitTrigger()
-    {
-        if(onPlayerTouchTutTrigger != null) 
-        {
-            onPlayerTouchTutTrigger(true);
-        }
-    }
-
     public event Action<Skill> onSkillSwapped;
     public void SkillSwapped(Skill skill)
     {

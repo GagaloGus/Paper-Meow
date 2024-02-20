@@ -815,7 +815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -111.071175, y: -290.80072}
+  m_AnchoredPosition: {x: -111.07117, y: -290.80072}
   m_SizeDelta: {x: -387.1046, y: 254.2046}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7768024691976850902
@@ -948,7 +948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.12397, y: 0}
+  m_AnchoredPosition: {x: 0.12397003, y: 0}
   m_SizeDelta: {x: -9.752, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1169628582552751654
@@ -1434,7 +1434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.3, y: -7.2}
+  m_AnchoredPosition: {x: -3.2999992, y: -7.200001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &203801181027081246
@@ -2562,7 +2562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -104.79835, y: -145}
+  m_AnchoredPosition: {x: -104.79834, y: -145}
   m_SizeDelta: {x: -374.5588, y: 84.2771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430810964580260659
@@ -2925,6 +2925,7 @@ GameObject:
   - component: {fileID: 52859051862192920}
   - component: {fileID: 4340967970374454279}
   - component: {fileID: 4735973726592386079}
+  - component: {fileID: 1127276190900601221}
   - component: {fileID: 6509396244388466332}
   m_Layer: 5
   m_Name: Canvas
@@ -2975,9 +2976,9 @@ Canvas:
   m_GameObject: {fileID: 3423307160782887485}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -3043,6 +3044,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinText: {fileID: 5171027303520448543}
   coinTextInventory: {fileID: 1447099603383981142}
+--- !u!114 &1127276190900601221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423307160782887485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644b82609172063428d71ed84dce6b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textoObtenido: {fileID: 8224336618691530588, guid: 6fe24d4d411f2f643966f5c1767abc39, type: 3}
 --- !u!114 &6509396244388466332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4183,7 +4197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120.16393, y: -385.86835}
+  m_AnchoredPosition: {x: -120.16394, y: -385.86835}
   m_SizeDelta: {x: -405.2901, y: 366.0484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3309348732636717168
@@ -5524,7 +5538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 75.15572, y: -10.973}
+  m_AnchoredPosition: {x: 75.1557, y: -10.973}
   m_SizeDelta: {x: -175.5525, y: -58.634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1872335986154637414
@@ -5910,7 +5924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212, y: -0}
+  m_AnchoredPosition: {x: 212, y: 0}
   m_SizeDelta: {x: 909, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3087201910698367725
@@ -6049,7 +6063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -111.071175, y: -115.787994}
+  m_AnchoredPosition: {x: -111.07117, y: -115.787994}
   m_SizeDelta: {x: -387.1046, y: 69.8796}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &343418517281975316
@@ -6858,11 +6872,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -25
   far clip plane: 1000
   field of view: 88.3
   orthographic: 1
-  orthographic size: 73.24
+  orthographic size: 59.3
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -7994,7 +8008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342885990344839711, guid: 044e3c2927d5ca74a9521a1bc46a1d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58.726704
+      value: 58.726707
       objectReference: {fileID: 0}
     - target: {fileID: 3342885990344839711, guid: 044e3c2927d5ca74a9521a1bc46a1d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11180,7 +11194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342885990344839711, guid: 044e3c2927d5ca74a9521a1bc46a1d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 104.62671
+      value: 104.62672
       objectReference: {fileID: 0}
     - target: {fileID: 3342885990344839711, guid: 044e3c2927d5ca74a9521a1bc46a1d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
