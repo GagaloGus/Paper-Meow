@@ -42,7 +42,7 @@ public class Interactable : MonoBehaviour
             //Si le damos a la tecla de interactuar
             if (Input.GetKeyDown(interactKey))
             {
-                KeyToPress.SetActive(false);
+                
 
                 interactEvent.Invoke();
                 GetComponent<Interactable>().enabled = false;

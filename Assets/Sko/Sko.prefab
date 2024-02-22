@@ -10258,9 +10258,10 @@ GameObject:
   - component: {fileID: 1333025559593040506}
   - component: {fileID: 6403942227184611853}
   - component: {fileID: 9069423351829115485}
+  - component: {fileID: 2146665910344738261}
   - component: {fileID: 2120665806219072765}
-  - component: {fileID: 72071289077555267}
   - component: {fileID: 1170115040403223023}
+  - component: {fileID: 72071289077555267}
   m_Layer: 0
   m_Name: Sko
   m_TagString: Player
@@ -10345,6 +10346,25 @@ MonoBehaviour:
     SPD: 0
     SPD_increaseRange: {x: 1, y: 3}
   weaponSelected: 0
+--- !u!114 &2146665910344738261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966077035805e90459bc955fd330835f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allSkills:
+  - {fileID: 11400000, guid: 5d7776004318b51499061f8fa5bfd267, type: 2}
+  - {fileID: 11400000, guid: a332d4077367ace4b82fa4c605974964, type: 2}
+  - {fileID: 11400000, guid: 6155d03006823084fbe3aabd7f1f8435, type: 2}
+  - {fileID: 11400000, guid: 9edb84f234bd1eb4c845c161a055f62c, type: 2}
+  selectedSkill: {fileID: 0}
+  skillCooldownTimer: 0
 --- !u!54 &2120665806219072765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10372,6 +10392,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!75 &1170115040403223023
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_Force: {x: 0, y: -500, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!65 &72071289077555267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10393,18 +10425,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.95476574, y: 0.82098734, z: 0.49}
   m_Center: {x: -0.10676959, y: 0.28190786, z: 0.000000029802322}
---- !u!75 &1170115040403223023
-ConstantForce:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344253251668500606}
-  m_Enabled: 1
-  m_Force: {x: 0, y: -500, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 0}
-  m_Torque: {x: 0, y: 0, z: 0}
-  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &8506547612291500469
 GameObject:
   m_ObjectHideFlags: 0

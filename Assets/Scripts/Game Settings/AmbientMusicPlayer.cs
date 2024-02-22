@@ -8,25 +8,17 @@ public class AmbientMusicPlayer : MonoBehaviour
     public bool musicActive;
     public string currentZoneTag, previousZoneTag;
 
+    public AudioSource musicSource; // AudioSource específico para la música ambiente
+
     public AmbientSongs[] ambientSongs;
-
-
-    private void OnEnable()
-    {
-        GameEventsManager.instance.playerEvents.onPlayerTouchGround += ChangeTagSound;
-    }
-
-    private void OnDisable()
-    {
-        GameEventsManager.instance.playerEvents.onPlayerTouchGround -= ChangeTagSound;
-    }
 
     private void Start()
     {
         previousZoneTag = "asfdfs";
+        musicSource = transform.Find("AmbientMusic").GetComponent<AudioSource>();
     }
 
-    void ChangeTagSound(string tag)
+    public void ChangeTagSound(string tag)
     {
         currentZoneTag = tag;
         if(previousZoneTag != currentZoneTag && currentZoneTag != "IgnoreTag" && musicActive && !GameManager.instance.isTutorial)
@@ -36,7 +28,7 @@ public class AmbientMusicPlayer : MonoBehaviour
             {
                 Debug.Log($"Cancion encontrada: {tag}");
                 //Funciona
-                AudioManager.instance.ChangeBackgroundMusic(ambient.song);
+                ChangeBackgroundMusic(ambient.song);
             }
             else
             {
@@ -46,6 +38,49 @@ public class AmbientMusicPlayer : MonoBehaviour
             previousZoneTag = tag;
         }
         
+    }
+
+    // Método para reproducir la música ambiente
+    public void ChangeBackgroundMusic(AudioClip clip)
+    {
+        print($"Musica cambiada a {clip.name}");
+        StartCoroutine(FadeOutVolume(0.005f, clip));
+    }
+
+    IEnumerator FadeOutVolume(float ratio, AudioClip clip)
+    {
+        float maxVolume = musicSource.volume;
+        for (float i = 1; i >= maxVolume; i -= ratio)
+        {
+            musicSource.volume = i;
+            yield return new WaitForSeconds(0.005f);
+        }
+
+        musicSource.clip = clip;
+        ResumeBackgroundMusic();
+    }
+
+    public void ResumeBackgroundMusic(float MaxVolume = 1f)
+    {
+        print($"Musica reproducida a {musicSource.clip.name}");
+        StartCoroutine(FadeInVolume(0.005f, MaxVolume));
+    }
+
+    public void ResumeBackgroundMusic(AudioClip clip, float MaxVolume = 1)
+    {
+        musicSource.clip = clip;
+        ResumeBackgroundMusic(MaxVolume);
+    }
+
+
+    IEnumerator FadeInVolume(float ratio, float MaxVolume = 1)
+    {
+        musicSource.Play();
+        for (float i = 0; i <= MaxVolume; i += ratio)
+        {
+            musicSource.volume = i;
+            yield return new WaitForSeconds(0.005f);
+        }
     }
 }
 

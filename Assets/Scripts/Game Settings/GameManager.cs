@@ -45,70 +45,53 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen += SoftPauseGame;
-    }
-    
-    private void OnDisable()
-    {
-        GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= SoftPauseGame;
-
-    }
-
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Scene currentScene = SceneManager.GetActiveScene();
+        print($"Escena cargada: {currentScene.name}");
 
-        if (SceneManager.GetActiveScene().name != "Main_menu")
+
+        if (currentScene.name != "Main_Menu")
         {
+            LockCursor();
             GetPlayer();
         }
+        else { UnlockCursor();}
     }
-
 
     private void Update()
     {
-
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
         if(!isTutorial)
         {
-            if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
-            {
-                PauseAndContinueToggle();
-            }
-
             if (!gamePaused && !isInteracting)
             {
                 if (Input.GetKey(KeyCode.LeftAlt))
                 {
-                    LockCursor();
+                    UnlockCursor();
                     FindObjectOfType<CameraController>().LockCamera();
                 }
 
 
                 if(Input.GetKeyUp(KeyCode.LeftAlt))
                 {
-                    UnlockCursor();
+                    LockCursor();
                     FindObjectOfType<CameraController>().ResetCamera();
                 }
             }
         }
     }
 
-    #region Cursor y camara
-    void LockCursor()
+    #region Cursor
+    void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    void UnlockCursor()
+    void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -116,21 +99,32 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pausa
+
+    public void InventoryOpen()
+    {
+        GameEventsManager.instance.inventoryEvents.InventoryOpen();
+        SoftPauseGame();
+    }
+
     public void SoftPauseGame()
     {
-        gameTime = 0;
-        gamePaused = true;
-        LockCursor();
+        PauseSettings();
         FindObjectOfType<CameraController>().LockCamera();
-        player.GetComponent<SkoController>().PausedGame(true);
     }
 
     public void PauseGame()
     {
+        PauseSettings();
+        GameEventsManager.instance.miscEvents.PauseMenuOpen();
+        FindObjectOfType<CameraController>().PausedLockCamera();
+    }
+
+    void PauseSettings()
+    {
+        print("pausa");
         gameTime = 0;
         gamePaused = true;
-        LockCursor();
-        FindObjectOfType<CameraController>().PausedLockCamera();
+        UnlockCursor();
         player.GetComponent<SkoController>().PausedGame(true);
     }
 
@@ -141,16 +135,19 @@ public class GameManager : MonoBehaviour
         player.GetComponent<SkoController>().PausedGame(false);
 
         FindObjectOfType<CameraController>().ResetCamera();
-        UnlockCursor();
+        LockCursor();
 
     }
 
-    public void PauseAndContinueToggle()
+    public void PauseAndContinueToggle(bool softPause)
     {
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            PauseGame();
+            if (softPause)
+                SoftPauseGame();
+            else
+                PauseGame();
         }
         else
         {
@@ -162,7 +159,6 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<SkoController>().gameObject;
         health = (int)MathF.Abs(health);
-        SkillManager.instance.player = player;
     }
 
     public void ChangeScene(string sceneName, bool loadScene)
@@ -192,10 +188,6 @@ public class GameManager : MonoBehaviour
         {
             SaveDataManager.instance.LoadData(player);
         }
-
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     public void MoneyUpdate(int amount)
@@ -213,14 +205,14 @@ public class GameManager : MonoBehaviour
     public void StartInteraction(GameObject npc)
     {
         isInteracting = true;
-        LockCursor();
+        UnlockCursor();
         player.BroadcastMessage("StartInteraction", npc);
     }
 
     public void EndInteraction()
     {
         isInteracting = false;
-        UnlockCursor();
+        LockCursor();
         player.BroadcastMessage("EndInteraction");
     }
 
@@ -239,4 +231,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetUnlockedSkills(string idString)
+    {
+        FindObjectOfType<SkillManager>().SetUnlockedSkills(idString);
+    }
+
+    public string UnlockedSkills()
+    {
+        return FindObjectOfType<SkillManager>().UnlockedSkills();
+    }
+    
 }

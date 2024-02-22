@@ -64,7 +64,6 @@ public class DialogueManager : MonoBehaviour
     public void DialogueStart(List<DialogueString> textToPrint, NPCData npcData ,GameObject NPC, AudioClip[] typingSFXs, bool rotateTowardsPlayer)
     {
         GameManager.instance.StartInteraction(NPC);
-        //player.StartInteraction(NPC);
 
         //activa el cuadro de dialogo
         dialogueParent.SetActive(true);
@@ -91,7 +90,7 @@ public class DialogueManager : MonoBehaviour
         //desactiva los botones de opciones
         buttonHolder.SetActive(false);
 
-        FindObjectOfType<CameraController>().CHangeSpeedOfCamera(100);
+        FindObjectOfType<CameraController>().ChangeSpeedOfCamera(150);
     }
 
 
@@ -182,6 +181,13 @@ public class DialogueManager : MonoBehaviour
     {
         continueText.gameObject.SetActive(false);
 
+        List<int> randomNumbersForSFX = new();
+        foreach(char letter in text.ToCharArray())
+        {
+            randomNumbersForSFX.Add(UnityEngine.Random.Range(0, currentTypingSFXs.Length));
+        }
+
+
         //coge la linea en la que estamos
         DialogueString line = dialogueList[currentDialogueIndex];
 
@@ -195,6 +201,7 @@ public class DialogueManager : MonoBehaviour
 
         //escribe la linea
         dialogueText.text = "";
+        int i = 0;
         foreach(char letter in text.ToCharArray())
         {
             dialogueText.text += letter;
@@ -205,9 +212,8 @@ public class DialogueManager : MonoBehaviour
             else if (letter == '.')
             { waitMultiplier = 8; }
 
-            int rnd = UnityEngine.Random.Range(0,currentTypingSFXs.Length);
-            AudioManager.instance.PlaySFXAtCamera(currentTypingSFXs[rnd]);
-
+            AudioManager.instance.PlaySFX2D(currentTypingSFXs[randomNumbersForSFX[i]]);
+            i++;
             yield return new WaitForSeconds(newTypingSpeed * waitMultiplier);
         }
 

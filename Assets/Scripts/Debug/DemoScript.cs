@@ -22,9 +22,9 @@ public class DemoScript : MonoBehaviour
         playerStats.GetEXP(exp);
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX2D(AudioClip clip)
     {
-        AudioManager.instance.PlaySFX(clip, FindObjectOfType<SkoController>().gameObject.transform.position);
+        AudioManager.instance.PlaySFX2D(clip);
     }
 
     public void FinishTutorial()

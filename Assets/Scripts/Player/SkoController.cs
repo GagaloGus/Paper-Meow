@@ -318,15 +318,6 @@ public class SkoController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //detecta si hay suelo usando un boxcast
-        /*isGrounded =
-           Physics.BoxCast(groundPoint.position, 
-           new Vector3(0.3f, 0.05f, 0.05f), 
-           Vector3.down, 
-           transform.rotation, 
-           rayDetectFloorDist, 
-           LayerMask.GetMask("Ground"));*/
-
         Ray detectGround = new Ray(groundPoint.position, Vector3.down);
 
         RaycastHit hit;
@@ -334,7 +325,7 @@ public class SkoController : MonoBehaviour
         if(Physics.Raycast(detectGround, out hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
-            GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
+            AudioManager.instance.SetAmbientMusic(hit.collider.gameObject.tag);
         }
         else { isGrounded = false; }
 
@@ -344,7 +335,7 @@ public class SkoController : MonoBehaviour
             if (!isUsingSkill && !isAttacking)
             {
                 Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1) * stats.currentStats.SPD/10);
+                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1) + stats.currentStats.SPD/15);
 
                 Vector3 vel = direction * stats.moveSpeed * multiplySpeedFac;
                 //Moverse

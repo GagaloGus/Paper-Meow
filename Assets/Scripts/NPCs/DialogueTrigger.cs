@@ -16,8 +16,6 @@ public class DialogueTrigger : MonoBehaviour
     public NPCData info;
     [SerializeField] public List<DialogueString> dialogueStrings = new List<DialogueString>();
 
-
-
     public void StartDialogue()
     {
         info.originalRot = transform.rotation;

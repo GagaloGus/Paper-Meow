@@ -44,10 +44,10 @@ public class Menu : MonoBehaviour
                 switch (menuType)
                 {
                     case MenuType.PauseMenu:
-                        GameEventsManager.instance.miscEvents.PauseMenuOpen();
+                        GameManager.instance.PauseGame();
                         break;
                     case MenuType.Inventory:
-                        GameEventsManager.instance.inventoryEvents.InventoryOpen();
+                        GameManager.instance.InventoryOpen();
                         break;
                 }
             }

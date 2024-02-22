@@ -1,36 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    public static SkillManager instance;
-
     public Skill[] allSkills;
     public Skill selectedSkill;
     string unlockedSkillIDs;
 
-    public GameObject player;
     KeyCode useSkillKey;
 
     public float skillCooldownTimer;
-    bool skillUsed;
+    public bool skillUsed;
 
     bool skillUsable;
     void Awake()
     {
-        #region manager instance
-        if (!instance) 
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject); 
-        }
-        #endregion
 
         //le añade los IDs a las skills
         AssignIDsToSkills();
@@ -53,13 +41,13 @@ public class SkillManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.GetComponent<SkoController>().player_canMove) 
+        if(GetComponent<SkoController>().player_canMove) 
         {
             if (Input.GetKeyDown(useSkillKey) && !skillUsed && skillUsable)
             {
                 if(selectedSkill != null)
                 {
-                    player.GetComponent<SkoController>().StartSkillCooldownCoroutine(selectedSkill.usingSkill);
+                    GetComponent<SkoController>().StartSkillCooldownCoroutine(selectedSkill.usingSkill);
                     selectedSkill.Use();
 
 
@@ -81,7 +69,7 @@ public class SkillManager : MonoBehaviour
 
             if(selectedSkill != null)
             {
-                if(selectedSkill.usablilty == Skill.Usability.Ground && player.GetComponent<SkoController>().player_isGrounded) { skillUsable = true; }
+                if(selectedSkill.usablilty == Skill.Usability.Ground && GetComponent<SkoController>().player_isGrounded) { skillUsable = true; }
                 else if(selectedSkill.usablilty == Skill.Usability.All) {  skillUsable = true; }
                 else { skillUsable = false; }
             }
@@ -132,7 +120,7 @@ public class SkillManager : MonoBehaviour
 
     public void UnlockSkillInTree(Skill skill)
     {
-        SkoStats playerStats = player.GetComponent<SkoStats>();
+        SkoStats playerStats = GetComponent<SkoStats>();
 
         //Si es un tipo de SkillTree
         if(skill.unlockType == Skill.UnlockType.SkillTree)
@@ -252,7 +240,96 @@ public class SkillManager : MonoBehaviour
         {
             gizmoCol = new Color(1-i, i, 0);
             yield return new WaitForSeconds(lapso/espera);
-        } 
+        }
 
     }
+
+    public void ArrangeParentSkills()
+    {
+        print("ordenando...");
+
+        foreach (Skill skill in allSkills)
+        {
+            foreach (Skill childSkill in skill.childSkills)
+            {
+                Skill parentSkill = Array.Find(childSkill.parentSkills.ToArray(), x => x == skill);
+                if (parentSkill != null) { continue; }
+
+                childSkill.parentSkills.Add(skill);
+            }
+
+            CheckIfNull(skill);
+        }
+
+        print("skills padres ordenadas");
+    }
+
+    public void ArrangeChildSkills()
+    {
+        print("ordenando...");
+
+        foreach (Skill skill in allSkills)
+        {
+            foreach (Skill parentSkill in skill.parentSkills)
+            {
+                Skill childSkill = Array.Find(parentSkill.childSkills.ToArray(), x => x == skill);
+                if (childSkill != null) { continue; }
+
+                parentSkill.childSkills.Add(skill);
+            }
+
+            CheckIfNull(skill);
+        }
+
+        print("skills hijas ordenadas");
+
+    }
+
+    //Quita si hay algun componente "nulo" o "none" en las listas de hijos y padres
+    public void CheckIfNull(Skill skill)
+    {
+        for (int i = 0; i < skill.childSkills.Count; i++)
+        {
+            if (skill.childSkills[i] == null)
+            {
+                skill.childSkills.RemoveAt(i);
+            }
+        }
+
+        for (int i = 0; i < skill.parentSkills.Count; i++)
+        {
+            if (skill.parentSkills[i] == null)
+            {
+                skill.parentSkills.RemoveAt(i);
+            }
+        }
+    }
 }
+#if UNITY_EDITOR_WIN
+[UnityEditor.CustomEditor(typeof(SkillManager))]
+class SkillManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        SkillManager myscript = (SkillManager)target;
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Arrange Parent Skills", GUILayout.Height(30)))
+        {
+            myscript.ArrangeParentSkills();
+
+        }
+
+        if (GUILayout.Button("Arrange Child Skills", GUILayout.Height(30)))
+        {
+            myscript.ArrangeChildSkills();
+
+        }
+
+        GUILayout.EndHorizontal();
+    }
+}
+#endif
+
+
