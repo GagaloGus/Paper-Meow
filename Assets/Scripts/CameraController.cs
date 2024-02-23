@@ -63,14 +63,12 @@ public class CameraController : MonoBehaviour
 
             cinemachine.m_XAxis.m_MaxSpeed = 0f;
             cinemachine.m_YAxis.m_MaxSpeed = 0f;
-            print("paused lock");
         }
     }
 
     public void ChangeSpeedOfCamera(float speed)
     {
         cinemachine.m_XAxis.m_MaxSpeed = speed;
-        print("cambio velosidad");
 
     }
 

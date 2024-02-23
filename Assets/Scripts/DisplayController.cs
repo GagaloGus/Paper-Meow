@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class DisplayController : MonoBehaviour
 {
+    [Header("Show GUI")]
+    [SerializeField] bool ShowGUI;
+
+    [Header("Settings")]
     float deltaTime = 0.0f;
     float accum = 0.0f; // Suma acumulada de los FPS
     int frames = 0; // Numero de frames en el intervalo
@@ -113,30 +117,32 @@ public class DisplayController : MonoBehaviour
 
     void OnGUI()
     {
-        
-        // Configurar el estilo con un color personalizado
-        style.normal.textColor = Color.red;
-
-        // Calcular el promedio de FPS
-        float averageFPS = accum / frames;
-        string text = $"FPS: {Mathf.RoundToInt(1.0f / deltaTime)}\n" +
-            $"Average FPS: {Mathf.RoundToInt(averageFPS)}\n" +
-            $"------ GameManager Variables ------ \n" +
-            $"GamePaused: {GameManager.instance.gamePaused} \n IsInteracting: {GameManager.instance.isInteracting} \n IsTutorial: {GameManager.instance.isTutorial} \n" +
-            $"Player: {GameManager.instance.player.name} \n" +
-            $"------ Misc Variables ------\n" +
-            $"Cursor: Lock->{Cursor.lockState}, Visible->{Cursor.visible}\n";
-
-        SkoController playerCont = FindObjectOfType<SkoController>();
-        if (playerCont != null)
+        if (ShowGUI)
         {
-            text += $"------ Player ------\n" +
-            $"Can Move: {playerCont.player_canMove}\n Is Grounded: {playerCont.player_isGrounded}\n" +
-            $"Skill: {playerCont.gameObject.GetComponent<SkillManager>().skillUsed}";
-        }
+            // Configurar el estilo con un color personalizado
+            style.normal.textColor = Color.red;
 
-        // Mostrar el texto con el estilo personalizado
-        GUI.Label(new Rect(Screen.width-400, 10, 400, 400), text, style);
+            // Calcular el promedio de FPS
+            float averageFPS = accum / frames;
+            string text = $"FPS: {Mathf.RoundToInt(1.0f / deltaTime)}\n" +
+                $"Average FPS: {Mathf.RoundToInt(averageFPS)}\n" +
+                $"------ GameManager Variables ------ \n" +
+                $"GamePaused: {GameManager.instance.gamePaused} \n IsInteracting: {GameManager.instance.isInteracting} \n IsTutorial: {GameManager.instance.isTutorial} \n" +
+                $"Player: {GameManager.instance.player.name} \n" +
+                $"------ Misc Variables ------\n" +
+                $"Cursor: Lock->{Cursor.lockState}, Visible->{Cursor.visible}\n";
+
+            SkoController playerCont = FindObjectOfType<SkoController>();
+            if (playerCont != null)
+            {
+                text += $"------ Player ------\n" +
+                $"Can Move: {playerCont.player_canMove}\n Is Grounded: {playerCont.player_isGrounded}\n" +
+                $"Skill: {playerCont.gameObject.GetComponent<SkillManager>().skillUsed}";
+            }
+
+            // Mostrar el texto con el estilo personalizado
+            GUI.Label(new Rect(Screen.width-400, 10, 400, 400), text, style);
+        }
     }
 
     public void ChangeFPSLimit(int index)

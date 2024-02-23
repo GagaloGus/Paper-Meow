@@ -17,8 +17,6 @@ public class SkoController : MonoBehaviour
     GameObject m_gameobj;
     Animator m_animator;
 
-    public GameObject bow;
-
     [Header("Debug Variables")]
     public int gravity;
     [Range(0f, 2f)] public float rayDetectFloorDist;
@@ -351,18 +349,21 @@ public class SkoController : MonoBehaviour
     }
     public void PausedGame(bool paused)
     {
-        if (isGrounded && !GameManager.instance.isInteracting)
         {
             if (paused)
             {
                 canMove = false;
-                m_animator.SetBool("gamePaused", true);
-
-                isFlipped = false;
-                isFacingBackwards = false;
-                FlipCharacter();
-
                 EnablePhysics(false);
+
+                if (isGrounded)
+                {
+                    m_animator.SetBool("gamePaused", true);
+
+                    isFlipped = false;
+                    isFacingBackwards = false;
+                    FlipCharacter();
+                }
+
             }
             else
             {
@@ -376,7 +377,18 @@ public class SkoController : MonoBehaviour
     void EnablePhysics(bool enable)
     {
         GetComponent<ConstantForce>().enabled = enable;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
+
+        if (enable)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints |= RigidbodyConstraints.FreezeRotationX;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
 
@@ -387,20 +399,18 @@ public class SkoController : MonoBehaviour
         playerState = PlayerStates.Idle;
         m_animator.SetInteger("player states", 0);
         canMove = false;
+
         //Centra el personaje para que apunte al npc
-        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
-        bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
+        StartCoroutine(TurnTowardsTargetPos(npc.transform.position, 2));
 
-        bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
-
-        isFlipped = !right;
-        isFacingBackwards = !up;
+        EnablePhysics(false);
     }
 
     public void EndInteraction()
     {
         canMove = true;
+        EnablePhysics(true);
     }
 
 
@@ -438,6 +448,24 @@ public class SkoController : MonoBehaviour
 
         isUsingSkill = false;
     }
+
+    IEnumerator TurnTowardsTargetPos(Vector3 target, float turnSpeed)
+    {
+        Quaternion startRot = transform.rotation;
+
+        Quaternion targetRot = Quaternion.LookRotation((isFacingBackwards ? 1 : -1) * (CoolFunctions.FlattenVector3(transform.position) - CoolFunctions.FlattenVector3(target)));
+
+        float elapsedTime = 0;
+        while (elapsedTime < 1)
+        {
+            transform.rotation = Quaternion.Slerp(startRot, targetRot, elapsedTime);
+            elapsedTime += Time.deltaTime * turnSpeed;
+            yield return null;
+        }
+
+        transform.rotation = targetRot;
+    }
+
 
     private void OnDrawGizmos()
     {

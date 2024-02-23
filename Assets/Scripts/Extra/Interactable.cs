@@ -64,7 +64,8 @@ public class Interactable : MonoBehaviour
 
         newCentre = transform.position + CoolFunctions.VectorMoveAlongTransformAxis(modifyCentre, transform);
 
-        Gizmos.color = Color.yellow;
+
+        Gizmos.color = isInteractable ? Color.yellow : Color.grey;
         Gizmos.DrawWireSphere(newCentre, Distance);
     }
 }
