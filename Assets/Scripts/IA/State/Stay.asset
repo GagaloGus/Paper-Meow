@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f8742f0e84ac344a2c156d447f8700, type: 3}
   m_Name: Stay
   m_EditorClassIdentifier: 
-  parameters:
-  - actionParameters:
-    - action: {fileID: 11400000, guid: d8be2100749f7a94e80c798b00c4980e, type: 2}
-      actionValue: 1
-    nextState: {fileID: 11400000, guid: c18b2312c5e16134985c490b9ca02c93, type: 2}
-    or: 0
+  parameters: []
