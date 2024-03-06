@@ -9,16 +9,20 @@ public class ChaseState : State
     public override void StartState(GameObject owner)
     {
         base.StartState(owner);
-
     }
 
     public override State Run(GameObject owner)
     {
         navMeshAgent.SetDestination(target.transform.position);
 
-        //persigue al player mientras le mira
+        Debug.Log(navMeshAgent.destination);
+
+        // persigue al player mientras le mira
         owner.transform.LookAt(target.transform.position);
+
+        Debug.Log("ChaseState - Running");
 
         return base.Run(owner);
     }
 }
+

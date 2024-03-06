@@ -31,5 +31,9 @@ public class CloseAction : Action
             return false;
         }
     }
+    public override void DrawGizmo(GameObject owner)
+    {
+        base.DrawGizmo(owner);
+    }
 }
 

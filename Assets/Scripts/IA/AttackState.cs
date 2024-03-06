@@ -20,6 +20,7 @@ public class AttackState : State
 
     public override State Run(GameObject owner)
     {
+        navMeshAgent.SetDestination(target.transform.position);
 
         if (animator != null && target != null)
         {
@@ -56,4 +57,5 @@ public class AttackState : State
         return this;
 
     }
+
 }

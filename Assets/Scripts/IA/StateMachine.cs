@@ -10,7 +10,6 @@ public class StateMachine : MonoBehaviour
     [SerializeField]
     State _currentState;
     private ParticleSystem part;
-
     private Color GamingGizmoCol;
     private Color MonoGizmoCol;
 
@@ -36,7 +35,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    void ChangeState(State nextState)
+    public void ChangeState(State nextState)
     {
         _currentState = nextState;
         _currentState.StartState(gameObject);
@@ -87,18 +86,6 @@ public class StateMachine : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("playerDied");
     }
-
-    //public void Damage(int damage)
-    //{
-    //     Collider collision = GetComponent<Collider>();
-    //    // Verificar si la colisión es con el jugador
-    //    if (collision.gameObject.GetComponent<SkoController>())
-    //    {
-    //        // Llamar al método Damage del GameManager solo si la colisión es con el jugador
-    //        GameManager.instance.Damage(damage);
-
-    //    }
-    //}
 
     public void PartStart()
     {

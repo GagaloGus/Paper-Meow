@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6def9982443e7b64ebe34275a0ac6a7f, type: 3}
+  m_Name: Patrol
+  m_EditorClassIdentifier: 
+  parameters: []
+  minSwapTime: 0
+  maxSwapTime: 0
+  nothingTexture2D: {fileID: 0}

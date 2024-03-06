@@ -20,10 +20,9 @@ public struct StateParameters
 public abstract class State : ScriptableObject
 {
     public StateParameters[] parameters;
-    protected NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
     protected GameObject target, cannon;
-    protected Animator animator;
-    protected float navOgSpeed;
+    public Animator animator;
     public virtual State Run(GameObject owner)
     {
         foreach (StateParameters par in parameters)
@@ -34,18 +33,23 @@ public abstract class State : ScriptableObject
                 bool currentAction = par.actionParameters[i].action.Check(owner) == par.actionParameters[i].actionValue;
 
                 and &= currentAction;
-                if (par.or && currentAction) { return par.nextState; }
+                if (par.or && currentAction)
+                {
+                    Debug.Log($"Changing state to {par.nextState.name} due to OR condition.");
+                    return par.nextState;
+                }
             }
 
             if (and)
             {
+                Debug.Log($"Changing state to {par.nextState.name} due to AND condition.");
                 return par.nextState;
             }
-
         }
 
         return null;
     }
+
 
     public virtual void StartState(GameObject owner)
     {
@@ -53,8 +57,6 @@ public abstract class State : ScriptableObject
         target = FindObjectOfType<SkoController>().gameObject;
         animator = owner.GetComponent<Animator>();
 
-        //resetea la velocidad del mavmeshagent a la original
-        navMeshAgent.speed = navOgSpeed;
 
         //empieza los starts de sus acciones
         foreach (StateParameters par in parameters)

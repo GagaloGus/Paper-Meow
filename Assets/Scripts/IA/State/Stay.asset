@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f8742f0e84ac344a2c156d447f8700, type: 3}
   m_Name: Stay
   m_EditorClassIdentifier: 
-  parameters: []
+  parameters:
+  - actionParameters:
+    - action: {fileID: 11400000, guid: 0d43bb9a05a28bb48958de2a6db5c1b5, type: 2}
+      actionValue: 1
+    nextState: {fileID: 11400000, guid: c18b2312c5e16134985c490b9ca02c93, type: 2}
+    or: 0
+  navMeshAgent: {fileID: 0}
+  animator: {fileID: 0}
