@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 482433572}
   - component: {fileID: 482433571}
   m_Layer: 0
-  m_Name: Terrain_(-207.37, 0.45, -394.78)
+  m_Name: Parcela 20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,7 +1228,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 567472f57b566844facd5ff030db6a6e, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 4f2f6709524116f4db101a0261317f5c, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &482433572
 Terrain:
@@ -1277,12 +1277,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482433570}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -207.37167, y: 0.4501953, z: -394.78357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 846970764}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618001196
 GameObject:
@@ -1817,6 +1817,7 @@ Transform:
   - {fileID: 1306883024}
   - {fileID: 1966150667}
   - {fileID: 1791366079}
+  - {fileID: 482433573}
   - {fileID: 29832551}
   - {fileID: 1534628367}
   - {fileID: 1684266582}
@@ -9940,7 +9941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2100407000
 Transform:
   m_ObjectHideFlags: 0
@@ -10501,4 +10502,3 @@ SceneRoots:
   - {fileID: 1121098610}
   - {fileID: 1964734371}
   - {fileID: 1466579897}
-  - {fileID: 482433573}
