@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 919b27199672fdc4caca1bb54c184463, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 29832551}
   - component: {fileID: 29832553}
   - component: {fileID: 29832552}
+  - component: {fileID: 29832554}
   m_Layer: 3
   m_Name: Parcela 21
   m_TagString: Untagged
@@ -220,6 +221,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &29832554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29832550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: f72a8ace4f5e7e94ab3f0d9fd1eb3601, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &34316131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -598,6 +630,7 @@ GameObject:
   - component: {fileID: 53291380}
   - component: {fileID: 53291382}
   - component: {fileID: 53291381}
+  - component: {fileID: 53291383}
   m_Layer: 3
   m_Name: Parcela 30
   m_TagString: Untagged
@@ -679,6 +712,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &53291383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53291379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 765369cd4abb20245b84de20cb9cfed5, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &58404115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3242,6 +3306,7 @@ GameObject:
   - component: {fileID: 271447705}
   - component: {fileID: 271447707}
   - component: {fileID: 271447706}
+  - component: {fileID: 271447708}
   m_Layer: 3
   m_Name: Parcela 20
   m_TagString: Untagged
@@ -3323,6 +3388,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &271447708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271447704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: ca9cd3c31d7e32f4696b869dbc024fba, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &299470729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3470,6 +3566,7 @@ GameObject:
   - component: {fileID: 340098100}
   - component: {fileID: 340098102}
   - component: {fileID: 340098101}
+  - component: {fileID: 340098103}
   m_Layer: 3
   m_Name: Parcela 26
   m_TagString: Untagged
@@ -3551,6 +3648,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &340098103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340098099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: b499f5c830e668f40abfd73f1cd99b80, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &344118667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3632,6 +3760,7 @@ GameObject:
   - component: {fileID: 358572172}
   - component: {fileID: 358572174}
   - component: {fileID: 358572173}
+  - component: {fileID: 358572175}
   m_Layer: 3
   m_Name: Parcela 6
   m_TagString: Untagged
@@ -3713,6 +3842,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &358572175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358572171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 6cb4a1abdea32144c9993a859650264c, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &359572366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,6 +3884,7 @@ GameObject:
   - component: {fileID: 359572367}
   - component: {fileID: 359572369}
   - component: {fileID: 359572368}
+  - component: {fileID: 359572370}
   m_Layer: 3
   m_Name: Parcela 14
   m_TagString: Untagged
@@ -3805,6 +3966,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &359572370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359572366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 49954845bcd73e249ab3a85f7a2d1986, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &372027110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,6 +4008,7 @@ GameObject:
   - component: {fileID: 372027111}
   - component: {fileID: 372027113}
   - component: {fileID: 372027112}
+  - component: {fileID: 372027114}
   m_Layer: 3
   m_Name: Parcela 37
   m_TagString: Untagged
@@ -3897,6 +4090,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &372027114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372027110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 313f6add4f38d594a97f668d08517db3, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &373601249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5164,6 +5388,7 @@ GameObject:
   - component: {fileID: 618001197}
   - component: {fileID: 618001199}
   - component: {fileID: 618001198}
+  - component: {fileID: 618001200}
   m_Layer: 3
   m_Name: Parcela 11
   m_TagString: Untagged
@@ -5245,6 +5470,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &618001200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618001196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 6082ff6ff1cf470409dc9edccc101c0f, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &621286232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5604,6 +5860,7 @@ GameObject:
   - component: {fileID: 653349779}
   - component: {fileID: 653349781}
   - component: {fileID: 653349780}
+  - component: {fileID: 653349782}
   m_Layer: 3
   m_Name: Parcela 3 (1)
   m_TagString: Untagged
@@ -5685,6 +5942,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &653349782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653349778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 1ebe5d67062d4704fae0dfc6dcd67abd, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &653508986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3292751261339291847, guid: e9e4b545417ed3f4f85a384b6e4322a6, type: 3}
@@ -5701,6 +5989,7 @@ GameObject:
   - component: {fileID: 665823583}
   - component: {fileID: 665823585}
   - component: {fileID: 665823584}
+  - component: {fileID: 665823586}
   m_Layer: 3
   m_Name: Parcela 25
   m_TagString: Untagged
@@ -5782,6 +6071,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &665823586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665823582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: b87977f851fbfc544b7ea442b4c22c65, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &671087253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 839645034405550237, guid: ad7647bb7c7fb4c4a8d1e9b0d8597125, type: 3}
@@ -6143,6 +6463,7 @@ GameObject:
   - component: {fileID: 701942654}
   - component: {fileID: 701942656}
   - component: {fileID: 701942655}
+  - component: {fileID: 701942657}
   m_Layer: 3
   m_Name: Parcela 9
   m_TagString: Untagged
@@ -6224,6 +6545,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &701942657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701942653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: f8b9c0377b3f56840ac1a91116a42843, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &709470127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7249,6 +7601,7 @@ GameObject:
   - component: {fileID: 839108062}
   - component: {fileID: 839108064}
   - component: {fileID: 839108063}
+  - component: {fileID: 839108065}
   m_Layer: 3
   m_Name: Parcela 16
   m_TagString: Untagged
@@ -7330,6 +7683,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &839108065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839108061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: c7784592ffb42f846b7615a4227c69fa, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &840433448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8194128195716223946, guid: 7822e1323acf6dd448e302892f5d979d, type: 3}
@@ -7719,6 +8103,7 @@ GameObject:
   - component: {fileID: 903695256}
   - component: {fileID: 903695258}
   - component: {fileID: 903695257}
+  - component: {fileID: 903695259}
   m_Layer: 3
   m_Name: Parcela 1
   m_TagString: Untagged
@@ -7800,6 +8185,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &903695259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903695255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: e3089def767256a4aba4dcc36afc3dc5, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &907817356
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,6 +8227,7 @@ GameObject:
   - component: {fileID: 907817357}
   - component: {fileID: 907817359}
   - component: {fileID: 907817358}
+  - component: {fileID: 907817360}
   m_Layer: 3
   m_Name: Parcela 34
   m_TagString: Untagged
@@ -7892,6 +8309,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &907817360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907817356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 43348ad8d78b0ce458bcf1229985ab3c, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &911040417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8297,6 +8745,7 @@ GameObject:
   - component: {fileID: 1003640378}
   - component: {fileID: 1003640380}
   - component: {fileID: 1003640379}
+  - component: {fileID: 1003640381}
   m_Layer: 3
   m_Name: Parcela 36
   m_TagString: Untagged
@@ -8378,6 +8827,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1003640381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003640377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 4ebe2f30641831e42b02b246012f37c5, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1006777162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8756,6 +9236,7 @@ GameObject:
   - component: {fileID: 1059202993}
   - component: {fileID: 1059202995}
   - component: {fileID: 1059202994}
+  - component: {fileID: 1059202996}
   m_Layer: 3
   m_Name: Parcela 3
   m_TagString: Untagged
@@ -8837,6 +9318,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1059202996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059202992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 2067f08e787de8f4eb613f44a8a664f9, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1061707136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5063514463558466880, guid: f1e7789f45a2de74ca3c8d4b47051962, type: 3}
@@ -9480,6 +9992,7 @@ GameObject:
   - component: {fileID: 1153910508}
   - component: {fileID: 1153910510}
   - component: {fileID: 1153910509}
+  - component: {fileID: 1153910511}
   m_Layer: 3
   m_Name: Parcela 10
   m_TagString: Untagged
@@ -9561,6 +10074,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1153910511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153910507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 2cbfe5a6659a61140894eba4f1e3f725, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1161093687
 GameObject:
   m_ObjectHideFlags: 0
@@ -9572,6 +10116,7 @@ GameObject:
   - component: {fileID: 1161093688}
   - component: {fileID: 1161093690}
   - component: {fileID: 1161093689}
+  - component: {fileID: 1161093691}
   m_Layer: 3
   m_Name: Parcela 33
   m_TagString: Untagged
@@ -9653,6 +10198,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1161093691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161093687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 50502e0af7c9091448a810a2a817cb09, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1165560237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10745,6 +11321,7 @@ GameObject:
   - component: {fileID: 1306883024}
   - component: {fileID: 1306883026}
   - component: {fileID: 1306883025}
+  - component: {fileID: 1306883027}
   m_Layer: 3
   m_Name: Parcela 17
   m_TagString: Untagged
@@ -10826,6 +11403,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1306883027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306883023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 4b86d0639f6fd13469a0b2d8eeedfa3d, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &1312086211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5397620260711173739, guid: 8263c729a064b0c4498a0c0fbc756bd8, type: 3}
@@ -11185,6 +11793,7 @@ GameObject:
   - component: {fileID: 1360483304}
   - component: {fileID: 1360483306}
   - component: {fileID: 1360483305}
+  - component: {fileID: 1360483307}
   m_Layer: 3
   m_Name: Parcela 2
   m_TagString: Untagged
@@ -11266,6 +11875,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1360483307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360483303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: de4e469f30697944ba92bd4779524206, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1365084606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11773,6 +12413,7 @@ GameObject:
   - component: {fileID: 1424683572}
   - component: {fileID: 1424683574}
   - component: {fileID: 1424683573}
+  - component: {fileID: 1424683575}
   m_Layer: 3
   m_Name: Parcela 31
   m_TagString: Untagged
@@ -11854,6 +12495,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1424683575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424683571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 62f1b94ff9c0f4f49a92abf36b7ab1fd, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1431054333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5609868408908873887, guid: 8a2f121bd5fd10047b5721597427b266, type: 3}
@@ -12155,6 +12827,7 @@ GameObject:
   - component: {fileID: 1471731823}
   - component: {fileID: 1471731825}
   - component: {fileID: 1471731824}
+  - component: {fileID: 1471731826}
   m_Layer: 3
   m_Name: Parcela 24
   m_TagString: Untagged
@@ -12236,6 +12909,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1471731826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471731822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 7b44f3bc50443a34fa149aa75584a8c9, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1474005921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12392,6 +13096,7 @@ GameObject:
   - component: {fileID: 1485588119}
   - component: {fileID: 1485588121}
   - component: {fileID: 1485588120}
+  - component: {fileID: 1485588122}
   m_Layer: 3
   m_Name: Parcela 4
   m_TagString: Untagged
@@ -12473,6 +13178,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1485588122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485588118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 9302dcde7dc05d64ba4036432c36fbed, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1486029896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12896,6 +13632,7 @@ GameObject:
   - component: {fileID: 1534628367}
   - component: {fileID: 1534628369}
   - component: {fileID: 1534628368}
+  - component: {fileID: 1534628370}
   m_Layer: 3
   m_Name: Parcela 22
   m_TagString: Untagged
@@ -12977,6 +13714,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1534628370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534628366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 210e925674a799445abcfb990a5f9a3d, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &1540836859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5853487388378461764, guid: a9385f8c398b84941ae535f2d4e61ae8, type: 3}
@@ -12993,6 +13761,7 @@ GameObject:
   - component: {fileID: 1558065588}
   - component: {fileID: 1558065590}
   - component: {fileID: 1558065589}
+  - component: {fileID: 1558065591}
   m_Layer: 3
   m_Name: Parcela 40
   m_TagString: Untagged
@@ -13074,6 +13843,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1558065591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558065587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: c996cb31cd0817d4a81870b34e3beec6, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1561301261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8405691056663575150, guid: 73ed39b36fcefd8499ba22ddb003e4b8, type: 3}
@@ -13366,6 +14166,7 @@ GameObject:
   - component: {fileID: 1601359722}
   - component: {fileID: 1601359724}
   - component: {fileID: 1601359723}
+  - component: {fileID: 1601359725}
   m_Layer: 3
   m_Name: Parcela 12
   m_TagString: Untagged
@@ -13447,6 +14248,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1601359725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601359721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: f017afc264e60a9448632ef7a22da843, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1609214192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1586714929547338524, guid: ad7647bb7c7fb4c4a8d1e9b0d8597125, type: 3}
@@ -13533,6 +14365,7 @@ GameObject:
   - component: {fileID: 1612075178}
   - component: {fileID: 1612075180}
   - component: {fileID: 1612075179}
+  - component: {fileID: 1612075181}
   m_Layer: 3
   m_Name: Parcela 8
   m_TagString: Untagged
@@ -13614,6 +14447,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1612075181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612075177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: acf20c6f1611e0645a0dd8ded320da8f, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1614419941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13774,6 +14638,7 @@ GameObject:
   - component: {fileID: 1634354812}
   - component: {fileID: 1634354814}
   - component: {fileID: 1634354813}
+  - component: {fileID: 1634354815}
   m_Layer: 3
   m_Name: Parcela 29
   m_TagString: Untagged
@@ -13855,6 +14720,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1634354815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634354811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 7e70ae34358ca69428e9ab45e574eb91, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1645611602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14108,6 +15004,7 @@ GameObject:
   - component: {fileID: 1684266582}
   - component: {fileID: 1684266584}
   - component: {fileID: 1684266583}
+  - component: {fileID: 1684266585}
   m_Layer: 3
   m_Name: Parcela 23
   m_TagString: Untagged
@@ -14189,6 +15086,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1684266585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684266581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 6acc9bd5c44e7e84ea56fcad07fb5fa7, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1689983567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14559,6 +15487,7 @@ GameObject:
   - component: {fileID: 1744989121}
   - component: {fileID: 1744989123}
   - component: {fileID: 1744989122}
+  - component: {fileID: 1744989124}
   m_Layer: 3
   m_Name: Parcela 15
   m_TagString: Untagged
@@ -14640,6 +15569,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1744989124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744989120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: fc7e86994f108b44c8afaa1240845eb6, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1746375956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14730,6 +15690,7 @@ GameObject:
   - component: {fileID: 1762276559}
   - component: {fileID: 1762276561}
   - component: {fileID: 1762276560}
+  - component: {fileID: 1762276562}
   m_Layer: 3
   m_Name: Parcela 35
   m_TagString: Untagged
@@ -14811,6 +15772,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1762276562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762276558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 0c6e4e20c0eb7794eb1f4d433e2bf597, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1769352595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14949,6 +15941,7 @@ GameObject:
   - component: {fileID: 1791366079}
   - component: {fileID: 1791366081}
   - component: {fileID: 1791366080}
+  - component: {fileID: 1791366082}
   m_Layer: 3
   m_Name: Parcela 19
   m_TagString: Untagged
@@ -15030,6 +16023,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1791366082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791366078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: f61000327b4766247891917cea8c407f, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1797456111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15107,6 +16131,7 @@ GameObject:
   - component: {fileID: 1800504085}
   - component: {fileID: 1800504087}
   - component: {fileID: 1800504086}
+  - component: {fileID: 1800504088}
   m_Layer: 3
   m_Name: Parcela 7
   m_TagString: Untagged
@@ -15188,6 +16213,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1800504088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800504084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: ff49aa995d8005447b4b32842949c8a8, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1817608967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15269,6 +16325,7 @@ GameObject:
   - component: {fileID: 1820198711}
   - component: {fileID: 1820198713}
   - component: {fileID: 1820198712}
+  - component: {fileID: 1820198714}
   m_Layer: 3
   m_Name: Parcela 32
   m_TagString: Untagged
@@ -15350,6 +16407,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1820198714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820198710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 8c0608498a923fa4d94bca2f177c253b, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1831064966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15427,6 +16515,7 @@ GameObject:
   - component: {fileID: 1833762036}
   - component: {fileID: 1833762038}
   - component: {fileID: 1833762037}
+  - component: {fileID: 1833762039}
   m_Layer: 3
   m_Name: Parcela 5
   m_TagString: Untagged
@@ -15508,6 +16597,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1833762039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833762035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 6c6f0a5ee9125f14898b8e9b57764feb, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &1846591373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6377540799916716356, guid: 73ed39b36fcefd8499ba22ddb003e4b8, type: 3}
@@ -16220,6 +17340,7 @@ GameObject:
   - component: {fileID: 1945358824}
   - component: {fileID: 1945358826}
   - component: {fileID: 1945358825}
+  - component: {fileID: 1945358827}
   m_Layer: 3
   m_Name: Parcela 13
   m_TagString: Untagged
@@ -16301,6 +17422,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1945358827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945358823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: f460a89c73e631a44867e4e576dfdf67, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1945660501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16383,6 +17535,7 @@ GameObject:
   - component: {fileID: 1966150667}
   - component: {fileID: 1966150669}
   - component: {fileID: 1966150668}
+  - component: {fileID: 1966150670}
   m_Layer: 3
   m_Name: Parcela 18
   m_TagString: Untagged
@@ -16464,6 +17617,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1966150670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966150666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 3a9a40be42ac9ef4597ca1aadcda9c68, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &1969248558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16940,6 +18124,7 @@ GameObject:
   - component: {fileID: 2034553251}
   - component: {fileID: 2034553253}
   - component: {fileID: 2034553252}
+  - component: {fileID: 2034553254}
   m_Layer: 3
   m_Name: Parcela 38
   m_TagString: Untagged
@@ -17021,6 +18206,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &2034553254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034553250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: ba382cd893302844a8f44efb74a169d0, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &2039077742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17463,6 +18679,7 @@ GameObject:
   - component: {fileID: 2100407000}
   - component: {fileID: 2100407002}
   - component: {fileID: 2100407001}
+  - component: {fileID: 2100407003}
   m_Layer: 3
   m_Name: Parcela 28
   m_TagString: Untagged
@@ -17544,6 +18761,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &2100407003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100406999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: b160410ac1a20954c941b5d68844bc79, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1001 &2102230840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17621,6 +18869,7 @@ GameObject:
   - component: {fileID: 2104881139}
   - component: {fileID: 2104881141}
   - component: {fileID: 2104881140}
+  - component: {fileID: 2104881142}
   m_Layer: 3
   m_Name: Parcela 39
   m_TagString: Untagged
@@ -17702,6 +18951,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &2104881142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104881138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 9aee5d643ccaa544c95a99da051f9edc, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &2114313958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5233280350283764923, guid: 41918cee64bfc1a4cb4b45c38a7fc176, type: 3}
@@ -17790,6 +19070,7 @@ GameObject:
   - component: {fileID: 2127143977}
   - component: {fileID: 2127143979}
   - component: {fileID: 2127143978}
+  - component: {fileID: 2127143980}
   m_Layer: 3
   m_Name: Parcela 27
   m_TagString: Untagged
@@ -17871,6 +19152,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &2127143980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127143976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.49
+  m_MinRegionArea: 5
+  m_NavMeshData: {fileID: 23800000, guid: 75360de5645e49b41a0304e7fc068c93, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!4 &2138706727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4239299506681356271, guid: 4b0953cccbf78ed47b59ef40eb9956d5, type: 3}
