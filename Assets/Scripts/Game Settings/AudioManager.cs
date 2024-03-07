@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     static public AudioManager instance;
     public List<AudioSource> activeAudioSources;
-    public AudioSource musicSource; // AudioSource específico para la música ambiente
     public GameObjPool audioPool;
     private bool isMuted = false;
 
@@ -23,8 +22,6 @@ public class AudioManager : MonoBehaviour
             activeAudioSources = new List<AudioSource>();
             DontDestroyOnLoad(gameObject);
         }
-
-        musicSource = transform.Find("AmbientMusic").GetComponent<AudioSource>();
         audioPool = transform.Find("GameObjPoolAudios").gameObject.GetComponent<GameObjPool>();
         AudioListener.volume = 1;
     }
@@ -34,8 +31,14 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = volume;
     }
 
+    public void SetAmbientMusic(string zone)
+    {
+        GetComponent<AmbientMusicPlayer>().ChangeTagSound(zone);
+    }
+
+
     //Volume: [0, 1]
-    public void PlaySFX(AudioClip clip, Vector3 position, float volume = 1)
+    void PlaySFX(AudioClip clip, Vector3 position, bool audio3d, float volume = 1)
     {
         GameObject sourceObj = audioPool.GetFirstInactiveGameObject();
         sourceObj.SetActive(true);
@@ -44,10 +47,22 @@ public class AudioManager : MonoBehaviour
         AudioSource source = sourceObj.GetComponent<AudioSource>();
         activeAudioSources.Add(source);
 
+        source.spatialBlend = ( audio3d ? 1 : 0 );
+
         source.clip = clip;
         source.volume = volume * AudioListener.volume;
         source.Play();
         StartCoroutine(PlayAudio(source));
+    }
+
+    public void PlaySFX2D(AudioClip clip, float volume = 1)
+    {
+        PlaySFX(clip, Camera.main.transform.position, false ,volume);    
+    }
+
+    public void PlaySFX3D(AudioClip clip, Vector3 position, float volume = 1)
+    {
+        PlaySFX(clip, position, true,volume);    
     }
 
     public void PlayMusic(AudioClip clip, Vector3 position , float volume = 1)
@@ -88,48 +103,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Método para reproducir la música ambiente
-    public void ChangeBackgroundMusic(AudioClip clip)
-    {
-        print($"Musica cambiada a {clip.name}");
-        StartCoroutine(FadeOutVolume(0.005f, clip));
-    }
 
-    IEnumerator FadeOutVolume(float ratio, AudioClip clip)
-    {
-        float maxVolume = musicSource.volume;
-        for (float i = 1; i >= maxVolume; i -= ratio)
-        {
-            musicSource.volume = i;
-            yield return new WaitForSeconds(0.005f);
-        }
-
-        musicSource.clip = clip;
-        ResumeBackgroundMusic();
-    }
-
-    public void ResumeBackgroundMusic(float MaxVolume = 0.18f)
-    {
-        print($"Musica reproducida a {musicSource.clip.name}");
-        StartCoroutine(FadeInVolume(0.005f, MaxVolume));
-    }
-
-    public void ResumeBackgroundMusic(AudioClip clip, float MaxVolume = 1)
-    {
-        musicSource.clip = clip;
-        ResumeBackgroundMusic(MaxVolume);
-    }
-
-
-    IEnumerator FadeInVolume(float ratio, float MaxVolume = 1)
-    {
-        musicSource.Play();
-        for (float i = 0; i <= MaxVolume; i += ratio)
-        {
-            musicSource.volume = i;
-            yield return new WaitForSeconds(0.005f);
-        }
-    }
     public void ToggleMute()
     {
         isMuted = !isMuted;
@@ -146,6 +120,8 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleMusicMute()
     {
+        AudioSource musicSource = GetComponent<AmbientMusicPlayer>().musicSource;
+
         if (musicSource.isPlaying)
         {
             musicSource.Pause();

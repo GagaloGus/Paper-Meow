@@ -34,31 +34,31 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2389.38
+      value: 2302.85
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 110.62
+      value: 110.14
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1217.16
+      value: 1199.5
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8461002
+      value: 0.801096
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.53302383
+      value: -0.59853584
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 64.42
+      value: -73.53
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -83,6 +83,26 @@ PrefabInstance:
     - target: {fileID: 3423460990574255077, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_text
       value: KittyBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 237bd65a3bf45d04f9c4d12f4b6e4573, type: 3}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.name
+      value: kittybot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.ID_name
+      value: kittybot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.displayName
+      value: Kitty Bot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.typingSpeedMult
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: info.name
@@ -322,10 +342,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
-      propertyPath: dialogueStrings.Array.data[7].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1234477534011291633}
-    - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[7].endDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -384,16 +400,114 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7063445412155606811}
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2237117926454833476}
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2095832841941824182}
   m_SourcePrefab: {fileID: 100100000, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
---- !u!114 &1234477534011291633 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -8568074270130115085, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+--- !u!1 &505144089060839833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
   m_PrefabInstance: {fileID: 1745614476428417538}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &7063445412155606811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505144089060839833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d15d0c566b2c3841b1424a9781ee3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 93b7f2271281c7d409ce6d7be0bacb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanciaMinima: 5
+  velocidad: 10
+  puntos:
+  - patrolName: Ir hacia el pueblo
+    puntos:
+    - {x: 2347.65, y: 110.14, z: 1226.23}
+    - {x: 2327.46, y: 110.14, z: 1242.65}
+    - {x: 2317.01, y: 96.5, z: 1256.57}
+    - {x: 2272.4, y: 86.43, z: 1211.5}
+    - {x: 2235.58, y: 77.11, z: 1183.08}
+    - {x: 2191.5, y: 68, z: 1168.4}
+    - {x: 2146.2, y: 63, z: 1194.2}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2237117926454833476}
+          m_TargetAssemblyTypeName: QuestLocationTrigger, Assembly-CSharp
+          m_MethodName: Interact
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - patrolName: Ir hacia el pueblo atajo
+    puntos:
+    - {x: 2146.2, y: 62.8, z: 1194.2}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2237117926454833476}
+          m_TargetAssemblyTypeName: QuestLocationTrigger, Assembly-CSharp
+          m_MethodName: Interact
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2237117926454833476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505144089060839833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+  itemAmount: 1
+  eventType: 1
+  interactType: 3
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2095832841941824182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505144089060839833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 6419dcdca493bcc4eb3639750e954b56, type: 2}
+  itemAmount: 0
+  eventType: 1
+  interactType: 3
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls: []

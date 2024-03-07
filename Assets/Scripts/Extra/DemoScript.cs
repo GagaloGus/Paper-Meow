@@ -19,12 +19,13 @@ public class DemoScript : MonoBehaviour
 
     public void Add_EXP(int exp)
     {
-        playerStats.GetEXP(exp);
+        Destroy(gameObject);
+        GameEventsManager.instance.miscEvents.ExperienceGained(exp);
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX2D(AudioClip clip)
     {
-        AudioManager.instance.PlaySFX(clip, FindObjectOfType<SkoController>().gameObject.transform.position);
+        AudioManager.instance.PlaySFX2D(clip);
     }
 
     public void FinishTutorial()

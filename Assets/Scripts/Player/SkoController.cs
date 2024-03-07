@@ -17,17 +17,30 @@ public class SkoController : MonoBehaviour
     GameObject m_gameobj;
     Animator m_animator;
 
-    public GameObject bow;
-
-    [Header("Debug Variables")]
+    [Header("Fisicas")]
     public int gravity;
+    public float glidingBaseSpeed;
+    [SerializeField] bool isRunning;
+
+    [Header("Restricciones")]
+    [SerializeField] bool canMove;
+    public float stunTime;
+    [SerializeField] bool isUsingSkill;
+    [SerializeField] bool isAttacking;
+    [SerializeField] bool isInside;
     [Range(0f, 2f)] public float rayDetectFloorDist;
     public float nearGroundDist;
-    [SerializeField] private bool isGrounded, isFlipped, isFacingBackwards, canMove, isUsingSkill, isGliding, isRunning, isAttacking, isInside;
+
+    [Header("Mecanicas")]
+    [SerializeField] bool isGrounded;
+    [SerializeField] bool isFlipped;
+    [SerializeField] bool isFacingBackwards;
+    [SerializeField] bool isGliding;
+    [SerializeField] bool waitUntilStopGliding = false;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
-    public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack }
+    public enum PlayerStates { Idle, Walk, Run, JumpUp, JumpDown, Glide, Attack, Hit, LayingDown}
     public PlayerStates playerState;
 
     [Header("Has Items")]
@@ -98,21 +111,6 @@ public class SkoController : MonoBehaviour
         isRunning = Input.GetKey(run);
         #endregion
 
-        #region Flip
-        //cambia la escala para imitar el "giro" del personaje
-        if (canMove && !isAttacking)
-        {
-            FlipCharacter();
-        }
-
-        //le "da la vuelta" al modelo segun los bools
-        m_gameobj.transform.localScale = new(
-           (isFlipped ? -1 : 1),
-           m_gameobj.transform.localScale.y,
-           (isFacingBackwards ? -1 : 1));
-
-        #endregion
-
         //cambia el int del animator
 
         if (!GameManager.instance.gamePaused && canMove)
@@ -121,12 +119,36 @@ public class SkoController : MonoBehaviour
         }
     }
 
-    void CheckIfItemAdded(Item item)
+    public void Death()
     {
-        if(item.itemName == "Paper Glider")
-        {
-            hasGlider = true;
-        }
+        canMove = false;
+        EnablePhysics(false);
+        m_animator.SetInteger("player states", 0);
+        m_animator.SetTrigger("died");
+    }
+
+    public void TakeDamage(float stunDistance = 1)
+    {
+        rb.velocity = Vector3.zero;
+        GetComponent<ConstantForce>().enabled = false;
+        rb.velocity += -transform.forward * stunDistance * 3;
+
+
+        StopCoroutine(nameof(TakeDamageStun));
+        StartCoroutine(TakeDamageStun());
+    }
+
+    IEnumerator TakeDamageStun()
+    {
+        m_animator.SetBool("hit", true);
+        m_animator.SetInteger("player states", 0);
+        canMove = false;
+
+        yield return new WaitForSeconds(stunTime);
+
+        m_animator.SetBool("hit", false);
+        GetComponent<ConstantForce>().enabled = true;
+        canMove = true;
     }
 
     void FlipCharacter()
@@ -140,15 +162,21 @@ public class SkoController : MonoBehaviour
         {
             isFacingBackwards = !isFacingBackwards;
         }
+
+        m_gameobj.transform.localScale = new(
+           (isFlipped ? -1 : 1),
+           m_gameobj.transform.localScale.y,
+           (isFacingBackwards ? -1 : 1));
     }
 
     void GroundControl()
     {
         rb.drag = 0;
         isGliding = false;
+        waitUntilStopGliding = false;
 
         //Basicamente si estamos dandole a alguna tecla para moverse
-        if(moveInput.magnitude > 0.1)
+        if(moveInput.magnitude > 0.05)
         {
             if(isRunning) { playerState = PlayerStates.Run; }
             else { playerState = PlayerStates.Walk; }
@@ -201,8 +229,6 @@ public class SkoController : MonoBehaviour
         weaponSelected.weaponData.itemData = weapon;
         weaponSelected.UpdateWeapon();
     }
-
-    public float timeCheckForChargedAttack;
 
     void Attacks()
     {
@@ -301,7 +327,7 @@ public class SkoController : MonoBehaviour
 
             playerState = PlayerStates.Glide;
 
-            if (Input.GetKeyDown(jump)) { isGliding = false; }
+            if (Input.GetKeyDown(jump)) { isGliding = false; StopCoroutine(nameof(GlidingRotaion)); }
         }
         else
         {
@@ -312,29 +338,18 @@ public class SkoController : MonoBehaviour
             else if (rb.velocity.y < 0f) { playerState = PlayerStates.JumpDown; }
 
             //si le damos al espacio y el raycast no detecto un suelo debajo del player podemos planear
-            if(Input.GetKeyDown(jump) && !nearGround) { isGliding = true; }
+            if(Input.GetKeyDown(jump) && !nearGround) { isGliding = true; StartCoroutine(GlidingRotaion(30)); rb.angularVelocity = Vector3.zero; }
         }
     }
 
     private void FixedUpdate()
     {
-        //detecta si hay suelo usando un boxcast
-        /*isGrounded =
-           Physics.BoxCast(groundPoint.position, 
-           new Vector3(0.3f, 0.05f, 0.05f), 
-           Vector3.down, 
-           transform.rotation, 
-           rayDetectFloorDist, 
-           LayerMask.GetMask("Ground"));*/
-
         Ray detectGround = new Ray(groundPoint.position, Vector3.down);
 
-        RaycastHit hit;
-
-        if(Physics.Raycast(detectGround, out hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
+        if(Physics.Raycast(detectGround, out RaycastHit hit, rayDetectFloorDist, LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
-            GameEventsManager.instance.playerEvents.PlayerSendGroundTag(hit.collider.gameObject.tag);
+            AudioManager.instance.SetAmbientMusic(hit.collider.gameObject.tag);
         }
         else { isGrounded = false; }
 
@@ -344,48 +359,62 @@ public class SkoController : MonoBehaviour
             if (!isUsingSkill && !isAttacking)
             {
                 Vector3 direction = (moveInput.x * Camera.main.transform.right + moveInput.z * moveDirection);
-                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1) * stats.currentStats.SPD/10);
-
+                float multiplySpeedFac = (float)(1 * (isRunning && isGrounded ? stats.runSpeedMult : 1) * (isGliding ? stats.runSpeedMult/1.5 : 1) + stats.currentStats.SPD/15);
+                if (isGliding) { multiplySpeedFac = glidingBaseSpeed; }
                 Vector3 vel = direction * stats.moveSpeed * multiplySpeedFac;
                 //Moverse
                 rb.velocity = (vel.magnitude < 1f ? rb.velocity : vel + Vector3.up * rb.velocity.y) * GameManager.instance.gameTime;
             }
 
-            if (!isAttacking)
+            if (!isAttacking && !isGliding)
             {
                 //orienta al player a la direccion de la camara
                 transform.forward = -moveDirection;
+                FlipCharacter();
             }
         }
     }
     public void PausedGame(bool paused)
     {
-        if (isGrounded && !GameManager.instance.isInteracting)
+        if (paused)
         {
-            if (paused)
+            canMove = false;
+            EnablePhysics(false);
+
+            if (isGrounded)
             {
-                canMove = false;
                 m_animator.SetBool("gamePaused", true);
 
                 isFlipped = false;
                 isFacingBackwards = false;
                 FlipCharacter();
+            }
 
-                EnablePhysics(false);
-            }
-            else
-            {
-                canMove = true;
-                m_animator.SetBool("gamePaused", false);
-                EnablePhysics(true);
-            }
+        }
+        else
+        {
+            canMove = true;
+            isAttacking = false;
+            m_animator.SetBool("gamePaused", false);
+            EnablePhysics(true);
         }
     }
 
     void EnablePhysics(bool enable)
     {
         GetComponent<ConstantForce>().enabled = enable;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
+
+        if (enable)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints |= RigidbodyConstraints.FreezeRotationX;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
 
@@ -396,20 +425,26 @@ public class SkoController : MonoBehaviour
         playerState = PlayerStates.Idle;
         m_animator.SetInteger("player states", 0);
         canMove = false;
+        EnablePhysics(false);
+
         //Centra el personaje para que apunte al npc
-        transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
+
+        /*transform.forward = -CoolFunctions.FlattenVector3(Camera.main.transform.forward);
 
         bool right = CoolFunctions.IsRightOfVector(transform.position, transform.forward, npc.transform.position);
 
         bool up = !CoolFunctions.IsRightOfVector(transform.position, transform.right, npc.transform.position);
 
         isFlipped = !right;
-        isFacingBackwards = !up;
+        isFacingBackwards = !up;*/
+
+        StartCoroutine(TurnTowardsTargetPos(npc.transform.position, 30));
     }
 
     public void EndInteraction()
     {
         canMove = true;
+        EnablePhysics(true);
     }
 
 
@@ -428,6 +463,15 @@ public class SkoController : MonoBehaviour
         get { return isAttacking; }
         set { isAttacking = value; }
     }
+
+    void CheckIfItemAdded(Item item)
+    {
+        if (item.ID_name == "Paper_Glider")
+        {
+            hasGlider = true;
+        }
+    }
+
     public void UpdateStats()
     {
         stats = GetComponent<SkoStats>();
@@ -448,9 +492,40 @@ public class SkoController : MonoBehaviour
         isUsingSkill = false;
     }
 
-    private void OnDrawGizmos()
+    IEnumerator TurnTowardsTargetPos(Vector3 target, float turnSpeed)
     {
-        groundPoint = transform.Find("GroundCheckPoint");
-        Gizmos.DrawRay(groundPoint.position, Vector3.down*rayDetectFloorDist);
+        Quaternion startRot = transform.rotation;
+
+        Quaternion targetRotation = Quaternion.LookRotation((isFacingBackwards ? 1 : -1) * (CoolFunctions.FlattenVector3(transform.position) - CoolFunctions.FlattenVector3(target))); ;
+
+        do
+        {
+            targetRotation = Quaternion.LookRotation(CoolFunctions.FlattenVector3(-Camera.main.transform.forward));
+            float multiplier = CoolFunctions.MapValues(Quaternion.Angle(transform.rotation, targetRotation), 0, 90, 0.1f, 7);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * multiplier);
+
+            yield return null;
+        }
+        while (Quaternion.Angle(startRot, targetRotation) > 1);
+
+        transform.rotation = targetRotation;
+    }
+
+    IEnumerator GlidingRotaion(float turnSpeed)
+    {
+
+        Quaternion targetRotation = Quaternion.identity;
+
+        do
+        {
+            targetRotation = Quaternion.LookRotation(CoolFunctions.FlattenVector3(-Camera.main.transform.forward));
+            float multiplier = CoolFunctions.MapValues(Quaternion.Angle(transform.rotation, targetRotation), 0, 90, 0.1f, 7);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * multiplier);
+
+            yield return null;
+        }
+        while (isGliding);
     }
 }

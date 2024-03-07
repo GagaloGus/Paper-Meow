@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class Coin : MonoBehaviour
 {
     public int coinAmount;
 
-    private void OnCollisionEnter(Collision collision)
+    public void CollectCoin()
     {
-        if (collision.gameObject.GetComponent<SkoController>())
-        {
-            GameManager.instance.MoneyUpdate(coinAmount);
-            GameEventsManager.instance.miscEvents.CoinCollected();
-            GameEventsManager.instance.miscEvents.ThingObtained($"{coinAmount} MeowCoins");
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
+        GameEventsManager.instance.miscEvents.CoinCollected(coinAmount);
     }
 }

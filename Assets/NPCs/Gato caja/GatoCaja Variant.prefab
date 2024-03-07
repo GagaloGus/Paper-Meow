@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1886.9487
+      value: 2039.7726
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.88
+      value: 56.109062
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1190.7765
+      value: 1205.1323
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55,6 +55,18 @@ PrefabInstance:
     - target: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Name
       value: GatoCaja Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.name
+      value: ...
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.ID_name
+      value: gatocaja
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.displayName
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: info.name
@@ -212,6 +224,10 @@ PrefabInstance:
     - target: {fileID: 6496545504966461949, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: dialogueStrings.Array.data[3].optionButtons.Array.data[1].jumpIndex
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522816087489026372, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: isInteractable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.size

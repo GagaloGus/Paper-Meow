@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] bool isInteractable;
+    public bool isInteractable, needsToClickToInteract;
     [SerializeField] float Distance;
     [SerializeField] Vector3 modifyCentre;
 
+    [Header("Visual Que")]
+    [SerializeField] Image visualQue;
+    public Color visualQueColor;
+
     Vector3 newCentre;
     KeyCode interactKey;
+
+    [Header("Events")]
     [SerializeField] UnityEvent interactEvent;
 
     bool playerInRange;
     GameObject player;
 
-    GameObject KeyToPress;
-
     private void Awake()
     {
         player = FindObjectOfType<SkoController>().gameObject;
-
-        KeyToPress = GameObject.FindGameObjectWithTag("PressKeyCanvas");
-
         interactKey = PlayerKeybinds.interact;
-        KeyToPress.GetComponentInChildren<TMP_Text>().text = interactKey.ToString();
+
+        visualQue = transform.Find("Canvas").Find("visualQue").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -37,34 +40,32 @@ public class Interactable : MonoBehaviour
         playerInRange = Vector3.Distance(newCentre, player.transform.position) <= Distance;
 
         //Si estamos dentro del rango y el objeto es interactuable
-        if(playerInRange && isInteractable) 
+        if(playerInRange && isInteractable && player.GetComponent<SkoController>().player_canMove) 
         {
-            //Si le damos a la tecla de interactuar
-            if (Input.GetKeyDown(interactKey))
-            {
-                KeyToPress.SetActive(false);
+            visualQue.transform.forward = -Camera.main.transform.forward;
+            visualQueColor.a = 1;
 
+            //Si le damos a la tecla de interactuar
+            if ((Input.GetKeyDown(interactKey) && needsToClickToInteract) || !needsToClickToInteract)
+            {
                 interactEvent.Invoke();
                 GetComponent<Interactable>().enabled = false;
-            }
-            else
-            {
-                KeyToPress.SetActive(true);
+                visualQueColor.a = 0;
             }
         }
         else
         {
-            KeyToPress.SetActive(false);
+            visualQueColor.a = 0;
         }
+
+        visualQue.color = visualQueColor;
     }
 
     private void OnDrawGizmos()
     {
-        //newCentre = transform.position + CoolFunctions.MultipyVectorValues(modifyCentre, transform.forward);
-
         newCentre = transform.position + CoolFunctions.VectorMoveAlongTransformAxis(modifyCentre, transform);
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = isInteractable ? Color.yellow : Color.grey;
         Gizmos.DrawWireSphere(newCentre, Distance);
     }
 }

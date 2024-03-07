@@ -10,18 +10,9 @@ public class CanvasNPC : MonoBehaviour
 {
     GameObject Canvas;
     TMP_Text nameText;
-    Image iconQuest;
-
-    
-
-    private void Awake()
-    {
-        iconQuest = GetComponentInChildren<Image>();
-    }
 
     private void Start()
     {
-        iconQuest.color = new Color(1,1,1,1);
 
         Canvas = GetComponentInChildren<Canvas>().gameObject;
         UpdateOwnName();
@@ -34,13 +25,16 @@ public class CanvasNPC : MonoBehaviour
 
     public void UpdateOwnName()
     {
-        string name = GetComponent<DialogueTrigger>().info.name;
+        string name = GetComponent<NPCBehaviour>().npcData.displayName;
         nameText = GetComponentInChildren<TMP_Text>(true);
-
         nameText.text = name;
     }
 
-    public void SetQuestIcon(Sprite sprite, Color color)
+
+
+
+
+    /*public void SetQuestIcon(Sprite sprite, Color color)
     {
         iconQuest.gameObject.SetActive(true);
         iconQuest.sprite = sprite;
@@ -50,7 +44,7 @@ public class CanvasNPC : MonoBehaviour
     public void DisableQuestIcon()
     {
         iconQuest.gameObject.SetActive(false);
-    }
+    }*/
 
 }
 

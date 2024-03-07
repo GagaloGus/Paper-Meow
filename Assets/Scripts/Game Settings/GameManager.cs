@@ -7,16 +7,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("Game Settings")]
+    public int gameTime;
+    public bool gamePaused, isInteracting, isTutorial, menuOpen;
+
+    [Header("Player")]
+    public GameObject player;
+    public bool playerDied;
     public int money = 0;
     public int health;
     public int maxHealth = 0;
-
-    public int gameTime;
-
-    public bool gamePaused, gameStarted, isInteracting, isTutorial;
-
-    public GameObject player;
-
 
     [TextArea(3,5)]public List< string> tutorials;
 
@@ -41,68 +42,69 @@ public class GameManager : MonoBehaviour
         gameTime = 1;
         money = 0;
         isInteracting = false;
-        gameStarted = false;
+        menuOpen = false;
         //isTutorial = true;
-    }
-
-    private void OnEnable()
-    {
-        GameEventsManager.instance.miscEvents.onPauseMenuOpen += PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen += InventoryOpen;
-    }
-    
-    private void OnDisable()
-    {
-        GameEventsManager.instance.miscEvents.onPauseMenuOpen -= PauseGame;
-        GameEventsManager.instance.inventoryEvents.onInventoryOpen -= InventoryOpen;
+        health = maxHealth;
+        playerDied = false;
     }
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
+        Scene currentScene = SceneManager.GetActiveScene();
+        print($"Escena cargada: {currentScene.name}");
 
+        if (currentScene.name != "Main_Menu")
+        {
+            LockCursor();
+            GetPlayer();
+        }
+        else { UnlockCursor();}
+    }
 
     private void Update()
     {
-
         if (Application.targetFrameRate != targetFPS)
         { Application.targetFrameRate = targetFPS; }
 
-        if(!isTutorial && gameStarted)
+        if(!playerDied)
         {
-            if(Input.GetKeyDown(PlayerKeybinds.pauseGame))
-            {
-                PauseAndContinueToggle();
-            }
-
-            if (!gamePaused && !isInteracting)
+            if (!gamePaused && !isInteracting && SceneManager.GetActiveScene().name != "Main_Menu")
             {
                 if (Input.GetKey(KeyCode.LeftAlt))
                 {
-                    LockCursor();
+                    UnlockCursor();
                     FindObjectOfType<CameraController>().LockCamera();
                 }
 
 
                 if(Input.GetKeyUp(KeyCode.LeftAlt))
                 {
-                    UnlockCursor();
+                    LockCursor();
                     FindObjectOfType<CameraController>().ResetCamera();
                 }
             }
         }
+
+        if(health > 0 && Input.GetKeyDown(KeyCode.R))
+        {
+            RecoverHealth(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            print("au");
+            TakeDamage(1);
+        }
     }
 
-    #region Cursor y camara
-    void LockCursor()
+    #region Cursor
+    void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    void UnlockCursor()
+    void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -110,21 +112,25 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pausa
-    public void InventoryOpen(bool temp)
+
+    public void SoftPauseGame()
     {
-        gameTime = 0;
-        gamePaused = true;
-        LockCursor();
+        PauseSettings();
         FindObjectOfType<CameraController>().LockCamera();
-        player.GetComponent<SkoController>().PausedGame(true);
     }
 
-    public void PauseGame(bool temp)
+    public void PauseGame()
+    {
+        PauseSettings();
+        GameEventsManager.instance.miscEvents.PauseMenuOpen();
+        FindObjectOfType<CameraController>().PausedLockCamera();
+    }
+
+    void PauseSettings()
     {
         gameTime = 0;
         gamePaused = true;
-        LockCursor();
-        FindObjectOfType<CameraController>().PausedLockCamera();
+        UnlockCursor();
         player.GetComponent<SkoController>().PausedGame(true);
     }
 
@@ -132,21 +138,24 @@ public class GameManager : MonoBehaviour
     {
         gameTime = 1;
         gamePaused = false;
+        menuOpen = false;
         player.GetComponent<SkoController>().PausedGame(false);
 
         FindObjectOfType<CameraController>().ResetCamera();
-        UnlockCursor();
+        LockCursor();
 
     }
 
-    public void PauseAndContinueToggle()
+    public void PauseAndContinueToggle(bool softPause)
     {
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            PauseGame(true);
+            if (softPause)
+                SoftPauseGame();
+            else
+                PauseGame();
         }
-
         else
         {
             ContinueGame();
@@ -157,8 +166,8 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<SkoController>().gameObject;
         health = (int)MathF.Abs(health);
-        SkillManager.instance.player = player;
     }
+
     public void ChangeScene(string sceneName, bool loadScene)
     {
         StartCoroutine(ChangeSceneCorroutine(sceneName, loadScene));
@@ -175,13 +184,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if(sceneName == "Main_Menu")
+        if(sceneName != "Main_Menu")
         {
-            gameStarted = false;
-        }
-        else
-        {
-            gameStarted = true;
             GetPlayer(); 
             LockCursor();
             FindObjectOfType<CameraController>().ResetCamera();
@@ -191,10 +195,6 @@ public class GameManager : MonoBehaviour
         {
             SaveDataManager.instance.LoadData(player);
         }
-
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     public void MoneyUpdate(int amount)
@@ -212,30 +212,55 @@ public class GameManager : MonoBehaviour
     public void StartInteraction(GameObject npc)
     {
         isInteracting = true;
-        LockCursor();
+        UnlockCursor();
+        FindObjectOfType<CameraController>().ChangeSpeedOfCamera(120);
+
         player.BroadcastMessage("StartInteraction", npc);
     }
 
     public void EndInteraction()
     {
         isInteracting = false;
-        UnlockCursor();
+        LockCursor();
+        FindObjectOfType<CameraController>().ResetCamera();
         player.BroadcastMessage("EndInteraction");
     }
 
     #endregion
-    public void Damage(int damagevalue)
+
+    public void RecoverHealth(int healthRecov)
     {
-        TakeDamage(damagevalue);
+        health = Mathf.Clamp(health + healthRecov, 0, maxHealth);
+        GameEventsManager.instance.playerEvents.HealthUpdate();
     }
+
     public void TakeDamage(int damage) //El jugador toma el daño que inflingen sus enemigos y resta su vida.
     {
-        health -= damage;
+        health = Mathf.Clamp(health - damage, 0, maxHealth);
+        GameEventsManager.instance.playerEvents.DamageTaken(damage);
+        GameEventsManager.instance.playerEvents.HealthUpdate();
 
         if (health <= 0)
         {
-            //Death(); // Si la salud del personaje llega a 0 se invoca el metodo Death().
+            playerDied = true;
+            UnlockCursor();
+            GameEventsManager.instance.playerEvents.PlayerDeath();
+            player.GetComponent<SkoController>().Death();
+        }
+        else
+        {
+            player.GetComponent<SkoController>().TakeDamage();
         }
     }
 
+    public void SetUnlockedSkills(string idString)
+    {
+        FindObjectOfType<SkillManager>().SetUnlockedSkills(idString);
+    }
+
+    public string UnlockedSkills()
+    {
+        return FindObjectOfType<SkillManager>().UnlockedSkills();
+    }
+    
 }

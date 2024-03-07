@@ -6,11 +6,11 @@ public class SkoStats : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-    public float maxSpeed;
     public float jumpForce;
     [Range(1, 5)]public float runSpeedMult;
 
     [Header("Stats")]
+    public int MaxLevel;
     public int health;
     public float BaseATK;
     public float BaseSPD;
@@ -27,12 +27,12 @@ public class SkoStats : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.instance.playerEvents.onExperienceGained += GetEXP;
+        GameEventsManager.instance.miscEvents.onExperienceGained += GetEXP;
     }
 
     private void OnDisable()
     {
-        GameEventsManager.instance.playerEvents.onExperienceGained -= GetEXP;
+        GameEventsManager.instance.miscEvents.onExperienceGained -= GetEXP;
     }
 
     private void Start()
@@ -46,15 +46,19 @@ public class SkoStats : MonoBehaviour
     }
     public void GetEXP(int xpIncrease)
     {
-        currentStats.EXP += xpIncrease;
-        GameEventsManager.instance.miscEvents.ThingObtained($"{xpIncrease} experiencia");
-
-        while(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
+        if(currentStats.currentLevel < MaxLevel)
         {
-            LevelUp();
-        }
+            currentStats.EXP += xpIncrease;
 
-        GameEventsManager.instance.playerEvents.PlayerExperienceChange(currentStats.EXP);
+            while(currentStats.EXP >= currentStats.EXP_RequiredNextLvl)
+            {
+                LevelUp();
+            }
+        }
+        else
+        {
+            print("Nivel maximo alcanzado");
+        }
 
     }
 

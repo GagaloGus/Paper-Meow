@@ -110,6 +110,17 @@ public class QuickWeaponChange : MonoBehaviour
         InventoryManager.instance.canSwap = true;
     }
 
+    public void ToggleOnOff()
+    {
+        if (gameObject.activeSelf)
+        {
+            TurnOFF();
+        }
+        else
+        {
+            TurnON();
+        }
+    }
 
 }
 

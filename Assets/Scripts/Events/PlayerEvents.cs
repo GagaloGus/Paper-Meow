@@ -5,30 +5,12 @@ using UnityEngine;
 
 public class PlayerEvents
 {
-    public event Action<int> onExperienceGained;
-    public void ExperienceGained(int experience)
-    {
-        if (onExperienceGained != null)
-        {
-            onExperienceGained(experience);
-        }
-    }
-
     public event Action<int> onPlayerLevelChange;
     public void PlayerLevelChange(int level)
     {
         if (onPlayerLevelChange != null)
         {
             onPlayerLevelChange(level);
-        }
-    }
-
-    public event Action<int> onPlayerExperienceChange;
-    public void PlayerExperienceChange(int experience)
-    {
-        if (onPlayerExperienceChange != null)
-        {
-            onPlayerExperienceChange(experience);
         }
     }
 
@@ -50,15 +32,6 @@ public class PlayerEvents
         }
     }
 
-    public event Action<bool> onPlayerTouchTutTrigger;
-    public void PlayerTouchedWaitTrigger()
-    {
-        if(onPlayerTouchTutTrigger != null) 
-        {
-            onPlayerTouchTutTrigger(true);
-        }
-    }
-
     public event Action<Skill> onSkillSwapped;
     public void SkillSwapped(Skill skill)
     {
@@ -74,6 +47,35 @@ public class PlayerEvents
         if (onSkillUsed != null)
         {
             onSkillUsed(skill);
+        }
+    }
+
+    public event Action<int> onDamageTaken;
+    public void DamageTaken(int damageTaken)
+    {
+        if(onDamageTaken != null)
+        {
+            onDamageTaken(damageTaken);
+            GameEventsManager.instance.playerEvents.HealthUpdate();
+        }
+    }
+
+    public event System.Action onHealthUpdate;
+    public void HealthUpdate()
+    {
+        Debug.Log("whatsapp");
+        if(onHealthUpdate != null)
+        {
+            onHealthUpdate();
+        }
+    }
+
+    public event System.Action onPlayerDeath;
+    public void PlayerDeath()
+    {
+        if(onPlayerDeath != null)
+        {
+            onPlayerDeath();
         }
     }
 }

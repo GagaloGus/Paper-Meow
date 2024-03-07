@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 635569263535410485}
   - component: {fileID: 2307762468418319487}
   - component: {fileID: 1234949049089413355}
-  - component: {fileID: -4753156628736653764}
   - component: {fileID: 5802380413420308732}
   - component: {fileID: -1558894222349892556}
-  - component: {fileID: 4909404830875653357}
   m_Layer: 0
   m_Name: MeowCoin chapa
   m_TagString: Untagged
@@ -87,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-4753156628736653764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8532018499150765582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d7530058b3f0a4783a009d3db6e0eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinAmount: 200
 --- !u!135 &5802380413420308732
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -148,17 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!114 &4909404830875653357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8532018499150765582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c2e947d2764134596a31a2f451904c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
-  itemAmount: 1

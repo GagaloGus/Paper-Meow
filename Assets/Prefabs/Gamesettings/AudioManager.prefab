@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeAudioSources: []
-  musicSource: {fileID: 0}
   audioPool: {fileID: 0}
 --- !u!114 &5528615601644401400
 MonoBehaviour:
@@ -237,9 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c362fff4d95639c478ed6560487ecd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicActive: 1
+  musicActive: 0
   currentZoneTag: 
   previousZoneTag: 
+  musicSource: {fileID: 0}
   ambientSongs:
   - tag: Pueblo1
     maxVolume: 0

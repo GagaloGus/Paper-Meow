@@ -50,6 +50,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if(item.weaponType != WeaponType.Garra || item.itemType != Type.Weapon)
         {
+            DisplayDataOfItem();
             QuickWeaponSlot parentSlot = GetComponentInParent<QuickWeaponSlot>();
             if (parentSlot)
             {
@@ -102,5 +103,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         get { return count; }
         set { count = value; }
+    }
+
+    public void DisplayDataOfItem()
+    {
+        if (item.weaponType != WeaponType.Garra || item.itemType != Type.Weapon)
+        {
+            InventoryManager.instance.DisplayDataOfItem(item);
+        }
     }
 }

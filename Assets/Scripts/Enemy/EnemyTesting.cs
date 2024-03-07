@@ -20,7 +20,7 @@ public class EnemyTesting : MonoBehaviour
     public void TakeDamage(float damage)
     {
         print($"au {damage}");
-        AudioManager.instance.PlaySFX(damageClip, transform.position);
+        AudioManager.instance.PlaySFX2D(damageClip);
     }
 
 

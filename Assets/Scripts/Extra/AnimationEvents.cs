@@ -39,8 +39,18 @@ public class AnimationEvents : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void DesactiveGameObj()
     {
-        AudioManager.instance.PlaySFX(clip, transform.position);
+        gameObject.SetActive(false);
+    }
+
+    public void PlaySFX3D(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX3D(clip, transform.position);
+    }
+
+    public void PlaySFX2D(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX2D(clip);
     }
 }

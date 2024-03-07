@@ -6,29 +6,63 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public static HealthBar instance;
     public Sprite[] sprites;
-    //public int currenthealth;
-    //public int totalhealth;
     private Image health;
+
+    [Header("Temblor")]
+    public float velocidadVertical; // Velocidad de la oscilación vertical
+    public float velocidadHorizontal; // Velocidad de la oscilación horizontal
+    public float distanciaVertical; // Amplitud del temblor vertical
+    public float distanciaHorizontal; // Amplitud del temblor horizontal
+    Vector2 posicionOriginal;
+
+    [Range(0f, 26)]
+    public int startTremblePercentage;
+
     private void Start()
     {
-        health = GetComponent<Image>();
+        health = transform.Find("Healthbar").GetComponent<Image>();
+        UpdateHealth();
+        posicionOriginal = health.gameObject.GetComponent<RectTransform>().anchoredPosition;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        //me invente esta forma temporalmente pq no entiendo muy bien la tuya
-        float temp = CoolFunctions.MapValues(GameManager.instance.health, 0, GameManager.instance.maxHealth, 0, sprites.Length - 1);
+        GameEventsManager.instance.playerEvents.onHealthUpdate += UpdateHealth;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onHealthUpdate -= UpdateHealth;
+    }
+
+    private void Update()
+    {
+        if(GameManager.instance.health <= startTremblePercentage)
+        {
+            Temblar();
+        }
+
+        //UpdateHealth();
+    }
+
+    void UpdateHealth()
+    {
+        float temp = CoolFunctions.MapValues(GameManager.instance.health, 0, GameManager.instance.maxHealth, sprites.Length - 1, 0);
         int healthPer = (int)Math.Truncate((double)temp);
         healthPer = Mathf.Abs(healthPer);
 
         health.sprite = sprites[healthPer];
+    }
 
-        //float percentagehealth = (float) GameManager.instance.health / (float) GameManager.instance.maxHealth;
+    void Temblar()
+    {
+        float multiplier = CoolFunctions.MapValues(GameManager.instance.health, 0, startTremblePercentage, 50, 1);
+        // Generar una oscilación en la posición del sprite utilizando Mathf.Sin
+        float desplazamientoVertical = distanciaVertical/100 * Mathf.Sin(Time.time * velocidadVertical) * multiplier;
+        float desplazamientoHorizontal = distanciaHorizontal/100 * Mathf.Sin(Time.time * velocidadHorizontal) * multiplier;
 
-        //health.sprite = sprites[(int)Math.Truncate((sprites.Length -1) * GameManager.instance.health / 100d)];
-
-        //GetComponent<RectTransform>().sizeDelta = new Vector2(percentagehealth * 100, 10);
+        // Aplicar la nueva posición al RectTransform del sprite
+        health.gameObject.GetComponent<RectTransform>().anchoredPosition = posicionOriginal + new Vector2(desplazamientoHorizontal, desplazamientoVertical);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,26 +9,15 @@ public class QuestsUIManager : MonoBehaviour
 {
     Transform parentQuestPanel;
 
-    [Header("Bools")]
-    public bool questAvaliable = false;
-    public bool questRunning = false;
-
     bool questLogPanelActive = false;
 
     [Header("Paneles")]
     public GameObject questLogPanel;
-
-    [Header("Quest Objects")]
-    QuestObject currentQuestObject;
-
-    [Header("Quest Lists")]
-    public List<Quest> avaliableQuests = new List<Quest>();
-    public List<Quest> activeQuests = new List<Quest>();
+    public Transform questLogDescParent;
 
     [Header("Buttons")]
-    public GameObject qButton;
     public GameObject qLogButton;
-    List<GameObject> qButtons = new List<GameObject>();
+    public List<GameObject> qButtons = new List<GameObject>();
 
     [Header("Spacer")]
     public Transform qLogButtonSpacer;
@@ -36,10 +26,24 @@ public class QuestsUIManager : MonoBehaviour
     public TMP_Text questLogTitle;
     public TMP_Text questLogDescription;
     public TMP_Text questLogSummary;
+    public TMP_Text questLogReward;
+    public GameObject questFollowButton;
 
     private void Awake()
     {
         FindChilds();
+    }
+
+    private void OnEnable()
+    {
+        GameEventsManager.instance.npcEvents.onAddedQuest += AddedQuest;
+        GameEventsManager.instance.npcEvents.onFinishedQuest += FinishedQuest;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.npcEvents.onAddedQuest -= AddedQuest;
+        GameEventsManager.instance.npcEvents.onFinishedQuest -= FinishedQuest;
     }
 
     public void ShowQuestCanvas()
@@ -57,60 +61,68 @@ public class QuestsUIManager : MonoBehaviour
         qLogButtonSpacer = questLogPanel.transform.Find("AvaliableQ").Find("QButtonSpace");
 
 
-        Transform questLogDescParent = parentQuestPanel.transform.Find("QuestDescription");
+        questLogDescParent = parentQuestPanel.transform.Find("QuestDescription");
         questLogTitle = questLogDescParent.Find("QuestName").GetComponent< TMP_Text>();
         questLogDescription = questLogDescParent.Find("QuestDescription").GetComponent< TMP_Text>();
         questLogSummary = questLogDescParent.Find("QuestSummary").GetComponent< TMP_Text>();
-
+        questLogReward = questLogDescParent.Find("QuestRewards").GetComponent< TMP_Text>();
+        questFollowButton = questLogDescParent.Find("FollowQuest").gameObject;
     }
 
-    //Llamadas desde Quest Object
-    public void CheckQuests(QuestObject questObject, Quest questToAdd)
+    void AddedQuest(Quest questAdded)
     {
-        currentQuestObject = questObject;
-        QuestManager.instance.QuestRequest(questObject);
+        GameObject questButton = Instantiate(qLogButton);
+        QLogButonScript qBLScript = questButton.GetComponent<QLogButonScript>();
 
-        if((questRunning || questAvaliable))
+        qBLScript.quest = questAdded;
+        qBLScript.questTitle.text = questAdded.title;
+
+        questButton.transform.SetParent(qLogButtonSpacer, false);
+        qButtons.Add(questButton);
+
+        Debug.Log($"Quest {questAdded.ID_name} añadido a la UI");
+    }
+
+    void FinishedQuest(Quest questFinished)
+     {
+        GameObject questButton = Array.Find(qButtons.ToArray(), x => x.GetComponent<QLogButonScript>().quest == questFinished);
+        if(questButton != null )
         {
-            //Mostrar por la interfaz
-            QuestManager.instance.AcceptQuest(questToAdd);
+            qButtons.Remove(questButton);
+            Destroy(questButton);
+            Debug.Log($"Quest {questFinished.ID_name} borrado de la UI");
         }
         else
         {
-            print($"No Quests Avaliable");
+            Debug.LogWarning($"No se encontró el boton {questFinished.ID_name} en la interfaz");
         }
     }
     
 
-    public void ShowQuestLogPanel()
+    void ShowQuestLogPanel()
     {
+        questLogTitle.text = "";
+        questLogDescription.text = "";
+        questLogSummary.text = "";
+        questLogReward.text = "";
+        questFollowButton.SetActive(false);
+
+        questLogDescParent.gameObject.SetActive(false);
         questLogPanel.SetActive(questLogPanelActive);
-        if(questLogPanelActive )
-        {
-            foreach(Quest curQuest in QuestManager.instance.currentQuestList)
-            {
-                GameObject questButton = Instantiate(qLogButton);
-                QLogButonScript qBLScript = questButton.GetComponent<QLogButonScript>();
-
-                qBLScript.quest = curQuest;
-                qBLScript.questTitle.text = curQuest.title;
-
-                questButton.transform.SetParent(qLogButtonSpacer, false);
-                qButtons.Add(questButton);
-            }
-        }
-        else
-        {
-            HideQuestLogPanel();
-        }
     }
 
-    public void ShowQuestLog(Quest activeQuest)
+    public void ShowQuest(Quest activeQuest)
     {
+        questLogDescParent.gameObject.SetActive(true);
         questLogTitle.text = activeQuest.title;
         questLogDescription.text = activeQuest.description;
         questLogSummary.text = $"{activeQuest.questObjective}: {activeQuest.questObjectiveCount}/{activeQuest.questObjectiveRequirement}";
-        
+        questLogReward.text = "Rewards:";
+
+        questFollowButton.SetActive(true);
+        questFollowButton.GetComponent<FollowQuestButton>().quest = activeQuest;
+        questFollowButton.GetComponent<FollowQuestButton>().following = false;
+
         /*if(activeQuest.progress == Quest.QuestProgress.ACCEPTED)
         {
         }
@@ -126,13 +138,11 @@ public class QuestsUIManager : MonoBehaviour
     public void HideQuestLogPanel()
     {
         questLogPanelActive = false;
-
-        //borrar lista de botones
-        for (int i = 0;i < qButtons.Count; i++)
-        {
-            Destroy(qButtons[i]);
-        }
-        qButtons.Clear();
+        questLogTitle.text = "";
+        questLogDescription.text = "";
+        questLogSummary.text = "";
+        questLogReward.text = "";
+        questFollowButton.SetActive(false);
         questLogPanel.SetActive(questLogPanelActive);
     }
 }

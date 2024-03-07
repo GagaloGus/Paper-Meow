@@ -10,10 +10,19 @@ public class GameEventsManager : MonoBehaviour
     public MiscEvents miscEvents;
     public ItemsEvents itemsEvents;
     public InventoryEvents inventoryEvents;
+    public NpcEvents npcEvents;
 
     private void Awake()
     {
-
+        if (!instance) //instance  != null  //Detecta que no haya otro manager en la escena.
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); //Si hay otro manager lo destruye.
+        }
         instance = this;
 
 
@@ -21,5 +30,6 @@ public class GameEventsManager : MonoBehaviour
         miscEvents = new MiscEvents();
         itemsEvents = new ItemsEvents();
         inventoryEvents = new InventoryEvents();
+        npcEvents = new NpcEvents();
     }
 }

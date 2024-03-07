@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -7,8 +9,12 @@ public class QuestManager : MonoBehaviour
     public static QuestManager instance;
     [SerializeField] QuestsUIManager questsUIManager;
 
+    [Header("Listas de quests")]
     public List<Quest> questList = new(); //Todos los quests
     public List<Quest> currentQuestList = new(); //Quests activos
+
+    [Header("Follow Quest")]
+    public Quest followingQuest;
 
     private void Awake()
     {
@@ -23,247 +29,174 @@ public class QuestManager : MonoBehaviour
         }
 
         questsUIManager = FindObjectOfType<QuestsUIManager>();
+
+        questList.Clear();
+        questList = Resources.LoadAll<Quest>("Quests").ToList();
+
+        //temporal, pone todos los quests en disponible
+        foreach (Quest quest in questList)
+        {
+            quest.progress = Quest.QuestProgress.AVALIABLE;
+            quest.questObjectiveCount = 0;
+        }
     }
 
-    public void QuestRequest(QuestObject questObj)
+    public void QuestRequest(string questCheck_ID)
     {
-        if(questObj.avaliableQuests.Count > 0)
+        Quest questFound = System.Array.Find(questList.ToArray(), x => x.ID_name == questCheck_ID);
+        if (questFound != null)
         {
-            for(int i = 0; questList.Count > i; i++)
-            {
-                Quest quest = questList[i];
-                for(int j = 0; j < questObj.avaliableQuests.Count; j++)
-                {
-                    Quest avaliableQuest = questObj.avaliableQuests[j];
-                    if(quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
-                    {
-                        print($"Quest ID: {avaliableQuest.ID} + {quest.progress}");
+            QuestRequest(questFound);
+        }
+        else { Debug.LogWarning($"Quest ID string {questCheck_ID} no encontrado en la lista de QuestManager"); }
+    }
 
-                        //quest UI
-                        questsUIManager.questAvaliable = true;
-                        questsUIManager.avaliableQuests.Add(quest);
-                    }
-                }
+    public void QuestRequest(Quest questChecked)
+    {
+        Quest questFound = System.Array.Find(questList.ToArray(), x => x.ID_name == questChecked.ID_name);
+        if (questFound != null)
+        {
+            if (questFound.progress == Quest.QuestProgress.AVALIABLE)
+            {
+                AcceptQuest(questFound);
+            }
+            else if (questFound.progress == Quest.QuestProgress.COMPLETE)
+            {
+                CompleteQuest(questFound);
             }
         }
-
-        //Active quests
-        for (int i = 0; currentQuestList.Count > i; i++)
+        else
         {
-            Quest currentQuest = currentQuestList[i];
-            for (int j = 0; j < questObj.recievableQuests.Count; j++)
-            {
-                Quest recievableQuest = questObj.recievableQuests[j];
-                if(currentQuest == recievableQuest && currentQuest.progress == Quest.QuestProgress.ACCEPTED 
-                    || currentQuest.progress == Quest.QuestProgress.COMPLETE)
-                {
-                    //quest UI
-                    questsUIManager.questRunning = true;
-                    questsUIManager.activeQuests.Add(currentQuest);
-
-                    print($"Quest ID: {recievableQuest} is {currentQuest.progress}");
-
-                    if(currentQuest.progress == Quest.QuestProgress.COMPLETE)
-                    {
-                        CompleteQuest(currentQuest);
-                    }
-                }
-                
-            }
+            Debug.LogWarning($"Quest {questChecked.ID_name} no encontrado en la lista de QuestManager");
         }
-        questObj.SetQuestIcon();
     }
 
     //Aceptar quest
-    public void AcceptQuest(Quest questToAccept)
+    void AcceptQuest(Quest questToAccept)
     {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            Quest quest = questList[i];
-            if(quest == questToAccept & quest.progress == Quest.QuestProgress.AVALIABLE)
-            {
-                currentQuestList.Add(quest);
-                quest.progress = Quest.QuestProgress.ACCEPTED;
-            }
-        }
+        questToAccept.progress = Quest.QuestProgress.ACCEPTED;
+        currentQuestList.Add(questToAccept);
+
+        print($"Quest acceptado: {questToAccept.ID_name}");
+
+        GameEventsManager.instance.npcEvents.AddedQuest(questToAccept);
     }
 
     //Completar Quest
     public void CompleteQuest(Quest completedQuest)
     {
-        for(int i = 0; i< currentQuestList.Count; i++)
+        completedQuest.progress = Quest.QuestProgress.FINISHED;
+        currentQuestList.Remove(completedQuest);
+
+        print($"Quest completado: {completedQuest.ID_name}");
+
+        GameEventsManager.instance.npcEvents.UnfollowQuest();
+        GameEventsManager.instance.npcEvents.FinishedQuest(completedQuest);
+
+        //recompensas
+        if (completedQuest.expReward > 0) { GameEventsManager.instance.miscEvents.ExperienceGained(completedQuest.expReward); }
+        if (completedQuest.goldReward > 0) { GameEventsManager.instance.miscEvents.CoinCollected(completedQuest.goldReward); }
+
+        if (completedQuest.itemRewards.Count > 0)
         {
-            Quest quest = currentQuestList[i];
-            if(quest == completedQuest && quest.progress == Quest.QuestProgress.COMPLETE)
+            foreach (Item item in completedQuest.itemRewards)
             {
-                quest.progress = Quest.QuestProgress.FINISHED;
-                currentQuestList.Remove(quest);
-
-                //Recompensa
-
+                InventoryManager.instance.AddItem(item);
             }
         }
 
+        //variables INK
+        DialogueManager.instance.ChangeVariableState(completedQuest.nombreVariable, completedQuest.valorVariable);
+
         //Si hay algun quest encadenado a este
-        if(completedQuest.nextQuest != null)
+        if (completedQuest.nextQuest != null)
         {
             CheckChainQuest(completedQuest);
-            print($"Next quest:{completedQuest.title}");
         }
     }
 
     //Quest encadenado
-    void CheckChainQuest(Quest chainedQuest)
+    void CheckChainQuest(Quest completedQuest)
     {
-        int tempID = -1;
-        for(int i = 0;i < questList.Count; i++)
+        //mira si esta en la lista general
+        Quest chainedQuest = completedQuest.nextQuest;
+
+        //Si lo encuentra y el quest no esta disponible
+        if (chainedQuest != null && (chainedQuest.progress == Quest.QuestProgress.NOT_AVALIABLE || chainedQuest.progress == Quest.QuestProgress.AVALIABLE))
         {
-            Quest quest = questList[i];
-            if(quest == chainedQuest && quest.nextQuest.ID > 0)
-            {
-                tempID = quest.nextQuest.ID;
-            }
+            //Lo acepta automaticamente
+            AcceptQuest(chainedQuest);
         }
-
-        if(tempID >= 0)
+        else if (chainedQuest == null)
         {
-            for(int i = 0;i<questList.Count;i++)
-            {
-                Quest quest = questList[i];
-                if(quest.ID == tempID && quest.progress == Quest.QuestProgress.NOT_AVALIABLE)
-                {
-                    quest.progress = Quest.QuestProgress.AVALIABLE;
-                    AcceptQuest(quest);
-
-                }
-            }
+            Debug.LogWarning($"Quest {completedQuest.ID_name} no encontrado en la lista de Quest Manager");
+        }
+        else
+        {
+            Debug.LogWarning($"Quest {completedQuest.ID_name} ya estaba aceptado antes");
         }
     }
 
 
-    //Añadir items
-    public void AddQuestItem(Quest quest, int itemAmount)
+    //Añadir items, checka cuando el quest ha sido completado si cumplimos sus requisitos;
+    public bool AddQuestItem(Quest quest, int itemAmount)
     {
-        for (int i = 0; i < currentQuestList.Count; i++)
+        if (quest.progress == Quest.QuestProgress.ACCEPTED)
         {
-            Quest currentQuest = currentQuestList[i];
+            quest.questObjectiveCount += itemAmount;
 
-            if (currentQuest.progress == Quest.QuestProgress.ACCEPTED)
+            if (quest.questObjectiveCount >= quest.questObjectiveRequirement)
             {
-                if (currentQuest == quest)
+                quest.progress = Quest.QuestProgress.COMPLETE;
+                if (quest.completionType == Quest.CompleteType.AutoComplete)
                 {
-                    currentQuestList[i].questObjectiveCount += itemAmount;
-                }
-
-                if (currentQuest.questObjectiveCount >= currentQuest.questObjectiveRequirement)
-                {
-                    currentQuestList[i].progress = Quest.QuestProgress.COMPLETE;
+                    CompleteQuest(quest);
                 }
             }
+            return true;
         }
+        else
+        {
+            Debug.LogWarning($"Quest {quest.ID_name} no esta aceptado");
+            return false;
+        }
+    }
+
+    public void AutoFinishQuest(string questID)
+    {
+        Quest questFound = System.Array.Find(questList.ToArray(), x => x.ID_name == questID);
+        if (questFound != null)
+        {
+            CompleteQuest(questFound);
+        }
+        else { Debug.LogWarning($"Quest ID string {questID} no encontrado en la lista de QuestManager"); }
     }
 
 
     //Quitar items
 
-
-    //Booleanos
-    public bool RequestAvaliableQuest(Quest quest)
-    {
-        for(int i = 0; i < questList.Count; i++)
-        {
-            if (questList[i] == quest && 
-                questList[i].progress == Quest.QuestProgress.AVALIABLE) 
-            { return true; }
-
-        }
-        return false;
-    }
-
-    public bool RequestAcceptedQuest(int questID)
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            if (questList[i].ID == questID && questList[i].progress == Quest.QuestProgress.ACCEPTED)
-            { return true; }
-
-        }
-        return false;
-    }
-
-    public bool RequestCompleteQuest(int questID)
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            if (questList[i].ID == questID && questList[i].progress == Quest.QuestProgress.COMPLETE)
-            { return true; }
-
-        }
-        return false;
-    }
-
-    //Booleanos 2
-    public bool CheckAvaliableQuests(QuestObject questObj)
-    {
-        for(int i=0; i<questList.Count; i++)
-        {
-            Quest quest = questList[i];
-            for(int j = 0;j < questObj.avaliableQuests.Count; j++) 
-            {
-                Quest avaliableQuest = questObj.avaliableQuests[j];
-                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.AVALIABLE)
-                {
-                    return true;
-                }   
-            }
-        }
-        return false;
-    }
-
-    public bool CheckAcceptedQuests(QuestObject questObj)
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            Quest quest = questList[i];
-            for (int j = 0; j < questObj.recievableQuests.Count; j++)
-            {
-                Quest avaliableQuest = questObj.avaliableQuests[j];
-                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.ACCEPTED)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public bool CheckFinishedQuests(QuestObject questObj)
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            Quest quest = questList[i];
-            for (int j = 0; j < questObj.recievableQuests.Count; j++)
-            {
-                Quest avaliableQuest = questObj.recievableQuests[j];
-                if (quest == avaliableQuest && quest.progress == Quest.QuestProgress.FINISHED)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     //Mostrar el quest log
     public void ShowQuestLog(Quest questToShow)
     {
-        for(int i = 0; i< currentQuestList.Count; i++)
+        for (int i = 0; i < currentQuestList.Count; i++)
         {
             Quest quest = currentQuestList[i];
-            if(quest == questToShow)
+            if (quest == questToShow)
             {
-                FindObjectOfType<QuestsUIManager>().ShowQuestLog(quest);
+                FindObjectOfType<QuestsUIManager>().ShowQuest(quest);
             }
+        }
+    }
+
+    public void FollowQuestHandle(Quest quest, bool follow)
+    {
+        if (follow)
+        {
+            GameEventsManager.instance.npcEvents.FollowQuest(quest);
+        }
+        else
+        {
+            GameEventsManager.instance.npcEvents.UnfollowQuest();
         }
     }
 }

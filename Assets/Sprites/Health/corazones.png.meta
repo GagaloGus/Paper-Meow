@@ -1,0 +1,920 @@
+fileFormatVersion: 2
+guid: 2896da02db3c9a5489f8a209efad3373
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: corazones_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2125
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d00144963c24048ab40d37fe733bfe
+      internalID: -571311738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2040
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ea92c91649d3446adf694eaf1074e9
+      internalID: 900027910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1955
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71117c240e45c444b82a677768ce8fc3
+      internalID: 215018866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1870
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ff8ebcbf2fd6441977c32e2ae8f19f
+      internalID: -1845974559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1785
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db3875490cc3ef4a8b991eb3c87fd49
+      internalID: -33719228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee71d69e25265f94abe33187c2e8b98b
+      internalID: -752324006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1615
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b90921b7e14f2844a72353b28333711
+      internalID: 1505698352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1530
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b9f0c474e803b349be518c69f963e7a
+      internalID: 1072628463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1445
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ea81453ac6bad409bb7b2834d6ea7b
+      internalID: -644874202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1360
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950081a78a6a0e5409a896970e9b6a81
+      internalID: -606825627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1275
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0c058e373ae6b848827558978b47768
+      internalID: 1697189500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1190
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac34d5a0a3784c140a5a6a2759d6957c
+      internalID: 2031976653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1105
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313cbb3802ca33a41ad46389daf522a2
+      internalID: -1671788945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b64cfea97a1a214f81f702c003c1c33
+      internalID: -1549263737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 935
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1de919f5aa1b6b44b79a62589be5c83
+      internalID: -980207595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 850
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727dafbd80436194896289d9cc49fe2b
+      internalID: 627282127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 765
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50b5cc056a47e3f478532cf5baa7fbd7
+      internalID: 321934247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97cdbbb6f57a2d14c954739ea9fd5543
+      internalID: -1429943604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 595
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2df10738e5788842ac7bafa8de2c828
+      internalID: 2018587894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 510
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f90cc466146db4cb6ce1918dac457e
+      internalID: 1385612388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 425
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5268a92611ac32145b3c0fbab3da6f0f
+      internalID: 611612154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698ca8019a16a63438f64976d86a1cb1
+      internalID: 1494362533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257eabe85ba1ca94ba5168d259562094
+      internalID: 1898027085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20043d1809fda7a4ebb828b4db0232b2
+      internalID: 1931573297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af123a1d0b2a23d4fa582708901c6bad
+      internalID: -529882696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corazones_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 485
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -42.5}
+        - {x: 242.5, y: 0}
+        - {x: 0, y: 42.5}
+        - {x: -242.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca1a0e1cb453df40aed818c90b7d219
+      internalID: -773125773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c775e6fa5a62b1649bd5685b9313f07b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      corazones_0: -571311738
+      corazones_1: 900027910
+      corazones_10: 1697189500
+      corazones_11: 2031976653
+      corazones_12: -1671788945
+      corazones_13: -1549263737
+      corazones_14: -980207595
+      corazones_15: 627282127
+      corazones_16: 321934247
+      corazones_17: -1429943604
+      corazones_18: 2018587894
+      corazones_19: 1385612388
+      corazones_2: 215018866
+      corazones_20: 611612154
+      corazones_21: 1494362533
+      corazones_22: 1898027085
+      corazones_23: 1931573297
+      corazones_24: -529882696
+      corazones_25: -773125773
+      corazones_3: -1845974559
+      corazones_4: -33719228
+      corazones_5: -752324006
+      corazones_6: 1505698352
+      corazones_7: 1072628463
+      corazones_8: -644874202
+      corazones_9: -606825627
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

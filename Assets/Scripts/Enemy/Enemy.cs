@@ -2,20 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] bool died = false;
-    SkoStats player;
-
+    [Header("Stats")]
     public float health;
+
+    [Header("Recompensas")]
     public int exp;
     public int coinAmount;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Eventos")]
+    public UnityEvent DestroyEvent;
+
+    public AudioClip deathClip;
+
+
+    private void OnTriggerEnter(Collider trigger)
     {
-        player = FindObjectOfType<SkoStats>();
+        Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
+        if (weapon)
+        {
+
+            TakeDamage(FindObjectOfType<SkoStats>().currentStats.ATK * weapon.weaponData.damageMultiplier * weapon.weaponData.itemData.damageMultiplier);
+        }
     }
 
 
@@ -26,23 +37,11 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            GameManager.instance.MoneyUpdate(coinAmount);
-            GameEventsManager.instance.miscEvents.CoinCollected();
-            GameEventsManager.instance.miscEvents.ThingObtained($"{coinAmount} MeowCoins");
-            player.GetEXP(exp);
+            GameEventsManager.instance.miscEvents.CoinCollected(coinAmount);
+            GameEventsManager.instance.miscEvents.ExperienceGained(exp);
+            AudioManager.instance.PlaySFX2D(deathClip);
+            DestroyEvent?.Invoke();
             Destroy(gameObject);
-
-        }
-    }
-
-
-    private void OnTriggerEnter(Collider trigger)
-    {
-        Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
-        if (weapon && !died)
-        {
-
-            TakeDamage(player.currentStats.ATK * weapon.weaponData.damageMultiplier);
         }
     }
 }

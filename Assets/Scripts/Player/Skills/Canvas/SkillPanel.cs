@@ -12,17 +12,23 @@ public class SkillPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SkillManager skillManager = FindObjectOfType<SkillManager>();
         //se guarda el array de todas las skills
-        allSkills = SkillManager.instance.allSkills;
+        allSkills = FindObjectOfType<SkillManager>().allSkills;
         
         //guarda todos los hijos del skill panel en orden el el array allButtons
         int childs = transform.childCount;
-        GameObject[] temp = new GameObject[childs];
+        List<GameObject> temp = new();
         for (int i = 0; i < childs; i++)
         {
-            temp[i] = transform.GetChild(i).gameObject;
+            GameObject child = transform.GetChild(i).gameObject;
+            //Si el hijo es un boton (una skill en este caso)
+            if(child.GetComponent<Button>() != null)
+            {
+                temp.Add(child);
+            }
         }
-        allButtons = temp;
+        allButtons = temp.ToArray();
 
         //bucle foreach solo por conveniencia, la variable "no" no se usa
         int count = 0;
@@ -51,7 +57,7 @@ public class SkillPanel : MonoBehaviour
     public void AddSkillToButton(GameObject button, Skill skill)
     {
         //checkea si se puede desbloquear la skill
-        SkillManager.instance.SelectSkill(skill);
+        FindObjectOfType<SkillManager>().SelectSkill(skill);
 
         //le cambia el color al boton
         ChangeColorOfButton(button, skill);

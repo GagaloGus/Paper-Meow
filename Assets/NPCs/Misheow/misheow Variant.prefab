@@ -26,19 +26,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1874.8201
+      value: 1874.985
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.43994
+      value: 48.025
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1206.65
+      value: 1223.822
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7315272
+      value: -0.6192585
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6818122
+      value: -0.7851872
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 445.971
+      value: 463.476
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -90,6 +90,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423460990574255077, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_text
+      value: Misheow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: c66647aeb4d87644dbca0030393f9bf9, type: 3}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.name
+      value: misheow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.ID_name
+      value: misheow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.displayName
       value: Misheow
       objectReference: {fileID: 0}
     - target: {fileID: 4824559166409198797, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
@@ -317,9 +333,13 @@ PrefabInstance:
       propertyPath: dialogueStrings.Array.data[8].optionButtons.Array.data[0].jumpIndex
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6522816087489026372, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: isInteractable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.size
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[0].back
@@ -391,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: a07cc113ed2e3f74e8f0560736e06691, type: 3}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[8].name
-      value: punch_talk_01
+      value: '[8]punch_talk_01'
       objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[9].back
@@ -399,12 +419,28 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: ca5aceeaef27f6e439cda3ba3ccfb8f6, type: 3}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[9].name
-      value: punch_talk_02
+      value: '[9]punch_talk_02'
       objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[0].front
       value: 
       objectReference: {fileID: 2800000, guid: 19fa06ec9020dcd4591b29fac42f75cc, type: 3}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[10].back
+      value: 
+      objectReference: {fileID: 2800000, guid: 3b60220ad6dcd9047a7d3d5831455bb4, type: 3}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[10].name
+      value: '[10]give_01'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[11].back
+      value: 
+      objectReference: {fileID: 2800000, guid: 71e455ff59f323b43a03ccc852e89f7f, type: 3}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[11].name
+      value: '[11]give_02'
+      objectReference: {fileID: 0}
     - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: texturePacks.Array.data[1].front
       value: 
@@ -441,6 +477,14 @@ PrefabInstance:
       propertyPath: texturePacks.Array.data[9].front
       value: 
       objectReference: {fileID: 2800000, guid: 9434c59b7585b9d428385f12d549d6c0, type: 3}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[10].front
+      value: 
+      objectReference: {fileID: 2800000, guid: 8d3814655c87c964bb2340b6877eb47b, type: 3}
+    - target: {fileID: 7005558541310453422, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: texturePacks.Array.data[11].front
+      value: 
+      objectReference: {fileID: 2800000, guid: 6ed66e7780a78224c906a01168d7a6ce, type: 3}
     - target: {fileID: 8482342508711041199, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Size.x
       value: 0.8333299
@@ -464,5 +508,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 181260065101515359}
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7266631705588628030}
   m_SourcePrefab: {fileID: 100100000, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+--- !u!1 &7455968460435552139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+  m_PrefabInstance: {fileID: 8666017561698204688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &181260065101515359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455968460435552139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b7f2271281c7d409ce6d7be0bacb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanciaMinima: 5
+  velocidad: 10
+  puntos:
+  - patrolName: Ir hacia entrenamiento
+    puntos:
+    - {x: 1864.1, y: 46.424, z: 1266.3}
+    - {x: 1957.6, y: 45.32, z: 1319.3}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &7266631705588628030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455968460435552139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 3ae559892b5f32c438a22777839da92a, type: 2}
+  itemAmount: 0
+  eventType: 0
+  interactType: 3
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls: []

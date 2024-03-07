@@ -13,10 +13,13 @@ public class Quest : ScriptableObject
         FINISHED
     }
 
+    public enum CompleteType { AutoComplete, TalkToComplete}
+
     [Header("Data")]
     public string title;
-    public int ID;
+    public string ID_name;
     public QuestProgress progress;
+    public CompleteType completionType;
 
     [Header("Texto")]
     [TextArea(3,5)] public string description;
@@ -30,5 +33,17 @@ public class Quest : ScriptableObject
     [Header("Rewards")]
     public int expReward;
     public int goldReward;
-    public Item itemReward;
+    public List<Item> itemRewards;
+
+    [Header("Cambiar variable de trama INK")]
+    public string nombreVariable;
+    public string valorVariable;
+
+#if UNITY_EDITOR_WIN
+    private void OnValidate()
+    {
+        ID_name = this.name;
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+#endif
 }

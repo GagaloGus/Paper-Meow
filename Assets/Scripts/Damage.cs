@@ -10,9 +10,8 @@ public class Damage : MonoBehaviour
         // Verificar si la colisión es con el jugador
         if (collision.gameObject.GetComponent<SkoController>())
         {
-            
             // Llamar al método Damage del GameManager solo si la colisión es con el jugador
-            GameManager.instance.Damage(damage);
+            collision.gameObject.GetComponent<SkoController>().TakeDamage(damage);
         }
     }
 }

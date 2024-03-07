@@ -36,7 +36,7 @@ public class DisplayStats : MonoBehaviour
         expSlider = statsMenu.gameObject.GetComponentInChildren<Slider>();
     }
 
-    public void UpdateCanvasStats(bool temp)
+    public void UpdateCanvasStats()
     {
 
         FindChilds();

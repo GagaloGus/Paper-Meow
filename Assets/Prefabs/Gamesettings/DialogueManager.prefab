@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8274536079205184444}
   - component: {fileID: 610267527142313067}
+  - component: {fileID: 931893163249397032}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -45,12 +46,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueParent: {fileID: 0}
-  optionButtons: []
   dialogueText: {fileID: 0}
-  nameText: {fileID: 0}
-  talkIcon: {fileID: 0}
+  dialogueName: {fileID: 0}
+  dialogueSprite: {fileID: 0}
+  choiceParent: {fileID: 0}
   continueText: {fileID: 0}
+  globalsInkFile: {fileID: 4900000, guid: 851484d75532b8a4ba3a5b26a559eeaa, type: 3}
   typingSpeed: 0.05
-  turnSpeed: 2
-  currentDialogueIndex: 0
-  currentTypingSFXs: []
+  currentEmotion: 
+--- !u!114 &931893163249397032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161591173835175396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe685ed4f6bb89459858269ed70dee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcTalking: {fileID: 0}

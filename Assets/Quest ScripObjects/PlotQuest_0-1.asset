@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: PlotQuest_0-1
   m_EditorClassIdentifier: 
   title: Un nuevo mundo
-  ID: 0
+  ID_name: PlotQuest_0-1
   progress: 1
+  completionType: 0
   description: Ve hasta el pueblo 1 con KittyBot
   nextQuest: {fileID: 11400000, guid: 68c63b1355a4ed241adfa3aaf39a8808, type: 2}
   questObjective: Camino
@@ -22,4 +23,6 @@ MonoBehaviour:
   questObjectiveRequirement: 1
   expReward: 0
   goldReward: 0
-  itemReward: {fileID: 0}
+  itemRewards: []
+  nombreVariable: 
+  valorVariable: 

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: PlotQuest_0-2
   m_EditorClassIdentifier: 
   title: 1-2
-  ID: 1
+  ID_name: PlotQuest_0-2
   progress: 0
+  completionType: 0
   description: "segunda parte\t"
-  hint: no se hint
-  congratulation: nose congrats
-  summary: no se sumary
   nextQuest: {fileID: 0}
   questObjective: coje chapa
   questObjectiveCount: 0
   questObjectiveRequirement: 3
   expReward: 0
   goldReward: 0
-  itemReward: {fileID: 0}
+  itemRewards: []
+  nombreVariable: 
+  valorVariable: 

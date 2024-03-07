@@ -27,7 +27,7 @@ public class Buttonfunctions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKey && !GameManager.instance.isTutorial)
+        if (Input.anyKey && !GameManager.instance.isInteracting && !GameManager.instance.playerDied)
         {
             for (int i = 0; i < menus.Length; i++)
             {
@@ -56,12 +56,6 @@ public class Buttonfunctions : MonoBehaviour
     public void ChangeScene(string name) //Cambiamos a la escena designada, en este caso iria al menu principal y limpiamos la lista de audios.
     {
         GameManager.instance.ChangeScene(name, false);
-        AudioManager.instance.ClearAudioList();
-    }
-
-    public void ChangeSceneLoad(string name)
-    {
-
     }
     public void ExitGame() //Indicamos a la aplicaci�n que se cierre.
     {
@@ -69,8 +63,18 @@ public class Buttonfunctions : MonoBehaviour
 
     }
 
-    public void TogglePauseContinueGame()
+    public void TogglePauseContinueGame(bool softPause)
     {
-        GameManager.instance.PauseAndContinueToggle();
+        GameManager.instance.PauseAndContinueToggle(softPause);
+    }
+
+    public void PlaySFX3D(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX3D(clip, transform.position);
+    }
+
+    public void PlaySFX2D(AudioClip clip)
+    {
+        AudioManager.instance.PlaySFX2D(clip);
     }
 }

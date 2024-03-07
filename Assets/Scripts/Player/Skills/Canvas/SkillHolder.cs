@@ -53,9 +53,10 @@ public class SkillHolder : MonoBehaviour
 
     IEnumerator SkillCooldownDisplay(Skill skill)
     {
-        while(SkillManager.instance.skillCooldownTimer > 0)
+        SkillManager skillManager = FindObjectOfType<SkillManager>();
+        while(skillManager.skillCooldownTimer > 0)
         {
-            float time = Mathf.Round(10 * SkillManager.instance.skillCooldownTimer) / 10;
+            float time = Mathf.Round(10 * skillManager.skillCooldownTimer) / 10;
 
             skillCooldown.text = time.ToString();
             yield return null;
