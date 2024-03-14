@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SkoSounds : MonoBehaviour
 {
-    [Header("SFX saltos")]
-    public AudioClip sonido1;
-    
-    [Header("SFX Pegar")]
-    public AudioClip sonido2;
+    [Header("SFX")]
+    public AudioClip[] hurtSFXs;
+    public AudioClip deathSFX;
 
 }

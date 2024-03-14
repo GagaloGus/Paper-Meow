@@ -33,6 +33,11 @@ public class EnemyBarrera : MonoBehaviour
         healthSlider.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        GetComponentInChildren<Canvas>().transform.forward = -Camera.main.transform.forward;
+    }
+
     public void EnemyDied(GameObject enemy)
     {
         enemigos.Remove(enemy);

@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1874.985
+      value: 1910.8
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.025
+      value: 49.013
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1223.822
+      value: 1145.4
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -107,6 +107,10 @@ PrefabInstance:
     - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: npcData.displayName
       value: Misheow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.typingSpeedMult
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4824559166409198797, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_Sprite
@@ -534,12 +538,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaMinima: 5
-  velocidad: 10
+  velocidad: 11
   puntos:
   - patrolName: Ir hacia entrenamiento
     puntos:
-    - {x: 1864.1, y: 46.424, z: 1266.3}
+    - {x: 1910.8, y: 49.013, z: 1145.4}
+    - {x: 1941.2, y: 49.013, z: 1210.7}
+    - {x: 1922.68, y: 48.047, z: 1238.52}
+    - {x: 1934.1, y: 46.104, z: 1291.7}
     - {x: 1957.6, y: 45.32, z: 1319.3}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - patrolName: Ir hacia barrera preEsdra
+    puntos:
+    - {x: 1957.6, y: 45.32, z: 1319.3}
+    - {x: 1804.04, y: 43.38, z: 1322.3}
+    - {x: 1804.04, y: 43.38, z: 1322.3}
+    - {x: 1654.7, y: 43.38, z: 1360.8}
+    - {x: 1599.6, y: 40.7, z: 1401.8}
+    - {x: 1497.51, y: 35.25, z: 1449.47}
+    - {x: 1405.9, y: 38.97, z: 1524.2}
+    - {x: 1370.5, y: 45, z: 1562.7}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - patrolName: Ir hacia barrera preEsdra
+    puntos:
+    - {x: 1957.6, y: 45.32, z: 1319.3}
+    - {x: 1804.04, y: 43.38, z: 1322.3}
+    - {x: 1804.04, y: 39, z: 1322.3}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - patrolName: Ir hacia barrera destruida
+    puntos:
+    - {x: 1182.54, y: 55.34, z: 1594.74}
     ReachDestinationEvent:
       m_PersistentCalls:
         m_Calls: []

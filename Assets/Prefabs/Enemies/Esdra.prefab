@@ -4957,10 +4957,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7383403813332615859}
-  - component: {fileID: 5580848413366705861}
-  - component: {fileID: 7375477052782744111}
   - component: {fileID: 2327946569492727208}
-  - component: {fileID: 8608569526185329138}
+  - component: {fileID: 6532372435174455209}
   m_Layer: 0
   m_Name: Esdra
   m_TagString: Untagged
@@ -4984,42 +4982,6 @@ Transform:
   - {fileID: 4702305587019735429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &5580848413366705861
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943386002310844308}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &7375477052782744111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943386002310844308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d97e04f23b46e4da5c16c13222b145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: 66a2cf94149fe2a409962a152e2a5977, type: 2}
-  _currentState: {fileID: 0}
 --- !u!95 &2327946569492727208
 Animator:
   serializedVersion: 5
@@ -5041,7 +5003,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8608569526185329138
+--- !u!114 &6532372435174455209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5053,10 +5015,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29292c430f5863c4e9327dab9db520a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  died: 0
+  detectionRange: 35
   health: 100
-  exp: 100
-  coinAmount: 150
+  exp: 250
+  coinAmount: 50
+  DestroyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EnemyBarrera, Assembly-CSharp
+        m_MethodName: EnemyDied
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3943386002310844308}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  hitClip: {fileID: 8300000, guid: b82b6cbf6ba0e86468cb005b2da523f8, type: 3}
+  deathClip: {fileID: 8300000, guid: b715c9648ac96a84186431bf9c940a86, type: 3}
 --- !u!1 &4617627552850563604
 GameObject:
   m_ObjectHideFlags: 0

@@ -2824,7 +2824,7 @@ namespace Ink.Runtime
                     message = string.Format (message, formatParams);
                 }
                     
-                throw new System.Exception (message + " " + currentDebugMetadata);
+                //throw new System.Exception (message + " " + currentDebugMetadata);
             }
         }
 

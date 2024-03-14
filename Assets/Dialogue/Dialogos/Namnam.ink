@@ -15,4 +15,5 @@ Con que un tal Misheow... #speaker:kittybot #emotion:think
 +[¿Sabes quién es?]
 -Nop, vamos a seguir buscando. #speaker:kittybot #emotion:neutral
 ~finishQuest("PlotQuest_1-2")
+~changeMood("namnam","idle")
 ->END

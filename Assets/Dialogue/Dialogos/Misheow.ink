@@ -13,10 +13,11 @@ mejor no le molestemos..) #speaker:kittybot #emotion:neutral
 ->END
 
 == busquedaMisheow ==
+ ~startPatrol("kittybot", 1, "true")
 ~changeMood("misheow", "punch talk")
 Hola.#speaker:misheow #emotion:neutral
 +[Hola. ¿Conoces a un tal Misheow?]
-Enfrente tuya jajaja #speaker:misheow #emotion:happy
+Pues si. Justo estas hablando con él jeje #speaker:misheow #emotion:happy
 -> pregunta
 +[Hola ¿eres Misheow?]
 Si, soy yo
@@ -34,15 +35,17 @@ Si, soy yo
  No, hemos aparecido en este mundo sin saber por qué. #speaker:kittybot #emotion:neutral
  Hmmm que raro… #speaker:misheow #emotion:neutral
  Pues os tengo que advertir, este no es un lugar muy seguro, #speaker:misheow #emotion:angry
- hace un tiempo empezaron a invadirnos unos pulpos llamados Esdras que se encuentran por toda la isla.
+ Hace un tiempo empezaron a invadirnos unos pulpos llamados Esdras.
+ Han tomado el control de casi toda la isla.
  ¿Son muy peligrosos? #speaker:kittybot #emotion:neutral
  Sí, pero con el arma adecuada podréis avanzar. #speaker:misheow #emotion:happy
- Venid conmigo, os voy a entrenar para que cuando os encontréis a alguno de los Esdras podáis defenderos.
+ Venid conmigo, os voy a entrenar para que podáis defenderos.
  ~finishQuest("PlotQuest_1-3")
- ~startPatrol(0)
+ ~startPatrol("misheow",0,"false")
  -> END
  
  ==pegateconmaniqui==
+ ~startPatrol("kittybot", 2, "true")
  Peléate un poco con el maniquí, quiero ver que puedes hacer #speaker:misheow #emotion:happy
  ->END
  
@@ -71,13 +74,18 @@ Si, soy yo
  +[¡Meow! ¿Y esto?]
  ~changeMood("misheow", "talk")
  -Os servirá para abriros paso entre los Esdras. #speaker:misheow #emotion:happy
- Buena suerte.
+ Buena suerte, ¡Y a por ellos!
  ~trama = "1-5 aPorLosEsdras"
  ~giveItem("money", 250)
  ~giveItem("cutter_sword", 1)
  ~giveQuest("PlotQuest_1-5")
+ ~startPatrol("misheow", 1, "true")
+  ~startPatrol("kittybot", 3, "true")
  -> END
  
  ==aporEsdras==
  Mucha suerte. #speaker:misheow #emotion:neutral
+Ten en cuenta que los esdras estan guardando la entrada.
+Tendras que vencerlos a todos antes de poder romper la barrera. #speaker:misheow #emotion:angry
+¡Mucha suerte Sko! #speaker:kittybot #emotion:happy
  ->END

@@ -37,6 +37,7 @@ public class SkoController : MonoBehaviour
     [SerializeField] bool isFacingBackwards;
     [SerializeField] bool isGliding;
     [SerializeField] bool waitUntilStopGliding = false;
+    [SerializeField] bool canGetHit;
     public int currentAttackNumber;
     public bool canAttackAgain;
 
@@ -62,6 +63,7 @@ public class SkoController : MonoBehaviour
 
         isUsingSkill = false;
         canMove = true;
+        canGetHit = true;
 
         //Mapeado de teclas
         jump = PlayerKeybinds.jump;
@@ -119,8 +121,26 @@ public class SkoController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy)
+        {
+            GameManager.instance.TakeDamage(1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        if(trigger.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            GameManager.instance.TakeDamage(1);
+        }
+    }
+
     public void Death()
     {
+        AudioManager.instance.PlaySFX2D(GetComponent<SkoSounds>().deathSFX);
         canMove = false;
         EnablePhysics(false);
         m_animator.SetInteger("player states", 0);
@@ -129,13 +149,17 @@ public class SkoController : MonoBehaviour
 
     public void TakeDamage(float stunDistance = 1)
     {
-        rb.velocity = Vector3.zero;
-        GetComponent<ConstantForce>().enabled = false;
-        rb.velocity += -transform.forward * stunDistance * 3;
+        if (canGetHit)
+        {
+            canGetHit = false;
+            AudioManager.instance.PlaySFX2D(GetComponent<SkoSounds>().hurtSFXs[Random.Range(0, GetComponent<SkoSounds>().hurtSFXs.Length)]);
+            rb.velocity = Vector3.zero;
+            GetComponent<ConstantForce>().enabled = false;
 
-
-        StopCoroutine(nameof(TakeDamageStun));
-        StartCoroutine(TakeDamageStun());
+            rb.velocity += transform.forward * stunDistance * 3 * (isFacingBackwards? 1 : -1);
+            StopCoroutine(nameof(TakeDamageStun));
+            StartCoroutine(TakeDamageStun());
+        }
     }
 
     IEnumerator TakeDamageStun()
@@ -149,6 +173,7 @@ public class SkoController : MonoBehaviour
         m_animator.SetBool("hit", false);
         GetComponent<ConstantForce>().enabled = true;
         canMove = true;
+        canGetHit = true;
     }
 
     void FlipCharacter()
@@ -338,7 +363,7 @@ public class SkoController : MonoBehaviour
             else if (rb.velocity.y < 0f) { playerState = PlayerStates.JumpDown; }
 
             //si le damos al espacio y el raycast no detecto un suelo debajo del player podemos planear
-            if(Input.GetKeyDown(jump) && !nearGround) { isGliding = true; StartCoroutine(GlidingRotaion(30)); rb.angularVelocity = Vector3.zero; }
+            if(Input.GetKeyDown(jump) && !nearGround && hasGlider) { isGliding = true; StartCoroutine(GlidingRotaion(30)); rb.angularVelocity = Vector3.zero; }
         }
     }
 

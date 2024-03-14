@@ -4,9 +4,13 @@ INCLUDE ../globalVars.ink
 {trama == "1-1 waitPueblo": ->ir_al_pueblo} //espera a que digas que si al ir al pueblo
 {trama == "1-1 goToPueblo" : -> preguntaPueblo} //Ya volando hacia el pueblo
 {trama == "1-2 preguntaPueblo" : -> preguntaaAlguien} //espera a que preguntes a alguien
-
-{trama == "1-5 esdras" : -> preEsdras} //Antes de pegarte con los esdras
+{trama == "1-3 goToMisheow" : -> dondeEstaMisheow}
+{trama == "1-4 entrenarStart" : -> aEntrenar}
+{trama == "1-4 postEntrenar" : -> postEntrenar}
+{trama == "1-5 aPorLosEsdras" : -> preEsdras} //Antes de pegarte con los esdras
 {trama == "1-6 barreraCaida" : -> postEsdras } //Tras pegarte con los esdras
+
+Wawawawa #speaker:kittybot #emotion:sad
 
 == main ==
 ~ playEmote("exclamation")
@@ -39,14 +43,13 @@ INCLUDE ../globalVars.ink
 Vale. Yo me quedaré por aquí mientras tanto.
 ~ changeMood("kittybot", "idle")
 -> END
-                
 
 == setupPueblo ==
 ¡Vale! #speaker:kittybot #emotion:happy
 He visto un camino para llegar al pueblo, sigueme! #speaker:kittybot #emotion:map
 ~ giveQuest("PlotQuest_1-1")
 ~ changeMood("kittybot", "idle")
-~ startPatrol(0)
+~ startPatrol("kittybot",0,"false")
 ->END
 
 == preguntaPueblo ==
@@ -60,10 +63,25 @@ Aqui estamos. #speaker:kittybot #emotion:neutral
 ¿Por qué no pruebas a preguntar a alguien? #speaker:kittybot #emotion:neutral
 ->END
 
+== dondeEstaMisheow ==
+No sé donde puede estar ese tal "Misheow" #speaker:kittybot #emotion:sad
+Aunque creo que escuché a alguien decir que estaba por el centro del pueblo. #speaker:kittybot #emotion:neutral
+¡Miremos por ahí! #speaker:kittybot #emotion:happy
+->END
+
+== aEntrenar ==
+Vaya, con que este es Misheow #speaker:kittybot #emotion:neutral
+Parece un tipo duro.. mejor hagamosle caso. #speaker:kittybot #emotion:suspicious
+->END
+
+== postEntrenar ==
+..... #speaker:kittybot #emotion:sad
+->END
+
 == preEsdras ==
 Sko. #speaker:kittybot #emotion:neutral
-¿Estas seguro de que quieres ir?
-No sabemos cuantos son, ni como de fuertes son. #speaker:kittybot #emotion:sad
+¿Estas seguro de que quieres ir? #speaker:kittybot #emotion:sad
+No sabemos cuantos son, ni como de fuertes son. 
     +[Estoy seguro]
     Hmmm...
     Bueno, confío en ti. #speaker:kittybot #emotion:neutral
@@ -83,13 +101,16 @@ Bien hecho Sko #speaker:misheow #emotion:happy
 +[:3]
 -Supongo que ahora ireís a por vuestro amigo. #speaker:misheow #emotion:
 Sí, hay que ir a Paper Town ahora #speaker:kittybot #emotion:neutral
-Hm, yo tambien tendria que ir a visitar a un amigo ahora que ha caido la barrera. #speaker:misheow #emotion:neutral
+Hm, yo tambien tendría que ir a visitar a un amigo ahora que ha caído la barrera. #speaker:misheow #emotion:neutral
 Bueno, mucha suerte vosotros dos.
 ~changeMood("misheow","give")
-Ah si, tambien tomad esto, como muestra de mi gratitud.
-¡Muchas gracias! #speaker:kittybot #emotion:happy
+Ah si, también tomad esto, como muestra de agradecimiento, por parte mía y del pueblo.
+(¿Hm? ¿Una pegatina?) #speaker:kittybot #emotion:neutral
+(Pues menuda "muestra"..) #speaker:kittybot #emotion:suspicious
+¡Bueno, muchas gracias! #speaker:kittybot #emotion:happy
+~changeMood("misheow","talk")
 Chau. #speaker:misheow #emotion:happy
-~giveQuest("PlotQuest_1-5")
+~finishQuest("PlotQuest_1-6")
 ~getPegatina(1)
 ->END
 

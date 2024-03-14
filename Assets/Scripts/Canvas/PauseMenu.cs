@@ -4,16 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Animator))]
+[System.Serializable]
+public class BotonMenu
+{
+    public GameObject boton;
+    public GameObject menu;
+    public BotonMenu(GameObject boton, GameObject menu)
+    {
+        this.boton = boton;
+        this.menu = menu;
+    }
+}
+
 public class PauseMenu : MonoBehaviour
 {
-    public BotonMenu[] botonMenus;
+    public List<BotonMenu> botonMenus;
     public GameObject[] twoPageMenus;
     public GameObject quickSwapMenu;
 
     private void Start()
     {
         gameObject.SetActive(false);
+
+        //find childs
+        botonMenus = new List<BotonMenu>
+        {
+            new BotonMenu(transform.Find("Button_PJ").gameObject, transform.Find("Player Info").gameObject),
+            new BotonMenu(transform.Find("Button_Quests").gameObject, transform.Find("Quests").gameObject),
+            new BotonMenu(transform.Find("Button_Skills").gameObject, transform.Find("Skills").gameObject),
+            new BotonMenu(transform.Find("Button_Inventory").gameObject, transform.Find("Inventory").gameObject),
+            new BotonMenu(transform.Find("Button_Settings").gameObject, transform.Find("Settings").gameObject),
+            new BotonMenu(transform.Find("Button_Save").gameObject, transform.Find("Save").gameObject)
+        };
     }
 
     public void ToggleMenu(GameObject Boton)
@@ -91,9 +113,3 @@ public class PauseMenu : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class BotonMenu
-{
-    public GameObject boton;
-    public GameObject menu;
-}

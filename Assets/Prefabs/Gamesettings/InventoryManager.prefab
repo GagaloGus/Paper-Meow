@@ -55,10 +55,16 @@ MonoBehaviour:
   - Menu: {fileID: 0}
     menuSlots: []
   quickSwapWeapons: []
+  leftPage: {fileID: 0}
+  rightPage: {fileID: 0}
+  nameText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  rarityText: {fileID: 0}
+  useText: {fileID: 0}
+  displayItem: {fileID: 0}
   inventoryItemPrefab: {fileID: 631850876000506939, guid: 9ead4d0c70a7a224daeaa2b047839e1c, type: 3}
   quickSwapInventoryItemPrefab: {fileID: 4914860866035002505, guid: e99c3122b5d93c74bb2cb1bedb9441a7, type: 3}
-  garra: {fileID: 11400000, guid: 9c13a64a940df074fbb0126f6879422c, type: 2}
+  garra: {fileID: 11400000, guid: d612f85fa3bc8f448a0f6689763e00c3, type: 2}
   currentWeaponSlot: 0
   canSwap: 0
-  inventoryParent: {fileID: 0}
-  meu1: {fileID: 0}
+  allItems: []

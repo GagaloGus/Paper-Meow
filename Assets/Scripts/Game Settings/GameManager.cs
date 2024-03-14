@@ -89,12 +89,6 @@ public class GameManager : MonoBehaviour
         {
             RecoverHealth(1);
         }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print("au");
-            TakeDamage(1);
-        }
     }
 
     #region Cursor
@@ -170,6 +164,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(string sceneName, bool loadScene)
     {
+        AudioManager.instance.StopMusic();
         StartCoroutine(ChangeSceneCorroutine(sceneName, loadScene));
     }
 
@@ -195,6 +190,16 @@ public class GameManager : MonoBehaviour
         {
             SaveDataManager.instance.LoadData(player);
         }
+
+        gamePaused = false;
+        gameTime = 1;
+        money = 0;
+        isInteracting = false;
+        menuOpen = false;
+        //isTutorial = true;
+        health = maxHealth;
+        playerDied = false;
+        AudioManager.instance.gameObject.GetComponent<AmbientMusicPlayer>().currentZoneTag = "asgfsd";
     }
 
     public void MoneyUpdate(int amount)

@@ -38,7 +38,6 @@ public class DisplayStats : MonoBehaviour
 
     public void UpdateCanvasStats()
     {
-
         FindChilds();
         playerStats = FindObjectOfType<SkoStats>();
 

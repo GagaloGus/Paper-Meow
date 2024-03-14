@@ -6,8 +6,13 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    GameObject player;
+    Quaternion originalRot;
+    public float detectionRange;
+
     [Header("Stats")]
     public float health;
+    public float defense;
 
     [Header("Recompensas")]
     public int exp;
@@ -16,7 +21,26 @@ public class Enemy : MonoBehaviour
     [Header("Eventos")]
     public UnityEvent DestroyEvent;
 
+    public AudioClip hitClip;
     public AudioClip deathClip;
+
+    private void Start()
+    {
+        player = FindObjectOfType<SkoController>().gameObject;
+        originalRot = transform.rotation;
+    }
+
+    private void Update()
+    {
+        if(Vector3.Distance(player.transform.position, transform.position) < Mathf.Abs(detectionRange))
+        {
+            transform.LookAt(CoolFunctions.FlattenVector3(player.transform.position, transform.position.y));
+        }
+        else
+        {
+            transform.rotation = originalRot;
+        }
+    }
 
 
     private void OnTriggerEnter(Collider trigger)
@@ -24,8 +48,8 @@ public class Enemy : MonoBehaviour
         Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
         if (weapon)
         {
-
-            TakeDamage(FindObjectOfType<SkoStats>().currentStats.ATK * weapon.weaponData.damageMultiplier * weapon.weaponData.itemData.damageMultiplier);
+            AudioManager.instance.PlaySFX2D(hitClip);
+            TakeDamage((player.GetComponent<SkoStats>().currentStats.ATK * weapon.weaponData.damageMultiplier * weapon.weaponData.itemData.damageMultiplier)/defense);
         }
     }
 

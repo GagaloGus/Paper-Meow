@@ -60,7 +60,6 @@ public class Buttonfunctions : MonoBehaviour
     public void ExitGame() //Indicamos a la aplicaci�n que se cierre.
     {
         Application.Quit();
-
     }
 
     public void TogglePauseContinueGame(bool softPause)

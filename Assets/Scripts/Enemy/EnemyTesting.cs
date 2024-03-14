@@ -5,32 +5,26 @@ using UnityEngine;
 
 public class EnemyTesting : MonoBehaviour
 {
-    [SerializeField] bool died = false;
-    SkoStats player;
-
+    Animator animator;
     public AudioClip damageClip;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        player = FindObjectOfType<SkoStats>();
+        animator = GetComponent<Animator>();
     }
 
-
-    public void TakeDamage(float damage)
+    private void Update()
     {
-        print($"au {damage}");
-        AudioManager.instance.PlaySFX2D(damageClip);
+        transform.forward = CoolFunctions.FlattenVector3(-Camera.main.transform.forward);
     }
-
 
     private void OnTriggerEnter(Collider trigger)
     {
         Weapon weapon = trigger.gameObject.GetComponentInParent<Weapon>();
-        if (weapon && !died)
+        if (weapon)
         {
-
-            TakeDamage(player.currentStats.ATK * weapon.weaponData.damageMultiplier);
+            animator.SetTrigger("hit");
+            AudioManager.instance.PlaySFX2D(damageClip);
         }
     }
 }

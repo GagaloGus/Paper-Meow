@@ -16,8 +16,8 @@ MonoBehaviour:
   skillDescription: 
   skillID: 3
   skillTreeSprite: {fileID: 21300000, guid: e9b90d789fd024b4ebac4f81f3fccacb, type: 3}
-  isUnlocked: 1
-  canBeUnlocked: 1
+  isUnlocked: 0
+  canBeUnlocked: 0
   parentSkills:
   - {fileID: 11400000, guid: 5d7776004318b51499061f8fa5bfd267, type: 2}
   - {fileID: 11400000, guid: 6155d03006823084fbe3aabd7f1f8435, type: 2}
@@ -26,6 +26,6 @@ MonoBehaviour:
   cooldown: 7
   unlockType: 0
   usablilty: 0
-  moneyRequired: 0
+  moneyRequired: 1200
   questItem: {fileID: 0}
   distance: 30

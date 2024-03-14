@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour
     const string SPEAKER_TAG = "speaker";
     const string EMOTION_TAG = "emotion";
 
-    DialogueNPCs dialogueNPCs;
+    public DialogueNPCs dialogueNPCs;
 
     private void Awake()
     {

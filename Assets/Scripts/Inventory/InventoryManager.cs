@@ -1,3 +1,4 @@
+using Ink.Parsed;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -321,6 +322,11 @@ public class InventoryManager : MonoBehaviour
                 $"HP+ {item.healAmount}";
         }
         else { useText.text = ""; }
+    }
+
+    public void GivePegatina(int index)
+    {
+        FindObjectOfType<PauseMenu>(true).EnablePegatina(index);
     }
 
 }

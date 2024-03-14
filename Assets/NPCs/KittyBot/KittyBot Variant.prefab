@@ -407,9 +407,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2237117926454833476}
-    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2095832841941824182}
   m_SourcePrefab: {fileID: 100100000, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
 --- !u!1 &505144089060839833 stripped
 GameObject:
@@ -429,10 +426,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaMinima: 5
-  velocidad: 10
+  velocidad: 9
   puntos:
   - patrolName: Ir hacia el pueblo
     puntos:
+    - {x: 2302.85, y: 110.14, z: 1199.5}
     - {x: 2347.65, y: 110.14, z: 1226.23}
     - {x: 2327.46, y: 110.14, z: 1242.65}
     - {x: 2317.01, y: 96.5, z: 1256.57}
@@ -455,24 +453,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - patrolName: Ir hacia el pueblo atajo
+  - patrolName: Ir hacia misheow
     puntos:
-    - {x: 2146.2, y: 62.8, z: 1194.2}
+    - {x: 1913.63, y: 48.85, z: 1143.82}
     ReachDestinationEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2237117926454833476}
-          m_TargetAssemblyTypeName: QuestLocationTrigger, Assembly-CSharp
-          m_MethodName: Interact
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
+  - patrolName: Ir a entrenar
+    puntos:
+    - {x: 1953.33, y: 45.32, z: 1319.3}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - patrolName: Ir a barrera esdra
+    puntos:
+    - {x: 1365.41, y: 46, z: 1568.55}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - patrolName: Ir a barrera destruida
+    puntos:
+    - {x: 1182.85, y: 56.33, z: 1600.33}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &2237117926454833476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,27 +489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 01ae6972c81f80847921067996575c1f, type: 2}
+  quest: {fileID: 11400000, guid: fa6fad22fddae504cb3c4d77c00563eb, type: 2}
   itemAmount: 1
-  eventType: 1
-  interactType: 3
-  interactEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2095832841941824182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505144089060839833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 6419dcdca493bcc4eb3639750e954b56, type: 2}
-  itemAmount: 0
   eventType: 1
   interactType: 3
   interactEvent:

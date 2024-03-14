@@ -29,8 +29,9 @@ public class InkExternalFunctions
             GiveItem(itemID, amount , npcBehaviour);
         });
 
-        story.BindExternalFunction("startPatrol", (int listNumber) => {
-            StartPatrolOfNPC(listNumber, npcBehaviour);
+        story.BindExternalFunction("startPatrol", (string npcId, int listNumber, string run) => {
+            bool isRun = run == "true";
+            StartPatrolOfNPC(npcId, listNumber, isRun);
         });
 
         story.BindExternalFunction("getPegatina", (int number) => {
@@ -43,14 +44,18 @@ public class InkExternalFunctions
         QuestManager.instance.AutoFinishQuest(questID);
     }
 
-    private void StartPatrolOfNPC(int listNumber, NPCBehaviour npcBehaviour)
+    private void StartPatrolOfNPC(string npcId, int listNumber, bool isRun)
     {
-        npcBehaviour.npcGameObject.GetComponent<PatrolPointsNPC>().Avanzar(listNumber);
+        NPCBehaviour nPCBehaviour = DialogueManager.instance.dialogueNPCs.GetNPC(npcId);
+        if (nPCBehaviour != null)
+        {
+            nPCBehaviour.npcGameObject.GetComponent<PatrolPointsNPC>().Avanzar(listNumber, isRun);
+        }
     }
 
     private void EnablePegatina(int number)
     {
-        UnityEngine.Object.FindObjectOfType<PauseMenu>().EnablePegatina(number);
+        UnityEngine.Object.FindObjectOfType<PauseMenu>(true).EnablePegatina(number);
     }
 
     public void UnBind(Story story)

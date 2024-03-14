@@ -6,6 +6,7 @@ using UnityEngine;
 public class TextController : MonoBehaviour
 {
     public TMP_Text coinText, coinTextInventory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,14 @@ public class TextController : MonoBehaviour
     {
         GameEventsManager.instance.miscEvents.onCoinCollected += MoneyUpdate;
         GameEventsManager.instance.inventoryEvents.onInventoryOpen += UpdateInventoryMoney;
+        GameEventsManager.instance.playerEvents.onPlayerDeath += PlayerDied;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.miscEvents.onCoinCollected -= MoneyUpdate;
         GameEventsManager.instance.inventoryEvents.onInventoryOpen -= UpdateInventoryMoney;
+        GameEventsManager.instance.playerEvents.onPlayerDeath -= PlayerDied;
     }
 
     void MoneyUpdate(int coinAmount)
@@ -38,5 +41,11 @@ public class TextController : MonoBehaviour
     void UpdateInventoryMoney()
     {
         coinTextInventory.text = GameManager.instance.coinCount.ToString();
+    }
+
+    void PlayerDied()
+    {
+        Animator thingAnimator = transform.Find("menuButton").GetComponent<Animator>();
+        thingAnimator.SetTrigger("died");
     }
 }

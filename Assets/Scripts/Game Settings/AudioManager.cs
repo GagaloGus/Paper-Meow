@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     static public AudioManager instance;
     public List<AudioSource> activeAudioSources;
-    public GameObjPool audioPool;
+    GameObjPool audioPool;
     private bool isMuted = false;
 
     void Awake()
@@ -130,5 +130,11 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.UnPause();
         }
+    }
+
+    public void StopMusic()
+    {
+        AudioSource musicSource = GetComponent<AmbientMusicPlayer>().musicSource;
+        musicSource.Stop();
     }
 }

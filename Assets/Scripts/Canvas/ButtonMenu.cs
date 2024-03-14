@@ -9,21 +9,39 @@ public class ButtonMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     Image posit;
     Animator animator;
+    public bool unlocked;
 
     private void Start()
     {
         posit = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
-    }
+
+        if (unlocked)
+        {
+            GetComponent<Button>().enabled = true;
+            transform.Find("Image").GetComponent<Image>().color = Color.white;
+        }
+        else 
+        {
+            GetComponent<Button>().enabled = false;
+            transform.Find("Image").GetComponent<Image>().color = Color.gray;
+        }
+    }   
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        animator.SetBool("hover", true);
+        if (unlocked)
+        {
+            animator.SetBool("hover", true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        animator.SetBool("hover", false);
+        if (unlocked)
+        {
+            animator.SetBool("hover", false);
+        }
 
     }
 }

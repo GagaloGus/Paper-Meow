@@ -131,9 +131,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1340042363206206777}
-    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3144494445353523635}
   m_SourcePrefab: {fileID: 100100000, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
 --- !u!1 &2790074441321456236 stripped
 GameObject:
@@ -155,22 +152,3 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 5fc2eda234a914046a4de84d6ac6c4b9, type: 2}
   hitAddCount: 1
   damageClip: {fileID: 8300000, guid: 17625b0e3285df347917f940e0b4196d, type: 3}
---- !u!114 &3144494445353523635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790074441321456236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b585d0054cb29c64595087d9f8f3eb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 5fc2eda234a914046a4de84d6ac6c4b9, type: 2}
-  itemAmount: 0
-  eventType: 1
-  interactType: 3
-  interactEvent:
-    m_PersistentCalls:
-      m_Calls: []

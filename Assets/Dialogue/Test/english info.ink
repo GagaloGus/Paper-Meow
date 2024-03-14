@@ -6,6 +6,7 @@ Press Space to jump, press it again in mid air to use the glider
 (You might need to talk to Beeko to get it, he's around the north of the town, near the beach)
 Interact with E, change dialogues with Space or clicking
 Open the menu with Escape, there is a lot of stuff there to explore!
+You can check your quests in the quest menu, if you are lost click follow quest and a little marker will help ya!
 Use skills with F (you can assing them in the Menu)
 Click to attack! You can grab the weapons around the world and equip them in the inventory quickswap
 (the quickswap is a little icon at the bottom right of the inventory menu)

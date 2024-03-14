@@ -5240,7 +5240,7 @@ MonoBehaviour:
   weaponData:
     name: 
     damageMultiplier: 1
-    itemData: {fileID: 11400000, guid: 9c13a64a940df074fbb0126f6879422c, type: 2}
+    itemData: {fileID: 11400000, guid: d612f85fa3bc8f448a0f6689763e00c3, type: 2}
 --- !u!1 &6948540996463791424
 GameObject:
   m_ObjectHideFlags: 0
@@ -10298,6 +10298,7 @@ GameObject:
   - component: {fileID: 1333025559593040506}
   - component: {fileID: 6403942227184611853}
   - component: {fileID: 9069423351829115485}
+  - component: {fileID: 7067165171061743053}
   - component: {fileID: 2146665910344738261}
   - component: {fileID: 2120665806219072765}
   - component: {fileID: 1170115040403223023}
@@ -10348,7 +10349,7 @@ MonoBehaviour:
   isAttacking: 0
   isInside: 0
   rayDetectFloorDist: 0.734
-  nearGroundDist: 2
+  nearGroundDist: 1
   isGrounded: 0
   isFlipped: 0
   isFacingBackwards: 0
@@ -10357,7 +10358,7 @@ MonoBehaviour:
   currentAttackNumber: 0
   canAttackAgain: 0
   playerState: 0
-  hasGlider: 1
+  hasGlider: 0
 --- !u!114 &9069423351829115485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10375,7 +10376,7 @@ MonoBehaviour:
   runSpeedMult: 2.03
   MaxLevel: 50
   health: 10
-  BaseATK: 20
+  BaseATK: 10
   BaseSPD: 5
   BaseExpReq: 30
   EXP_incMult: 120
@@ -10384,10 +10385,27 @@ MonoBehaviour:
     EXP_RequiredNextLvl: 0
     currentLevel: 0
     ATK: 0
-    ATK_increaseRange: {x: 1, y: 3}
+    ATK_increaseRange: {x: 2, y: 4}
     SPD: 0
-    SPD_increaseRange: {x: 0, y: 2}
+    SPD_increaseRange: {x: 1, y: 2}
   weaponSelected: 0
+--- !u!114 &7067165171061743053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344253251668500606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d3eed705e19b2429e1925cef4c72a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtSFXs:
+  - {fileID: 8300000, guid: b973f9c9d90307845966bedfa2733573, type: 3}
+  - {fileID: 8300000, guid: a9a7c875ed017d44fa57e9e87818b898, type: 3}
+  - {fileID: 8300000, guid: 52c0b547c7e7a7c418725fad8b113442, type: 3}
+  deathSFX: {fileID: 8300000, guid: e05d9d55b5082c94199583a335538df2, type: 3}
 --- !u!114 &2146665910344738261
 MonoBehaviour:
   m_ObjectHideFlags: 0

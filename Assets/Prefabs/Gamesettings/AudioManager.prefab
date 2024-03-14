@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeAudioSources: []
-  audioPool: {fileID: 0}
 --- !u!114 &5528615601644401400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c362fff4d95639c478ed6560487ecd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicActive: 0
+  musicActive: 1
   currentZoneTag: 
   previousZoneTag: 
   musicSource: {fileID: 0}

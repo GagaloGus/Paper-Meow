@@ -23,11 +23,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6155d03006823084fbe3aabd7f1f8435, type: 2}
   - {fileID: 11400000, guid: 9edb84f234bd1eb4c845c161a055f62c, type: 2}
   - {fileID: 11400000, guid: a332d4077367ace4b82fa4c605974964, type: 2}
-  usingSkill: 1
-  cooldown: 0.6
+  usingSkill: 0.6
+  cooldown: 3
   unlockType: 0
   usablilty: 2
-  moneyRequired: 0
+  moneyRequired: 200
   questItem: {fileID: 0}
   direction: 1
   distances: {x: 18.6, y: 8.58}

@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1452.3518
+      value: 1114.3
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.13279
+      value: 40.18
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1363.3916
+      value: 1449
       objectReference: {fileID: 0}
     - target: {fileID: 127751568016491059, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -107,6 +107,10 @@ PrefabInstance:
     - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: npcData.displayName
       value: Beeko
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126688923396496247, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      propertyPath: npcData.typingSpeedMult
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4337503266589909989, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       propertyPath: inkJSON
@@ -424,6 +428,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8301352046515979937}
     - targetCorrespondingSourceObject: {fileID: 285076229854635453, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1326346677420792236}
@@ -454,3 +461,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6793428656245982156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2250404264903412635, guid: e191fee061c123f45a2d5217eacc180a, type: 3}
+  m_PrefabInstance: {fileID: 4718665887867455575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8301352046515979937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793428656245982156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b7f2271281c7d409ce6d7be0bacb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanciaMinima: 5
+  velocidad: 4
+  puntos:
+  - patrolName: otro lado de barrera
+    puntos:
+    - {x: 1497.11, y: 34.92, z: 1440.8}
+    - {x: 1114.3, y: 40.18, z: 1449}
+    ReachDestinationEvent:
+      m_PersistentCalls:
+        m_Calls: []
